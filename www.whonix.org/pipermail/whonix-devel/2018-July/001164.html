@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-July/001164.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] transparent i2p integration
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20transparent%20i2p%20integration&In-Reply-To=%3Cc624781f-7c58-f796-d31c-bb97da26d90a%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/001162.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/001165.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] transparent i2p integration</H1>
+<B>iry</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20transparent%20i2p%20integration&In-Reply-To=%3Cc624781f-7c58-f796-d31c-bb97da26d90a%40riseup.net%3E" TITLE="[Whonix-devel] transparent i2p integration">iry at riseup.net
+</A><BR>
+<I>Thu Jul 12 08:29:00 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/001162.html>[Whonix-devel] transparent i2p integration
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/001165.html>[Whonix-devel] transparent i2p integration
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/date.html#1164">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/thread.html#1164">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/subject.html#1164">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/author.html#1164">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+
+Hi GammaSQ!
+
+Thank you for working on i2p-Whonix!
+
+&gt;<i> I'm uncertain as to how to setup tor. Currently, I use tor with 
+</i>&gt;<i> commandline-option --TransPort 9050; would that handle reseeding 
+</i>&gt;<i> via SOCKS as well, or do I need to start Tor with --SocksPort set? 
+</i>&gt;<i> (I guess Port 9050 is configured somewhere in whonix. Where?)
+</i>
+To answer the question, you may find the output of anon-verify -v
+helpful to you in Whonix-Gateway (Whonix 14+):
+
+/===================================================================\
+|<i>                 Used Tor Configuration Files                      |
+</i>\===================================================================/
+5 files are used as Tor configuration files:
+/usr/share/tor/tor-service-defaults-torrc /etc/tor/torrc
+/etc/torrc.d/95_whonix.conf
+/usr/local/etc/torrc.d/40_anon_connection_wizard.conf
+/usr/local/etc/torrc.d/50_user.conf
+/===================================================================\
+|<i>                Verbose Tor Configuration Parsing                  |
+</i>\===================================================================/
+The Tor configuration files are parsed in such order:
+===&gt; Parsing /usr/share/tor/tor-service-defaults-torrc
+DataDirectory /var/lib/tor
+PidFile /var/run/tor/tor.pid
+RunAsDaemon 1
+User debian-tor
+ControlSocket /var/run/tor/control GroupWritable RelaxDirModeCheck
+ControlSocketsGroupWritable 1
+SocksPort unix:/var/run/tor/socks WorldWritable
+SocksPort 9050
+CookieAuthentication 1
+CookieAuthFileGroupReadable 1
+CookieAuthFile /var/run/tor/control.authcookie
+Log notice file /var/log/tor/log
+DisableNetwork 1
+Log notice syslog
+Log notice file /run/tor/log
+mapaddress 1.1.1.1 k54ids7luh523dbi.onion
+mapaddress 2.2.2.2 gbhpq7eihle4btsn.onion
+VirtualAddrNetwork 10.192.0.0/10
+AutomapHostsOnResolve 1
+TransPort 10.137.11.1:9040
+DnsPort 10.137.11.1:5300 IsolateDestPort
+SocksPort 10.137.11.1:9050
+SocksPort 10.137.11.1:9100
+SocksPort 10.137.11.1:9101 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9102 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9103 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9104
+SocksPort 10.137.11.1:9105 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9106 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9107 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9108 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9109 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9110 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9111
+SocksPort 10.137.11.1:9112
+SocksPort 10.137.11.1:9113
+SocksPort 10.137.11.1:9114 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9115 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9116 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9117 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9118 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9119
+SocksPort 10.137.11.1:9120 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9121 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9122
+SocksPort 10.137.11.1:9123
+SocksPort 10.137.11.1:9124
+SocksPort 10.137.11.1:9125
+SocksPort 10.137.11.1:9150 IPv6Traffic PreferIPv6
+KeepAliveIsolateSOCKSAuth
+SocksPort 10.137.11.1:9152 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9153
+SocksPort 10.137.11.1:9154
+SocksPort 10.137.11.1:9155
+SocksPort 10.137.11.1:9156
+SocksPort 10.137.11.1:9157
+SocksPort 10.137.11.1:9158
+SocksPort 10.137.11.1:9159
+SocksPort 10.137.11.1:9160 IsolateDestAddr
+SocksPort 10.137.11.1:9161 IsolateDestAddr
+SocksPort 10.137.11.1:9162 IsolateDestAddr
+SocksPort 10.137.11.1:9163 IsolateDestAddr
+SocksPort 10.137.11.1:9164 IsolateDestAddr
+SocksPort 10.137.11.1:9165 IsolateDestAddr
+SocksPort 10.137.11.1:9166 IsolateDestAddr
+SocksPort 10.137.11.1:9167 IsolateDestAddr
+SocksPort 10.137.11.1:9168 IsolateDestAddr
+SocksPort 10.137.11.1:9169 IsolateDestAddr
+SocksPort 10.137.11.1:9170 IsolateDestPort
+SocksPort 10.137.11.1:9171 IsolateDestPort
+SocksPort 10.137.11.1:9172 IsolateDestPort
+SocksPort 10.137.11.1:9173 IsolateDestPort
+SocksPort 10.137.11.1:9174 IsolateDestPort
+SocksPort 10.137.11.1:9175 IsolateDestPort
+SocksPort 10.137.11.1:9176 IsolateDestPort
+SocksPort 10.137.11.1:9177 IsolateDestPort
+SocksPort 10.137.11.1:9178 IsolateDestPort
+SocksPort 10.137.11.1:9179 IsolateDestPort
+SocksPort 10.137.11.1:9180 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9181 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9182 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9183 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9184 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9185 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9186 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9187 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9188 IsolateDestAddr IsolateDestPort
+SocksPort 10.137.11.1:9189 IsolateDestAddr IsolateDestPort
+TransPort 127.0.0.1:9041
+DnsPort 127.0.0.1:5400
+SocksPort 127.0.0.1:9100
+SocksPort 127.0.0.1:9101 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9102 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9103 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9104
+SocksPort 127.0.0.1:9105 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9106 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9107 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9108 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9109 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9110 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9111
+SocksPort 127.0.0.1:9112
+SocksPort 127.0.0.1:9113
+SocksPort 127.0.0.1:9114 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9115 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9116 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9117 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9118 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9119
+SocksPort 127.0.0.1:9120 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9121 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9122
+SocksPort 127.0.0.1:9123
+SocksPort 127.0.0.1:9124
+SocksPort 127.0.0.1:9125
+SocksPort 127.0.0.1:9150 IPv6Traffic PreferIPv6 KeepAliveIsolateSOCKSAut
+h
+===&gt; Done parsing /usr/share/tor/tor-service-defaults-torrc
+===&gt; Parsing /etc/tor/torrc
+%include /etc/torrc.d/95_whonix.conf
+===&gt; Parsing /etc/torrc.d/95_whonix.conf
+%include /usr/local/etc/torrc.d/40_anon_connection_wizard.conf
+===&gt; Parsing /usr/local/etc/torrc.d/40_anon_connection_wizard.conf
+DisableNetwork 0
+===&gt; Done parsing /usr/local/etc/torrc.d/40_anon_connection_wizard.conf
+%include /usr/local/etc/torrc.d/50_user.conf
+===&gt; Parsing /usr/local/etc/torrc.d/50_user.conf
+===&gt; Done parsing /usr/local/etc/torrc.d/50_user.conf
+===&gt; Done parsing /etc/torrc.d/95_whonix.conf
+===&gt; Done parsing /etc/tor/torrc
+=====================================================================
+
+Apart from the configuration files, Tor is started by systemd in Whonix
+14 by default:
+
+&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">user at host</A>:~$ grep -r -i &quot;ExecStart=&quot; 
+</i>&gt;<i> /lib/systemd/system/<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">tor at default.service</A> ExecStart=/usr/bin/tor 
+</i>&gt;<i> --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f 
+</i>&gt;<i> /etc/tor/torrc --RunAsDaemon 0
+</i>
+Hope this will be helpful to you!
+
+Best Regards,
+iry
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEzKSpZKlpRovTotu+oUtNvG3N1TwFAltG9SQACgkQoUtNvG3N
+1TwFuxAAuiFLvjAhACmzw0qvRjrWYo0+H5/mzEuPo24hINN1B/j9zejVPdj6fXff
+no/+URNS7ZGeHS7o61yZtejRh3nmC08sT1KMamvDZXwaj9X5IbFWN+AHHoKEOE0K
+YyQ9hux9WCw4e/q9/GOHxb/6czi/nf5bE86BmpOXN23UXTCAmF1w6RU74Bc6l2Bh
+qYpNV94Va3IFiWTbDmT/mi7RKg8T91Fckh9Z4Z5OcUGReKwz4E8ZKemkAq83g6MR
+aQ33kbMxcSy6wvCQfSH4mksB/jsEcRE9uT0gNVmC7z0cPXnRzf4IWt0LJEABB1OT
+LGVp3nXkI+o1TFd7o5juFE134WpjEa5pgIbDbdEmySQVE1NnlwfPtFsD5WtnRA5Y
+aH8Dc7TzueP4m/EKc6u+TBzBGOKPCorOl3irdfCLoUNfBoUQodoIV9rfE0qH/hB5
+r1Xnimrgricy2FCdZPXhadbnfs5qrOjA2MLJoX2NAz3K6wCDONg8im/9+/rCqh6A
+4Kiv+DlaK/sY5pUWHxXY68c36OL8Wl1BcSedOBH/bXFrUMFqwuMbjpz3zkcUsQkF
+ai7Kzk+fT7pFzG3lCNHskYvMvEcctR2+Pkn2tYUR4LVKvD5ZWjdgLhWn/qTGnq+4
+gVq64JZiPLO0G8JBCxucx4VnhmGxERvzLcMYDq/f/Da9AVBmm8k=
+=UOiv
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/001162.html>[Whonix-devel] transparent i2p integration
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/001165.html>[Whonix-devel] transparent i2p integration
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/date.html#1164">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/thread.html#1164">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/subject.html#1164">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/author.html#1164">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/001164.html','y7aelHq7wr','KkQNeAfuKzc',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-July/001164.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-July/001164.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:14 GMT -->
+</HTML>

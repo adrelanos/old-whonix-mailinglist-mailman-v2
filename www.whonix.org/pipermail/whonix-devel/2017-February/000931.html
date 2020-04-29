@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-February/000931.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [systemd-devel] How to have systemd --user instance share the same environment variables as the X server?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bsystemd-devel%5D%20How%20to%20have%20systemd%20--user%0A%20instance%20share%20the%20same%20environment%20variables%20as%20the%20X%20server%3F&In-Reply-To=%3C20170227190711.GC24600%40gardel-login%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000926.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000927.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [systemd-devel] How to have systemd --user instance share the same environment variables as the X server?</H1>
+<B>Lennart Poettering</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bsystemd-devel%5D%20How%20to%20have%20systemd%20--user%0A%20instance%20share%20the%20same%20environment%20variables%20as%20the%20X%20server%3F&In-Reply-To=%3C20170227190711.GC24600%40gardel-login%3E" TITLE="[Whonix-devel] [systemd-devel] How to have systemd --user instance share the same environment variables as the X server?">lennart at poettering.net
+</A><BR>
+<I>Mon Feb 27 20:07:11 CET 2017</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000926.html>[Whonix-devel] How to have systemd --user instance share the same environment variables as the X server?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000927.html>[Whonix-devel] How to create a real copy of file descriptors stdout	/ stderr?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/date.html#931">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/thread.html#931">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/subject.html#931">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/author.html#931">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On Sun, 26.02.17 21:10, Patrick Schleizer (<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">patrick-mailinglists at whonix.org</A>) wrote:
+
+&gt;<i> Being on Debian stretch (Qubes). The display manager there does not yet
+</i>&gt;<i> get started by systemd --user.
+</i>&gt;<i> 
+</i>&gt;<i> I find it useful to convert /etc/xdg/autostart/app.desktop files to
+</i>&gt;<i> systemd --user unit files.
+</i>&gt;<i> 
+</i>&gt;<i> Therefore the environment variables have to be sorted out. On any Linux
+</i>&gt;<i> we would have to set at least DISPLAY as well as XAUTHORITY.
+</i>&gt;<i> 
+</i>&gt;<i> On Qubes however, we need a few more environment variables. We need also
+</i>&gt;<i> QT_X11_NO_MITSHM=1 and may need a few others ones.
+</i>&gt;<i> 
+</i>&gt;<i> Now, before I go through them manually and then have this break in
+</i>&gt;<i> future when more/different environment variables are needed...
+</i>&gt;<i> 
+</i>&gt;<i> Is there a way to have the systemd --user session share the same
+</i>&gt;<i> variables as the X server? Writing a parser for /etc/X11/Xsession.d/
+</i>&gt;<i> seems wrong. Am I missing some tool to do that?
+</i>&gt;<i> 
+</i>&gt;<i> Would I add something like this?
+</i>&gt;<i> 
+</i>&gt;<i> ExecStartPre=dbus-update-activation-environment --systemd --all
+</i>
+I am not sure I follow what you are trying to do, and I'd strongly
+recommend to avoid pushing env vars from privileged code into
+unprivileged code, but do note that there's &quot;systemctl
+import-environment&quot; for importing env vars set for you.
+
+Lennart
+
+-- 
+Lennart Poettering, Red Hat
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000926.html>[Whonix-devel] How to have systemd --user instance share the same environment variables as the X server?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000927.html>[Whonix-devel] How to create a real copy of file descriptors stdout	/ stderr?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/date.html#931">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/thread.html#931">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/subject.html#931">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/author.html#931">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000931.html','y7aelHq7wr','njxuujqvHCQ',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000931.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-February/000931.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:31 GMT -->
+</HTML>

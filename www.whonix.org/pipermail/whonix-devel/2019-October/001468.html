@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-October/001468.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:54:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Bug#942303: Weak-Depends - something in the middle between 'Recommends:' and 'Depends:'
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Bug%23942303%3A%20Weak-Depends%20-%20something%20in%20the%20middle%0A%20between%20%27Recommends%3A%27%20and%20%27Depends%3A%27&In-Reply-To=%3Ce9d58347-1d9c-0b52-3c65-f312a0ae715a%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/001465.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/001469.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Bug#942303: Weak-Depends - something in the middle between 'Recommends:' and 'Depends:'</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Bug%23942303%3A%20Weak-Depends%20-%20something%20in%20the%20middle%0A%20between%20%27Recommends%3A%27%20and%20%27Depends%3A%27&In-Reply-To=%3Ce9d58347-1d9c-0b52-3c65-f312a0ae715a%40riseup.net%3E" TITLE="[Whonix-devel] Bug#942303: Weak-Depends - something in the middle between 'Recommends:' and 'Depends:'">adrelanos at riseup.net
+</A><BR>
+<I>Mon Oct 14 10:53:00 CEST 2019</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/001465.html>[Whonix-devel] Bug#941951: RFP: tpm2-pk11
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/001469.html>[Whonix-devel] #21397 [Core Tor/Tor]: Tor TransparentProxy documentation: add IPv6 support / port to nftables
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/date.html#1468">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/thread.html#1468">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/subject.html#1468">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/author.html#1468">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Package: dpkg
+Severity: wishlist
+X-Debbugs-CC: <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">whonix-devel at whonix.org</A>
+
+It would be useful if there was something in between of 'Recommends:'
+and 'Depends:'.
+
+&#8220;Weak-Depends&#8221;
+
+Similar to &#8220;Depends&#8221;. It lists packages that get installed when using
+'apt --no-install-recommends meta-package', but any package listed there
+can be removed without removing the meta-package which referenced the
+Weak-Depends:.
+
+In other words&#8230;
+
+&#8220;Weak-Depends&#8221;: Declares a weak dependency. Most users of this package
+may benefit from installing packages listed in this field, but can have
+reasonable functionality without them.
+
+
+The &#8220;Suggests&#8221; debian/control field does not work for this use case.
+Very few users are using &#8216;apt --install-suggests&#8217;. And &#8216;apt
+--no-install-suggests&#8217; is the default. Also when using &#8216;apt
+dist-upgrade&#8217; this leads to inconsistencies:
+
+- newly added packages to &#8220;Suggests&#8221; are not installed
+- removed packages from &#8220;Suggests&#8221; aren&#8217;t removed
+
+Use case:
+
+Let&#8217;s take for example the meta package &#8216;lxde&#8217;. Sometimes users are
+happy with such meta packages generally and would like to keep it.
+However, &#8216;lxde&#8217; &#8216;Depends:&#8217; on &#8216;galculator&#8217;. Maybe a user prefers a
+different calculator and wants to remove that one.
+
+(Let&#8217;s assume galculator isn&#8217;t essential for lxde. I guess it is. But if
+it isn&#8217;t, please don&#8217;t concentrate on the specific example but the
+general use case. There are many such examples.)
+
+[This isn&#8217;t the best example too. Perhaps things that take a lot disk
+space or are more intrusive such as context menu integrations by file
+compressors are more worthwhile.]
+
+In that case removal of galculator would lead to removal of lxde. Next
+time &#8220;apt autoremove&#8221; is being run other packages which are not intended
+by the user to be uninstalled get uninstalled. Something simple as
+removal of galculator isn&#8217;t that simple. Would galculator move from
+&#8220;Depends&#8221; to &#8220;Weak-Depends&#8221; everything would be perfect.
+
+Cheers,
+Patrick
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/001465.html>[Whonix-devel] Bug#941951: RFP: tpm2-pk11
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/001469.html>[Whonix-devel] #21397 [Core Tor/Tor]: Tor TransparentProxy documentation: add IPv6 support / port to nftables
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/date.html#1468">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/thread.html#1468">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/subject.html#1468">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/author.html#1468">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-October/001468.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-October/001468.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:54:59 GMT -->
+</HTML>

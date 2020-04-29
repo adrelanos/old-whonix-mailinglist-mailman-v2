@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2013-October/000076.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Whonix Anonymous Operating System Version 7 Released!
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Whonix%20Anonymous%20Operating%20System%20Version%207%20Released%21&In-Reply-To=%3C5258D6DA.6040900%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000075.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000077.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Whonix Anonymous Operating System Version 7 Released!</H1>
+<B>adrelanos</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Whonix%20Anonymous%20Operating%20System%20Version%207%20Released%21&In-Reply-To=%3C5258D6DA.6040900%40riseup.net%3E" TITLE="[Whonix-devel] Whonix Anonymous Operating System Version 7 Released!">adrelanos at riseup.net
+</A><BR>
+<I>Sat Oct 12 06:58:02 CEST 2013</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000075.html>[Whonix-devel] Is there a substitute for Whonix's lack of an Amnesic feature / Live CD/DVD? Forensics?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000077.html>[Whonix-devel] User Support Forum Changes
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/date.html#76">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/thread.html#76">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/subject.html#76">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/author.html#76">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Whonix is an operating system focused on anonymity, privacy and
+security. It's based on the Tor anonymity network, Debian GNU/Linux
+and security by isolation. DNS leaks are impossible, and not even
+malware with root privileges can find out the user's real IP.
+
+Whonix consists of two parts: One solely runs Tor and acts as a
+gateway, which we call Whonix-Gateway. The other, which we call
+Whonix-Workstation, is on a completely isolated network. Only
+connections through Tor are possible.
+
+Download:
+
+<A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Download">https://www.whonix.org/wiki/Download</A>
+
+Users of Whonix 0.5.6 and below:
+
+There is no upgrade path from Whonix 0.5.6 to Whonix 7, sorry. You
+have to manually download new Whonix images.
+
+Call for Help:
+
+If you know shell scripting (/bin/bash) and linux sysadmin, please
+join us! There are plenty of ways to make Whonix safer. We are also
+looking for a https direct download mirror.
+
+Changelog:
+
+* Tor 0.2.4
+
+* obfs3 installed by default
+
+* higher console resolution 1024x768 (without X)
+
+* The current Tor Browser Bundle (TBB) Alpha, which will soon become
+the new TBB stable, will work out of the box in Whonix, even if you
+download and install it manually from torproject.org. The out of the
+box user experience will include not accidentally running Tor over
+Tor. This is useful for the case, that the Whonix Tor Browser updater
+breaks again, because torproject.org changed something.
+
+* Graphical Whonix-Gateway. Optional. If you reduce Whonix-Gateway RAM
+below 500 MB (this and every other aspect of this feature can be
+configured), lets say to 128 MB, you automagically end up with the
+usual non-graphical Whonix-Gateway.
+
+* Whonix has now an updater. It can not promised, that you never have
+to download a new image, when next stable version of Whonix gets
+released, but we are on that way. Interested testers may have to
+download a new (test-)image from time to time, since we also need to
+test the out of the box user experience.
+
+* whonixsetup - Connection Wizard: Whonix now comes with Tor
+networking disabled. This is useful for users who never want to
+connect to the public Tor network, because they want to hide the fact,
+that they are using Tor. This kind of users can now more easily set up
+(private) (obfuscated) bridges before ever trying to connect to the
+Tor network.
+
+* Fixed uwt. To do certain tasks such as installing the Adobe Flash
+plugin or running update-command-not-found you no longer need to
+&quot;chmod -x /usr/local/bin/curl&quot;.
+
+* Manpages for scripts, which come with Whonix.
+
+* /etc/whonix.d/, /etc/whonix_firewall.d/ /etc/controlportfilt.d
+flexible modular .d style configuration folders.
+
+* Deactivate the kgpg tray icon by default (#10), not perfect, but
+less confusing, since it will now start in foreground by default and
+no longer as tray icon (which was automatically and confusingly hidden
+by default).
+
+* Boot Clock Randomization
+
+* Time Sanity Check
+
+* Downloading Tor Browser and signature from
+<A HREF="../../../../external.html?link=http://idnxcnkne4qt76tg.onion/dist/torbrowser/linux">http://idnxcnkne4qt76tg.onion/dist/torbrowser/linux</A> instead from
+<A HREF="../../../../external.html?link=https://www.torproject.org/dist/torbrowser">https://www.torproject.org/dist/torbrowser</A> for better security when
+run inside Whonix. (Not sure if we can keep this, due to general
+scaling flaws in hidden services.)
+
+* Tor Button's New Identity button now functional. (Thanks to Control
+Port Filter Proxy.)
+
+* optional Time Privacy wrapper
+
+* enable &quot;apparmor=1 security=apparmor&quot; by default (but didn't enable
+enforce mode or added any useful profiles)
+
+* moved blog to wordpress.com, better than sourceforge, because
+wordpress.com supports SSL, closed #23
+
+* Tor Browser is now system default browser, when trying to open links
+it will ask for confirmation to avoid accidental linking (configurable).
+
+* too many other improvements under the hood in git log
+
+Cheers,
+adrelanos
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCgAGBQJSWNbXAAoJEJwTGtNxOq7vlNEQAIrgiCcJyuj6NOcd3+ApIEnu
+lXpi9TP9O7+/WYNPHxatCIAN16T3uD8YO/qlNdA54qYP1mOpwhFtjznZuJ3nwFJx
+TI5RSP36C6bdUH8BM1wWGayeVUvEUoWnuSswMaD4GBhkPUqJPx3aNyJe3LgTVJoQ
+1TDEjJYv90+wTRjbfa0maJt4H4z1SX5dZ2+whTsvf4XNGuOMeENTlHKbvVcyaHWj
+Go/l34cGIoYMZVptgT7TdvnKp6poIUm0Jbgx4U4AfN/Db6UkVosRjq/5PK8h2AQv
+2+L738MNv55AxAwCmzInp85EUH4eSamHWeFiBIhFg3mn7arxIx/YaJOMCe1JKt78
+aeOkCZqvTbsh3RSoZLd+UxiEYzfyX9GrGgCeNprKvtEDqc/AarP68SxBVOmIRbCk
+6nJHiUoKqpKKQRBsGPu+1OunMoD9exWht8e7wOBhFE41yrS0TGmxlTriy9McHM2B
+5co62tH6pSacgPqhMUWKo6E4hqNwt88gJnPCf1F/LkUFOED5qKBRyZEhQgvOeqP+
+tPwFCZ+D8p/0iqpU3oAVC9ocsBJmIuK/q9OnD1kFdCk0Xml9S6F3/yASaz2Wdm2t
+VrVRCVrNvOA1MQ4vq5IXc+FsuZZXEJFLw4w5Q6FIzvbY64cIhyRGVLtJ/Gkhf8UY
+fxkbzGcq+JBAI7s+aubi
+=aL36
+-----END PGP SIGNATURE-----
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000075.html>[Whonix-devel] Is there a substitute for Whonix's lack of an Amnesic feature / Live CD/DVD? Forensics?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000077.html>[Whonix-devel] User Support Forum Changes
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/date.html#76">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/thread.html#76">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/subject.html#76">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/author.html#76">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000076.html','y7aelHq7wr','IjifxPxipEs',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000076.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2013-October/000076.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:11 GMT -->
+</HTML>

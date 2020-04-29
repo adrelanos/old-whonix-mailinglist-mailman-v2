@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-December/000267.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20git%20log%20--pretty%3D%22format%3A%25H%24t%25aN%24t%25s%24t%25G%3F%22%0A%09--show-signature&In-Reply-To=%3C87wq65z5xj.fsf%40gnu.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000266.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000290.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature</H1>
+<B>Mike Gerwitz</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20git%20log%20--pretty%3D%22format%3A%25H%24t%25aN%24t%25s%24t%25G%3F%22%0A%09--show-signature&In-Reply-To=%3C87wq65z5xj.fsf%40gnu.org%3E" TITLE="[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature">mikegerwitz at gnu.org
+</A><BR>
+<I>Sat Dec 6 06:46:32 CET 2014</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000266.html>[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000290.html>[Whonix-devel] (no subject)
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/date.html#267">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/thread.html#267">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/subject.html#267">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/author.html#267">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Thanks for the input, Junio.
+
+On Thu, Dec 04, 2014 at 13:11:15 -0800, Junio C Hamano wrote:
+&gt;<i> I am however not quite sure what conclusion you are trying to drive
+</i>&gt;<i> at by contrasting approaches #2 and #3.  The perceived problem of
+</i>&gt;<i> approach #2, if I am reading you correctly, is that the merge is
+</i>&gt;<i> what you vouch for but the commits on the side branch are not signed
+</i>&gt;<i> so there is no way for you (as the merge creator) to point fingers
+</i>&gt;<i> to when the result of the merge turns out to be problematic.  The
+</i>&gt;<i> argument for approach #3 would be that it would give you (as the
+</i>&gt;<i> merge creator) somebody to point fingers to if you forced others who
+</i>&gt;<i> ask you to pull from them to sign their commits.
+</i>
+I had to take another look at the article to see if my opinions have
+since changed.
+
+My argument for Option #3 (signing each commit) was that it explicitly
+denotes that a particular commit was reviewed; signing a merge commit
+states that implicitly.
+
+I personally sign any commit on master; usually, this is a merge
+commit.  But this is because I have a high level of confidence in the
+integrity of my system, my ability to notice commits that are not likely
+to be my own, and because the auditing requirements of my software are,
+well, non-existent.
+
+My wife was recently watching Elf (the movie), which had an interesting
+example, so I'll make use of it:  One of the characters works for a
+publishing company.  A children's book was printed, but was missing
+content on the last two pages.  The character was responsible for
+signing off on the book.  His boss stormed in, and the character used
+the excuse that something must have gone wrong during printing; but his
+boss pulled out the proofs that went to press---each page had the
+character's initials, including the blank ones.
+
+Signing each commit is like initialing each page.  Of course, these
+scenarios are drastically different---a page of a book is its own
+finished result, whereas a commit is more likely to be a single
+component of a larger feature.  But adapt it how you will.
+
+Another possibility is that a malicious commit could be hidden within a
+changeset by introducing another commit that later reverts the change;
+there would be nothing in the diff between `topic' and `HEAD', but an
+operation like `bisect' could check out the commit and run malicious
+code.  So the question is then: does the signing of the merge commit
+indicate review of the diff, or review of each commit?
+
+If the review of each commit doesn't matter, does the history matter?
+In which case, is squashing the better option?
+
+&gt;<i> Does it absolve you from blame if you can say with certainty (thanks
+</i>&gt;<i> to GPG keys on them) that those commits on the side branch that adds
+</i>&gt;<i> unwanted (from 'maint' policy's point of view) new feature were made
+</i>&gt;<i> by somebody else, because the project used the approach #3?
+</i>&gt;<i>
+</i>&gt;<i> Not really.
+</i>
+You might be thinking that I'm suggesting that the merge commit carry a
+different signature than the commits on the side branch.  That's
+certainly an option, but wasn't what I was referring to, since the
+GPG-signature of the author doesn't indicate that the code was reviewed
+by the person responsible for doing so.  And no additional review data
+(e.g. a Signed-off-by) can be added to the commit object without
+invalidating the signature of the author (except by notes, or a similar
+concept).  So in this case, if you truly do want to maintain the
+signature of the author (I would!), you must sign the merge commit and
+indicate the review of each commit in some other manner, or rely on the
+implicit assumption that each commit has been reviewed.
+
+And that may not be a problem.
+
+Instead, Option #3 was stating that the person responsible for merging
+would also be responsible for signing each individual commit, as a means
+of stating &quot;yep, this was reviewed&quot;.
+
+&gt;<i> When you sign your merge with &quot;merge -S&quot;, you are vouching for the
+</i>&gt;<i> contents of the whole tree, not just &quot;I made this merge, but I don't
+</i>&gt;<i> have anything to do with what it pulled in.&quot;  It does not really
+</i>&gt;<i> matter to the end users where the changes came from.  You are
+</i>&gt;<i> certifying that &quot;git diff HEAD^ HEAD&quot; after making the merge is what
+</i>&gt;<i> you are pleased with by signing the merge.
+</i>
+And `git diff HEAD^ HEAD' may show nothing wrong, as I mentioned
+above.  But otherwise, yes, you're correct.  The goal would not be to
+absolve blame in this scenario.  The only goal of signing each commit
+would be to provide confidence to those who may care about the depth of
+the review process.
+
+Rather, it is the _absence_ of a GPG-signed merge that would be the
+problem, since you can't assert your identity in that case.  If you have
+GPG-signed the merge, then you've avoided the problems in the &quot;horror
+story&quot; part of the article, but you've introduced a whole new set of
+them if you introduced bad changes, since you now can't deny it. ;)
+
+&gt;<i> But ultimately, the responsibility lies on the person who creates
+</i>&gt;<i> the topmost merge and advances the tip of the history the users of
+</i>&gt;<i> the end product of the project considers the authoritative one.
+</i>
+Indeed.
+
+I would like to take some time to catch up on all the changes that have
+been made since I wrote that article, and look through the mailing list
+to see your philosophy and others' regarding Git's signing
+features.  The thought experiment that prompted my article was
+considering what may happen if a coworker decided to commit as me, and
+do so maliciously (ironically, we still don't sign commits at work, but
+it'll be coming).  This would be an inside job---that coworker would
+have access to the repository, and the only way I could assert my
+identity is cryptographically or through server logs, the latter of
+which could still be modified with root access.  By introducing signed
+pushes, Git has actually solved that problem in a less invasive way that
+is practical for internal use (though less so for a larger community
+wanting to observe repository integrity on their own, but that's not
+what it's for).
+
+- -- 
+Mike Gerwitz
+Free Software Hacker | GNU Maintainer
+<A HREF="../../../../external.html?link=http://mikegerwitz.com/">http://mikegerwitz.com</A>
+FSF Member #5804 | GPG Key ID: 0x8EE30EAB
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iQIcBAEBAgAGBQJUgpg5AAoJEPIruBWO4w6rZ6IQALRiJOUeYNIJGVdbpJ9uynda
+p7HuWkJyF6lSSyk8hPFCrGKde5YmwD6tsW9xxnwSCIw8qRvMPPRxDFH4P8KzzWMm
+jwe/QWVRiobJ1uViSawpvfrrrK1ZnrScIGW9MuJtuURuZtazvf913OOwZKIm5Qnm
+NWy3Xv9P1wqhOYnYSKUd6LbJFTT8MH6bG9U13rkZ7YXUDIygAAjCNAZmfmTJ+hv2
+KUwYlHSQd0VtbI09cB9+oUVRFwK3Bmek6TgVb7MJlCNSKn2y+8EZWE9MYdKKl2tN
+opgqTUjTIaqn50JtspvKYJpMkOA17+MtHXUG5Q0gMZjw69mueXl+MaSJSr8YDkSb
+AAAsr0NYscK7iwDs8xCZCV6aROirL0XtuGazvFQ6Fma5bvl0xtVEowPsJK4Qb17c
+mvn0Z8wKUQvMcM71iNQGg/uBJvFfmJG6PYujFJ1pOnt2b3w5b53sgL3Dq5Eo54Za
+IJY7cqZOSWyKzkYWO3uL+FdkPq79BIQFalVBooaEyC8lno3BQH+zb45czYDhB/gr
+D8eLnCDQTq/or118jYWmZw+UFXvYvwu6S5g4p9pVpTRKvnvA/VbDoNINeMRhVSdY
+tw3pEhvp06IVQeoJwXAffvtBdC32ohcQCPHkMh8WQAHqbBw9FjKiA8Yk7ordrDyU
+a73dxZuXMt1VxTBeLyjy
+=ui4w
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000266.html>[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000290.html>[Whonix-devel] (no subject)
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/date.html#267">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/thread.html#267">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/subject.html#267">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/author.html#267">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000267.html','y7aelHq7wr','cMrqUl39wc8',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000267.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-December/000267.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:57 GMT -->
+</HTML>

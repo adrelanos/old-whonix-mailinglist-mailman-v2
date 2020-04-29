@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-September/001430.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Bug#940188: compatibility with grml-debootstrap, pbuilder and cowbuilder
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Bug%23940188%3A%20compatibility%20with%20grml-debootstrap%2C%0A%20pbuilder%20and%20cowbuilder&In-Reply-To=%3C36a1fe6e-8640-66bb-3de5-83bf6f5d35de%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001429.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001431.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Bug#940188: compatibility with grml-debootstrap, pbuilder and cowbuilder</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Bug%23940188%3A%20compatibility%20with%20grml-debootstrap%2C%0A%20pbuilder%20and%20cowbuilder&In-Reply-To=%3C36a1fe6e-8640-66bb-3de5-83bf6f5d35de%40riseup.net%3E" TITLE="[Whonix-devel] Bug#940188: compatibility with grml-debootstrap, pbuilder and cowbuilder">adrelanos at riseup.net
+</A><BR>
+<I>Sun Sep 15 13:16:00 CEST 2019</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001429.html>[Whonix-devel] Bug#940188: compatibility with grml-debootstrap, pbuilder and cowbuilder
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001431.html>[Whonix-devel] Bug#940188: compatibility with grml-debootstrap, pbuilder and cowbuilder
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/date.html#1430">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/thread.html#1430">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/subject.html#1430">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/author.html#1430">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Happy to report that both invocations of grml-debootstrap and pbuilder /
+cowbuilder are compatible with mmdebstrap.
+
+Johannes Schauer:
+&gt;<i> you seem to claim that mmdebstrap does not support the --arch argument. But it
+</i>&gt;<i> does. It does so by configuring Getopt::Long with auto_abbrev. This means that
+</i>&gt;<i> a long option like --architectures can also be written with less characters. It
+</i>&gt;<i> works on my system. It does not on yours? Also from the man page:
+</i>&gt;<i> 
+</i>&gt;<i>      Long options require a double dash and may be abbreviated to uniqueness.
+</i>
+
+Magic. :)
+
+Works for me. :)
+
+&gt;&gt;<i> Using a file
+</i>&gt;&gt;<i> /home/user/Whonix/build_sources/debian_stable_current_clearnet.list
+</i>&gt;&gt;<i> which contains both, Debian &quot;standard&quot; repository as well as Debian
+</i>&gt;&gt;<i> security repository.
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> This is to make use of mmdebstrap excellent security feature to
+</i>&gt;&gt;<i> bootstrap from two repositories at once. If the APT version in Debian
+</i>&gt;&gt;<i> &quot;standard&quot; repository had a vulnerability, then the vulnerable version
+</i>&gt;&gt;<i> would be installed first before vulnerable APT would be used to upgrade
+</i>&gt;&gt;<i> in a later step from Debian security repository.
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> &quot;Incompatibility&quot; is perhaps a far stretched term. How do we &quot;teach&quot;
+</i>&gt;&gt;<i> grml-debootstrap, cowbuilder (or pbuilder?) &quot;use both, Debian &quot;standard&quot;
+</i>&gt;&gt;<i> repository and Debian security repository when using mmdebstrap&quot;?
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> It's like &quot;the ecosystem does not take advantage of mmdebstrap&quot; yet.
+</i>&gt;<i> 
+</i>&gt;<i> Okay, but as far as I can see there is nothing that can be done in mmdebstrap
+</i>&gt;<i> about this, right?
+</i>
+
+Maybe not.
+
+I guess the problem indeed isn't mmdebstrap but how other tools are
+invoking $DEBOOTSTRAP.
+
+Do you think you could contact pbuilder / cowbuilder / grml-debootstrap
+to see how invocation of debootstrap (single repository) vs mmdebstrap
+(Debian &quot;standard&quot; repository + Debian security repository) invocation
+could be sorted out?
+
+Not sure how crazy would it be to have mmdebstrap auto inject the Debian
+security repository? Perhaps keep mmdebstrap as is but have a wrapper
+mmdebstrap-sec-repo (or so) that injects it?
+
+&gt;&gt;<i> Not sure anymore why I added:
+</i>&gt;&gt;<i> --include=apt,sudo,devscripts,debhelper,strip-nondeterminism,fakeroot,apt-transport-tor,apt-transport-https,python,eatmydata,aptitude,cowdancer
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> apt-transport-https might be required to support https repositories in
+</i>&gt;&gt;<i> sources list.
+</i>&gt;<i> 
+</i>&gt;<i> Yes, old apt versions (1.4.9 and earlier) require that package. It is since a
+</i>&gt;<i> dummy package.
+</i>
+
+Yay.
+
+&gt;&gt;<i> apt-transport-tor might be required to support tor+https and .onion in
+</i>&gt;&gt;<i> sources list.
+</i>&gt;<i> 
+</i>&gt;<i> Yes, but mmdebstrap auto-detects tor URLs and adds the package. This behaviour
+</i>&gt;<i> is also documented in its man page.
+</i>
+
+Magic. :)
+
+#####
+
+When mmdebstrap finished, there is still a leftover.
+
+/etc/apt/apt.conf.d/99mmdebstrap
+
+My apt options are good during build (apt cache etc.) but bad in the
+final VM image.
+
+Should this file be deleted?
+
+#####
+
+mmdebstrap fails when /etc/hostname is missing. An empty /etc/hostname
+works for me. Sometimes it's not wanted to leak any host files into the
+folder (reproducible builds, privacy, and whatnot). Could you please
+have mmdebstrap handle non-existing /etc/hostname (and other system
+files (/etc/host /etc/resolv.conf?) gracefully?
+
+#####
+
+minor:
+
+&gt;<i>From home folder (in a Qubes Debian VM):
+</i>
+./mmdebstrap --include=apt --variant=buildd --force-check-gpg buster
+./test <A HREF="../../../../external.html?link=https://deb.debian.org/debian">https://deb.debian.org/debian</A>
+
+I: The option --force-check-gpg is a no-op. It only exists for
+compatibility with some debootstrap wrappers.
+I: automatically chosen mode: unshare
+I: chroot architecture amd64 is equal to the host's architecture
+mkdir /home/user/test: Permission denied at ./mmdebstrap line 992.
+
+ls -la
+
+drwxr-xr-x  2 100000 100000   4096 Sep 15 06:07 test
+
+#####
+
+minor:
+
+&gt;<i> I: The option --force-check-gpg is a no-op. It only exists for
+</i>compatibility with some debootstrap wrappers.
+
+
+Not sure that implies insecurity. I know gpg signatures are verified but
+could confuse others. Perhaps just drop that option from output. Keep it
+in man page / command line help only. Users / wrappers using
+--force-check-gpg get what they expect anyhow. No need to notify.
+
+Cheers,
+Patrick
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001429.html>[Whonix-devel] Bug#940188: compatibility with grml-debootstrap, pbuilder and cowbuilder
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001431.html>[Whonix-devel] Bug#940188: compatibility with grml-debootstrap, pbuilder and cowbuilder
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/date.html#1430">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/thread.html#1430">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/subject.html#1430">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/author.html#1430">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001430.html','y7aelHq7wr','rqIwUIwonfo',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001430.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-September/001430.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:00 GMT -->
+</HTML>

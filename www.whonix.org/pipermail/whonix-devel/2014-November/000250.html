@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-November/000250.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20How%20safe%20are%20signed%20git%20tags%3F%20Only%20as%20safe%20as%0A%20SHA-1%20or%20somehow%20safer%3F&In-Reply-To=%3C20141124155108.GC25912%40peff.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000256.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000243.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?</H1>
+<B>Jeff King</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20How%20safe%20are%20signed%20git%20tags%3F%20Only%20as%20safe%20as%0A%20SHA-1%20or%20somehow%20safer%3F&In-Reply-To=%3C20141124155108.GC25912%40peff.net%3E" TITLE="[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?">peff at peff.net
+</A><BR>
+<I>Mon Nov 24 16:51:08 CET 2014</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000256.html>[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000243.html>[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/date.html#250">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/thread.html#250">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/subject.html#250">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/author.html#250">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On Mon, Nov 24, 2014 at 11:15:34AM +0100, Michael J Gruber wrote:
+
+&gt;<i> &gt; I wonder if we can have an option to sign all blob content of the tree
+</i>&gt;<i> &gt; associated to a commit, and the content of parent commit(s). It's more
+</i>&gt;<i> &gt; expensive than signing just commit/tag content. But it's also safer
+</i>&gt;<i> &gt; without completely ditching SHA-1.
+</i>&gt;<i> &gt; 
+</i>&gt;<i> 
+</i>&gt;<i> This amounts to hashing the blob content with whatever hash you told
+</i>&gt;<i> your gpg to use (hopefully not sha1 ;) ) and signing that.
+</i>
+Right. You could also create a graph of SHA-256 (or whatever) object
+hashes and sign that. I.e., create a parallel to git's trees using
+SHA-256 and include a single:
+
+  object-256 ....
+
+line in the tag header. That still involves re-hashing all of the data,
+but it would at least be possible to cache (i.e., a mapping of SHA-1 to
+SHA-256 hashes). Of course one way to keep that caching layer up to date
+would be to just calculate the SHA-256 along with the SHA-1 whenever we
+create an object. And then you can sprinkle SHA-256 links in other
+places, too, like commit objects.
+
+And now you are halfway down the road to a combined SHA-1/SHA-256 git.
+:<i>)
+</i>
+The tricky thing is fitting the extra hash into the tree objects. And of
+course the rules for actually generating and/or sending extra objects.
+
+-Peff
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000256.html>[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000243.html>[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/date.html#250">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/thread.html#250">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/subject.html#250">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/author.html#250">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000250.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-November/000250.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:58 GMT -->
+</HTML>

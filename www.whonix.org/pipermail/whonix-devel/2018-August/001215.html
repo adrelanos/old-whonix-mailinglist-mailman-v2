@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-August/001215.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [dm-crypt] Argon2id security margin estimate and LUKS2 usage
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bdm-crypt%5D%20Argon2id%20security%20margin%20estimate%20and%0A%20LUKS2%20usage&In-Reply-To=%3C20180820184644.GA19629%40tansi.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001213.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001216.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [dm-crypt] Argon2id security margin estimate and LUKS2 usage</H1>
+<B>Arno Wagner</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bdm-crypt%5D%20Argon2id%20security%20margin%20estimate%20and%0A%20LUKS2%20usage&In-Reply-To=%3C20180820184644.GA19629%40tansi.org%3E" TITLE="[Whonix-devel] [dm-crypt] Argon2id security margin estimate and LUKS2 usage">arno at wagner.name
+</A><BR>
+<I>Mon Aug 20 20:46:45 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001213.html>[Whonix-devel] Argon2id security margin estimate and LUKS2 usage
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001216.html>[Whonix-devel] Argon2id security margin estimate and LUKS2 usage
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/date.html#1215">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/thread.html#1215">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/subject.html#1215">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/author.html#1215">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On Mon, Aug 20, 2018 at 15:33:00 CEST, procmem wrote:
+&gt;<i> Hi Milan, Whonix (privacy distro) maintainer here. We are researching
+</i>&gt;<i> the best password advice to give to our users and while diceware is a
+</i>&gt;<i> great improvement over the status quo, the recommendation by
+</i>&gt;<i> cryptographers in light of quantum computing is to choose pass phrases
+</i>&gt;<i> with a length equivalent to 256 bits because Grovers will halve the bit
+</i>&gt;<i> length. This requires phrases to be 20 words long for 256 bits which is
+</i>&gt;<i> excessive IMO and the reason we are looking at key-stretching for
+</i>&gt;<i> shorter ones instead.
+</i>
+This is completely irrelevant for key derivation. No QC
+will be able to do a few 1000 iterations of KDF this century,
+and actually it would need to reverse them. Also, the size of
+the QC needed is not the password-size, but the minimal memory
+needed to compute the KDF on it. So with something like 
+Argon2, the QC would need as many bits as the configured memory.
+
+In addition, it is still completely unclear whether QC will 
+ever scale. There is no indication that it will after now 
+something like 40 years of intense research. This is just another
+hype that will not die because too many people believe in magic
+and normal computing has effectively stopped scaling half a 
+decade back or so.
+
+Well, actually, it is pretty clear at this time that QC does
+not scale at all in practice and that its scale-up over time 
+may well be inverse exponential. If so, it will never be of any use.
+
+
+&gt;<i> 
+</i>&gt;<i> * What is the time/sec margin added to a password with Argon2id's best
+</i>&gt;<i> parameters?
+</i>
+There are no &quot;best&quot; parameters. It depends on your application and
+target system. That said, computationally, it is bascially just 
+the same as PBKDF2, ARGON2 just adds a minimal memory requirements 
+or you get exponentially worse.
+
+&gt;<i> * Have Argon's parameters been tweaked in the LUKS implementation, to
+</i>&gt;<i> account for the 2 public attacks? [0]
+</i>
+Forget about these. These are academic attacks with no practical
+impact. KDFs like Argon2 have massive redundancy security-wise,
+unlike most ciphers.
+ 
+&gt;<i> * Are more cryptanalytic attacks expected against it in the future or is
+</i>&gt;<i> it extremely unlikely for progress against to be made? (For example
+</i>&gt;<i> modern hashes like BLAKE2 or block ciphers like AES are pretty robust
+</i>&gt;<i> with no notable attacks for some time)
+</i>
+This question is nonsense. Are you asking us to read the tea-leaves?
+
+Just keep in mind that with a good passphrase, even a single, plain,
+unsalted SHA-1 is unbroken at this time and even secure against the
+mythical extreme powers (not) of a QC. There is really no need to 
+fret over key derivation, the weaknesses are in entirely different 
+places.
+
+Regards,
+Arno
+
+
+&gt;<i> * Can you please give an example of cryptsetup re-encrypt command that
+</i>&gt;<i> upgrades an existing LUKS1 system to one that uses Argon with its max
+</i>&gt;<i> settings?
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> CC/d our ML so users can benefit from your reply.
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> [0] <A HREF="../../../../external.html?link=https://en.wikipedia.org/wiki/Argon2#Cryptanalysis">https://en.wikipedia.org/wiki/Argon2#Cryptanalysis</A>
+</i>&gt;<i> _______________________________________________
+</i>&gt;<i> dm-crypt mailing list
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">dm-crypt at saout.de</A>
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.saout.de/mailman/listinfo/dm-crypt">https://www.saout.de/mailman/listinfo/dm-crypt</A>
+</i>
+-- 
+Arno Wagner,     Dr. sc. techn., Dipl. Inform.,    Email: <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">arno at wagner.name</A>
+GnuPG: ID: CB5D9718  FP: 12D6 C03B 1B30 33BB 13CF  B774 E35C 5FA1 CB5D 9718
+----
+A good decision is based on knowledge and not on numbers. -- Plato
+
+If it's in the news, don't worry about it.  The very definition of 
+&quot;news&quot; is &quot;something that hardly ever happens.&quot; -- Bruce Schneier
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001213.html>[Whonix-devel] Argon2id security margin estimate and LUKS2 usage
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001216.html>[Whonix-devel] Argon2id security margin estimate and LUKS2 usage
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/date.html#1215">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/thread.html#1215">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/subject.html#1215">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/author.html#1215">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001215.html','y7aelHq7wr','4WZWKTs3t5E',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001215.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-August/001215.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:13 GMT -->
+</HTML>

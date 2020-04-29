@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-April/001007.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [qubes-devel] Require script to run immed. after	/rw mount
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Require%20script%20to%20run%20immed.%20after%0A%09/rw%20mount&In-Reply-To=%3C20170417221255.GJ1486%40mail-itl%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/001006.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/001008.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [qubes-devel] Require script to run immed. after	/rw mount</H1>
+<B>Marek Marczykowski-Górecki</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Require%20script%20to%20run%20immed.%20after%0A%09/rw%20mount&In-Reply-To=%3C20170417221255.GJ1486%40mail-itl%3E" TITLE="[Whonix-devel] [qubes-devel] Require script to run immed. after	/rw mount">marmarek at invisiblethingslab.com
+</A><BR>
+<I>Tue Apr 18 00:12:55 CEST 2017</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/001006.html>[Whonix-devel] [qubes-devel] Require script to run immed. after	/rw mount
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/001008.html>[Whonix-devel] [qubes-devel] Require script to run immed. after /rw mount
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/date.html#1007">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/thread.html#1007">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/subject.html#1007">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/author.html#1007">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+On Mon, Apr 17, 2017 at 10:02:00PM +0000, Patrick Schleizer wrote:
+&gt;<i> Hi! :)
+</i>&gt;<i> 
+</i>&gt;<i> You want a hook exactly between mount-dirs.sh and bind-dirs.sh?
+</i>&gt;<i> 
+</i>&gt;<i> Chris Laprise:
+</i>&gt;<i> &gt; My suggestion would be to put the activation of qubes/init/bind-dirs.sh
+</i>&gt;<i> &gt; under a separate systemd service.
+</i>&gt;<i> 
+</i>&gt;<i> That would be nice, but may be hard to not break things.
+</i>
+I'm worrying the same thing.
+
+(...)
+
+&gt;<i> &gt; Alternately, mount-dirs.sh could have
+</i>&gt;<i> &gt; a hook that points to a specific user script in /etc.
+</i>&gt;<i> 
+</i>&gt;<i> User script sounds a bit limited. What about something a little more
+</i>&gt;<i> flexible?
+</i>&gt;<i> 
+</i>&gt;<i> Untested pseudo code:
+</i>&gt;<i> 
+</i>&gt;<i> if [ -d /etc/qubes/mount-dirs-post.d ]; then
+</i>&gt;<i>    run-parts /etc/qubes/mount-dirs-post.d
+</i>&gt;<i> fi
+</i>
+IMO this is the way to go. In addition to your VM hardening scripts,
+this could be used also for some /rw initialization, beyond /etc/skel.
+AFAIR there was a need for similar thing to copy Tor Browser there.
+
+As for implementation - do we want it in /etc, /usr/lib, or both (so
+files in /etc could override /usr/lib)? But having both means we can't
+use run-parts :(
+
+- -- 
+Best Regards,
+Marek Marczykowski-Górecki
+Invisible Things Lab
+A: Because it messes up the order in which people normally read text.
+Q: Why is top-posting such a bad thing?
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQEcBAEBCAAGBQJY9T3oAAoJENuP0xzK19csOBcH/2o4kcg7xOBQuhlGzXrsTDUU
+QNzrdzBRn6glM6mR0vv5cELSDE9EI9QcRI0uPWoETGBtD2nHHWgLRAq9gK8SwAso
+4ySrBo3QvkozAMrAM7YISrOo4IGnwuCnPbTvv3j8hZb71CpC/J7jXnDjfF3pj9ZT
+9a7oMudbnT1lRZ+xELx8yIQRKQhE6kk4cTRlMPSoVbOlxNUtH8Ajsq4Mn8dO2eQQ
+HnWdBEW93PLU73fQyvCCnsvywgTaJOV/c4eKeLEvaYUFME+C0sHaD5CPOCzgdftx
+T3RHmbxUMDdQG1WWvLoLEixdYmM9Yon/5hAI2XGbOOkfOsgiplKbfEuCHTUBwhI=
+=aaTK
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/001006.html>[Whonix-devel] [qubes-devel] Require script to run immed. after	/rw mount
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/001008.html>[Whonix-devel] [qubes-devel] Require script to run immed. after /rw mount
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/date.html#1007">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/thread.html#1007">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/subject.html#1007">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/author.html#1007">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/001007.html','y7aelHq7wr','vJsgxDg4nxU',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-April/001007.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-April/001007.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:29 GMT -->
+</HTML>

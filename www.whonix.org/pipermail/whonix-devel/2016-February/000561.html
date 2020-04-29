@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-February/000561.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] whonix apparmor not enforcing for tor process?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20whonix%20apparmor%20not%20enforcing%20for%20tor%20process%3F&In-Reply-To=%3C56BA828B.8040806%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000577.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000562.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] whonix apparmor not enforcing for tor process?</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20whonix%20apparmor%20not%20enforcing%20for%20tor%20process%3F&In-Reply-To=%3C56BA828B.8040806%40riseup.net%3E" TITLE="[Whonix-devel] whonix apparmor not enforcing for tor process?">patrick-mailinglists at whonix.org
+</A><BR>
+<I>Wed Feb 10 01:21:31 CET 2016</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000577.html>[Whonix-devel] [Tails-dev] [Secure Desktops] Persistent Tor start in Tails vs location aware Tor entry guards (LATEG)
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000562.html>[Whonix-devel] similar project - grsecurity-installer - cooperation
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/date.html#561">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/thread.html#561">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/subject.html#561">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/author.html#561">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>vuarnet:
+&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> On Tuesday, February 9, 2016 at 4:41:29 PM UTC-5, <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">raah... at gmail.com</A> wrote:
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> oh btw way man ty for your effort with the apprmor profile for iceweasel 
+</i>&gt;&gt;<i>  :)
+</i>&gt;&gt;<i>
+</i>&gt;<i> 
+</i>&gt;<i> Happy to help... very rough, but it has actually worked nicely for a while. 
+</i>&gt;<i> I filed a ticket against the deb pkg but haven't heard anything yet. Will 
+</i>&gt;<i> probably bump again to try to get some progress on it.
+</i>&gt;<i> 
+</i>&gt;<i> On Tuesday, February 9, 2016 at 4:39:17 PM UTC-5, <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">raah... at gmail.com</A> wrote:
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> On Tuesday, February 9, 2016 at 4:23:29 PM UTC-5, vuarnet wrote:
+</i>&gt;&gt;&gt;<i> In sys-whonix, when I run #aa-status -- I see that system_tor does 
+</i>&gt;&gt;<i> indeed have a loaded profile in enforcing mode, but, although the process 
+</i>&gt;&gt;<i> is running, it doesn't show under &quot;x processes are running in enforce 
+</i>&gt;&gt;<i> mode&quot;. Only cpfpd.
+</i>&gt;&gt;&gt;<i>
+</i>&gt;&gt;&gt;<i> Any ideas what's up and why it's not showing tor as confined with 
+</i>&gt;&gt;<i> apparmor in enforce mode while the process is running? Indeed I checked 
+</i>&gt;&gt;<i> that it's running via ps aux and systemctl status... it's definitely 
+</i>&gt;&gt;<i> running.
+</i>&gt;&gt;&gt;<i>
+</i>&gt;&gt;&gt;<i> Any guidance greatly appreciated. Thanks!
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> systemctl shows system_tor.service as not-found(no such file or directory) 
+</i>&gt;&gt;<i>  inactive (dead)  and I don't see a process for it running.   You sure?   
+</i>&gt;&gt;<i> aa-status should also show two sdwdates running also as well as cpfpd.
+</i>&gt;&gt;<i>
+</i>&gt;<i> 
+</i>&gt;<i> run:
+</i>&gt;<i> 
+</i>&gt;<i> sudo systemctl status tor
+</i>&gt;<i> 
+</i>&gt;<i> and you'll see the tor service is up and running. The &quot;system_tor&quot; name is 
+</i>&gt;<i> only for the apparmor profile and abstraction.
+</i>&gt;<i> 
+</i>&gt;<i> I just updated to 3.1 RC2 and the whonix-gw template was out of date, like 
+</i>&gt;<i> a dummy... so I just updated...and same result. Here's what I'm seeing in 
+</i>&gt;<i> whonix-sys VM:
+</i>&gt;<i> 
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">user at host</A>:~$ sudo aa-status
+</i>&gt;<i> apparmor module is loaded.
+</i>&gt;<i> 3 profiles are loaded.
+</i>&gt;<i> 3 profiles are in enforce mode.
+</i>&gt;<i>    /usr/bin/obfsproxy
+</i>&gt;<i>    /usr/sbin/cpfpd
+</i>&gt;<i>    system_tor
+</i>&gt;<i> 0 profiles are in complain mode.
+</i>&gt;<i> 1 processes have profiles defined.
+</i>&gt;<i> 1 processes are in enforce mode.
+</i>&gt;<i>    /usr/sbin/cpfpd (839) 
+</i>&gt;<i> 0 processes are in complain mode.
+</i>&gt;<i> 0 processes are unconfined but have a profile defined.
+</i>&gt;<i> 
+</i>&gt;<i> That would suggest that the tor process isn't running, otherwise it should 
+</i>&gt;<i> be under &quot;processes are in enforce mode&quot;... but it is definitely running. 
+</i>&gt;<i> So I don't know if apparmor protections are being applied or not.. but if I 
+</i>&gt;<i> can't tell by aa-status, then I'm going to assume they're not. Upon a 
+</i>&gt;<i> little more investigation, it looks like additional profiles are being 
+</i>&gt;<i> loaded from /etc/apparmor.d/local that might be causing the effect I'm 
+</i>&gt;<i> seeing, but I need to look further into it.
+</i>&gt;<i> 
+</i>&gt;<i> Will keep looking into it and I also copied Patrick to see if he can shed 
+</i>&gt;<i> some light...
+</i>&gt;<i> 
+</i>&gt;<i> Thanks!
+</i>&gt;<i>  
+</i>&gt;<i> 
+</i>
+on-topic:
+
+Just now reported the issue against The Tor Project.
+
+<A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/18294">https://trac.torproject.org/projects/tor/ticket/18294</A>
+
+Not a Whonix specific issue. Rather a general issue specific when using
+Debian in combination with deb.torproject.org.
+
+off-topic:
+
+wrong...
+
+sudo service tor status
+
+--&gt; right
+
+sudo service <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">tor at default</A> status
+
+Cheers,
+Patrick
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000577.html>[Whonix-devel] [Tails-dev] [Secure Desktops] Persistent Tor start in Tails vs location aware Tor entry guards (LATEG)
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000562.html>[Whonix-devel] similar project - grsecurity-installer - cooperation
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/date.html#561">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/thread.html#561">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/subject.html#561">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/author.html#561">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000561.html','y7aelHq7wr','7DfzM9sXNnY',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000561.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-February/000561.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:43 GMT -->
+</HTML>

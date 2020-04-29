@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-January/000831.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [Tails-dev] Tails control port filter proxy in	Whonix?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5BTails-dev%5D%20Tails%20control%20port%20filter%20proxy%20in%0A%09Whonix%3F&In-Reply-To=%3C421c6a60-8464-13f6-e0d5-48b3569ed8f2%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000829.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000845.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [Tails-dev] Tails control port filter proxy in	Whonix?</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5BTails-dev%5D%20Tails%20control%20port%20filter%20proxy%20in%0A%09Whonix%3F&In-Reply-To=%3C421c6a60-8464-13f6-e0d5-48b3569ed8f2%40riseup.net%3E" TITLE="[Whonix-devel] [Tails-dev] Tails control port filter proxy in	Whonix?">patrick-mailinglists at whonix.org
+</A><BR>
+<I>Wed Jan 11 23:26:00 CET 2017</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000829.html>[Whonix-devel] future of tor-launcher? - Firefox XPCOM / XUL based add-ons deprecation
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000845.html>[Whonix-devel] [Tails-dev] Tails control port filter proxy in	Whonix?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/date.html#831">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/thread.html#831">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/subject.html#831">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/author.html#831">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Happy to report, that a few profiles have been successfully written.
+That are using Whonix forked config parsing code.
+
+They are now living here:
+
+-
+<A HREF="../../../../external.html?link=https://github.com/Whonix/control-port-filter-python/tree/master/usr/share/tor-controlport-filter/examples">https://github.com/Whonix/control-port-filter-python/tree/master/usr/share/tor-controlport-filter/examples</A>
+
+There is one for onionshare, one for ricochet as well as one for
+ZeroNet. So onionshare and ricochet will most likely run fine in the
+next version of Whonix, Whonix 14.
+
+I am impressed by the rewrite functionalities which are a blessing.
+Ricochet does something rather ugly, requesting several GETINFO status
+at once.
+
+GETINFO status/circuit-established status/bootstrap-phase
+net/listeners/socks
+
+With Tails control port filter proxy, these are elegantly rewritten.
+
+    GETINFO:
+      - pattern: 'status/circuit-established status/bootstrap-phase
+net/listeners/socks'
+        response:
+        - pattern:     '250-status/bootstrap-phase=*'
+          replacement: '250-status/bootstrap-phase=NOTICE BOOTSTRAP
+PROGRESS=100 TAG=done SUMMARY=&quot;Done&quot;'
+        - pattern:     '250-net/listeners/socks=&quot;.*&quot;'
+          replacement: '250-net/listeners/socks=&quot;127.0.0.1:9150&quot;'
+
+The ZeroNet profile latter however might require some more hackery. Or
+fixes in ZeroNet or fixes in the control port filter proxy. This is
+probably because ZeroNet has custom code for Tor control protocol
+authentication. Not using python-stem. ZeroNet works when having a
+direct Tor control connection but not through the control port filter proxy.
+
+- <A HREF="../../../../external.html?link=https://github.com/HelloZeroNet/ZeroNet/blob/master/src/Tor/TorManager.py">https://github.com/HelloZeroNet/ZeroNet/blob/master/src/Tor/TorManager.py</A>
+
+Reported two issues.
+
+- <A HREF="../../../../external.html?link=https://github.com/HelloZeroNet/ZeroNet/issues/756">https://github.com/HelloZeroNet/ZeroNet/issues/756</A>
+- <A HREF="../../../../external.html?link=https://github.com/HelloZeroNet/ZeroNet/issues/758">https://github.com/HelloZeroNet/ZeroNet/issues/758</A>
+
+Best regards,
+Patrick
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000829.html>[Whonix-devel] future of tor-launcher? - Firefox XPCOM / XUL based add-ons deprecation
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000845.html>[Whonix-devel] [Tails-dev] Tails control port filter proxy in	Whonix?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/date.html#831">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/thread.html#831">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/subject.html#831">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/author.html#831">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000831.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-January/000831.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:32 GMT -->
+</HTML>

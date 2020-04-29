@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-February/000296.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Hidden Service as Time Source
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Hidden%20Service%20as%20Time%20Source&In-Reply-To=%3C54D3C241.60005%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000295.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000297.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Hidden Service as Time Source</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Hidden%20Service%20as%20Time%20Source&In-Reply-To=%3C54D3C241.60005%40riseup.net%3E" TITLE="[Whonix-devel] Hidden Service as Time Source">adrelanos at riseup.net
+</A><BR>
+<I>Thu Feb 5 20:19:29 CET 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000295.html>[Whonix-devel] SecureDrop
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000297.html>[Whonix-devel] Hidden Service as Time Source
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/date.html#296">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/thread.html#296">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/subject.html#296">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/author.html#296">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Hi Thomas!
+
+As you know, I am a developer of an anonymity centric distribution.
+Similar to TAILS but optimized for virtual machines. The Whonix Project.
+
+In the same way, we need to use a source to calibrate our system clock.
+That isn't NTP, for one because NTP uses UDP and the Tor network does
+not support UDP and a few other reasons. The way this is done at the
+moment is to fetch HTTP headers over SSL from trusted servers and use
+the timestamp data at the time.
+
+We wanted to get rid of SSL and make use of the strong security
+properties of Tor's end to end encryption for Hidden Services to
+safeguard against clearnet SSL man in the middle attacks, that are
+within reach of powerful adversaries at the moment.
+
+We are asking permission to use your Hidden Service[s] instance[s]
+as one of our time sources.
+
+We are going to add multiple trustworthy hidden services to the list for
+redundancy and to distribute the load. Our estimated user base is 5000.
+The requests will only involve fetching a HTTP header from your server.
+
+By replying to this e-mail, your answer will be posted on the
+whonix-devel public mailing list. Please let us know if this use case is
+alright with your Hidden Service[s] instance[s].
+
+Cheers,
+Patrick
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJ8BAEBCgBmBQJU08JAXxSAAAAAAC4AKGlzc3Vlci1mcHJAbm90YXRpb25zLm9w
+ZW5wZ3AuZmlmdGhob3JzZW1hbi5uZXQ2RTk3OUIyOEE2RjM3QzQzQkUzMEFGQTFD
+QjhENTBCQjc3QkIzQzQ4AAoJEMuNULt3uzxIwzUP+gIrUqeHlkkos3ewfjv5A1w/
+fdZ5VdNzMSqDNB9di2LFJ+54LnGDcSF4GaXU2TTzg/OkAU6MHDpRUUzZAGI8zTBX
+4aEp5pkitAPdIgqw7QEO/qol2zwjV++mocdY8fkIhRRLIJkTHvPkVMoq+9OsGTQU
+T5DH/I8tFDqJOEoOnJ9twwJdTqVU9C5x5vsKmpX9Sa10WHfowQRLhkshN14O8jyx
+iepMoC6Pw7TNxJbQKmJkokkpxfiXs+FFSXQUgrmS8gUT05uSfUjjRRNmYp3uVhu9
+tPXLGv2CaRWWE5W6g00g/0p0qdb7hp+9iMzpdd9JF8ha8cwLvIcx98EDIl0zwH53
+clReLg+XlAnytXN0Ih679f9OCByD/0pqdEeHDNHrvB5DM9467FCO1t0CLttdDMJn
+IBRyeMaGTVfPBQY6xYQ+oS+qSfbSVhbVZBREjtKT4qLqSO8ESoEc/hbCxrMUA3H/
+eg+oCdigYfv+PixAf/RpHeW+w5ezgZ0FKdTJ4XWLG/hm5V/Tr314q10DYeIcnAwq
+bqlxWIUzkNioLwumNoTGuI6sN8RwYGK1DnPD6bA0eWcR/If1PgPOu4ZmRauNowCp
+/d6Wp0Ihv9g+/LtDJWckh3UEvIRe/4VuFUYzVWdxVDa47uuKXHAfWXQJaXTuTJlU
+JfQ8jYvBBmkPtgaI1fJm
+=C0eO
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000295.html>[Whonix-devel] SecureDrop
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000297.html>[Whonix-devel] Hidden Service as Time Source
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/date.html#296">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/thread.html#296">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/subject.html#296">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/author.html#296">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000296.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-February/000296.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:55 GMT -->
+</HTML>

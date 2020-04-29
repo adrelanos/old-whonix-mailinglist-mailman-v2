@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-March/000154.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] translation experiences
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20translation%20experiences&In-Reply-To=%3C5319E0F3.50509%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000153.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000148.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] translation experiences</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20translation%20experiences&In-Reply-To=%3C5319E0F3.50509%40riseup.net%3E" TITLE="[Whonix-devel] translation experiences">adrelanos at riseup.net
+</A><BR>
+<I>Fri Mar 7 16:08:35 CET 2014</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000153.html>[Whonix-devel] translation experiences
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000148.html>[Whonix-devel] whonix script dead link error
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/date.html#154">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/thread.html#154">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/subject.html#154">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/author.html#154">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+I am still struggling with preparing pages for translation.
+
+Would work now, but the &quot;edit&quot; links within a page on the Download
+page are broken.
+
+Patrick Schleizer:
+&gt;<i> Hi Jean,
+</i>&gt;<i> 
+</i>&gt;<i> it still is a bumpy ride. We're still figuring out how to best use 
+</i>&gt;<i> that translate extension.
+</i>&gt;<i> 
+</i>&gt;<i> Looks like simply wrapping the whole page into 
+</i>&gt;<i> &lt;translate&gt;...&lt;/translate&gt; doesn't work very well if there is a
+</i>&gt;<i> lot markup on that page. And only wrapping text into 
+</i>&gt;<i> &lt;translate&gt;...&lt;/translate&gt; is quite some work.
+</i>&gt;<i> 
+</i>&gt;<i> However, I did that at least for the main and the download page. 
+</i>&gt;<i> Please check if it's working better now.
+</i>&gt;<i> 
+</i>&gt;<i> Cheers, Patrick
+</i>&gt;<i> 
+</i>&gt;<i> Jean Elchinger:
+</i>&gt;&gt;<i> Hi,
+</i>&gt;<i> 
+</i>&gt;&gt;<i> Thanks for the notes, I figured that out. Since yesterday I
+</i>&gt;&gt;<i> tried to translate the main page. 
+</i>&gt;&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Main_Page/fr">https://www.whonix.org/wiki/Main_Page/fr</A> For example, I
+</i>&gt;&gt;<i> translated Main Page -&gt; OK Screenshots -&gt; NOT OK, I translated
+</i>&gt;&gt;<i> the title &quot;Screenshots&quot; and that's OK but I copy/paste again and
+</i>&gt;&gt;<i> again the content &lt;gallery&gt;...&lt;/gallery&gt; and that's screwed
+</i>&gt;&gt;<i> everytime. I don't know where it goes and why it is deleted.
+</i>&gt;<i> 
+</i>&gt;&gt;<i> Same for &quot;Thanks to...&quot; -&gt; NOT OK, get deleted again and again.
+</i>&gt;<i> 
+</i>&gt;&gt;<i> Please advice. Thanks
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;&gt;<i> On 03/03/14 11:37, Patrick Schleizer wrote:
+</i>&gt;&gt;&gt;<i> Hi,
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> a few Whonix wiki pages were translated. (To Russian, but the 
+</i>&gt;&gt;&gt;<i> langauge doesn't matter here.) The translator not having
+</i>&gt;&gt;&gt;<i> edited using mediawiki was confused by the wiki markup.
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> A big issue is, that wiki pages need to be properly prepared
+</i>&gt;&gt;&gt;<i> for translation. This isn't the case yet.
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> Currently, affected by a bug and confusing for the translator:
+</i>&gt;&gt;&gt;<i>  &lt;translate&gt; == headline == {{ some box = do_not_translate text
+</i>&gt;&gt;&gt;<i> = can_be_translated }} &lt;/translate&gt;
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> (The bug is, the translation interface asks to translate text
+</i>&gt;&gt;&gt;<i> = can_be_translated }} but doesn't let the user store it,
+</i>&gt;&gt;&gt;<i> because it will complain about unbalanced parentheses.)
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> Better:
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> == &lt;translate&gt;headline&lt;/translate&gt; ==
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> {{ some box = do_not_translate text = &lt;translate&gt; 
+</i>&gt;&gt;&gt;<i> can_be_translated &lt;/translate&gt;
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> }}
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> So only the really translatable strings end up in the
+</i>&gt;&gt;&gt;<i> translation web interface.
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> We still don't have a translation coordinator working on these 
+</i>&gt;&gt;&gt;<i> things.
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> Links such as [[Download]] were translated to 
+</i>&gt;&gt;&gt;<i> [[Download-in-other-language]]. This won't work. Syntax is 
+</i>&gt;&gt;&gt;<i> [[pagename|naming of link]]. In other words [[can not be 
+</i>&gt;&gt;&gt;<i> translated|translate]]. I think it would be better if all
+</i>&gt;&gt;&gt;<i> links would use explicit descriptions such as
+</i>&gt;&gt;&gt;<i> [[Download|Download]]. So the translator could be told [[can
+</i>&gt;&gt;&gt;<i> not be translated|translate]].
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> Cheers, Patrick _______________________________________________
+</i>&gt;&gt;&gt;<i>  You are receiving this e-mail because you subscribed 
+</i>&gt;&gt;&gt;<i> Whonix-devel
+</i>&gt;&gt;<i> mailing list. To unsubscribe visit 
+</i>&gt;&gt;<i> <A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel</A> or mail
+</i>&gt;&gt;<i>  &quot;unsubscribe&quot; to <A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">Whonix-devel-unsubscribe at whonix.org.</A>
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> Sie erhalten diese E-Mail, weil Sie die Whonix-devel 
+</i>&gt;&gt;&gt;<i> Mailingliste
+</i>&gt;&gt;<i> aboniert haben. Zum abbestellen besuchen Sie 
+</i>&gt;&gt;<i> <A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel</A> oder 
+</i>&gt;&gt;<i> mailen Sie &quot;unsubscribe&quot; an <A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">Whonix-devel-unsubscribe at whonix.org.</A>
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;&gt;<i> _______________________________________________ You are
+</i>&gt;&gt;<i> receiving this e-mail because you subscribed Whonix-devel mailing
+</i>&gt;&gt;<i> list. To unsubscribe visit 
+</i>&gt;&gt;<i> <A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel</A> or mail 
+</i>&gt;&gt;<i> &quot;unsubscribe&quot; to <A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">Whonix-devel-unsubscribe at whonix.org.</A>
+</i>&gt;<i> 
+</i>&gt;&gt;<i> Sie erhalten diese E-Mail, weil Sie die Whonix-devel
+</i>&gt;&gt;<i> Mailingliste aboniert haben. Zum abbestellen besuchen Sie 
+</i>&gt;&gt;<i> <A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel</A> oder 
+</i>&gt;&gt;<i> mailen Sie &quot;unsubscribe&quot; an <A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">Whonix-devel-unsubscribe at whonix.org.</A>
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>
+-----BEGIN PGP SIGNATURE-----
+
+iQJ8BAEBCgBmBQJTGeDxXxSAAAAAAC4AKGlzc3Vlci1mcHJAbm90YXRpb25zLm9w
+ZW5wZ3AuZmlmdGhob3JzZW1hbi5uZXQ2RTk3OUIyOEE2RjM3QzQzQkUzMEFGQTFD
+QjhENTBCQjc3QkIzQzQ4AAoJEMuNULt3uzxISxAQAIKfA5zayC6kfR8vIwKCOW54
+2wBImJs6PIMCeNt6teuYlI+9sY4aNBUqCSo185OnQfq+PpWMCyxDC4zTBVDzXe6b
+KfDPRsJBA9q+eWe/ILlLHmgK8pzFf7F998GwwXDoJ5mo4BCaKbGLwKummJiGY5g9
+FSZ9xNpvN3YsBM/gnigkC/aTGk+0/bQIBcMCAHeaKYlhQp98dvgzX+maq3trG4dh
+jlY/+b4xH4ilO340hWWnHxg/eIIhRBP1rH0h8g5EIXSOuXUfW0fuiueB2Z6k4Zoq
+CEaWuNr/KyDne2wZrnJ5uKzUuooweN93iHC4YoAnWV3SP5BGG8sbiiJgwVDK9BfT
+HLzwYqzjh+Lp5K3YjTv3KVIsVujmwR9gcBS/BZYWWhkxsgIBAIJ3aM7fd+vTZdV2
+bSSh7R28MWh7jpWa6e8D59zZYig1QMduvP5ZZus1t3WJKWRtdukGf/Hdcwv1e59L
+Y+1kSfVr7cADQTUqRswSk6sTWr2UVvQ3rU9SfCYcef0wf8T95Thd5SMg7o5gvh8k
+C/ATyGrZoXtQEIfj0PLFlgZcposPFE3aJS0wOonNa4DGSqIcTOVg8Hyx+4I2XH6z
+de/pSwArJukxyGG7GxQM/GicW0imS9+yRvqt2poOSF5F92eM/BMz2jDN6THn2mvt
+D05ZB2GDXLVqVMUW86Py
+=I0se
+-----END PGP SIGNATURE-----
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000153.html>[Whonix-devel] translation experiences
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000148.html>[Whonix-devel] whonix script dead link error
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/date.html#154">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/thread.html#154">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/subject.html#154">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/author.html#154">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000154.html','y7aelHq7wr','3TSxfbNLFoA',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000154.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-March/000154.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:06 GMT -->
+</HTML>

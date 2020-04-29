@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-October/001265.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [Oracle VM VirtualBox] #17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being installed
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5BOracle%20VM%20VirtualBox%5D%20%2317987%3A%20VirtualBox%205.2.18%0A%20vulnerable%20to%20spectre/meltdown%20despite%20microcode%20being%20installed&In-Reply-To=%3C063.51347e0b89f5f8417cbb333954b0c694%40virtualbox.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001264.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001266.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [Oracle VM VirtualBox] #17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being installed</H1>
+<B>Oracle VM VirtualBox</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5BOracle%20VM%20VirtualBox%5D%20%2317987%3A%20VirtualBox%205.2.18%0A%20vulnerable%20to%20spectre/meltdown%20despite%20microcode%20being%20installed&In-Reply-To=%3C063.51347e0b89f5f8417cbb333954b0c694%40virtualbox.org%3E" TITLE="[Whonix-devel] [Oracle VM VirtualBox] #17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being installed">trac at virtualbox.org
+</A><BR>
+<I>Mon Oct 8 17:56:00 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001264.html>[Whonix-devel] Bug#910249: Bumping up encryption to AES-256 by default
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001266.html>[Whonix-devel] #7028 [Core Tor/Tor]: Implement Adaptive Padding or some variant and measure overhead vs accuracy
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/date.html#1265">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/thread.html#1265">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/subject.html#1265">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/author.html#1265">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>#17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being
+installed
+-------------------------------+--------------------------------------------
+ Reporter:  adrelanos          |        Owner:          
+     Type:  defect             |       Status:  reopened
+ Priority:  major              |    Component:  other   
+  Version:  VirtualBox 5.2.18  |   Resolution:          
+ Keywords:                     |   Guest type:  Linux   
+Host type:  Linux              |  
+-------------------------------+--------------------------------------------
+
+Comment (by Dan Harkless):
+
+ It seems Trac is set up here to not allow adding myself to the CC for this
+ bug without spamming a NOP message?
+
+-- 
+Ticket URL: &lt;<A HREF="../../../../external.html?link=https://www.virtualbox.org/ticket/17987#comment:8">https://www.virtualbox.org/ticket/17987#comment:8</A>&gt;
+Oracle VM VirtualBox &lt;<A HREF="../../../../external.html?link=https://www.virtualbox.org/">https://www.virtualbox.org/</A>&gt;
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001264.html>[Whonix-devel] Bug#910249: Bumping up encryption to AES-256 by default
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001266.html>[Whonix-devel] #7028 [Core Tor/Tor]: Implement Adaptive Padding or some variant and measure overhead vs accuracy
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/date.html#1265">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/thread.html#1265">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/subject.html#1265">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/author.html#1265">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001265.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-October/001265.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:11 GMT -->
+</HTML>

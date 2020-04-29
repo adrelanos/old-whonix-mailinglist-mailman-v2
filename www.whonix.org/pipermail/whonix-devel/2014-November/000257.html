@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-November/000257.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20How%20safe%20are%20signed%20git%20tags%3F%20Only%20as%20safe%20as%0A%20SHA-1%20or%20somehow%20safer%3F&In-Reply-To=%3C54747D14.2020406%40azet.sk%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000247.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000249.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?</H1>
+<B>Fedor Brunner</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20How%20safe%20are%20signed%20git%20tags%3F%20Only%20as%20safe%20as%0A%20SHA-1%20or%20somehow%20safer%3F&In-Reply-To=%3C54747D14.2020406%40azet.sk%3E" TITLE="[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?">fedor.brunner at azet.sk
+</A><BR>
+<I>Tue Nov 25 13:59:00 CET 2014</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000247.html>[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000249.html>[Whonix-devel] [qubes-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/date.html#257">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/thread.html#257">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/subject.html#257">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/author.html#257">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On 22.11.2014 00:01, Patrick Schleizer wrote:
+&gt;<i> Dear git developers!
+</i>&gt;<i> 
+</i>&gt;<i> Jeff King wrote:
+</i>&gt;&gt;<i> On Sun, Nov 16, 2014 at 03:31:10PM +0000, Patrick Schleizer wrote:
+</i>&gt;&gt;<i>
+</i>&gt;&gt;&gt;<i> How safe are signed git tags? Especially because git uses SHA-1. There
+</i>&gt;&gt;&gt;<i> is contradictory information around.
+</i>&gt;&gt;&gt;<i>
+</i>&gt;&gt;&gt;<i> So if one verifies a git tag (`git tag -v tagname`), then `checksout`s
+</i>&gt;&gt;&gt;<i> the tag, and checks that `git status` reports no untracked/modified
+</i>&gt;&gt;&gt;<i> files, without further manually auditing the code, how secure is this
+</i>&gt;&gt;&gt;<i> actually? Is it only as safe as SHA-1?
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> Yes, it is only as &quot;safe as SHA-1&quot; in the sense that you have GPG-signed
+</i>&gt;&gt;<i> only a SHA-1 hash. If somebody can find a collision with a hash you have
+</i>&gt;&gt;<i> signed, they can substitute the colliding data for the data you signed.
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> Of course, &quot;safe as SHA-1&quot; and &quot;find a collision&quot; are vague. If
+</i>&gt;&gt;<i> pre-image attacks are feasible (i.e., given already-published SHA-1, I
+</i>&gt;&gt;<i> can find a different input with the same SHA-1), then attacks are
+</i>&gt;&gt;<i> trivial. But when people talk about attacks on SHA-1, they are usually
+</i>&gt;&gt;<i> referring to finding a collision between two new pieces of data. You can
+</i>&gt;&gt;<i> also use that in an attack, but it's much less straightforward
+</i>&gt;&gt;<i> (basically, you need to get somebody to sign one of the colliding pieces
+</i>&gt;&gt;<i> of data and then replace it with the other).
+</i>&gt;<i> 
+</i>&gt;<i> Sounds pretty sad. Isn't this a security issue that should be fixed?
+</i>&gt;<i> 
+</i>&gt;<i> Rather than discussing how feasible collisions in SHA-1 are... Attacks
+</i>&gt;<i> on SHA-1 are only getting worse, no? Since the Snowden revelations we
+</i>&gt;<i> know that powerful adversaries that are working on such things and would
+</i>&gt;<i> use such weaknesses to exploit users.
+</i>&gt;<i> 
+</i>&gt;<i> Dear git developers, could you please make a long story short? Change to
+</i>&gt;<i> some stronger hash algorithm? (sha256, sha512, or so?) Or provide an
+</i>&gt;<i> option for that?
+</i>&gt;<i> 
+</i>&gt;&gt;<i> And of course there is the question of getting the colliding data to the
+</i>&gt;&gt;<i> victim. Git does collision checks whenever a remote (e.g., from a &quot;git
+</i>&gt;&gt;<i> fetch&quot;) gives us data that we already have. So you could poison new
+</i>&gt;&gt;<i> cloners with bad data, but you could not convince a repository with the
+</i>&gt;&gt;<i> existing &quot;good&quot; half of the collision to fetch the &quot;evil&quot; half.
+</i>&gt;<i> 
+</i>&gt;<i> Poison git cloners with bad data is exactly my point here. Because
+</i>&gt;<i> sometimes I am a cloner of my own code - cloning it on a separate
+</i>&gt;<i> machine - then verify it using gpg - but don't check it any further. In
+</i>&gt;<i> such cases, I'd prefer if security wouldn't depend on SHA-1.
+</i>&gt;<i> 
+</i>&gt;<i> Cheers,
+</i>&gt;<i> Patrick
+</i>&gt;<i> 
+</i>&gt;<i> --
+</i>&gt;<i> To unsubscribe from this list: send the line &quot;unsubscribe git&quot; in
+</i>&gt;<i> the body of a message to <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">majordomo at vger.kernel.org</A>
+</i>&gt;<i> More majordomo info at  <A HREF="../../../../external.html?link=http://vger.kernel.org/majordomo-info.html">http://vger.kernel.org/majordomo-info.html</A>
+</i>&gt;<i> 
+</i>
+Dear git developers,
+how about skipping SHA-2 and moving to SHA-3 finalist BLAKE.
+
+NIST, in the final report of the SHA-3 competition, said this about the
+finalists (which included BLAKE, Keccak, Skein, and Gr&#248;stl):
+
+    BLAKE had a security margin &#8212; the gap between a known-weak reduced
+version and the full version &#8212; comparable to Keccak and superior to the
+other finalists. (&#167;4.3: &#8220;BLAKE and Keccak have very large security
+margins.&#8221;)
+    BLAKE had a depth of analysis &#8212; the amount of published research
+analyzing its security &#8212; comparable to Gr&#248;stl and Skein and superior to
+the other finalists. (&#167;3.1: &#8220;Keccak received a significant amount of
+cryptanalysis, although not quite the depth of analysis applied to
+BLAKE, Gr&#248;stl, or Skein&#8221;)
+    BLAKE had performance (in software) comparable to Skein and superior
+to the other finalists. (&#167;5.1.4: &#8220;Skein and BLAKE [&#8230;] have the best
+overall software performance.&#8221;)
+
+<A HREF="../../../../external.html?link=http://nvlpubs.nist.gov/nistpubs/ir/2012/NIST.IR.7896.pdf">http://nvlpubs.nist.gov/nistpubs/ir/2012/NIST.IR.7896.pdf</A>
+
+
+
+Measurements of SHA-3 finalists, indexed by machine
+
+<A HREF="../../../../external.html?link=http://bench.cr.yp.to/results-sha3.html">http://bench.cr.yp.to/results-sha3.html</A>
+
+
+Fedor
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000247.html>[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000249.html>[Whonix-devel] [qubes-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/date.html#257">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/thread.html#257">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/subject.html#257">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/author.html#257">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000257.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-November/000257.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:58 GMT -->
+</HTML>

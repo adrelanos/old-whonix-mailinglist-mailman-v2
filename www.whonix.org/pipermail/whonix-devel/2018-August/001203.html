@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-August/001203.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [qubes-devel] Whonix Testers Wanted!
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Whonix%20Testers%20Wanted%21&In-Reply-To=%3C9a03d96a-be78-7d98-b600-aa8c087db1d9%40whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001202.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001201.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [qubes-devel] Whonix Testers Wanted!</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Whonix%20Testers%20Wanted%21&In-Reply-To=%3C9a03d96a-be78-7d98-b600-aa8c087db1d9%40whonix.org%3E" TITLE="[Whonix-devel] [qubes-devel] Whonix Testers Wanted!">patrick-mailinglists at whonix.org
+</A><BR>
+<I>Fri Aug 17 13:29:00 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001202.html>[Whonix-devel] [qubes-devel] Whonix Testers Wanted!
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001201.html>[Whonix-devel] Diceware and Quantum Computing resilience
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/date.html#1203">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/thread.html#1203">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/subject.html#1203">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/author.html#1203">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Chris Laprise:
+&gt;<i> On 08/16/2018 01:27 AM, Patrick Schleizer wrote:
+</i>&gt;&gt;<i> Whonix needs more users using:
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> - Whonix stable-proposed-updates APT repository or
+</i>&gt;&gt;<i> - Whonix testers APT repository
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> More information and how to switch Whonix APT repository:
+</i>&gt;&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Whonix-APT-Repository">https://www.whonix.org/wiki/Whonix-APT-Repository</A>
+</i>&gt;&gt;<i>
+</i>&gt;<i> 
+</i>&gt;<i> OK, seems fine so far.
+</i>&gt;<i> 
+</i>&gt;<i> Only quirk that I also have with stable is when I shutdown a browser VM
+</i>&gt;<i> with my hotkey config (it runs a script that quits firefox + thunderbird
+</i>&gt;<i> in the foreground VM, then does qvm-shutdown on it) there is a popup
+</i>&gt;<i> saying &quot;Error: Failed to start Tor Browser&quot;.
+</i>&gt;<i> 
+</i>
+That's probably because the killing of firefox leads to firefox
+`exit`ing with a non-zero exit code.
+
+<A HREF="../../../../external.html?link=https://github.com/Whonix/tb-starter/blob/master/usr/bin/torbrowser#L318">https://github.com/Whonix/tb-starter/blob/master/usr/bin/torbrowser#L318</A>
+
+Maybe some exit codes should as for sigterm 143 should not trigger that
+popup?
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001202.html>[Whonix-devel] [qubes-devel] Whonix Testers Wanted!
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001201.html>[Whonix-devel] Diceware and Quantum Computing resilience
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/date.html#1203">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/thread.html#1203">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/subject.html#1203">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/author.html#1203">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001203.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-August/001203.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:13 GMT -->
+</HTML>

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-January/001295.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [qubes-devel] apt RCE
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20apt%20RCE&In-Reply-To=%3Caf02a09a-3760-4bbe-824c-f2df8548a4bd%40invisiblethingslab.com%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/001294.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/001296.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [qubes-devel] apt RCE</H1>
+<B>Simon Gaiser</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20apt%20RCE&In-Reply-To=%3Caf02a09a-3760-4bbe-824c-f2df8548a4bd%40invisiblethingslab.com%3E" TITLE="[Whonix-devel] [qubes-devel] apt RCE">simon at invisiblethingslab.com
+</A><BR>
+<I>Wed Jan 23 18:16:40 CET 2019</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/001294.html>[Whonix-devel] [qubes-devel] apt RCE
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/001296.html>[Whonix-devel] [qubes-devel] apt RCE
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/date.html#1295">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/thread.html#1295">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/subject.html#1295">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/author.html#1295">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Patrick Schleizer:
+&gt;<i> Many users already upgraded APT in a vulnerable way without ever knowing
+</i>&gt;<i> about this issue.
+</i>
+That's probably true. OTOH if you count since the public announcement
+from Debian it's only about 29 h. So I think there's also a significant
+portion of users who didn't installed new packages in that time (While
+apt-get update is also affected, AFAIU, unless you find another bug in
+APT this does not enable code execution.).
+
+For those affected we at least offer fresh templates. Of course
+depending on the usage of those templates recovering might still require
+significant work (sanitizing/recreating affected VMs).
+
+And then there is of course always the possibility that somebody
+discovered this bug much earlier.
+
+&gt;<i> What about introducing a security on/off switch that a subset of Qubes
+</i>&gt;<i> developers can trigger?
+</i>&gt;<i> 
+</i>&gt;<i> Before apt-get (or other package manager) does actually anything, a
+</i>&gt;<i> simple script could fetch a file from Qubes clearnet domain (and/or
+</i>&gt;<i> onion) and ask &quot;is it currently secure to update&quot;?
+</i>&gt;<i> 
+</i>&gt;<i> In most cases, the server would provide a cryptographically signed file
+</i>&gt;<i> by a Qubes developer which says &quot;ok&quot;. Otherwise in situations such as
+</i>&gt;<i> now with APT security vulnerability DSA 4371-1 a Qubes developer could
+</i>&gt;<i> put a cryptographically signed file saying &quot;not safe&quot; there. In such
+</i>&gt;<i> cases, updates would be blocked until a new file is provided.
+</i>&gt;<i> 
+</i>&gt;<i> Things to keep in mind related to such a file: man-in-the-middle attack
+</i>&gt;<i> - infinite freeze atttacks; rollback attacks; perhaps more. Can think
+</i>&gt;<i> about this more if this sounds interesting.
+</i>&gt;<i> 
+</i>&gt;<i> Of course there should be options to:
+</i>&gt;<i> 
+</i>&gt;<i> - disable this mechanism entirely
+</i>&gt;<i> - manually override by user
+</i>&gt;<i> 
+</i>&gt;<i> These override option is useful for:
+</i>&gt;<i> 
+</i>&gt;<i> - to stay flexible in case of bugs of this mechanism itself and,
+</i>&gt;<i> - to not give Qubes developers too much power. No advanced adversary
+</i>&gt;<i> should be able to ask Qubes developers to remotely brick all Qubes
+</i>&gt;<i> installations (mostly theoretic at this point and not important for now
+</i>&gt;<i> but still easy to implement and good to have),
+</i>&gt;<i> - other unforeseeable things.
+</i>
+I think blocking updates automatically is probably more problematic
+than useful. But ...
+
+&gt;<i> This idea could be seen as a subset of the emergency project news
+</i>&gt;<i> mechanism that is currently missing in all distributions. In short:
+</i>&gt;<i> distributions have no mechanism to communicate with their users
+</i>&gt;<i> effectively in situations such as this one. More info:
+</i>&gt;<i> 
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Dev/project-news">https://www.whonix.org/wiki/Dev/project-news</A>
+</i>
+I think having something like qubes-announce directly integrated into
+Qubes is a very interesting idea. (Of course implementing it safely is
+tricky).
+
+Simon
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEE3E8ezGzG3N1CTQ//kO9xfO/xly8FAlxIoXUACgkQkO9xfO/x
+ly9Avw/7BqFwvZ/1N9WrWQGx3HTzg83ltMNdxq6/pnPCpYK9SgBzGl6b0jsdnTZH
+sa7q4SXkDCSO9wyBkXMdgV89FS4ACc41gTocybUBpu7yXiTBSfFnWBNZku6WlfqC
+v/th0zr2MNEQP2naV2lV1D4MXTHX5zUvX8hMvyAY6nDe6CxjEL+D3sqqlFE6YfKW
+YsyRwGsynCFOsnYhMRHqLX/Y4Cp+baIMW0J1h1Ns1gtrlju8Kc7hI7kyNA3e8hzo
+KW/gTJlj8Ug4jS6J/JMf0q2Xut+WWsnp6NkxMY/WD1y6IoxT9+u28pld8shHCsyu
+m4/GsNe94F7uZlgHIgHto6hTRq619+0A3RoP36zrKFhUqLTVUVDN3wvY4HqZBUnF
+b2IvslfDTy2bfHFPsNArWB3iVQoZlQq97fLg/q+SJ7bOkea0EvD9Ajy14V03cG1K
+H7vrztcDDQmuar5Yzr1donXwRU1D57MFT/fHrJUZb5AzestfkCiQoe0iBdYzIBPq
+FqY1hcoksKKyaym09GYZTQYZTPXe4CcM+Urz6Yjr1Q/Dm7YtiaBofxcjRfORJ2q9
+atlc2Oz1SrVTogGWgHU7spnkZb42CErc1hh2dI0cH4A4nHiGKpNQstsCGEbYMOEE
+sa/EnNRcZUfHbxOLSwwNSrqg+MSFAKuLeH+zxJBLqRDDfjo9Agw=
+=jAwT
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/001294.html>[Whonix-devel] [qubes-devel] apt RCE
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/001296.html>[Whonix-devel] [qubes-devel] apt RCE
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/date.html#1295">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/thread.html#1295">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/subject.html#1295">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/author.html#1295">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/001295.html','y7aelHq7wr','pimIe23jeCU',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-January/001295.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-January/001295.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:08 GMT -->
+</HTML>

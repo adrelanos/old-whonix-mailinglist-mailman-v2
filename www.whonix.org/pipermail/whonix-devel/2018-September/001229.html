@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001229.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bdm-crypt%5D%20Troubleshooting%3A%20Header%20Conversion%20to%0A%20argon2id&In-Reply-To=%3C20180913015846.GA20220%40localhost.localdomain%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001228.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001231.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id</H1>
+<B>Guilhem Moulin</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bdm-crypt%5D%20Troubleshooting%3A%20Header%20Conversion%20to%0A%20argon2id&In-Reply-To=%3C20180913015846.GA20220%40localhost.localdomain%3E" TITLE="[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id">guilhem at fripost.org
+</A><BR>
+<I>Thu Sep 13 03:58:47 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001228.html>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001231.html>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1229">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1229">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1229">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1229">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On Thu, 13 Sep 2018 at 00:47:00 +0000, procmem wrote:
+&gt;<i> Guilhem Moulin:
+</i>&gt;&gt;<i> On Wed, 12 Sep 2018 at 15:21:00 +0000, procmem wrote:
+</i>&gt;&gt;&gt;<i> cryptsetup convert /dev/vda5 --type luks2 --debug
+</i>&gt;&gt;&gt;<i> […]
+</i>&gt;&gt;&gt;<i> Cannot convert device /dev/vda5 which is still in use.
+</i>&gt;&gt;&gt;<i> […]
+</i>&gt;&gt;&gt;<i> Command failed with code -5 (device already exists or device is busy).
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> As the error message indicates, you need to remove (ie, close) the
+</i>&gt;&gt;<i> mapped device first.  If that device is required for your system to run
+</i>&gt;&gt;<i> (for instance if it's holding the root file system) you won't be able to
+</i>&gt;&gt;<i> run `cryptsetup luksClose $name` from the main system; however you
+</i>&gt;&gt;<i> should be able to perform `cryptsetup convert` from a live CD, or from
+</i>&gt;&gt;<i> the initramfs image.
+</i>&gt;<i> 
+</i>&gt;<i> initramfs sounds like the most versatile option. Any pointers on how to
+</i>&gt;<i> to this? Searching SE turns up irrelevant results.
+</i>
+Before rebooting you might want to make sure the ‘algif_skcipher’ kernel
+module is included in the initramfs image, otherwise you might not be
+able to open LUKS2 volumes.  (See <A HREF="../../../../external.html?link=https://bugs.debian.org/896968">https://bugs.debian.org/896968</A> for
+details.)  To do so, run the following two commands:
+
+    echo algif_skcipher | sudo tee -a /etc/initramfs-tools/modules
+    sudo update-initramfs -u
+
+Now assuming your bootloader is GRUB, reboot, press &lt;E&gt; to obtain an
+emacs-like screen, append “ break=premount” to the line starting with
+“initrd”, and press &lt;Ctrl&gt;+&lt;X&gt; to boot.  (The edit is transient and
+won't survive the next reboot.)  You should land into an initramfs debug
+shell; see initramfs-tools(7) for details.
+
+That has probably become off-topic for the dm-crypt list, by the way
+(discussing how to reboot into an initramfs shell has nothing to do with
+dm-crypt, LUKS, or cryptsetup(8) per se); the user support channels of
+your distro might be a better venue for this.
+
+-- 
+Guilhem.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 833 bytes
+Desc: not available
+URL: &lt;<A HREF="../../../../external.html?link=http://www.whonix.org/pipermail/whonix-devel/attachments/20180913/dc87282d/attachment-0001.sig">http://www.whonix.org/pipermail/whonix-devel/attachments/20180913/dc87282d/attachment-0001.sig</A>&gt;
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001228.html>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001231.html>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1229">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1229">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1229">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1229">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001229.html','y7aelHq7wr','UUzhZ19yYx0',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001229.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001229.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+</HTML>

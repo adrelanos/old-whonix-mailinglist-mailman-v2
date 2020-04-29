@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-September/001454.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [qubes-users] whonix-15 TB in dvm on Safest has whitelisted sites in NoScript by default
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-users%5D%20whonix-15%20TB%20in%20dvm%20on%20Safest%20has%0A%20whitelisted%20sites%20in%20NoScript%20by%20default&In-Reply-To=%3Cb3d201ef-93c4-6a34-3acd-da933cc68dc7%40cock.li%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001447.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001448.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [qubes-users] whonix-15 TB in dvm on Safest has whitelisted sites in NoScript by default</H1>
+<B>scurge1tl</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-users%5D%20whonix-15%20TB%20in%20dvm%20on%20Safest%20has%0A%20whitelisted%20sites%20in%20NoScript%20by%20default&In-Reply-To=%3Cb3d201ef-93c4-6a34-3acd-da933cc68dc7%40cock.li%3E" TITLE="[Whonix-devel] [qubes-users] whonix-15 TB in dvm on Safest has whitelisted sites in NoScript by default">scurge1tl at cock.li
+</A><BR>
+<I>Thu Sep 19 17:50:00 CEST 2019</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001447.html>[Whonix-devel] [qubes-users] whonix-15 TB in dvm on Safest has whitelisted sites in NoScript by default
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001448.html>[Whonix-devel] [qubes-users] Whonix Tor Browser Starter safest setting fails
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/date.html#1454">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/thread.html#1454">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/subject.html#1454">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/author.html#1454">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+
+
+Patrick Schleizer:
+&gt;<i> Whonix source code doesn't write literally googlevideo, netflix, 
+</i>&gt;<i> outlook, etc. anywhere. It does not do anything to give special 
+</i>&gt;<i> treatment to any websites.
+</i>&gt;<i> 
+</i>&gt;<i> By policy, for simplicity, clean implementation and whatnot, the 
+</i>&gt;<i> &quot;inside&quot; of Tor Browser isn't modified by Whonix. This is
+</i>&gt;<i> elaborated here:
+</i>&gt;<i> 
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/FAQ#Does_Whonix_Change_Default_Tor_Browser">https://www.whonix.org/wiki/FAQ#Does_Whonix_Change_Default_Tor_Browser</A>
+</i>_Settings.3F
+&gt;<i>
+</i>&gt;<i>  Tor Browser upstream issue. Bug report written just now.
+</i>&gt;<i> 
+</i>&gt;<i> wipe all mentions of netflix, paypal, youtube, ... from noscript in
+</i>&gt;<i> Tor Browser
+</i>&gt;<i> 
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/31798">https://trac.torproject.org/projects/tor/ticket/31798</A>
+</i>&gt;<i> 
+</i>&gt;<i> See also:
+</i>&gt;<i> 
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.helpnetsecurity.com/2015/07/01/researchers-point-out-the-h">https://www.helpnetsecurity.com/2015/07/01/researchers-point-out-the-h</A>
+</i>oles-in-noscripts-default-whitelist/
+&gt;<i>
+</i>&gt;<i>  
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://thehackerblog.com/the-noscript-misnomer-why-should-i-trust-vjs">https://thehackerblog.com/the-noscript-misnomer-why-should-i-trust-vjs</A>
+</i>- -zendcdn-net/
+&gt;<i>
+</i>&gt;<i> 
+</i>&gt;&gt;<i> From noscript FAQ:
+</i>&gt;<i> 
+</i>&gt;<i> Q: What websites are in the default whitelist and
+</i>&gt;<i> 
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://noscript.net/faq#qa1_5">https://noscript.net/faq#qa1_5</A>
+</i>&gt;<i> 
+</i>&gt;<i> Q: What is a trusted site?
+</i>&gt;<i> 
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://noscript.net/faq#qa1_11">https://noscript.net/faq#qa1_11</A>
+</i>&gt;<i> 
+</i>&gt;<i> Whonix forum discussion:
+</i>&gt;<i> 
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://forums.whonix.org/t/noscript-with-security-slider-at-safest-pe">https://forums.whonix.org/t/noscript-with-security-slider-at-safest-pe</A>
+</i>rmits-around-30-sites/8160
+&gt;<i>
+</i>&gt;<i>  Cheers, Patrick
+</i>&gt;<i> 
+</i>
+
+Hello Patrick, thank you for the reaction.
+
+Just shortly: Tails fresh install 3.16 or 4.0-beta TB don't have this
+issue. Even it starts on &quot;Standard&quot; by default of course. Fresh
+install of TBB on win7 doesn't have the issue. It seems to be
+qubes-whonix (dont know how is ti in non-qubes-whonix) specific for
+some reason.
+
+I believe that if one sets the security setting to &quot;Safest&quot;, she for
+sure didn't meant to be tracked by entities like google, youtube,
+microsoft, yahoo, paypal and others - the worst surveillance
+capitalists on this planet.
+
+Interesting is that the issue with the whitelist can be easily
+&quot;solved&quot; just by clicking on the Standard security setting and than
+again back to the Safest -&gt; no &quot;Trusted&quot; websites anymore, zero. Can
+you please check deeper on this issue? Thank you!
+
+Weird ^^
+
+-----BEGIN PGP SIGNATURE-----
+
+iQKTBAEBCgB9FiEExlmPb5HoPUTt+CQT44JZDAWK6UwFAl2Do7VfFIAAAAAALgAo
+aXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5maWZ0aGhvcnNlbWFuLm5ldEM2
+NTk4RjZGOTFFODNENDRFREY4MjQxM0UzODI1OTBDMDU4QUU5NEMACgkQ44JZDAWK
+6Uyy+hAAgDc4f/iwLGoTfQKaAX8xcpiaKWEd+p032laJ8rKdSIB6Kd5JG3bBYSGh
+iHY5MeAZene44f3DyloDcny6Kv6ibw31/877sIVNDWKIQQQi/rtfkVT+nyp1Bb+5
+32xrh+u+MhTIKbBjYCjyy+E5F1fVWK1Q3+dBApLHWsJxseeAON1lL41dH63fP4zX
+ApSoOmvJM3fiLZGgPYA2zr/W4VzSTmWag5pp27X4r2rMPpoonZghFv5B+IjixhHX
+tTntE+cfxTXqkoNwLY/upsJeXLoFgWr4ss7FQ3OfDE7X743fbu2Y3j857rPSPs00
+V2eArJjxh5a2pwmrZcFzW+KN30CHIAXRplIt5/k2Nfa+UcHfkPlZOsZlGXBtVba2
+AofLm/OlGjqupgFMpIwDcwP+zHEIGrN/HTyr61GAozInK4A1YU7+Q0Jz+b0fJl8j
+927uxdZVFE9JZXpF8YmO7pMrTcAwfo7fqV9/tfjEkvm6EtvlNdt5FLPRGLF4QGMI
+tH7ovKxRedvdHRLp+81CqLjxn8R5zkdnoZzNMOfWN/Q5NtETNOLxWiRPKt6iLg4l
+qW07ICAkQYJaVDTVKfH49CrKRWZF88f+I2s+/6AVUivvuPAM/n8p64ABsGyS5e+h
+QgRIhBZbIvu+6kGxSWQkftKTwTuQHn24JFPM2jIQgaO1g9stTwg=
+=Vqtn
+-----END PGP SIGNATURE-----
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0xC1F4E83AF470A4ED.asc
+Type: application/pgp-keys
+Size: 5507 bytes
+Desc: not available
+URL: &lt;<A HREF="../../../../external.html?link=http://www.whonix.org/pipermail/whonix-devel/attachments/20190919/40521483/attachment.key">http://www.whonix.org/pipermail/whonix-devel/attachments/20190919/40521483/attachment.key</A>&gt;
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001447.html>[Whonix-devel] [qubes-users] whonix-15 TB in dvm on Safest has whitelisted sites in NoScript by default
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001448.html>[Whonix-devel] [qubes-users] Whonix Tor Browser Starter safest setting fails
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/date.html#1454">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/thread.html#1454">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/subject.html#1454">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/author.html#1454">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001454.html','y7aelHq7wr','__peGZYMEwQ',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-September/001454.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-September/001454.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:00 GMT -->
+</HTML>

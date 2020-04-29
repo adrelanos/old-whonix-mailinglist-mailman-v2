@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-April/000347.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] hardening python scripts with seccomp.py
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20hardening%20python%20scripts%20with%20seccomp.py&In-Reply-To=%3CCABzuZRPi-L%3Dc%2BFSOK0%2BeDYadCi6PaSMt2bnbHOyNxjB59rU_gQ%40mail.gmail.com%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000346.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000348.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] hardening python scripts with seccomp.py</H1>
+<B>David Wilson</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20hardening%20python%20scripts%20with%20seccomp.py&In-Reply-To=%3CCABzuZRPi-L%3Dc%2BFSOK0%2BeDYadCi6PaSMt2bnbHOyNxjB59rU_gQ%40mail.gmail.com%3E" TITLE="[Whonix-devel] hardening python scripts with seccomp.py">dw at botanicus.net
+</A><BR>
+<I>Sat Apr 25 15:15:06 CEST 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000346.html>[Whonix-devel] Pre-Release Audit of qubes-whonix 10.0.2-1
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000348.html>[Whonix-devel] Whonix Anonymous Operating System Version 10	Released!
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/date.html#347">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/thread.html#347">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/subject.html#347">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/author.html#347">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Hi Patrick,
+
+So finally I'm getting around to replying. :)
+
+There is room for a Python-specific library for handling restricted
+execution using OS facilities, and one I briefly toyed with creating,
+however since I had no personal use for it I did not explore any further.
+The reason for desiring a reusable library to handle this is that there are
+a number of subtleties to implementing it correctly and securely:
+
+    * Ensuring parent process heap / environment / file descriptors do not
+leak.
+
+    * Ensuring child process can allocate RAM/CPU up to some configurable
+limit, and fails gracefully when those limits are reached. CPU limit can be
+done with setrlimit(2), but RAM limit requires a little more care.
+
+    * Ensuring parent&lt;-&gt;child communication is handled securely.
+
+    * Ensuring child process has access to a whitelisted set of modules,
+and ensuring the whitelisted set does not cause a large startup time. This
+would probably entail forking a &quot;prototypical child&quot; that has all necessary
+modules loaded, and forking+seccomping this child each time a new context
+should be created.
+
+    * Potential for some customizable policy for the child. For example,
+virtualizing filesystem / socket access (which can be done with seccomp
+traps). For example letting the user implement a class like:
+
+
+    class ChildResourcePolicy(ResourcePolicy):
+        def check_tcp4_access(self, host, port):
+            return False
+
+        def check_udp4_access(self, host, port):
+            return False
+
+        def check_path_write(self, path):
+            return False
+
+        ALLOW_PATHS = set(['/etc/services'])
+        def check_path_read(self, path):
+            return path in self.ALLOW_PATHS
+
+etc.
+
+
+I had also considered trying to abstract away OS X sandbox(7) and Linux
+PR_SET_SECCOMP behind a uniform interface, however that would potentially
+weaken the featureset and promises made by the resulting library, since
+sandbox(7) is nowhere nearly as capable or isolated as seccomp is.
+
+Regarding use with PyPy, there is no reason the same library could not work
+there. PyPy has its own sandboxing facilities, but at least to me their
+design is significantly more complicated (and potentially less reliable)
+than the equivalent OS facility.
+
+
+As for why no such library exists already, perhaps it is because this is a
+relatively niche use case, and for those places where it might be in use
+(e.g. platforms like Google App Engine), the implementation might be
+considered highly proprietary/confidential, and unlikely a good target for
+open sourcing.
+
+
+David
+
+
+
+On 23 February 2015 at 16:51, Patrick Schleizer &lt;<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">adrelanos at riseup.net</A>&gt;
+wrote:
+
+&gt;<i> Hi David!
+</i>&gt;<i>
+</i>&gt;<i> Would it be useful to combine pypy with seccomp.py?
+</i>&gt;<i>
+</i>&gt;<i> With it be useful to combine pypy sandbox with seccomp.py?
+</i>&gt;<i>
+</i>&gt;<i> Do you know any usage examples of seccomp.py by any projects?
+</i>&gt;<i>
+</i>&gt;<i> Why is there no existing python library for this feature? One could
+</i>&gt;<i> assume, that this is quite popular and installable from mainstream
+</i>&gt;<i> distributions such as Debian?
+</i>&gt;<i>
+</i>&gt;<i> Anything else you would like to add?
+</i>&gt;<i>
+</i>&gt;<i> By replying to this mail, your answer will be posted on the whonix-devel
+</i>&gt;<i> public mailing list, so all of our python coders can benefit from your
+</i>&gt;<i> answer.
+</i>&gt;<i>
+</i>&gt;<i> Cheers,
+</i>&gt;<i> Patrick
+</i>&gt;<i>
+</i>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="../../../../external.html?link=http://www.whonix.org/pipermail/whonix-devel/attachments/20150425/bd98afd5/attachment.html">http://www.whonix.org/pipermail/whonix-devel/attachments/20150425/bd98afd5/attachment.html</A>&gt;
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000346.html>[Whonix-devel] Pre-Release Audit of qubes-whonix 10.0.2-1
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000348.html>[Whonix-devel] Whonix Anonymous Operating System Version 10	Released!
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/date.html#347">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/thread.html#347">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/subject.html#347">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/author.html#347">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000347.html','y7aelHq7wr','2cIoSmZ-rVY',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000347.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-April/000347.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:53 GMT -->
+</HTML>

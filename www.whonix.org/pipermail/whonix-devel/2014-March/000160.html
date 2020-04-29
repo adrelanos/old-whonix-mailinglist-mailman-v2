@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-March/000160.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] survey: consideration to drop VirtualBox support for Linux users
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20survey%3A%20consideration%20to%20drop%20VirtualBox%20support%0A%20for%20Linux%20users&In-Reply-To=%3CCAHkRx6F11shm3qXdTxtdonW1iLsFp6%3DjrwgY7PQE9y4GjJPdOQ%40mail.gmail.com%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000159.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000163.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] survey: consideration to drop VirtualBox support for Linux users</H1>
+<B>M. Edward (Ed) Borasky</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20survey%3A%20consideration%20to%20drop%20VirtualBox%20support%0A%20for%20Linux%20users&In-Reply-To=%3CCAHkRx6F11shm3qXdTxtdonW1iLsFp6%3DjrwgY7PQE9y4GjJPdOQ%40mail.gmail.com%3E" TITLE="[Whonix-devel] survey: consideration to drop VirtualBox support for Linux users">znmeb at znmeb.net
+</A><BR>
+<I>Thu Mar 20 05:43:48 CET 2014</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000159.html>[Whonix-devel] survey: consideration to drop VirtualBox support for	Linux users
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000163.html>[Whonix-devel] survey: consideration to drop VirtualBox support	for Linux users
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/date.html#160">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/thread.html#160">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/subject.html#160">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/author.html#160">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On Wed, Mar 19, 2014 at 8:53 PM, Whonix | Privacy and Anonymity OS
+&lt;<A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">newblogpost at whonix.org</A>&gt; wrote:
+&gt;<i> TLDR:
+</i>&gt;<i> As a Linux user(!), would you mind to use Whonix with KVM instead of VirtualBox?
+</i>
+I would prefer kvm! I run Fedora Linux, which doesn't ship VirtualBox
+for licensing reasons. VirtualBox is also a lot slower than kvm.
+
+&gt;<i>
+</i>&gt;<i> How important is VirtualBox to you, if you could use KVM instead?
+</i>See above. As far as I'm concerned VirtualBox is the worst possible
+desktop virtualizer out there.
+
+&gt;<i>
+</i>&gt;<i> What features in VirtualBox do you believe are superior to KVM?
+</i>Really, since Fedora 20 has the latest virt-manager desktop tools,
+there's nothing VirtualBox has going for it except for running
+pre-existing appliances built for it.
+
+&gt;<i>
+</i>&gt;<i> Which things in KVM do you dislike?
+</i>It doesn't run on Windows or MacOS X ;-)
+
+&gt;<i>
+</i>&gt;<i> Long:
+</i>&gt;<i> This one needs user feedback.
+</i>&gt;<i>
+</i>&gt;<i> First of all, relax. Nothing has been decided yet. I am just thinking aloud. Without the controversy, there can not be real progress.
+</i>&gt;<i>
+</i>&gt;<i> Maybe it is too early to even think about this yet, because running Whonix in KVM development hasn't finished yet. However, if development continues at current speed, I predict it won't be long until we can open it up for wider testing.
+</i>&gt;<i>
+</i>&gt;<i> On of Whonix's biggest usability failures is, that no easy, secure and recommend way to get files inside a VM and how to backup from VMs. We only have a list of methods (<A HREF="../../../../external.html?link=https://www.whonix.org/wiki/File_Transfer">https://www.whonix.org/wiki/File_Transfer</A>) but none of these is ideal.
+</i>&gt;<i>
+</i>&gt;<i> Jason just started a very much needed development discussion about this. (<A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/131">https://github.com/Whonix/Whonix/issues/131</A>) I added an overview of current status and thoughts to that thread.
+</i>&gt;<i>
+</i>&gt;<i> Moreover I tried to come up with usable, yet secure solution, that is.
+</i>&gt;<i>
+</i>&gt;<i> Windows users:
+</i>&gt;<i>
+</i>&gt;<i>         - recommend to use USB extensions
+</i>&gt;<i>         - they're using lots of closed source software already anyway
+</i>&gt;<i>         - they're downloading and blindly trusting VirtualBox in binary form from oracle without gpg verification already anyway, the closed source USB extensions shouldn't make it any worse
+</i>&gt;<i>         - we add screenshot / video instructions for installing and using this feature
+</i>&gt;<i>         - file transfer question solved
+</i>
+Putty/SCP/SFTP is how I'd do it on a Windows host, ordinary scp/sftp
+on a Linux (kvm) host. Of course, with a VirtualBox or VMware host you
+can share guest and host files with a couple of mouse clicks.
+
+&gt;<i>
+</i>&gt;<i> Linux users:
+</i>&gt;<i>
+</i>&gt;<i>         - recommend to use KVM over VirtualBox
+</i>&gt;<i>         - they're accustomed to using more difficult solutions already anyway
+</i>&gt;<i>         - there are reasons for Use KVM Over VirtualBox anyway
+</i>&gt;<i>         - if this solution is as simple as it seems, file transfer issue would be solved
+</i>&gt;<i>
+</i>&gt;<i> Thoughts?
+</i>
+Windows 8 (Professional) and later have something called Client
+Hyper-V available as an option. It's a decent virtualizer; not as
+sophisticated a UI as VirtualBox or VMware Workstation but adequate
+for an 'embedded' security appliance. The only problems I have with it
+are:
+
+1. It ties up the WiFi with the guest network. You need a separate
+network connection on a laptop if you want to network from both the
+host and the guest. And I'm totally clueless as to the security
+implications of all of that.
+2. It messes up my wireless USB mouse. That's not fatal - if I disable
+and enable it in the device manager on the host it works again.
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000159.html>[Whonix-devel] survey: consideration to drop VirtualBox support for	Linux users
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000163.html>[Whonix-devel] survey: consideration to drop VirtualBox support	for Linux users
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/date.html#160">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/thread.html#160">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/subject.html#160">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/author.html#160">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000160.html','y7aelHq7wr','fnOomjdDlMw',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-March/000160.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-March/000160.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:06 GMT -->
+</HTML>

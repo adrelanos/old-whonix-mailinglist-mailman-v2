@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2020-April/001539.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:54:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Bug#956626: dhcpcanon systemd unit fails at boot due to missing debhelper apparmor integration
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Bug%23956626%3A%20dhcpcanon%20systemd%20unit%20fails%20at%20boot%20due%0A%20to%20missing%20debhelper%20apparmor%20integration&In-Reply-To=%3Cef6daf30-86b3-07b2-1753-507e86b504d2%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Bug#956626: dhcpcanon systemd unit fails at boot due to missing debhelper apparmor integration</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Bug%23956626%3A%20dhcpcanon%20systemd%20unit%20fails%20at%20boot%20due%0A%20to%20missing%20debhelper%20apparmor%20integration&In-Reply-To=%3Cef6daf30-86b3-07b2-1753-507e86b504d2%40riseup.net%3E" TITLE="[Whonix-devel] Bug#956626: dhcpcanon systemd unit fails at boot due to missing debhelper apparmor integration">adrelanos at riseup.net
+</A><BR>
+<I>Mon Apr 13 20:39:25 CEST 2020</I>
+<P><UL>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-April/date.html#1539">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-April/thread.html#1539">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-April/subject.html#1539">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-April/author.html#1539">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Package: dhcpcanon
+Severity: normal
+X-Debbugs-CC: <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">whonix-devel at whonix.org</A>
+
+Debian buster dhcpcanon_0.8.5-2_all.deb debian/postinst lacks apparmor
+integration which should be auto added by debhelper.
+
+sudo aa-enforce /etc/apparmor.d/sbin.dhcpcanon
+
+ERROR: Include file /etc/apparmor.d/local/sbin.dhcpcanon not found
+
+Workaround:
+sudo touch /etc/apparmor.d/local/sbin.dhcpcanon
+
+For example /var/lib/dpkg/info/man-db.postinst has:
+
+```
+# Automatically added by dh_apparmor/2.13.2-7
+if [ &quot;$1&quot; = &quot;configure&quot; ]; then
+    APP_PROFILE=&quot;/etc/apparmor.d/usr.bin.man&quot;
+    if [ -f &quot;$APP_PROFILE&quot; ]; then
+        # Add the local/ include
+        LOCAL_APP_PROFILE=&quot;/etc/apparmor.d/local/usr.bin.man&quot;
+
+        test -e &quot;$LOCAL_APP_PROFILE&quot; || {
+            mkdir -p `dirname &quot;$LOCAL_APP_PROFILE&quot;`
+            install --mode 644 /dev/null &quot;$LOCAL_APP_PROFILE&quot;
+        }
+
+        # Reload the profile, including any abstraction updates
+        if aa-enabled --quiet 2&gt;/dev/null; then
+            apparmor_parser -r -T -W &quot;$APP_PROFILE&quot; || true
+        fi
+    fi
+fi
+# End automatically added section
+```
+</PRE>
+<HR>
+<P><UL>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-April/date.html#1539">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-April/thread.html#1539">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-April/subject.html#1539">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-April/author.html#1539">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-April/001539.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2020-April/001539.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:54:53 GMT -->
+</HTML>

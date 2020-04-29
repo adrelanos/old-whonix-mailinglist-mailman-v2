@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-December/000473.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:45 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Whonix Connection Wizard / Bridge Wizard / Tor Launcher Clone
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Whonix%20Connection%20Wizard%20/%20Bridge%20Wizard%20/%20Tor%0A%20Launcher%20Clone&In-Reply-To=%3C566AAEA2.4010207%40pimienta.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/000472.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/000465.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Whonix Connection Wizard / Bridge Wizard / Tor Launcher Clone</H1>
+<B>sajolida</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Whonix%20Connection%20Wizard%20/%20Bridge%20Wizard%20/%20Tor%0A%20Launcher%20Clone&In-Reply-To=%3C566AAEA2.4010207%40pimienta.org%3E" TITLE="[Whonix-devel] Whonix Connection Wizard / Bridge Wizard / Tor Launcher Clone">sajolida at pimienta.org
+</A><BR>
+<I>Fri Dec 11 12:08:18 CET 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/000472.html>[Whonix-devel] Whonix Connection Wizard / Bridge Wizard / Tor Launcher Clone
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/000465.html>[Whonix-devel] automatically sharing blog posts everywhere
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/date.html#473">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/thread.html#473">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/subject.html#473">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/author.html#473">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>troubadour:
+&gt;<i> I'm reading the discussion started in
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://lists.torproject.org/pipermail/ux/2015-December/000002.html.">https://lists.torproject.org/pipermail/ux/2015-December/000002.html.</A> Its
+</i>&gt;<i> quite interesting, but I have no time to participate at he moment.
+</i>
+Throughout this email I'll point to bits of this discussion that I think
+relevant for your redesign work.
+
+&gt;<i> A short status of the development in Whonix.
+</i>&gt;<i> 
+</i>&gt;<i> - the bridges options (obfs3, obfs4 and scramblesuit only for the time
+</i>&gt;<i> being) are implemented.
+</i>&gt;<i> 
+</i>&gt;<i> - a progress bar shows the bootstrap percent and the bootstrap phase is
+</i>&gt;<i> displayed. The process can be interrupted by the user at any time.
+</i>&gt;<i> 
+</i>&gt;<i> - the proxy UI (Tor Launcher like) is ready, but not the code to set up
+</i>&gt;<i> a proxy. After reading some of the comments and watching videos from the
+</i>&gt;<i> participants in
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://github.com/lindanlee/circumvention-ux-tor/tree/master/sessions/pre/videos,">https://github.com/lindanlee/circumvention-ux-tor/tree/master/sessions/pre/videos,</A>
+</i>&gt;<i> that might evolve.
+</i>
+The place of proxy configuration in the current Tor Launcher is under
+debate [0].
+
+[0]: <A HREF="../../../../external.html?link=https://lists.torproject.org/pipermail/ux/2015-December/000014.html">https://lists.torproject.org/pipermail/ux/2015-December/000014.html</A>
+
+&gt;<i> - probably Whonix specific (we are only updating torrc and restarting
+</i>&gt;<i> Tor in the gateway, no Tor browser), Tor can be disabled.
+</i>&gt;<i> 
+</i>&gt;<i> I have added some screenshots in the Whonix blog.
+</i>&gt;<i> 
+</i>&gt;<i> A notable difference with Tor Launcher. When going back to the first
+</i>&gt;<i> page of the wizard or when restarting it, the previous configuration is
+</i>&gt;<i> forgotten. If the user press &quot;Connect&quot;, it will really connect to the
+</i>&gt;<i> network without bridge and/or proxy.
+</i>
+Mark Smith and Kathy Brade consider this behavior of Tor Launcher as a
+bug [1]. So I guess they would be ready to work on a fix upstream, that
+would then benefit to everybody depending on Tor Launcher. Did you get
+in touch with them regarding this?
+
+[1]: <A HREF="../../../../external.html?link=https://lists.torproject.org/pipermail/ux/2015-December/000016.html">https://lists.torproject.org/pipermail/ux/2015-December/000016.html</A>
+
+&gt;<i> Of course there could be a lot of usability-foolproof improvements, and
+</i>&gt;<i> I believe that Patrick, like myself is open to discussion. Most of it
+</i>&gt;<i> could take place at 32c3.
+</i>
+Cool! In the meantime I might register a session for the IFF (deadline
+on December 15) but I'd be interested in chatting about this at 32C3 of
+course.
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/000472.html>[Whonix-devel] Whonix Connection Wizard / Bridge Wizard / Tor Launcher Clone
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/000465.html>[Whonix-devel] automatically sharing blog posts everywhere
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/date.html#473">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/thread.html#473">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/subject.html#473">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/author.html#473">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/000473.html','y7aelHq7wr','C0Bz5LyFTlo',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-December/000473.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-December/000473.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:45 GMT -->
+</HTML>

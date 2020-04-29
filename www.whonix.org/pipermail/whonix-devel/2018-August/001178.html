@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-August/001178.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Whonix 14 has been Released
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Whonix%2014%20has%20been%20Released&In-Reply-To=%3C0a48d464-6c94-8ac1-6497-06dedb96a450%40whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001177.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001180.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Whonix 14 has been Released</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Whonix%2014%20has%20been%20Released&In-Reply-To=%3C0a48d464-6c94-8ac1-6497-06dedb96a450%40whonix.org%3E" TITLE="[Whonix-devel] Whonix 14 has been Released">patrick-mailinglists at whonix.org
+</A><BR>
+<I>Tue Aug 7 12:17:00 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001177.html>[Whonix-devel] Research survey: Impact of Microsoft Acquisition of GitHub
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001180.html>[Whonix-devel] [qubes-users] Whonix 14 has been Released
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/date.html#1178">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/thread.html#1178">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/subject.html#1178">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/author.html#1178">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+After more than two years of development, the Whonix Project is proud
+to announce the release of Whonix 14.
+
+Whonix 14 is based on the Debian stretch (Debian 9) distribution which
+was released in June 2017. This means users have access to many new
+software packages in concert with existing packages such as a modern
+branch of GNuPG, and more. [1][2][3]
+
+**Major Changes and New Features**
+
+Whonix 14 contains extensive security and usability improvements, new
+features and bug fixes. For a detailed description of these and other
+changes, please refer to the official release notes. [4]
+
+* Rebased Whonix on **Debian stretch** (Debian 9).
+* Whonix 14 is **64-bit** (amd64) only - 32-bit (i386) images will no
+longer be built and made available for download. [5]
+* The new **Anon Connection Wizard** [6] feature in Whonix simplifies
+connections to the Tor network via a Tor bridge and/or a proxy.
+* The Tor pluggable transport **meek_lite** [7] is now supported,
+making it much easier to connect to the Tor network in heavily
+censored areas, like China. [8]
+* **Onioncircuits** are installed by default in Whonix. [9]
+* Tails' **onion-grater** program has been implemented to enable
+**OnionShare, Ricochet and Zeronet** compatibility with Whonix. [10]
+* **Onion sources** are now preferred for Whonix updates/upgrades for
+greater security.
+* Reduced the size of the default, binary Whonix images by
+approximately **35 per cent** using zerofree. [11] [12]
+* **Updated Tor** to version 3.3.7 (stable) release to enable full v3
+onion functionality for both hosting of onion services and access to
+v3 onion addresses in Tor Browser.
+* Created the **grub-live package** [13] which can run Whonix as a
+**live system** on non-Qubes-Whonix platforms. [14]
+* Corrected and hardened various **AppArmor profiles** to ensure the
+correct functioning of Tor Browser, obfsproxy and other applications.
+
+
+**Known Issues**
+
+* Desktop shortcuts are no longer available in non-Qubes-Whonix.
+* OnionShare is not installed by default in Whonix 14 as it is not in
+the stretch repository. [15] It can still be manually installed by
+following the Whonix wiki instructions [16] or building it from source
+code. [17]
+* Enabling seccomp (Sandbox 1) in /usr/local/etc/torrc.d/50_user.conf
+causes the Tor process to crash if a Tor version lower than 0.3.3 is
+used. [18] [19]
+
+
+While there may be other issues that exist in this declared stable
+release, every effort has been made to address major known problems.
+
+Please report any other issues to us in the forums, after first
+searching for whether it is already known.
+
+  <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Known_Issues">https://www.whonix.org/wiki/Known_Issues</A>
+
+**Download Whonix 14**
+
+Whonix is cross-platform and can be installed on the Windows, macOS,
+Linux or Qubes operating systems. Choose your operating system from
+the link below and follow the instructions to install it.
+
+  <A HREF="../../../../external.html?link=https://www.whonix.org/download/">https://www.whonix.org/download/</A>
+
+**Upgrade to Whonix 14**
+
+Current Whonix users (or those with 32-bit hardware) who would prefer
+to upgrade their existing Whonix 13 platform should follow the upgrade
+instructions below.
+
+  <A HREF="../../../../external.html?link=https://whonix.org/wiki/Upgrading_Whonix_13_to_Whonix_14">https://whonix.org/wiki/Upgrading_Whonix_13_to_Whonix_14</A>
+
+**What’s Next?**
+
+Work on Whonix 15 is ongoing and interested users can refer to the
+roadmap to see where Whonix is heading. [20]
+
+Developer priorities are currently focused on easing the transition to
+the next Debian release due in 2019 (“buster”; Debian 10) and
+squashing existing bugs, rather than implementing new features.
+
+We need your help and there are various ways to contribute to Whonix -
+donating or investing your time will help the project immensely. Come
+and talk with us! [21]
+
+**References**
+
+[1] <A HREF="../../../../external.html?link=https://www.debian.org/News/2017/20170617">https://www.debian.org/News/2017/20170617</A>
+[2] <A HREF="../../../../external.html?link=https://www.debian.org/releases/stable/amd64/release-notes/">https://www.debian.org/releases/stable/amd64/release-notes/</A>
+[3] <A HREF="../../../../external.html?link=https://www.debian.org/releases/stable/i386/release-notes/">https://www.debian.org/releases/stable/i386/release-notes/</A>
+[4] <A HREF="../../../../external.html?link=https://whonix.org/wiki/Whonix_Release_Notes#Whonix_14">https://whonix.org/wiki/Whonix_Release_Notes#Whonix_14</A>
+[5] Whonix 13 users with 32-bit systems can however upgrade their
+platform by following the available wiki instructions, rather than
+download new Whonix-WS and Whonix-GW images.
+[6] <A HREF="../../../../external.html?link=https://whonix.org/wiki/Anon_Connection_Wizard">https://whonix.org/wiki/Anon_Connection_Wizard</A>
+[7] <A HREF="../../../../external.html?link=https://www.whonix.org/blog/meek_lite-whonix-14">https://www.whonix.org/blog/meek_lite-whonix-14</A>
+[8]
+<A HREF="../../../../external.html?link=https://github.com/Yawning/obfs4/commit/611205be681322883a4d73dd00fcb13c">https://github.com/Yawning/obfs4/commit/611205be681322883a4d73dd00fcb13c</A>
+4352fe53
+[9] <A HREF="../../../../external.html?link=https://packages.debian.org/stretch/onioncircuits">https://packages.debian.org/stretch/onioncircuits</A>
+[10] <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T657">https://phabricator.whonix.org/T657</A>
+[11] <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T790">https://phabricator.whonix.org/T790</A>
+[12] VirtualBox .ova and libvirt qcow2 raw images. The Whonix-Gateway
+is reduced from 1.7 GB to 1.1 GB, while the Whonix-Workstation is
+reduced from 2 GB to 1.3 GB.
+[13] <A HREF="../../../../external.html?link=https://whonix.org/wiki/Whonix_Live">https://whonix.org/wiki/Whonix_Live</A>
+[14] grub-live is optional and requires the user to first enable it
+manually.
+[15] <A HREF="../../../../external.html?link=https://packages.debian.org/search?searchon=names&amp;keywords=onionsha">https://packages.debian.org/search?searchon=names&amp;keywords=onionsha</A>
+re
+[16] <A HREF="../../../../external.html?link=https://whonix.org/wiki/Onionshare">https://whonix.org/wiki/Onionshare</A>
+[17] <A HREF="../../../../external.html?link=https://github.com/micahflee/onionshare/blob/master/BUILD.md#gnulin">https://github.com/micahflee/onionshare/blob/master/BUILD.md#gnulin</A>
+ux
+[18] <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/22605">https://trac.torproject.org/projects/tor/ticket/22605</A>
+[19] <A HREF="../../../../external.html?link=https://packages.debian.org/stretch/tor">https://packages.debian.org/stretch/tor</A>
+[20] <A HREF="../../../../external.html?link=https://phabricator.whonix.org/maniphest/query/open/">https://phabricator.whonix.org/maniphest/query/open/</A>
+[21] <A HREF="../../../../external.html?link=https://forums.whonix.org/">https://forums.whonix.org</A>
+-----BEGIN PGP SIGNATURE-----
+
+iQKTBAEBCgB9FiEEbpebKKbzfEO+MK+hy41Qu3e7PEgFAltpcbJfFIAAAAAALgAo
+aXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5maWZ0aGhvcnNlbWFuLm5ldDZF
+OTc5QjI4QTZGMzdDNDNCRTMwQUZBMUNCOEQ1MEJCNzdCQjNDNDgACgkQy41Qu3e7
+PEhxNQ//SIYdoE64adUykqUSlWGZXeDpn090+RDolyOmg6zn1XuSTKAkeX7uuqoI
+7dAr+YM2ZUM73LtlnmLTDPXZFxhSXUB/Z2OUEdivDgau+FUaF80z7rMbw7kZkfhH
++V5hdY+GDH4ud/1iCR1agaiVHqJ0zY7HfEFmthJkaqn4UPynMciNrAn8CDijUmuE
+KjJCeWCYIvrq/mRIUuwdvdwjRyWeMgUiH1elVBURVqT/IUK97yXm+/cC0uTTw/MG
+Gp+i3wAVWsVt5AV2k7DSdRanlWsBRXFOwCuGDLnGyYsXBwS0lYmJK60psBAJK7rj
+AEh0Vo3VcY9B+ueCe4/bwLe28rN4HfC4uF8FB1a8PtgOz41xsUvWBtI+CrHcTrdc
+WPcEnFqsRXtEd5DN/TqsiiPFT7OeiVvXL2lM37o2fcMf7XIAwPB3oQXGKOZURvRD
+SJbXUqE0IqzRy3j+oUVS9wo/lgZkTjdtCDNITljxVBZckYVEIm3KsJIsgeeX6+oN
+07OPQB/h6jfn2TQWueOunUUvzqS2Jjs+IjNVLZWUvn5jgFEPAlB1Qzj6XI5qOgJy
+8EstwiS4wAU1UjOqO+0/wEiopsbVvw596rvS3bw981yF7O3kEzUjXaKrllmLsKpM
+Mi9ux7wy3lx5puS/Sc/j8qlxNRDdN5XM14CMtAuS4d7YkyzSDWs=
+=I8IO
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001177.html>[Whonix-devel] Research survey: Impact of Microsoft Acquisition of GitHub
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001180.html>[Whonix-devel] [qubes-users] Whonix 14 has been Released
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/date.html#1178">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/thread.html#1178">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/subject.html#1178">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/author.html#1178">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001178.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-August/001178.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:13 GMT -->
+</HTML>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-December/000261.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20git%20log%20--pretty%3D%22format%3A%25H%24t%25aN%24t%25s%24t%25G%3F%22%0A%09--show-signature&In-Reply-To=%3C54809802.6030609%40whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000265.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000263.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20git%20log%20--pretty%3D%22format%3A%25H%24t%25aN%24t%25s%24t%25G%3F%22%0A%09--show-signature&In-Reply-To=%3C54809802.6030609%40whonix.org%3E" TITLE="[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature">patrick-mailinglists at whonix.org
+</A><BR>
+<I>Thu Dec 4 18:21:06 CET 2014</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000265.html>[Whonix-devel] latest updates not fix all bash bug !
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000263.html>[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/date.html#261">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/thread.html#261">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/subject.html#261">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/author.html#261">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Dear git mailing list,
+Dear Mike Gerwitz,
+
+according to <A HREF="../../../../external.html?link=http://mikegerwitz.com/papers/git-horror-story#script-trust">http://mikegerwitz.com/papers/git-horror-story#script-trust</A>
+the output of:
+
+git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot; --show-signature
+
+should look like this:
+
+-----
+
+f72924356896ab95a542c495b796555d016cbddd       Mike Gerwitz    Yet
+another foo
+gpg: Signature made Sun 22 Apr 2012 01:37:26 PM EDT using RSA key ID
+8EE30EAB
+gpg: Good signature from &quot;Mike Gerwitz (Free Software Developer)
+&lt;<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">mike at mikegerwitz.com</A>&gt;&quot;
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the
+owner.
+Primary key fingerprint: 2217 5B02 E626 BC98 D7C0  C2E5 F22B B815 8EE3 0EAB
+afb1e7373ae5e7dae3caab2c64cbb18db3d96fba       Mike Gerwitz    Modified
+bar    G
+
+-----
+
+But when I run that command, spaces are missing. (Using a user that does
+not know my gpg public key for testing purposes.) See output:
+
+-----
+
+<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">user2 at host</A>:/home/user/testrepo$ git log
+--pretty=&quot;format:%H$t%aN$t%s$t%G?&quot; --show-signature
+gpg: Signature made Thu 04 Dec 2014 04:37:58 PM UTC using RSA key ID
+77BB3C48
+gpg: Good signature from &quot;Patrick Schleizer &lt;<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">adrelanos at riseup.net</A>&gt;&quot;
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the
+owner.
+Primary key fingerprint: 916B 8D99 C38E AF5E 8ADC  7A2A 8D66 066A 2EEA CCDA
+     Subkey fingerprint: 6E97 9B28 A6F3 7C43 BE30  AFA1 CB8D 50BB 77BB 3C48
+529bbc076f05c13023580ea7be7ba63aba3e9672Patrick Schleizersigned commit 2U
+gpg: Signature made Thu 04 Dec 2014 04:29:32 PM UTC using RSA key ID
+77BB3C48
+gpg: Good signature from &quot;Patrick Schleizer &lt;<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">adrelanos at riseup.net</A>&gt;&quot;
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the
+owner.
+Primary key fingerprint: 916B 8D99 C38E AF5E 8ADC  7A2A 8D66 066A 2EEA CCDA
+     Subkey fingerprint: 6E97 9B28 A6F3 7C43 BE30  AFA1 CB8D 50BB 77BB 3C48
+ea1615ac1a9fe9f957f91f54a33a60d57828a32fPatrick Schleizersigned commitU
+75e79a211963907afd3a6d2f28c3571d37140231Patrick Schleizerreal long
+commit msg Please enter the commit message for your changes. Lines
+starting with '#' will be ignored, and an empt
+30096d1633ef22463c1a770288755ae5325f1242Patrick Schleizer2N
+e7be12378d2805bebe531bd01cbec9dec1f79032Patrick Schleizerinitial commitN
+(END)
+
+-----
+
+Any idea? Am I doing something wrong?
+
+I am asking, because therefore Mike Gerwitz's Quote &quot;Signature Check
+Script With Web Of Trust&quot; verification script (
+<A HREF="../../../../external.html?link=http://mikegerwitz.com/papers/git-horror-story#script-trust">http://mikegerwitz.com/papers/git-horror-story#script-trust</A> ) does not
+work for me.
+
+Mike, could you please put your various git commit verification helper
+scripts into a publicly visible?
+
+By the way, any chance that these useful helper scripts could make their
+way into the official distribution of git as a stopgap until native git
+commit verification support gets improved?
+
+Cheers,
+Patrick
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000265.html>[Whonix-devel] latest updates not fix all bash bug !
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000263.html>[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/date.html#261">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/thread.html#261">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/subject.html#261">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/author.html#261">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000261.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-December/000261.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:57 GMT -->
+</HTML>

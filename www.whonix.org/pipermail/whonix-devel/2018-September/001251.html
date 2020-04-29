@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001251.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] #27794 [Core Tor/Tor]: Apparmor profile whitelist /etc/torrc.d/ and /usr/local/etc/torrc.d/
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%2327794%20%5BCore%20Tor/Tor%5D%3A%20Apparmor%20profile%0A%20whitelist%20/etc/torrc.d/%20and%20/usr/local/etc/torrc.d/&In-Reply-To=%3C064.60713256da1860225f3f306f383eb95a%40torproject.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001250.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001252.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] #27794 [Core Tor/Tor]: Apparmor profile whitelist /etc/torrc.d/ and /usr/local/etc/torrc.d/</H1>
+<B>Tor Bug Tracker &amp; Wiki</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%2327794%20%5BCore%20Tor/Tor%5D%3A%20Apparmor%20profile%0A%20whitelist%20/etc/torrc.d/%20and%20/usr/local/etc/torrc.d/&In-Reply-To=%3C064.60713256da1860225f3f306f383eb95a%40torproject.org%3E" TITLE="[Whonix-devel] #27794 [Core Tor/Tor]: Apparmor profile whitelist /etc/torrc.d/ and /usr/local/etc/torrc.d/">blackhole at torproject.org
+</A><BR>
+<I>Fri Sep 21 01:24:14 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001250.html>[Whonix-devel] #27794 [Core Tor/Tor]: Apparmor profile whitelist /etc/torrc.d/ and /usr/local/etc/torrc.d/
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001252.html>[Whonix-devel] #27794 [Core Tor/Tor]: Apparmor profile whitelist /etc/torrc.d/ and /usr/local/etc/torrc.d/
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1251">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1251">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1251">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1251">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>#27794: Apparmor profile whitelist /etc/torrc.d/ and /usr/local/etc/torrc.d/
+--------------------------+-------------------------
+ Reporter:  adrelanos     |          Owner:  (none)
+     Type:  defect        |         Status:  closed
+ Priority:  Medium        |      Milestone:
+Component:  Core Tor/Tor  |        Version:
+ Severity:  Normal        |     Resolution:  invalid
+ Keywords:                |  Actual Points:
+Parent ID:                |         Points:
+ Reviewer:                |        Sponsor:
+--------------------------+-------------------------
+Changes (by teor):
+
+ * status:  new =&gt; closed
+ * resolution:   =&gt; invalid
+
+
+Comment:
+
+ Hi,
+
+ Thanks for this bug report.
+
+ I don't think it is a bug in upstream Tor - I can't find an apparmor
+ profile in upstream Tor:
+ <A HREF="../../../../external.html?link=https://gitweb.torproject.org/tor.git/tree/contrib/dist">https://gitweb.torproject.org/tor.git/tree/contrib/dist</A>
+
+ It looks like a bug in the Debian package:
+ <A HREF="../../../../external.html?link=https://gitweb.torproject.org/debian/tor.git/tree/debian/tor.apparmor-">https://gitweb.torproject.org/debian/tor.git/tree/debian/tor.apparmor-</A>
+ profile.abstraction
+
+ Please log Debian package bugs on the Debian bug tracker at:
+ <A HREF="../../../../external.html?link=https://bugs.debian.org/">https://bugs.debian.org</A>
+
+--
+Ticket URL: &lt;<A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/27794#comment:1">https://trac.torproject.org/projects/tor/ticket/27794#comment:1</A>&gt;
+Tor Bug Tracker &amp; Wiki &lt;<A HREF="../../../../external.html?link=https://trac.torproject.org/">https://trac.torproject.org/</A>&gt;
+The Tor Project: anonymity online
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001250.html>[Whonix-devel] #27794 [Core Tor/Tor]: Apparmor profile whitelist /etc/torrc.d/ and /usr/local/etc/torrc.d/
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001252.html>[Whonix-devel] #27794 [Core Tor/Tor]: Apparmor profile whitelist /etc/torrc.d/ and /usr/local/etc/torrc.d/
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1251">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1251">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1251">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1251">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001251.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001251.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+</HTML>

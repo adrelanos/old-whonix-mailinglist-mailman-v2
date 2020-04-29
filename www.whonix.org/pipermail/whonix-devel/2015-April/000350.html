@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-April/000350.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] qubes-linux-template-builder Debian apt-get --force-yes --yes security issue?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20qubes-linux-template-builder%20Debian%20apt-get%0A%20--force-yes%20--yes%20security%20issue%3F&In-Reply-To=%3CCAMWEgdnLtiggWq9DH_%2B4zszzdMofw8hC-8%3DZZUPif78iKrvn2g%40mail.gmail.com%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000349.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000351.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] qubes-linux-template-builder Debian apt-get --force-yes --yes security issue?</H1>
+<B>nrgaway</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20qubes-linux-template-builder%20Debian%20apt-get%0A%20--force-yes%20--yes%20security%20issue%3F&In-Reply-To=%3CCAMWEgdnLtiggWq9DH_%2B4zszzdMofw8hC-8%3DZZUPif78iKrvn2g%40mail.gmail.com%3E" TITLE="[Whonix-devel] qubes-linux-template-builder Debian apt-get --force-yes --yes security issue?">nrgaway at gmail.com
+</A><BR>
+<I>Tue Apr 28 00:34:11 CEST 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000349.html>[Whonix-devel] qubes-linux-template-builder Debian apt-get --force-yes --yes security issue?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000351.html>[Whonix-devel] qubes-linux-template-builder Debian apt-get --force-yes --yes security issue?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/date.html#350">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/thread.html#350">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/subject.html#350">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/author.html#350">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On 27 April 2015 at 18:26, Patrick Schleizer &lt;<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">adrelanos at riseup.net</A>&gt; wrote:
+
+&gt;<i> Hi!
+</i>&gt;<i>
+</i>&gt;<i> From
+</i>&gt;<i> qubes-linux-template-builder/scripts_debian/vars.sh
+</i>&gt;<i>
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-builder-debian/blob/33109b3ed425fc5c590b5e551ed4739373076609/template_qubuntu/vars.sh#L25">https://github.com/QubesOS/qubes-builder-debian/blob/33109b3ed425fc5c590b5e551ed4739373076609/template_qubuntu/vars.sh#L25</A>
+</i>&gt;<i>
+</i>&gt;<i> APT_GET_OPTIONS=&quot;-o Dpkg::Options::=&quot;--force-confnew&quot; --force-yes --yes&quot;
+</i>&gt;<i>
+</i>&gt;<i> Could be a security issue. The combination of --force-yes and --yes is
+</i>&gt;<i> insecure. Could lead to installation of unsigned packages.
+</i>&gt;<i>
+</i>&gt;<i> Concluded that by reading the source and by remembering a bug report
+</i>&gt;<i> against a similar Debian image build script where I did some testing.
+</i>&gt;<i>
+</i>&gt;<i> - <A HREF="../../../../external.html?link=https://github.com/grml/grml-debootstrap/issues/62">https://github.com/grml/grml-debootstrap/issues/62</A>
+</i>&gt;<i> -
+</i>&gt;<i>
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Dev/apt-get#apt-get_Install_Signed_vs_Unsigned_Packages">https://www.whonix.org/wiki/Dev/apt-get#apt-get_Install_Signed_vs_Unsigned_Packages</A>
+</i>&gt;<i>
+</i>&gt;<i> I didn't actually test here but I find this quite possible. Highly
+</i>&gt;<i> recommend to drop the --force-yes.
+</i>&gt;<i>
+</i>
+Good catch.  I will investigate it further.  The purpose is the
+`--force-yes` is to all the over riding package configuration when
+initially building the template.  Will see what happens without the force
+option.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="../../../../external.html?link=http://www.whonix.org/pipermail/whonix-devel/attachments/20150427/807511c7/attachment.html">http://www.whonix.org/pipermail/whonix-devel/attachments/20150427/807511c7/attachment.html</A>&gt;
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000349.html>[Whonix-devel] qubes-linux-template-builder Debian apt-get --force-yes --yes security issue?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000351.html>[Whonix-devel] qubes-linux-template-builder Debian apt-get --force-yes --yes security issue?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/date.html#350">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/thread.html#350">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/subject.html#350">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/author.html#350">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000350.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-April/000350.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:53 GMT -->
+</HTML>

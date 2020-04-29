@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-December/000786.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Circuit isolating proxy?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Circuit%20isolating%20proxy%3F&In-Reply-To=%3Ceae6c025-a785-ee03-81fc-f59c222ccecb%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000785.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000787.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Circuit isolating proxy?</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Circuit%20isolating%20proxy%3F&In-Reply-To=%3Ceae6c025-a785-ee03-81fc-f59c222ccecb%40riseup.net%3E" TITLE="[Whonix-devel] Circuit isolating proxy?">adrelanos at riseup.net
+</A><BR>
+<I>Mon Dec 12 00:12:00 CET 2016</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000785.html>[Whonix-devel] Circuit isolating proxy?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000787.html>[Whonix-devel] Circuit isolating proxy?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/date.html#786">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/thread.html#786">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/subject.html#786">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/author.html#786">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Keeping the full quote to share it on qubes-devel.
+
+William Budington:
+&gt;<i> Hey all,
+</i>&gt;<i> 
+</i>&gt;<i> I'm using whonix from within Qubes.  I'm trying to find a way to
+</i>&gt;<i> remove the tor ports as an attack surface from the whonix-ws while
+</i>&gt;<i> still maintaining circuit isolation for applications run within
+</i>&gt;<i> workstations.  Currently, I see that the tor ports are forwarded from
+</i>&gt;<i> the whonix-gw via rinetd.
+</i>&gt;<i> 
+</i>&gt;<i> Possible solution: a piece of software intended to be used on
+</i>&gt;<i> whonix-gw which opens one network interface per circuit, and
+</i>&gt;<i> provisions an arbitrary number of VMs with circuit-isolated,
+</i>&gt;<i> transparently torified connections without exposing the tor
+</i>&gt;<i> socks/control ports to them.  That way you could run one application
+</i>&gt;<i> per VM which is on an isolated circuit, but has no access to the tor
+</i>&gt;<i> ports.  Does anything like this currently exist?
+</i>&gt;<i> 
+</i>&gt;<i> Obviously this would be a bad solution for the Tor Browser, which
+</i>&gt;<i> relies on access to the tor ports to do per-tab isolation.  But I
+</i>&gt;<i> figure it would be an okay solution for other applications that do
+</i>&gt;<i> not rely on such hands-on circuit control.
+</i>&gt;<i> 
+</i>&gt;<i> -Bill
+</i>
+Now my answers inside.
+
+William Budington:
+&gt;<i> Does anything like this currently exist?
+</i>
+tun2socks?
+
+&gt;<i> I'm using whonix from within Qubes.  I'm trying to find a way to
+</i>&gt;<i> remove the tor ports as an attack surface from the whonix-ws while
+</i>&gt;<i> still maintaining circuit isolation for applications run within
+</i>&gt;<i> workstations.
+</i>
+&gt;<i> Currently, I see that the tor ports are forwarded from
+</i>&gt;<i> the whonix-gw via rinetd.
+</i>
+re rinetd: Only those used by Tor Browser (and torchat). Other open Tor
+ports on Whonix-Gateway (such as for HexChat) are under the current
+implementation directly talked to.
+
+(Not that it matters much for the sake of this subject: When you upgrade
+Whonix-Workstation, anon-ws-disable-stacked-tor was migrated to socat.)
+
+&gt;<i> Possible solution: a piece of software intended to be used on
+</i>&gt;<i> whonix-gw which opens one network interface per circuit,
+</i>
+It's an interesting idea.
+
+So the application talks to a virtual network interface directly rather
+than directly to a Tor SocksPort?
+
+- Then this virtual network interface would eventually talk to a Tor
+SocksPort?
+- Okay, if I got that right, the application couldn't try to exploit a
+bug in Tor's socks implementation. So the tun2socks application would
+have to be more resistant against exploitation than Tor's socks code?
+
+Eventually we use something like this [1] to configure specific
+applications to specific virtual network interfaces?
+
+&gt;<i> and
+</i>&gt;<i> provisions an arbitrary number of VMs with circuit-isolated,
+</i>&gt;<i> transparently torified connections without exposing the tor
+</i>&gt;<i> socks/control ports to them.  That way you could run one application
+</i>&gt;<i> per VM which is on an isolated circuit, but has no access to the tor
+</i>&gt;<i> ports.
+</i>
+Hm. Alternatively it would be possible to configure Whonix-Gateway's
+firewall to disallow any socksified traffic.
+
+If you like to look into that:
+
+whonix-gw Tempalte: /etc/whonix_firewall.d/50_user.conf or
+sys-whonix: /rw/config/whonix_firewall.d/50_user.conf
+
+WORKSTATION_ALLOW_SOCKSIFIED=0
+
+(reload Whonix firewall 'sudo whonix_firewall' in sys-whonix or reboot)
+
+[Of course also possible to make more fine tuned changes such as
+disabling only specific SocksPorts...]
+
+Disable stream isolation per application or globally, see [2]. I.e.
+configure the application you want to use to use transparent
+torification. [Which is the default, unless the application is
+configured by Whonix default to use a Tor SocksPort. See list. [3].]
+
+Multiple Whonix-Workstations using transparent proxying Qubes-Whonix are
+already easily automatically stream isolated from each other because
+they have a different client IP addresses and Tor default uses
+IsolateClientAddr.
+
+You'd end up with your application-A in a anon-whonix-one, that is using
+transparent proxying and your application-B in anon-whonix-two.
+anon-whonix-one and anon-whonix-two would be stream isolated
+(IsolateClientAddr). Both stream isolated from each other. No Tor
+SocksPort usage involved.
+
+[Some thing would have to be sorted out such as sdwdate time
+synchronization but I also have an idea here that I can specify if this
+is of interest.]
+
+It isn't the default implementation because in Qubes we are not so much
+considering to run one VM per application, but one VM per security
+domain (e.g., “work,” “personal,” “banking,” etc.) (multiple
+applications per VM). And we wouldn't want to funnel all traffic from a
+whole domain into the same Tor circuit.
+
+&gt;<i> Obviously this would be a bad solution for the Tor Browser, which
+</i>&gt;<i> relies on access to the tor ports to do per-tab isolation.
+</i>
+(Tor Browser just talks to only a single Tor SocksPort. [And in the next
+major version 6.5 it talks to a single unix domain socket.]) [Tor
+Browser by tab isolates by (ab)using socks user auth.]
+
+&gt;<i> But I
+</i>&gt;<i> figure it would be an okay solution for other applications that do
+</i>&gt;<i> not rely on such hands-on circuit control.
+</i>
+Certainly interesting to discover.
+
+Best regards,
+Patrick
+
+[1]
+<A HREF="../../../../external.html?link=http://superuser.com/questions/241178/how-to-use-different-network-interfaces-for-different-processes">http://superuser.com/questions/241178/how-to-use-different-network-interfaces-for-different-processes</A>
+[2] <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Stream_Isolation/Disable_Easy">https://www.whonix.org/wiki/Stream_Isolation/Disable_Easy</A>
+[3] <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Stream_Isolation#List">https://www.whonix.org/wiki/Stream_Isolation#List</A>
+[4] <A HREF="../../../../external.html?link=https://www.qubes-os.org/getting-started/">https://www.qubes-os.org/getting-started/</A>
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000785.html>[Whonix-devel] Circuit isolating proxy?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000787.html>[Whonix-devel] Circuit isolating proxy?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/date.html#786">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/thread.html#786">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/subject.html#786">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/author.html#786">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000786.html','y7aelHq7wr','CBT-DVDREx8',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000786.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-December/000786.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:33 GMT -->
+</HTML>

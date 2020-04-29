@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-December/000266.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20git%20log%20--pretty%3D%22format%3A%25H%24t%25aN%24t%25s%24t%25G%3F%22%0A%09--show-signature&In-Reply-To=%3Cxmqqk327ruh8.fsf%40gitster.dls.corp.google.com%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000264.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000267.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature</H1>
+<B>Junio C Hamano</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20git%20log%20--pretty%3D%22format%3A%25H%24t%25aN%24t%25s%24t%25G%3F%22%0A%09--show-signature&In-Reply-To=%3Cxmqqk327ruh8.fsf%40gitster.dls.corp.google.com%3E" TITLE="[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature">gitster at pobox.com
+</A><BR>
+<I>Thu Dec 4 22:11:15 CET 2014</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000264.html>[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000267.html>[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/date.html#266">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/thread.html#266">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/subject.html#266">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/author.html#266">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Mike Gerwitz &lt;<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">mikegerwitz at gnu.org</A>&gt; writes:
+
+&gt;<i> It has since improved; I'm looking for the time to update the article,
+</i>&gt;<i> or write a follow-up.
+</i>
+Thanks for an amusing read.  We also let you merge a signed tag
+these days, so that in a variant of your merge scenario #2, your
+merge commit can carry your GPG signature, made when you do the &quot;git
+merge -S $other_history&quot; to merge $other_history you obtained from
+your trusted colleague, as well as the signed tag your trusted
+colleague made with her GPG signature.  That way, upon seeing that
+merge, a third-party can verify that the merge was made by you, and
+also the history of the side branch integrated to your history with
+that merge is vouched by your trustred colleague.
+
+I am however not quite sure what conclusion you are trying to drive
+at by contrasting approaches #2 and #3.  The perceived problem of
+approach #2, if I am reading you correctly, is that the merge is
+what you vouch for but the commits on the side branch are not signed
+so there is no way for you (as the merge creator) to point fingers
+to when the result of the merge turns out to be problematic.  The
+argument for approach #3 would be that it would give you (as the
+merge creator) somebody to point fingers to if you forced others who
+ask you to pull from them to sign their commits.
+
+But I am not sure if that is the right way to look at the bigger
+picture.
+
+Imagine you are working on a project with two branches, maint and
+master.  The policy adopted by the project is to use the maint
+branch to prepare for the next maintenance release, which should
+never add new features.  New features are to be merged to master
+for the next feature release.
+
+And imagine that you made a mistake of merging somebody else's
+branch that adds a new feature, which happens to be perfectly done
+and introduces no bug, to the maint branch.  Your merge is signed by
+your GPG key.
+
+Does it absolve you from blame if you can say with certainty (thanks
+to GPG keys on them) that those commits on the side branch that adds
+unwanted (from 'maint' policy's point of view) new feature were made
+by somebody else, because the project used the approach #3?
+
+Not really.
+
+How would that case be any different from the case where the side
+branch you merged were buggy or even malicious?  After all, your GPG
+signature carries more weight than &quot;Yes, I did this random merge but
+I did so without thinking about what damage it causes to the history
+by pulling in other peoples' changes&quot;.  Or at least it should carry
+more weight to your users who trust a history having your GPG
+signature.  &quot;This history is coming from Mike whom we trust&quot; is what
+your users expect, no?  When you sign your merge with &quot;merge -S&quot;,
+you are vouching for the contents of the whole tree, not just &quot;I
+made this merge, but I don't have anything to do with what it pulled
+in.&quot;  It does not really matter to the end users where the changes
+came from.  You are certifying that &quot;git diff HEAD^ HEAD&quot; after
+making the merge is what you are pleased with by signing the merge.
+
+Having said that, what approach #3 (or merging a signed tag) does
+give you as the merge creator is a distrubution of trust.  You may
+not have to be _so_ careful verifying &quot;git diff HEAD^ HEAD&quot; of the
+merge when you know you can trust the side branch you are merging
+into your history was done by somebody you trust.
+
+But ultimately, the responsibility lies on the person who creates
+the topmost merge and advances the tip of the history the users of
+the end product of the project considers the authoritative one.
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000264.html>[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000267.html>[Whonix-devel] git log --pretty=&quot;format:%H$t%aN$t%s$t%G?&quot;	--show-signature
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/date.html#266">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/thread.html#266">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/subject.html#266">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/author.html#266">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000266.html','y7aelHq7wr','9MTfrhSgskM',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-December/000266.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-December/000266.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:57 GMT -->
+</HTML>

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-February/000133.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Future Goals for Whonix&#8217;s Website
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%3D%3Fwindows-1252%3Fq%3FFuture_Goals_for_Whonix%3D92s_Websi%3F%3D%0A%09%3D%3Fwindows-1252%3Fq%3Fte%3F%3D&In-Reply-To=%3C52F97F48.4000802%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000132.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000134.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Future Goals for Whonix&#8217;s Website</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%3D%3Fwindows-1252%3Fq%3FFuture_Goals_for_Whonix%3D92s_Websi%3F%3D%0A%09%3D%3Fwindows-1252%3Fq%3Fte%3F%3D&In-Reply-To=%3C52F97F48.4000802%40riseup.net%3E" TITLE="[Whonix-devel] Future Goals for Whonix&#8217;s Website">adrelanos at riseup.net
+</A><BR>
+<I>Tue Feb 11 02:39:20 CET 2014</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000132.html>[Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian stable!
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000134.html>[Whonix-devel] Backup Whonix VMs &#8211; new wiki page
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/date.html#133">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/thread.html#133">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/subject.html#133">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/author.html#133">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+In an ideal world, everything would be connected. Same login would
+work on the whole website, wiki, forum and blog. Blog posts would also
+be forum posts. Comments posted in the blog result in comments in the
+forum and vice versa. Wiki pages have a comment section, that is also
+redirected to the forum. Rather, [github
+issues](<A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues">https://github.com/Whonix/Whonix/issues</A>) become mailing list
+posts and forum posts. [Mailing
+lists](<A HREF="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/">https://www.whonix.org/pipermail/whonix-devel/</A>) would just be
+an alternative interface for forum and blog comments. You name it.
+
+That is too high a goal. Not possible yet without being a web
+development project.
+
+To get at least a bit closer to that goal, I've added a new sidebar
+widget to the blog: &quot;RSS Latest Whonix Forum Topics&quot;. I hope this will
+boost forum posts, but if you think it does more harm than gain, we
+can remove it.
+
+We are supporting OpenID login on Whonix's wiki, forum and blog for a
+while now already, so you can use the same account for all parts of
+whonix.org. Unfortunately, this requires a third party, the OpenID
+provider. As alternative it's also possible to register native
+wiki/forum/blog accounts, but then you need three logins instead of one.
+
+I've also found a new WPSMF - WordPress to SMF plugin. New blog posts
+will be mirrored to whonix.org/forum General Discussions. Forum
+replies probably won't become blog comments. One way only. Nevermind.
+Let's see how it works. If it works, it would be better anyway. I can
+imagine that many people active in forums don't check the blog at all
+or as often as the forum. Reduces need to tell the same story in the
+blog and in the forum.
+
+My plan is to add a &quot;latest blog posts&quot; and &quot;latest forum posts&quot; to
+whonix.org's (wiki) home/main page. To make it look more up to date,
+dynamic, more useful. To archive that, an rss reader has been
+installed in the wiki by me. Test page:
+[<A HREF="../../../../external.html?link=https://www.whonix.org/wiki/T">https://www.whonix.org/wiki/T</A>](<A HREF="../../../../external.html?link=https://www.whonix.org/wiki/T">https://www.whonix.org/wiki/T</A>)
+
+Displaying latest blog posts seems to work fine. Displaying latest
+forum topics not, only latest forum posts. The &quot;CDATA&quot; seems like a
+bug, no idea about that. Very strange.
+
+I would like to organize whonix.org's (wiki) home/main page in
+multiple rows, two or three or so. Have the content and blog/forum
+rss. Before that can happen, a replacement for the default wiki design
+with left sidebar has to be found because that wastes space.
+
+The mediawiki skin
+[strapping](<A HREF="../../../../external.html?link=https://github.com/OSAS/strapping-mediawiki">https://github.com/OSAS/strapping-mediawiki</A>) looks nice.
+Example page: [<A HREF="../../../../external.html?link=http://www.ovirt.org/">http://www.ovirt.org/</A>](<A HREF="../../../../external.html?link=http://www.ovirt.org/">http://www.ovirt.org/</A>)
+
+Good candidate to replace our current wiki skin. Unfortunately, there
+is an [issue](<A HREF="../../../../external.html?link=https://github.com/OSAS/strapping-mediawiki/issues/53">https://github.com/OSAS/strapping-mediawiki/issues/53</A>)
+preventing us from using it.
+
+____
+
+The post [Future Goals for Whonix's
+Website](<A HREF="../../../../external.html?link=https://www.whonix.org/blog/goals-whonix-website/">https://www.whonix.org/blog/goals-whonix-website/</A>) appeared
+first on [Whonix | Privacy and Anonymity OS](<A HREF="../../../../external.html?link=https://www.whonix.org/blog">https://www.whonix.org/blog</A>).
+
+URL: <A HREF="../../../../external.html?link=https://www.whonix.org/blog/goals-whonix-website/">https://www.whonix.org/blog/goals-whonix-website/</A>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJ8BAEBCgBmBQJS+X9GXxSAAAAAAC4AKGlzc3Vlci1mcHJAbm90YXRpb25zLm9w
+ZW5wZ3AuZmlmdGhob3JzZW1hbi5uZXQ2RTk3OUIyOEE2RjM3QzQzQkUzMEFGQTFD
+QjhENTBCQjc3QkIzQzQ4AAoJEMuNULt3uzxIH8oP/1fHUUsP2cg8tz3IgffAyKr/
+4TdQP+7PDH1RaiwLlhyvmUjTG4BTLfQZHqYzDOlEGQVaRlLRhZ0dzHeMxNrXdm+j
+A9WHwiX3hmkgZiTI2qQP+oZE5webEme1/sXo4nfPM274tJUFtXnctstC5Ws3ReWp
+LneAZkK1E70TBcTbyj7MoQVVIVsuGNu7UNMQuJ/oNTOHcJyCW47VzVVXTYCktaD0
+18slMSpci7CLXmS2DNExW7WzXH6EKYgRDZ1/Omo5pzkAlq9fFFyNHjNYbBX2pf9l
+G/U48YQM5XnS9hB65OUm2jtWY84RIX5Htfrx/hacaNzumq3lFE1V1LyXaocp90E/
+wFRc7jXZAVJPSTs/4j+aaENQRje1NUSAvD9dopwnn02MmBThGA16DNUUwqAGNxf4
+4XRr7oE5G/OBTR55r7MHr7mbu8wLNClbCOiUiuITM1oT4EbGbrOAaYi84PA27lW9
+6gq1Ynadi16kscesgS7erjXU+AxG5YkmCro3SGho8PduyqhstuPiyY5MD1FZUnBb
+PGTp0P6mffqDOXCwuTj8NG7OJJWA1CoG0FetxKM/lKEOqLv7LCiF2f8HlKoQAHot
+Bmx4tmNxdhaCmUIfiDiK+g39dwMW5zC4zY7StXR+Ki0FHOYaP4Wdy4Gj7eAw8lCS
+B0xXVdlWB68CW/sCgPPE
+=u6RZ
+-----END PGP SIGNATURE-----
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000132.html>[Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian stable!
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000134.html>[Whonix-devel] Backup Whonix VMs &#8211; new wiki page
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/date.html#133">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/thread.html#133">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/subject.html#133">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/author.html#133">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000133.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-February/000133.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:07 GMT -->
+</HTML>

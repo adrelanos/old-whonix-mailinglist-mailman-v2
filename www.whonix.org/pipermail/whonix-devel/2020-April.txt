@@ -1,0 +1,45 @@
+From adrelanos at riseup.net  Mon Apr 13 20:39:25 2020
+From: adrelanos at riseup.net (Patrick Schleizer)
+Date: Mon, 13 Apr 2020 18:39:25 +0000
+Subject: [Whonix-devel] Bug#956626: dhcpcanon systemd unit fails at boot due
+ to missing debhelper apparmor integration
+Message-ID: <ef6daf30-86b3-07b2-1753-507e86b504d2@riseup.net>
+
+Package: dhcpcanon
+Severity: normal
+X-Debbugs-CC: whonix-devel at whonix.org
+
+Debian buster dhcpcanon_0.8.5-2_all.deb debian/postinst lacks apparmor
+integration which should be auto added by debhelper.
+
+sudo aa-enforce /etc/apparmor.d/sbin.dhcpcanon
+
+ERROR: Include file /etc/apparmor.d/local/sbin.dhcpcanon not found
+
+Workaround:
+sudo touch /etc/apparmor.d/local/sbin.dhcpcanon
+
+For example /var/lib/dpkg/info/man-db.postinst has:
+
+```
+# Automatically added by dh_apparmor/2.13.2-7
+if [ "$1" = "configure" ]; then
+    APP_PROFILE="/etc/apparmor.d/usr.bin.man"
+    if [ -f "$APP_PROFILE" ]; then
+        # Add the local/ include
+        LOCAL_APP_PROFILE="/etc/apparmor.d/local/usr.bin.man"
+
+        test -e "$LOCAL_APP_PROFILE" || {
+            mkdir -p `dirname "$LOCAL_APP_PROFILE"`
+            install --mode 644 /dev/null "$LOCAL_APP_PROFILE"
+        }
+
+        # Reload the profile, including any abstraction updates
+        if aa-enabled --quiet 2>/dev/null; then
+            apparmor_parser -r -T -W "$APP_PROFILE" || true
+        fi
+    fi
+fi
+# End automatically added section
+```
+

@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-February/000915.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] convention on listen port local or all network	interfaces etc.
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20convention%20on%20listen%20port%20local%20or%20all%20network%0A%09interfaces%20etc.&In-Reply-To=%3C8eebdb53-faeb-6c79-8092-1709312523c5%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000914.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000916.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] convention on listen port local or all network	interfaces etc.</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20convention%20on%20listen%20port%20local%20or%20all%20network%0A%09interfaces%20etc.&In-Reply-To=%3C8eebdb53-faeb-6c79-8092-1709312523c5%40riseup.net%3E" TITLE="[Whonix-devel] convention on listen port local or all network	interfaces etc.">patrick-mailinglists at whonix.org
+</A><BR>
+<I>Tue Feb 21 01:49:00 CET 2017</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000914.html>[Whonix-devel] [tbb-dev] Tor Browser and Mozilla addon	verification
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000916.html>[Whonix-devel] convention on listen port local or all network	interfaces etc.
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/date.html#915">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/thread.html#915">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/subject.html#915">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/author.html#915">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>A convention on listen port local or all network interfaces etc. would
+be desirable.
+
+At the moment it looks like there is no convention for where server
+applications are configured to listen by default, on localhost vs. all
+interfaces. Looks like deciding that is up to the upstream author of the
+software as well as the packager. Then it's up to the system
+administrator to decide on where the server application should listen.
+There is no great place for derivatives to globally modify this setting.
+
+Usually applications using Tor ephemeral hidden services such as
+ricochet-im, onionshare, ZeroNet, unMessage listen on localhost only.
+
+Whonix is a Debian derivative with focus on anonymity, privacy and
+security. To oversimplify it, we preconfigure Debian with these goals in
+mind.
+
+Due to Whonix's workstation, gateway split design, applications using
+Tor ephemeral hidden services need to listen on the workstation's
+external interface rather than on the workstation's localhost.
+
+A global configuration file such as `/etc/ricochet-im.conf` works for
+system administrators, but not for derivatives.
+
+Why is a config folder `/etc/ricochet-im.d` strongly preferred over a
+config file `/etc/ricochet-im.conf`? When a config file such as
+`/etc/ricochet-im.conf` is owned by one package `ricochet-im`, it cannot
+be owned by another package. If another package was to modify it using
+`sed` or so, then dpkg would regard that file as user modified. The
+problem is, next time that config file is changed by upstream, this
+throws an interactive dpkg conflict resolution dialog at the user, which
+is a usability bug. (example [x]) `sed` style config modifications are a
+Debian policy violation as well.
+
+So far we at Whonix had discussions with ricochet-im, onionshare,
+ZeroNet and unMessage. They are all interested to make their
+applications compatible with Whonix. However, asking each individual
+project to `/etc/application-specific.d` folder where Whonix then could
+drop a `/etc/application-specific.d/30_whonix.conf` that says
+`listen=10.152.152.10` is a lot duplicate effort and not that desirable
+for these applications because they have not yet any need for
+`/etc/application-specific.d/`.
+
+Having these applications auto detect Whonix also does not seem like
+great solution. Seems unsafe. If the auto detection code kicks in as a
+false positive, users would be at risk. Since it's Whonix specific and
+general solutions reusable by anyone are to be preferred. At least that
+is my interpretation of *nix philosophy.
+
+May the following convention be suggested.
+
+* Parse in lexical order.
+** `/usr/lib/server-config.d`
+** `/etc/server-config.d`
+** `~/.config/server-config.d`
+** Similar to how systemd would parse these folders. I.e. for example
+start with parsing  `/usr/lib/server-config.d/30_default.conf`, followed
+by `/usr/lib/server-config.d/31_other.conf`, followed by
+`/etc/server-config.d/30_user.conf`, followed by
+`/etc/server-config.d/40_user.conf` and so forth.
+* The pseudo code in shell / bash:
+
+```
+for file_name in /usr/lib/server-config.d/*.conf ; do
+   file_list=&quot;$file_list $file_name&quot;
+done
+
+for file_name in /etc/server-config.d/*.conf ; do
+   file_list=&quot;$file_list $file_name&quot;
+done
+
+for file_name in /home/.config/server-config.d/*.conf ; do
+   file_list=&quot;$file_list $file_name&quot;
+done
+
+for item in $file_list ; do
+   source &quot;$item&quot;
+done
+```
+
+* config options:
+
+```
+# lines starting with # are ignored
+
+# global fallback setting for all listeners
+listen_ip=127.0.0.1
+listen_ip=10.152.152.10
+listen_ip=0.0.0.0
+listen_ip=UNIX-LISTEN:/path/to/&lt;application-name&gt;.sock
+listen_ip=eth0
+
+# web interfaces
+listen_ip_web=127.0.0.1
+listen_ip_web=10.152.152.10
+listen_ip_web=0.0.0.0
+listen_ip_web=UNIX-LISTEN:/path/to/&lt;application-name&gt;_web.sock
+listen_ip_web=eth0
+
+# listen incoming IP
+listen_ip_incoming=127.0.0.1
+listen_ip_incoming=10.152.152.10
+listen_ip_incoming=0.0.0.0
+listen_ip_incoming=UNIX-LISTEN:/path/to/&lt;application-name&gt;_incoming.sock
+listen_ip_incoming=eth0
+
+# optional application specific listen port
+listen_port_&lt;application-name&gt;=15000
+
+listen_range_&lt;application-name&gt;=16000-17000
+```
+
+For example...
+
+```
+# /etc/server-config.d/30_default.conf
+listen_ip=0.0.0.0
+
+# /etc/server-config.d/50_user.conf
+listen_ip=127.0.0.1
+```
+
+Would mean listen on `0.0.0.0` as well as on `127.0.0.1`.
+
+This disable listeners by previous lower priority configuration files,
+one could use `listen_ip=`. For example:
+
+```
+# /etc/server-config.d/30_default.conf
+listen_ip=0.0.0.0
+
+# /etc/server-config.d/50_user.conf
+listen_ip=
+listen_ip=127.0.0.1
+```
+
+Would result in listening on `127.0.0.1` only. This is similar to how
+systemd parses systemd unit files.
+
+To prevent different applications to parse the configuration
+differently, to avoid unexpected results, it would be useful to have a
+python library and command line tool to query it.
+
+Any questions? Any suggestions? What do you think?
+
+[x]:
+<A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Whonix_Configuration_Files#dpkg_interactive_conflict_resolution_dialog">https://www.whonix.org/wiki/Whonix_Configuration_Files#dpkg_interactive_conflict_resolution_dialog</A>
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000914.html>[Whonix-devel] [tbb-dev] Tor Browser and Mozilla addon	verification
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000916.html>[Whonix-devel] convention on listen port local or all network	interfaces etc.
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/date.html#915">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/thread.html#915">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/subject.html#915">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/author.html#915">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000915.html','y7aelHq7wr','z5EGGHPilqs',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000915.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-February/000915.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:31 GMT -->
+</HTML>

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-August/001184.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Password length and Quantum Computing Implications
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Password%20length%20and%20Quantum%20Computing%0A%20Implications&In-Reply-To=%3CCAGiyFde043c4a0dFFmo35R_jJ9KWzFZ8e0mAKxYifkPvFCbwfw%40mail.gmail.com%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001182.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001185.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Password length and Quantum Computing Implications</H1>
+<B>Jean-Philippe Aumasson</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Password%20length%20and%20Quantum%20Computing%0A%20Implications&In-Reply-To=%3CCAGiyFde043c4a0dFFmo35R_jJ9KWzFZ8e0mAKxYifkPvFCbwfw%40mail.gmail.com%3E" TITLE="[Whonix-devel] Password length and Quantum Computing Implications">jeanphilippe.aumasson at gmail.com
+</A><BR>
+<I>Sat Aug 11 14:04:58 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001182.html>[Whonix-devel] Password length and Quantum Computing Implications
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001185.html>[Whonix-devel] Fwd: Re: Password length and Quantum Computing Implications
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/date.html#1184">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/thread.html#1184">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/subject.html#1184">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/author.html#1184">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Hi!
+
+You want the passphrase to have at least as much entropy as the bit length
+of the symmetric key that is derived from it.
+
+In theory, Grover’s quantum search algorithm could lower down the cost of
+searching the right passphrase from ~2^128 to (very) roughly ~2^64.
+
+How to get higher entropy passphrase? You can have a longer passphrase, a
+longer dictionary (that is, more entropy per word), or both.
+
+BIP 39 for example supports 128 to 256 bits of entropy per passphrase, iirc
+with 2048-word lists, thus longer passphrase for higher entropy, see
+<A HREF="../../../../external.html?link=https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki">https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki</A>
+
+Hope this clarifies!
+
+Best,
+
+JP
+On Fri, 10 Aug 2018 at 22:26, procmem &lt;<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">procmem at riseup.net</A>&gt; wrote:
+
+&gt;<i> Hi JP. Whonix dev here. We are currently discussing the best advice for
+</i>&gt;<i> generating strong passphrases for our users and so I wanted your advice
+</i>&gt;<i> on a few questions.
+</i>&gt;<i>
+</i>&gt;<i> According to The Intercept [0] using something like diceware is
+</i>&gt;<i> recommended and a 10 word passphrase has 128 bits of more than enough to
+</i>&gt;<i> stop the strongest adversaires for the forseeable future.
+</i>&gt;<i>
+</i>&gt;<i> The IAD/NIST [1] recommends using 256 bit encryption for AES. Does this
+</i>&gt;<i> translate into a need for 256 bit passphrases?
+</i>&gt;<i>
+</i>&gt;<i> I may be misunderstanding but cipher keylength =/= password entropy?
+</i>&gt;<i>
+</i>&gt;<i> Do quantum computers have implications for passphrase (not master key)
+</i>&gt;<i> bruteforcing?
+</i>&gt;<i>
+</i>&gt;<i> Now if it turns out I’m wrong the question becomes: how can a 10 word
+</i>&gt;<i> passphrase be easily enhanced to get as high entropy as possible without
+</i>&gt;<i> having to double its size?
+</i>&gt;<i>
+</i>&gt;<i> There is an option for diceware to sprinkle random characters in its
+</i>&gt;<i> output but I don’t know how much entropy bits it adds. Do you know?
+</i>&gt;<i>
+</i>&gt;<i> I CC'd our mailing list so ou reply can benefit our users. Thanks in
+</i>&gt;<i> advance.
+</i>&gt;<i>
+</i>&gt;<i> ***
+</i>&gt;<i>
+</i>&gt;<i> [0]
+</i>&gt;<i>
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://theintercept.com/2015/03/26/passphrases-can-memorize-attackers-cant-guess/">https://theintercept.com/2015/03/26/passphrases-can-memorize-attackers-cant-guess/</A>
+</i>&gt;<i> [1] <A HREF="../../../../external.html?link=https://www.keylength.com/en/compare/">https://www.keylength.com/en/compare/</A>
+</i>&gt;<i>
+</i>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="../../../../external.html?link=http://www.whonix.org/pipermail/whonix-devel/attachments/20180811/d2216475/attachment.html">http://www.whonix.org/pipermail/whonix-devel/attachments/20180811/d2216475/attachment.html</A>&gt;
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001182.html>[Whonix-devel] Password length and Quantum Computing Implications
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001185.html>[Whonix-devel] Fwd: Re: Password length and Quantum Computing Implications
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/date.html#1184">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/thread.html#1184">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/subject.html#1184">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/author.html#1184">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001184.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-August/001184.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:13 GMT -->
+</HTML>

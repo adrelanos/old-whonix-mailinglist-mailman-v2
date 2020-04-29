@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-June/000363.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] misc qubes-whonix 11 code review
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20misc%20qubes-whonix%2011%20code%20review&In-Reply-To=%3C5570491A.7000307%40gmail.com%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000361.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000364.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] misc qubes-whonix 11 code review</H1>
+<B>Jason Mehring</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20misc%20qubes-whonix%2011%20code%20review&In-Reply-To=%3C5570491A.7000307%40gmail.com%3E" TITLE="[Whonix-devel] misc qubes-whonix 11 code review">nrgaway at gmail.com
+</A><BR>
+<I>Thu Jun 4 14:48:26 CEST 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000361.html>[Whonix-devel] misc qubes-whonix 11 code review
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000364.html>[Whonix-devel] whonix-setup-wizard interface - status, done, skip files - was: misc qubes-whonix 11 code review
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/date.html#363">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/thread.html#363">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/subject.html#363">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/author.html#363">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On 06/04/2015 07:41 AM, Patrick Schleizer wrote:
+&gt;<i> Hi Jason!
+</i>&gt;<i>
+</i>&gt;<i> Was looking at your progress:
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://github.com/nrgaway/qubes-whonix/tree/Whonix11">https://github.com/nrgaway/qubes-whonix/tree/Whonix11</A>
+</i>
+Thanks, I haven't even have time to review the code yet :)  It still
+needs some modifications for the whonix--tor-enable{disable} and I might
+be able to eliminate the qubes-whonixsetup script completely; just takes
+time to test.  Today, I will be creating a pre-configuration manager
+states (profile configurations) to allow Whonix to be installed with Tor
+disabled and possibly create a new package for salt version 2015.5
+(current is 2014.7)
+
+In future, I do find it useful, and maybe less confusing to provide
+comments on github.  You are able to comment at each line of code.  Not
+sure if you are interested in doing this?
+
+Also, I will include Joanna on this reply, but not future ones.  I have
+been taught not to include her in developer speak types of conversations
+since she already receives way too much email.
+
+Even Marek would not need to be included until its ready for merge or we
+have some question that needs his input.
+
+&gt;<i>
+</i>&gt;&gt;<i>     # Make sure we remove whonixsetup.done if Tor is not enabled
+</i>&gt;&gt;<i>     # to allow choice of repo and prevent whonixcheck errors
+</i>&gt;&gt;<i>     grep &quot;^DisableNetwork 0$&quot; /etc/tor/torrc || {
+</i>&gt;&gt;<i>         sudo rm -f var/cache/whonix-setup-wizard/status-files/whonixsetup.done
+</i>&gt;&gt;<i>     }
+</i>&gt;<i> Unless I am missing something, this won't work. There is a bug. 'var' -&gt;
+</i>&gt;<i> '/var'
+</i>
+Yes, it appears it would not work.  I need to re-add code to
+qubes-whonixsetup as well to display whonix-setup-manager too.  It'd in
+the NOTES (TODO) in root directory.
+
+&gt;<i> Drop sudo? Runs as root anyhow?
+</i>
+Yes
+
+&gt;<i> Also not sure it's needed at all, because if
+</i>&gt;<i> - /var/cache/whonix-setup-wizard/status-files/whonixsetup.done exists +
+</i>&gt;<i> - /etc/tor/torrc contains 'DisableNetwork 0',
+</i>&gt;<i> then on Whonix-Gateway by Whonix / whonix-setup-wizard default, the
+</i>&gt;<i> following is started anyhow:
+</i>&gt;<i> 'whonix-setup-wizard setup'
+</i>
+I don't understand this point.  The current whonix-setup-wizard is
+over-ridden and runs manually in qubes-whonixsetup when needed.  This is
+something that may be able to be re-enabled due to recent improvements
+of whonix-setup-wizard.  As you can already see I have managed to remove
+most manual depends within that file.
+
+&gt;&gt;<i>     # Repository setup should only be run in template
+</i>&gt;&gt;<i>     if [ ! -e /var/cache/whonix-setup-wizard/status-files/whonix_repository.done ]; then
+</i>&gt;&gt;<i>         sudo touch /var/cache/whonix-setup-wizard/status-files/whonix_repository.done
+</i>&gt;&gt;<i>     fi
+</i>&gt;<i> Drop sudo? Runs as root anyhow?
+</i>&gt;<i>
+</i>&gt;<i> Any reason for not
+</i>&gt;<i> '/var/cache/whonix-setup-wizard/status-files/whonix_repository.done' -&gt;
+</i>&gt;<i> '/var/cache/whonix-setup-wizard/status-files/whonix_repository.skip'?
+</i>
+I can't remember off hand.  At some point I had issues with whonixsetup
+not running unless certain status-files existed.
+
+&gt;<i> Also rather than 'touch
+</i>&gt;<i> /var/cache/whonix-setup-wizard/status-files/whonix_repository.skip' I
+</i>&gt;<i> think it would be best just ship the file
+</i>&gt;<i> var/cache/whonix-setup-wizard/status-files/whonix_repository.skip in the
+</i>&gt;<i> package.
+</i>&gt;<i>
+</i>&gt;<i> From usr/lib/qubes-whonix/qubes-whonixsetup you would still be able to
+</i>&gt;<i> run /usr/bin/whonix-setup-wizard repository as you're doing now. [No
+</i>&gt;<i> modification of usr/lib/qubes-whonix/qubes-whonixsetup required for this.]
+</i>
+There is a good reason for using 'touch' :)  If I provide that in the
+package, the setting gets written to the TemplateVM and then the
+TemplateVM will have the setting which means a user would not be
+prompted to enable repo ever.  This setting is only set in the AppVM and
+when set only persists in the AppVM and therefore can not be set in the
+package.
+
+&gt;&gt;<i> usr/lib/qubes-whonix/init/qubes-whonix-sysinit
+</i>&gt;<i> Drop sudo? Runs as root anyhow?
+</i>&gt;<i>
+</i>&gt;&gt;<i> subprocess.call(['systemctl', 'reload', 'tor'])
+</i>&gt;<i> 'reload' -&gt; 'restart'? I guess that would be better due to this
+</i>&gt;<i> non-systemd-related(!) issue with 'reload' in upstream Tor:
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/16161">https://trac.torproject.org/projects/tor/ticket/16161</A>
+</i>
+I was also thinking about this.  This function will never be called
+unless the script is run manually since it gets called before the
+multiuser target now.
+
+&gt;&gt;<i> /usr/lib/qubes-whonix/init/qubes-whonix-sysinit
+</i>&gt;<i> Contains two times sudo. Drop sudo? Runs as root anyhow?
+</i>&gt;<i>
+</i>&gt;&gt;<i> license headers
+</i>&gt;<i> Not all scripts contain license headers.
+</i>
+I will clean that up when ready to merge into master.
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0x77DC3687.asc
+Type: application/pgp-keys
+Size: 6049 bytes
+Desc: not available
+URL: &lt;<A HREF="../../../../external.html?link=http://www.whonix.org/pipermail/whonix-devel/attachments/20150604/01467e0f/attachment.key">http://www.whonix.org/pipermail/whonix-devel/attachments/20150604/01467e0f/attachment.key</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 819 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="../../../../external.html?link=http://www.whonix.org/pipermail/whonix-devel/attachments/20150604/01467e0f/attachment.sig">http://www.whonix.org/pipermail/whonix-devel/attachments/20150604/01467e0f/attachment.sig</A>&gt;
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000361.html>[Whonix-devel] misc qubes-whonix 11 code review
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000364.html>[Whonix-devel] whonix-setup-wizard interface - status, done, skip files - was: misc qubes-whonix 11 code review
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/date.html#363">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/thread.html#363">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/subject.html#363">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/author.html#363">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000363.html','y7aelHq7wr','tIwXJDMh4-E',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000363.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-June/000363.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:51 GMT -->
+</HTML>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-April/000328.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] gpg-bash-lib - gpg file verification bash library -	first public release announcement - 0.5-1
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20gpg-bash-lib%20-%20gpg%20file%20verification%20bash%20library%20-%0A%09first%20public%20release%20announcement%20-%200.5-1&In-Reply-To=%3C2f331a92f6865ad1ba9cd414e67eb789%40www.whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000327.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000331.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] gpg-bash-lib - gpg file verification bash library -	first public release announcement - 0.5-1</H1>
+<B>Whonix | Privacy and Anonymity OS</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20gpg-bash-lib%20-%20gpg%20file%20verification%20bash%20library%20-%0A%09first%20public%20release%20announcement%20-%200.5-1&In-Reply-To=%3C2f331a92f6865ad1ba9cd414e67eb789%40www.whonix.org%3E" TITLE="[Whonix-devel] gpg-bash-lib - gpg file verification bash library -	first public release announcement - 0.5-1">newblogpost at whonix.org
+</A><BR>
+<I>Thu Apr 2 15:30:44 CEST 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000327.html>[Whonix-devel] genmkfile; packaging bashplus, git-subrepo; porting gpg-bash-lib to bashplus
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000331.html>[Whonix-devel] Can't start Tor Browser in Whonix?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/date.html#328">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/thread.html#328">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/subject.html#328">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/author.html#328">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>gpg-bash-lib is a gpg file verification bash library, addresses comprehensive threat model, that covers file name tampering, indefinite freeze, rollback, endless data attacks, etc.
+
+<A HREF="../../../../external.html?link=https://github.com/Whonix/gpg-bash-lib">https://github.com/Whonix/gpg-bash-lib</A>
+
+Why?
+
+Writing bash scripts that do file verification using gpg that really is secure and passes a comprehensive threat model, that covers indefinite freeze, rollback, endless data attacks, etc. is hard.
+
+gpg-bash-lib's goal is to provide a bash library that we can collaboratively develop, audit and abstract the hard work into reuseable functions.
+
+Checking gpg exit codes only is insufficient. Quote Werner Koch [1] (gnupg lead developer):
+
+&quot;there is no clear distinction between the codes and for proper error reporting you are advised to use the --status-fd messages.&quot;
+
+(For a definition of these attacks, see TUF [2] (The Update Framework)'s [3] threat model [4] [5].)
+
+Mini Demo:
+After installation, if you would run the following command.
+
+/usr/share/gpg-bash-lib/examples/one
+
+You would see the following output.
+
+your_script_begin: ...
+verification: BEGIN
+verification: END
+your_script_output: BEGIN
+gpg_bash_lib_output_failure_status: false
+gpg_bash_lib_output_gpg_verify_exit_code: 0
+gpg_bash_lib_output_goodsig_status: true
+gpg_bash_lib_output_validsig_status: true
+gpg_bash_lib_output_fingerprint_in_hex: 5E08605EBEA0FE88695DCB88FD0A8B4171DFE4E4
+gpg_bash_lib_output_signed_on_unixtime: 1422049448
+gpg_bash_lib_output_signed_on_date: March 01 13:56:27 UTC 2015
+gpg_bash_lib_output_notation[$<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">file at name</A>]: test-file
+gpg_bash_lib_output_file_name_tampering: false
+gpg_bash_lib_output_freshness_status: true
+gpg_bash_lib_output_freshness_detail: current
+gpg_bash_lib_output_freshness_msg:
+- Freshness: Signature is current.
+- valid-max: Signatures are valid up to 30 days.
+- Signature Creation Date: March 01 13:56:27 UTC 2015
+- Current System Date    : March 02 16:0:55 UTC 2015
+- Local System Clock: Your clock seems okay.
+- Relative Signature Creation Time: According to your system clock, signature was created 2 days 26 minutes 3 seconds ago.
+gpg_bash_lib_output_alright_status: true
+your_script_output: END
+
+All information (Signature Creation Date, etc.) are easily accessible through separate variables, which are all documented.
+
+Documentation:
+<A HREF="../../../../external.html?link=https://github.com/Whonix/gpg-bash-lib/blob/master/README.mediawiki">https://github.com/Whonix/gpg-bash-lib/blob/master/README.mediawiki</A>
+
+Usage examples:
+<A HREF="../../../../external.html?link=https://github.com/Whonix/gpg-bash-lib/tree/master/usr/share/gpg-bash-lib/examples">https://github.com/Whonix/gpg-bash-lib/tree/master/usr/share/gpg-bash-lib/examples</A>
+
+Main code file:
+<A HREF="../../../../external.html?link=https://github.com/Whonix/gpg-bash-lib/blob/master/usr/lib/gpg-bash-lib/modules.d/50_common">https://github.com/Whonix/gpg-bash-lib/blob/master/usr/lib/gpg-bash-lib/modules.d/50_common</A>
+
+Specifically, does the status-fd parsing code look sane?
+<A HREF="../../../../external.html?link=https://github.com/Whonix/gpg-bash-lib/blob/d6cff902f40135c3e100a5bb13a6fe8275a41828/usr/lib/gpg-bash-lib/modules.d/50_common#L350">https://github.com/Whonix/gpg-bash-lib/blob/d6cff902f40135c3e100a5bb13a6fe8275a41828/usr/lib/gpg-bash-lib/modules.d/50_common#L350</A>
+
+Could you leave some feedback please?
+
+Anyone else interested to contribute?
+
+[1] <A HREF="../../../../external.html?link=http://lists.gnupg.org/pipermail/gnupg-devel/2005-December/022559.html">http://lists.gnupg.org/pipermail/gnupg-devel/2005-December/022559.html</A>
+[2] <A HREF="../../../../external.html?link=https://www.updateframework.com/">https://www.updateframework.com/</A>
+[3] <A HREF="../../../../external.html?link=https://github.com/theupdateframework/tuf">https://github.com/theupdateframework/tuf</A>
+[4] <A HREF="../../../../external.html?link=https://github.com/theupdateframework/tuf/blob/develop/SECURITY.md">https://github.com/theupdateframework/tuf/blob/develop/SECURITY.md</A>
+[5] <A HREF="../../../../external.html?link=http://www.webcitation.org/6F7Io2ncN">http://www.webcitation.org/6F7Io2ncN</A>
+
+This post has been automatically cross-posted by whonix.org/blog To see the original (including links), go to <A HREF="../../../../external.html?link=https://www.whonix.org/blog/gpg-bash-verification-library">https://www.whonix.org/blog/gpg-bash-verification-library</A>
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000327.html>[Whonix-devel] genmkfile; packaging bashplus, git-subrepo; porting gpg-bash-lib to bashplus
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000331.html>[Whonix-devel] Can't start Tor Browser in Whonix?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/date.html#328">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/thread.html#328">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/subject.html#328">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/author.html#328">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000328.html','y7aelHq7wr','z0Oe0haEmNg',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000328.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-April/000328.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:53 GMT -->
+</HTML>

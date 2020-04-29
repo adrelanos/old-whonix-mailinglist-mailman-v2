@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-April/000344.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Release Candidate! Testers Wanted! Whonix 10 (	10.0.0.5.5 )
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Release%20Candidate%21%20Testers%20Wanted%21%20Whonix%2010%20%28%0A%0910.0.0.5.5%20%29&In-Reply-To=%3Ce597fb068be1af9cff68e32f2e5dcb79%40www.whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000342.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000346.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Release Candidate! Testers Wanted! Whonix 10 (	10.0.0.5.5 )</H1>
+<B>Whonix | Privacy and Anonymity OS</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Release%20Candidate%21%20Testers%20Wanted%21%20Whonix%2010%20%28%0A%0910.0.0.5.5%20%29&In-Reply-To=%3Ce597fb068be1af9cff68e32f2e5dcb79%40www.whonix.org%3E" TITLE="[Whonix-devel] Release Candidate! Testers Wanted! Whonix 10 (	10.0.0.5.5 )">newblogpost at whonix.org
+</A><BR>
+<I>Sun Apr 19 22:21:41 CEST 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000342.html>[Whonix-devel] UN-RELEASED DRAFT Whonix 10 UN-RELEASED DRAFT
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000346.html>[Whonix-devel] Pre-Release Audit of qubes-whonix 10.0.2-1
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/date.html#344">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/thread.html#344">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/subject.html#344">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/author.html#344">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>The version number for this testers-only release is 10.0.0.5.5, which will become Whonix 10 the moment it's blessed stable.
+
+Download link for Virtual Box images (.ova), experimental kvm / qemu / Qubes images and OpenPGP signatures (.asc):
+<A HREF="../../../../external.html?link=http://mirror.whonix.de/10.0.0.5.5/">http://mirror.whonix.de/10.0.0.5.5/</A>
+
+Upgrading Whonix 9 to Whonix 10:
+- from the testers repository
+
+If you want to build from source code, see:
+<A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Dev/Build_Documentation">https://www.whonix.org/wiki/Dev/Build_Documentation</A>
+
+Thanks to everyone who made this test release possible!
+
+Forum Discussion:
+link soon
+
+KVM Release Notes:
+
+Existing users should update their xml files. See
+<A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,827.0.html">https://www.whonix.org/forum/index.php/topic,827.0.html</A>
+
+Changelog between Whonix 9 and Whonix 10.0.0.5.0:
+
+<A HREF="../../../../external.html?link=https://www.whonix.org/blog/testers-wanted-10-10-0-0-5-0">https://www.whonix.org/blog/testers-wanted-10-10-0-0-5-0</A>
+
+Changelog between Whonix 10.0.0.5.0 and Whonix 10.0.0.5.5:
+
+- apparmor-profile-whonixcheck: fixes
+- apparmor-profile-pidgin: fixes
+- whonix-developer-meta-files: added a mirror tester script
+- whonix-developer-meta-files: streamlined release maintenance scripts
+- fix, no longer install tor package in Whonix-Workstation - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T262">https://phabricator.whonix.org/T262</A>
+- genmkfile: implemented &quot;make git-tag-push&quot;
+- genmkfile: implemented &quot;make reprepro-add&quot;
+- removed control-port-filter (bash) from source in favor of control-port-filter-python
+- gpg-bash-lib: fixed dry run of gpg --fingerprint
+- tb-updater: fix
+- apparmor-profile-torbrowser: fixes
+- whonix-legacy: fix broken gateway-firsttimesetup.desktop desktop icon after Whonix 9 -&gt; Whonix 10 upgrade
+- whonix-legacy: fix &quot;Warning: Could not find '/usr/lib/whonixsetup', starting '/bin/bash' instead.  Please check your profile settings.&quot; by deleting obsolete /etc/xdg/autostart/whonixsetup.desktop - <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,971.0.html">https://www.whonix.org/forum/index.php/topic,971.0.html</A>
+- build-steps.d/2600_create-vbox-vm: Allow clipboard copying from the host to guest to ease entering bridges. - <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,986.0.html">https://www.whonix.org/forum/index.php/topic,986.0.html</A>
+- Reverted:
+-- anon-meta-packages: added console-setup to anon-shared-packages-dependencies so users can use /etc/default/keyboard as alternative mechanism to change the keyboard layout
+-- anon-meta-packages: added console-data to anon-shared-packages-dependencies to make sure all three packages console-setup, console-data and console-common are installed.
+
+This post has been automatically cross-posted by whonix.org/blog To see the original (including links), go to <A HREF="../../../../external.html?link=https://www.whonix.org/blog/testers-wanted-10-10-0-0-5-5">https://www.whonix.org/blog/testers-wanted-10-10-0-0-5-5</A>
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000342.html>[Whonix-devel] UN-RELEASED DRAFT Whonix 10 UN-RELEASED DRAFT
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000346.html>[Whonix-devel] Pre-Release Audit of qubes-whonix 10.0.2-1
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/date.html#344">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/thread.html#344">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/subject.html#344">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/author.html#344">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000344.html','y7aelHq7wr','wWxPMl8m144',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000344.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-April/000344.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:53 GMT -->
+</HTML>

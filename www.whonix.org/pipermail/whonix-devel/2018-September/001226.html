@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001226.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bdm-crypt%5D%20Troubleshooting%3A%20Header%20Conversion%20to%0A%20argon2id&In-Reply-To=%3C48f41120-27ae-cef3-8bb0-482eb164d468%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001225.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001227.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id</H1>
+<B>procmem</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bdm-crypt%5D%20Troubleshooting%3A%20Header%20Conversion%20to%0A%20argon2id&In-Reply-To=%3C48f41120-27ae-cef3-8bb0-482eb164d468%40riseup.net%3E" TITLE="[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id">procmem at riseup.net
+</A><BR>
+<I>Wed Sep 12 17:21:00 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001225.html>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001227.html>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1226">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1226">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1226">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1226">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>
+
+Milan Broz:
+&gt;<i> On 12/09/18 06:16, procmem wrote:
+</i>&gt;&gt;<i> Ondrej Kozina:
+</i>&gt;&gt;&gt;<i> On 09/11/2018 07:09 PM, procmem wrote:
+</i>&gt;&gt;&gt;&gt;<i> Hi, I went ahead and tested the commands recommended by Milan for
+</i>&gt;&gt;&gt;&gt;<i> converting headers to use the better pbkdf algo. Unfortunately I'm
+</i>&gt;&gt;&gt;&gt;<i> running into an obscure error and wanted your advice on how to solve it.
+</i>&gt;&gt;&gt;&gt;<i>
+</i>&gt;&gt;&gt;&gt;<i> Please see the output of the command with --debug
+</i>&gt;&gt;&gt;&gt;<i>
+</i>&gt;&gt;&gt;<i> Hi,
+</i>&gt;&gt;&gt;<i>
+</i>&gt;&gt;&gt;<i> luksConvertKey command works only on LUKS2 keyslots. Looking at debug
+</i>&gt;&gt;&gt;<i> output it seems your device is not LUKS2 type.
+</i>&gt;&gt;&gt;<i>
+</i>&gt;&gt;&gt;<i> Regards
+</i>&gt;&gt;&gt;<i> Ondrej
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> Now that I think about it this can't be the reason because the header is
+</i>&gt;&gt;<i> LUKS2 when using cryptsetup 2.0 and above - which is the version
+</i>&gt;&gt;<i> included in Debian Testing/Buster.
+</i>&gt;<i> 
+</i>&gt;<i> No, header is not always LUKS2 by default, cryptsetup 2.0.x luksFormat still uses LUKS1
+</i>&gt;<i> format by default. Do not mix version of utility and version of LUKS metadata format.
+</i>&gt;<i> 
+</i>&gt;<i> Anyway, it seems that there is no LUKS header on the device at all, or it is somehow
+</i>&gt;<i> corrupted, all commands then must fail of course.
+</i>&gt;<i> 
+</i>&gt;<i> Can you please paste output of &quot;blkid -p &lt;device&gt;&quot; and &quot;cryptsetup luksDump --debug &lt;device&gt;&quot; ?
+</i>&gt;<i> 
+</i>&gt;<i> m.
+</i>&gt;<i> 
+</i>
+
+
+Summary: OK. Looks like I was manipulating the wrong device. It is vda5
+not vda1 that has the header. The header is version 1. Conversion to v2
+still fails however.
+
+
+
+
+
+blkid -p /dev/vda5
+/dev/vda5: VERSION=&quot;1&quot; UUID=&quot;fd28a001-e2a1-46dc-8e6c-99f0a55b1851&quot;
+TYPE=&quot;crypto_LUKS&quot; USAGE=&quot;crypto&quot; PART_ENTRY_SCHEME=&quot;dos&quot;
+PART_ENTRY_UUID=&quot;860c80ea-05&quot; PART_ENTRY_TYPE=&quot;0x83&quot;
+PART_ENTRY_NUMBER=&quot;5&quot; PART_ENTRY_OFFSET=&quot;501760&quot;
+PART_ENTRY_SIZE=&quot;104353792&quot; PART_ENTRY_DISK=&quot;254:0&quot;
+
+
+***
+
+
+cryptsetup luksDump --debug /dev/vda5
+# cryptsetup 2.0.4 processing &quot;cryptsetup luksDump --debug /dev/vda5&quot;
+# Running command luksDump.
+# Locking memory.
+# Installing SIGINT/SIGTERM handler.
+# Unblocking interruption on signal.
+# Allocating context for crypt device /dev/vda5.
+# Trying to open and read device /dev/vda5 with direct-io.
+# Initialising device-mapper backend library.
+# Trying to load any crypt type from device /dev/vda5.
+# Crypto backend (gcrypt 1.8.3) initialized in cryptsetup library
+version 2.0.4.
+# Detected kernel Linux 4.17.0-3-amd64 x86_64.
+# PBKDF pbkdf2, hash sha256, time_ms 2000 (iterations 0), max_memory_kb
+0, parallel_threads 0.
+# Reading LUKS header of size 1024 from device /dev/vda5
+# Key length 64, device size 104353792 sectors, header size 4036 sectors.
+LUKS header information for /dev/vda5
+
+Version:        1
+Cipher name:    aes
+Cipher mode:    xts-plain64
+Hash spec:      sha256
+Payload offset: 4096
+MK bits:        512
+MK digest:      92 88 0b 12 d8 87 59 a4 01 25 08 a9 54 df 70 31 ac 31 8b 6f
+MK salt:        7d 75 4b 38 2c ce 04 ba be 99 81 c7 18 4e d9 ea
+                04 c3 70 16 6e 7b f3 74 92 c2 a5 da c8 86 8f 57
+MK iterations:  64503
+UUID:           fd28a001-e2a1-46dc-8e6c-99f0a55b1851
+
+Key Slot 0: ENABLED
+        Iterations:             1007276
+        Salt:                   82 dd 05 76 f7 39 41 45 c9 a4 a6 f3 b4
+a4 50 a5
+                                f8 00 3a cb bd e1 ff 00 39 cb 74 b2 f2
+1a 0a e9
+        Key material offset:    8
+        AF stripes:             4000
+Key Slot 1: DISABLED
+Key Slot 2: DISABLED
+Key Slot 3: DISABLED
+Key Slot 4: DISABLED
+Key Slot 5: DISABLED
+Key Slot 6: DISABLED
+Key Slot 7: DISABLED
+# Releasing crypt device /dev/vda5 context.
+# Releasing device-mapper backend.
+# Unlocking memory.
+Command successful.
+
+
+***
+
+
+cryptsetup convert /dev/vda5 --type luks2 --debug
+# cryptsetup 2.0.4 processing &quot;cryptsetup convert /dev/vda5 --type luks2
+--debug&quot;
+# Running command convert.
+# Locking memory.
+# Installing SIGINT/SIGTERM handler.
+# Unblocking interruption on signal.
+# Allocating context for crypt device /dev/vda5.
+# Trying to open and read device /dev/vda5 with direct-io.
+# Initialising device-mapper backend library.
+# Trying to load any crypt type from device /dev/vda5.
+# Crypto backend (gcrypt 1.8.3) initialized in cryptsetup library
+version 2.0.4.
+# Detected kernel Linux 4.17.0-3-amd64 x86_64.
+# PBKDF pbkdf2, hash sha256, time_ms 2000 (iterations 0), max_memory_kb
+0, parallel_threads 0.
+# Reading LUKS header of size 1024 from device /dev/vda5
+# Key length 64, device size 104353792 sectors, header size 4036 sectors.
+
+WARNING!
+========
+This operation will convert /dev/vda5 to LUKS2 format.
+
+
+Are you sure? (Type uppercase yes): YES
+# Converting LUKS device to type LUKS2
+# Max size: 2097152, LUKS1 (full) header size 2068480 , required shift:
+28672
+# DM-UUID is CRYPT-LUKS1-fd28a001e2a146dc8e6c99f0a55b1851-
+Cannot convert device /dev/vda5 which is still in use.
+# Releasing crypt device /dev/vda5 context.
+# Releasing device-mapper backend.
+# Unlocking memory.
+Command failed with code -5 (device already exists or device is busy).
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001225.html>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001227.html>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1226">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1226">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1226">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1226">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001226.html','y7aelHq7wr','4t80x_nMIug',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001226.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001226.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+</HTML>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-April/001371.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] How to confirm jitter .ko was loaded
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20How%20to%20confirm%20jitter%20.ko%20was%20loaded&In-Reply-To=%3C2153558.oKoIknuarf%40tauon.chronox.de%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001367.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001368.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] How to confirm jitter .ko was loaded</H1>
+<B>Stephan Mueller</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20How%20to%20confirm%20jitter%20.ko%20was%20loaded&In-Reply-To=%3C2153558.oKoIknuarf%40tauon.chronox.de%3E" TITLE="[Whonix-devel] How to confirm jitter .ko was loaded">smueller at chronox.de
+</A><BR>
+<I>Fri Apr 26 16:09:03 CEST 2019</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001367.html>[Whonix-devel] How to confirm jitter .ko was loaded
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001368.html>[Whonix-devel] jitterentropy_rng.ko never loads
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/date.html#1371">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/thread.html#1371">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/subject.html#1371">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/author.html#1371">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Am Mittwoch, 24. April 2019, 20:36:01 CEST schrieb <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">procmem at riseup.net</A>:
+
+Hi procmem,
+
+&gt;<i> On 4/24/19 6:21 PM, Stephan Mueller wrote:
+</i>&gt;<i> &gt; Am Mittwoch, 24. April 2019, 19:30:28 CEST schrieb <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">procmem at riseup.net</A>:
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; Hi,
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt;&gt; Hi Stephan. Whonix dev here. We are a VM based privacy distro and so are
+</i>&gt;<i> &gt;&gt; very interested in jitter for our RNG needs.
+</i>&gt;<i> &gt;&gt; 
+</i>&gt;<i> &gt;&gt; I was wondering how we can confirm jitterentropy's kernel module was
+</i>&gt;<i> &gt;&gt; successfully loaded during boot so we can be sure it works on some
+</i>&gt;<i> &gt;&gt; platforms.
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; cat /proc/crypto | grep jitter
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt;&gt; Do you know if it should be functional on the Xen hypervisor where Linux
+</i>&gt;<i> &gt;&gt; does not have full control over bare-metal?
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; Yes, definitely. Besides, the Jitter RNG will not initialize if it finds
+</i>&gt;<i> &gt; that the platform does not provide the correct properties for the RNG.
+</i>&gt;<i> &gt; The Jitter RNG has also a runtime check. If that runtime check identifies
+</i>&gt;<i> &gt; platform failures, you will see that in dmesg :-)
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; Though, please note that the Jitter RNG in the kernel ONLY seeds the
+</i>&gt;<i> &gt; kernel
+</i>&gt;<i> &gt; DRBG and NOT /dev/random or /dev/urandom. If you want to seed them, you
+</i>&gt;<i> &gt; need either the jitterentropy-rngd (which seems to be currently tested)
+</i>&gt;<i> &gt; or the latest version of rngd which contains the JitterRNG as one noise
+</i>&gt;<i> &gt; source.
+</i>&gt;<i> Interesting. The kernel DRBG is synonymous with /dev/random in our
+</i>&gt;<i> non-expert minds. So is it correct to say jitterentropy-rngd's presence
+</i>&gt;<i> guarantees /dev/urandom will be correctly seeded? Or does it depend on
+</i>&gt;<i> service starting order?
+</i>
+This is all a sad state of affairs. But getting changes into drivers/char/
+random.c is very hard for different reasons. I have tried and even have a 
+complete replacement implementation at [1].
+
+Whatever, the following is applicable:
+
+- /dev/random, /dev/urandom and getrandom(2) is handled completely and 
+exclusively by drivers/char/random.c. /dev/urandom and getrandom(2) access a 
+ChaCha20-based PRNG. /dev/random is fed by a SHA-1 based PRNG.
+
+- the in-kernel crypto API has an RNG framework that provides a DRBG. This 
+DRBG is used for in-kernel crypto API purposes. It may be accessed from user 
+space via AF_ALG [2]. Yet, this is not accessible from /dev/random, /dev/
+urandom or getrandom. The DRBG uses the in-kernel JitterRNG to seed itself.
+
+The jitterentropy-rngd would update the entropy of /dev/urandom, /dev/random 
+and getrandom(2).
+
+You want the jitterentropy-rngd to start as early in the boot cycle as 
+possible, certainly before any crypto daemons like SSH or TLS servers are 
+brought online. Maybe the systemd service file provided with the 
+jitterentropy-rngd should help?
+
+
+[1] <A HREF="../../../../external.html?link=http://www.chronox.de/lrng.html">http://www.chronox.de/lrng.html</A>
+
+[2] <A HREF="../../../../external.html?link=http://www.chronox.de/libkcapi.html">http://www.chronox.de/libkcapi.html</A>
+&gt;<i> 
+</i>&gt;<i> &gt;&gt; cc/ our mailing list do our users can benefit.
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; Ciao
+</i>&gt;<i> &gt; Stephan
+</i>
+
+
+Ciao
+Stephan
+
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001367.html>[Whonix-devel] How to confirm jitter .ko was loaded
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001368.html>[Whonix-devel] jitterentropy_rng.ko never loads
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/date.html#1371">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/thread.html#1371">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/subject.html#1371">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/author.html#1371">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001371.html','y7aelHq7wr','33c4vKfescw',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001371.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-April/001371.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:05 GMT -->
+</HTML>

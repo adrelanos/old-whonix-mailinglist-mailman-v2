@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-November/000462.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Avoiding real MAC address in Tails macchanger being	harmful?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Avoiding%20real%20MAC%20address%20in%20Tails%20macchanger%20being%0A%09harmful%3F&In-Reply-To=%3C565762F4.1020109%40whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/000461.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Avoiding real MAC address in Tails macchanger being	harmful?</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Avoiding%20real%20MAC%20address%20in%20Tails%20macchanger%20being%0A%09harmful%3F&In-Reply-To=%3C565762F4.1020109%40whonix.org%3E" TITLE="[Whonix-devel] Avoiding real MAC address in Tails macchanger being	harmful?">patrick-mailinglists at whonix.org
+</A><BR>
+<I>Thu Nov 26 20:52:20 CET 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/000461.html>[Whonix-devel] MAC changer &quot;blend into the crowd&quot; by only using common manufacturer MAC (OUI part) addresses broken by design?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/date.html#462">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/thread.html#462">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/subject.html#462">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/author.html#462">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Tails does verify, that randomly chosen MAC does not equal the real MAC
+by chance.
+
+&gt;<i>From tails-spoof-mac [1] (code: [A])
+</i>
+&gt;<i> # There is a 1/2^24 chance macchanger will randomly pick the real MAC
+</i>&gt;<i> # address. We try to making it really unlikely repeating it up to
+</i>&gt;<i> # three times. Theoretically speaking this leaks information about the
+</i>&gt;<i> # real MAC address at each occasion but actually leaking the real MAC
+</i>&gt;<i> # address will be more serious in practice.
+</i>
+quu9ohch [2] [3]:
+&gt;<i> P.S. Avoiding the &quot;real&quot; mac address is a bogus approach as well. If
+</i>all users were to avoid their real mac addresses all the time then, with
+enough data, a local passive adversary could identify each user by
+estimating which mac address they never pick. [3]
+
+marmarek:
+&gt;<i> If you _randomly_ hit your own MAC address, I think this isn't a
+</i>problem at all. Actually changing that behavior may introduce some bias
+in that randomness. But if you're talking about some error which results
+in not changing the MAC (even if randomly chosen one was different than
+original), that's the problem.
+
+Cheers,
+Patrick
+
+[1]
+<A HREF="../../../../external.html?link=https://git-tails.immerda.ch/tails/plain/config/chroot_local-includes/usr/local/sbin/tails-spoof-mac">https://git-tails.immerda.ch/tails/plain/config/chroot_local-includes/usr/local/sbin/tails-spoof-mac</A>
+[2] <A HREF="../../../../external.html?link=https://github.com/quu9ohch">https://github.com/quu9ohch</A>
+[3]
+<A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/938#issuecomment-155684781">https://github.com/QubesOS/qubes-issues/issues/938#issuecomment-155684781</A>
+[4]
+<A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/938#issuecomment-151239727">https://github.com/QubesOS/qubes-issues/issues/938#issuecomment-151239727</A>
+[A]
+for i in 1 2 3; do
+    if ! spoof_mac &quot;${NIC}&quot;; then
+        # If our MAC spoofing primitive fails, we fail safe by forcing
+        # us to enter into panic mode.
+        unset NEW_MAC
+        break
+    fi
+    NEW_MAC=&quot;$(get_current_mac_of_nic &quot;${NIC}&quot;)&quot;
+    if [ &quot;${OLD_MAC}&quot; != &quot;${NEW_MAC}&quot; ]; then
+        break
+    fi
+done
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/000461.html>[Whonix-devel] MAC changer &quot;blend into the crowd&quot; by only using common manufacturer MAC (OUI part) addresses broken by design?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/date.html#462">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/thread.html#462">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/subject.html#462">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/author.html#462">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/000462.html','y7aelHq7wr','7aYKPVtUQ_c',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-November/000462.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-November/000462.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:46 GMT -->
+</HTML>

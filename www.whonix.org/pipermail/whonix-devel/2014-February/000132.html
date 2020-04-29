@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-February/000132.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian stable!
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Testers%20wanted%21%20Whonix%207.7.6.4%20based%20on%20Debian%0A%20stable%21&In-Reply-To=%3C52EFB055.2080806%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000131.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000133.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian stable!</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Testers%20wanted%21%20Whonix%207.7.6.4%20based%20on%20Debian%0A%20stable%21&In-Reply-To=%3C52EFB055.2080806%40riseup.net%3E" TITLE="[Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian stable!">adrelanos at riseup.net
+</A><BR>
+<I>Mon Feb 3 16:05:57 CET 2014</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000131.html>[Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian	stable!
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000133.html>[Whonix-devel] Future Goals for Whonix&#8217;s Website
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/date.html#132">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/thread.html#132">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/subject.html#132">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/author.html#132">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+M. Edward (Ed) Borasky:
+&gt;<i> I'm looking at the KVM instructions now. I think there's one or
+</i>&gt;<i> two unnecessary steps.
+</i>
+These steps aren't required for the test version anymore at all. Since
+.qcow2 images are now available.
+
+&gt;<i> And I don't think you don't need to convert VMDK -&gt; VDI -&gt; QCOW2.
+</i>&gt;<i> qemu-img will convert from VMDK to QCOW2 directly.
+</i>
+qemu-img convert &quot;vmdk_file&quot; -O RAW &quot;vdi_file&quot;
+
+qemu-img version 1.6.1 fails with:
+qemu-img: 'image' uses a vmdk feature which is not supported by this
+qemu version: VMDK version 3
+
+This is a known issue in qemu:
+<A HREF="../../../../external.html?link=https://bugs.launchpad.net/qemu/+bug/1253465">https://bugs.launchpad.net/qemu/+bug/1253465</A>
+
+&gt;<i> First of all, Virtual Machine Manager / qemu-kvm *can* work with
+</i>&gt;<i> VMDK files directly.
+</i>
+Are you sure about that? Perhaps with VMDK version 2. With VMDK
+version 3 as well?
+
+(VirtualBox beginning with the version that is in Debian Jessie uses
+VMDK version 3 by default, i.e. Whonix 7 VirtualBox .ova's include
+VMDK version 3. Not sure about the new test images which have been
+build on the older Debian Wheezy.)
+
+Guestmount doesn't support mounting VMDK version 3 either, because
+that internally uses qemu-img as well. Therefore I would wonder if KVM
+is capable of working with VMDK version 3 directly. Happy to hear
+otherwise.
+
+Fortunately, for KVM the VMDK / image conversion stuff won't be
+required anymore since .qcow2 images are now available.
+-----BEGIN PGP SIGNATURE-----
+
+iQJ8BAEBCgBmBQJS77BUXxSAAAAAAC4AKGlzc3Vlci1mcHJAbm90YXRpb25zLm9w
+ZW5wZ3AuZmlmdGhob3JzZW1hbi5uZXQ2RTk3OUIyOEE2RjM3QzQzQkUzMEFGQTFD
+QjhENTBCQjc3QkIzQzQ4AAoJEMuNULt3uzxITlIP/A5mxGJHjePqXzwH1S2EMvEi
+q8M89LxQI1Lb2ah8Qe8TU7Yh8YUeJsoUO6GGdvb3ZgzT2i3DaO61GqtX0a2moPR7
++eBYZOj6NznEQeJymsFQvagT8WWOgy7t5NAOfsGOxtUZo2xtaQf5KHtQBZKl4JL0
+uW6wAylK4aPA/Ro+5WVc3sxk8DfeP4hmLX7KwLGsYuOt8VUSNMncisnC3LqRXgND
+FFsnmIQVw4YBct2I07xj57u6qSs7PYPF4qYMyNj5GQBGWK40MSxwgSEDcTA/i+U7
+23gPQTcwQWQA2GXUkcnWoA+623QBlj2h4LXwE4SLouK72mUgAoPhRhu1Kd5WWDaw
+JH5lfVBIGyC3Bn7lqIXHeRdi8AwcFBidGgrl2MruJ9cqwAEafndBaqHwI04iBgoA
+U/dIaLm+fr7hABF8fe36zAsA8WuqzLjclO519PZyYkbX00eWdOCrcktdigmlRNrT
+CpZV0VgMWKFvyOcRzzMViR7kcwd8SthoNWli/BCK8DX6nkCXsU6p0PS/S9I2Id5d
+jKG2Q2ReU1A51nMAwe3qaT0vLYp2dIkc7rS4HudOcHoya/bOB/I9rRyQHHgTXtva
+jF7i0KcWVFY22uZM8JrhnmuHpw+n6R7y3mbHcb5n4ZXPsxsaBAHFeeWmhgmKAoYK
+u1B/9m9iVAjBkAvfovbE
+=fmyW
+-----END PGP SIGNATURE-----
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000131.html>[Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian	stable!
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000133.html>[Whonix-devel] Future Goals for Whonix&#8217;s Website
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/date.html#132">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/thread.html#132">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/subject.html#132">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/author.html#132">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000132.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-February/000132.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:07 GMT -->
+</HTML>

@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-September/001063.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [qubes-devel] Disposable VMs on Qubes 4.0
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Disposable%20VMs%20on%20Qubes%204.0&In-Reply-To=%3C20170911174846.GC1747%40mail-itl%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/001062.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/001064.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [qubes-devel] Disposable VMs on Qubes 4.0</H1>
+<B>Marek Marczykowski-Górecki</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Disposable%20VMs%20on%20Qubes%204.0&In-Reply-To=%3C20170911174846.GC1747%40mail-itl%3E" TITLE="[Whonix-devel] [qubes-devel] Disposable VMs on Qubes 4.0">marmarek at invisiblethingslab.com
+</A><BR>
+<I>Mon Sep 11 19:48:46 CEST 2017</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/001062.html>[Whonix-devel] [qubes-devel] Disposable VMs on Qubes 4.0
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/001064.html>[Whonix-devel] [qubes-devel] Disposable VMs on Qubes 4.0
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/date.html#1063">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/thread.html#1063">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/subject.html#1063">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/author.html#1063">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+On Mon, Sep 11, 2017 at 05:20:00PM +0000, Patrick Schleizer wrote:
+&gt;<i> &gt; 1. Allow starting default Disposable VMs from both Whonix Gateway
+</i>&gt;<i> &gt; (sys-whonix) and Whonix Workstation (anon-whonix or other). This is the
+</i>&gt;<i> &gt; default (if you don't modify policy for Whonix), but it's a very bad
+</i>&gt;<i> &gt; idea, since such Disposable VM most likely will have access to clearnet
+</i>&gt;<i> &gt; directly.
+</i>&gt;<i> 
+</i>&gt;<i> True. There would have to be a rule &quot;default NetVM for whonix-ws based
+</i>&gt;<i> VMs AppVMs should always be a whonix-gw based ProxyVM&quot;. Doable?
+</i>&gt;<i> 
+</i>&gt;<i> That should be covered by 'Whonix default VM settings fixes - salt
+</i>&gt;<i> management' - <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/1954">https://github.com/QubesOS/qubes-issues/issues/1954</A> -
+</i>&gt;<i> which won't be available in time so we'll still need a solution 1-4 that
+</i>&gt;<i> you suggested?
+</i>&gt;<i> 
+</i>&gt;<i> &gt; 2. Prevent starting Disposable VMs from any of Whonix VMs. This is safe
+</i>&gt;<i> &gt; option, but also it limit functionality.
+</i>&gt;<i> 
+</i>&gt;<i> Yes, would be a very sad limitation of functionality.
+</i>&gt;<i> 
+</i>&gt;<i> &gt; 3. Allow creating Disposable VMs based on anon-whonix, then allow only
+</i>&gt;<i> &gt; such DispVMs be started from Whonix VMs.
+</i>&gt;<i> 
+</i>&gt;<i> Also quite limited in functionality.
+</i>&gt;<i> 
+</i>&gt;<i> &gt; 3a. Similar, but create separate anon-whonix-dvm for that. Major
+</i>&gt;<i> &gt; difference is that DispVMs based on anon-whonix-dvm will not have access
+</i>&gt;<i> &gt; to private image of anon-whonix here.
+</i>&gt;<i> 
+</i>&gt;<i> If it's somehow possible, I'd like to avoid another template that needs
+</i>&gt;<i> to be separately upgraded. (If that would be the case?)
+</i>
+&gt;<i> &gt; 3a. Similar, but create separate anon-whonix-dvm for that. Major
+</i>&gt;<i> &gt; difference is that DispVMs based on anon-whonix-dvm will not have access
+</i>&gt;<i> &gt; to private image of anon-whonix here.
+</i>&gt;<i> 
+</i>&gt;<i> Yes, not too bad.
+</i>
+&quot;template&quot; for DispVM is in fact an AppVM, not a separate TemplateVM. So,
+it does not require separate TemplateVM.
+
+It's this way here:
+
+TemplateVM   -&gt;   AppVM             -&gt; DispVM
+
+whonix-ws    -&gt;   anon-whonix-dvm   -&gt; dispXXXX
+
+&gt;<i> &gt; 3a. Similar, but create separate anon-whonix-dvm for that. Major
+</i>&gt;<i> &gt; difference is that DispVMs based on anon-whonix-dvm will not have access
+</i>&gt;<i> &gt; to private image of anon-whonix here.
+</i>&gt;<i> 
+</i>&gt;<i> Why not anon-whonix-disp being &quot;simply&quot; based on whonix-ws template? (I
+</i>&gt;<i> guess it's not advisable for some reason?)
+</i>
+See above.
+
+&gt;<i> &gt; 3a. Similar, but create separate anon-whonix-dvm for that. Major
+</i>&gt;<i> &gt; difference is that DispVMs based on anon-whonix-dvm will not have access
+</i>&gt;<i> &gt; to private image of anon-whonix here.
+</i>&gt;<i> 
+</i>&gt;<i> A Whonix DispVM having access to private image of anon-whonix doesn't
+</i>&gt;<i> seem good. As a user starting a DispVM to do some more risky action such
+</i>&gt;<i> as opening a pdf and links from an pdf, I would expect if that DispVM
+</i>&gt;<i> gets compromised, that it can not access any other data.
+</i>&gt;<i> 
+</i>&gt;<i> &gt; Should the above be only about Whonix Workstation VM(s)? Whonix Gateway
+</i>&gt;<i> &gt; have access to the clearnet anyway (at least in theory), so it's much
+</i>&gt;<i> &gt; less important there.
+</i>&gt;<i> 
+</i>&gt;<i> Yes.
+</i>&gt;<i> 
+</i>&gt;<i> On a related note, a disposable Whonix-Gateway gets us closer to feature
+</i>&gt;<i> completion. A disposable Whonix-Gateway in combination with a disposable
+</i>&gt;<i> Whonix-Workstation would be more &quot;Tails-alike&quot;.
+</i>
+Hmm, in theory it should just work right now. You just need to have an
+AppVM being a &quot;template&quot; for sys-whonix DispVM. 
+
+Commands to setup it:
+
+qvm-create --class AppVM --label purple --template whonix-gw sys-whonix-base 
+qvm-create --class DispVM --label purple --template sys-whonix-base sys-whonix
+qvm-prefs sys-whonix provides_network true
+
+Then use sys-whonix normally. All its data (especially private image)
+will be discarded at the VM restart, and next startup will be from the
+state of sys-whonix-base.
+
+What about entry guards? AFAIR you've said it's better to have them
+persistent?
+
+&gt;<i> Then only - DispVMs: support for in-RAM execution only (for
+</i>&gt;<i> anti-forensics) - <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/904">https://github.com/QubesOS/qubes-issues/issues/904</A> -
+</i>&gt;<i> would be missing on the Qubes side. Once #904 would be implemented, it
+</i>&gt;<i> would be hard to point out any missing Whonix features with respect to
+</i>&gt;<i> amnesia.
+</i>
+Yes. In theory it should also be possible with heavy usage of tmpfs
+(it's possible to place all volatile.img there, using separate storage
+pool). But in practice it may require some modifications. And since
+limited amount of RAM, probably just tmpfs isn't the best option, better
+use LUKS with some disposable key. Which require slightly more work.
+
+&gt;<i> &gt; What about templates?
+</i>&gt;<i> 
+</i>&gt;<i> Starting the template as DispVM? I wouldn't know what that would be
+</i>&gt;<i> useful for except for testing. (Which sounds very useful as for a
+</i>&gt;<i> developer!)
+</i>
+No, starting DispVM _from_ templates.
+
+&gt;<i> &gt; I think preferred is point 3a, but it require that Whonix-based
+</i>&gt;<i> &gt; Disposable VMs works.
+</i>&gt;<i> 
+</i>&gt;<i> Is there any work left on the Whonix side to make them work as DisposableVM?
+</i>
+I don't know. The first step would be testing what is missing (if
+anything). There is a chance it will just work.
+
+&gt;<i> &gt; OTOH, it should be much easier there, because in
+</i>&gt;<i> &gt; Qubes 4.0 there are no more savefiles - DisposableVM is started the
+</i>&gt;<i> &gt; same way as AppVM.
+</i>&gt;<i> 
+</i>&gt;<i> Improved Whonix DispVM support should certainly not come before Qubes
+</i>&gt;<i> 4.0. Certainly not in R3.2 if you meant that.
+</i>&gt;<i> 
+</i>&gt;<i> Cheers,
+</i>&gt;<i> Patrick
+</i>&gt;<i> 
+</i>
+- -- 
+Best Regards,
+Marek Marczykowski-Górecki
+Invisible Things Lab
+A: Because it messes up the order in which people normally read text.
+Q: Why is top-posting such a bad thing?
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQEcBAEBCAAGBQJZtsx8AAoJENuP0xzK19cshiIH/04Ugu/dRkKpGolH4BwePgh8
+amsXxTZzoODTzUbmX+Z2DzRw0JMJ50KLgeh0VTitwaGPAYb3SZ2AC3h8niMvXxSZ
+WGcDGaZ8GJpiQaNf31myjz7rollhCVhe2tiVtoI/5VxNxWbZ5vHNM3kn6KgpRbkW
+8jERETfDVMbwCXxruXMoyZSYzizuDZ4QOVcIigiNNg/ybqijB8TkSwj8zPPNKonx
+xykIW2MYrwFl2jRUzQEVCcvv4ENYvHaiGUytd+ztWW7j4s1gQXt7UgjBhyIsdnPh
+soiwOO2slMi1qwIEzEkCe3sQJlYDfZDnCEBa7s3B7CgWOa1v2cTvTfEybh2kmPA=
+=sXNE
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/001062.html>[Whonix-devel] [qubes-devel] Disposable VMs on Qubes 4.0
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/001064.html>[Whonix-devel] [qubes-devel] Disposable VMs on Qubes 4.0
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/date.html#1063">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/thread.html#1063">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/subject.html#1063">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/author.html#1063">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/001063.html','y7aelHq7wr','R1ejMCsGkjA',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-September/001063.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-September/001063.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:24 GMT -->
+</HTML>

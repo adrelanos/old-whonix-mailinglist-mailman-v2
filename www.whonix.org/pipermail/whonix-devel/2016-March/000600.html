@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-March/000600.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] User Behavior Tracking defenses in VMs
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20User%20Behavior%20Tracking%20defenses%20in%20VMs&In-Reply-To=%3C9fb22d2998fe37e04d3d1dc51e0c88fe%40openmailbox.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/000599.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/000601.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] User Behavior Tracking defenses in VMs</H1>
+<B>bancfc at openmailbox.org</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20User%20Behavior%20Tracking%20defenses%20in%20VMs&In-Reply-To=%3C9fb22d2998fe37e04d3d1dc51e0c88fe%40openmailbox.org%3E" TITLE="[Whonix-devel] User Behavior Tracking defenses in VMs">bancfc at openmailbox.org
+</A><BR>
+<I>Mon Mar 14 16:54:59 CET 2016</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/000599.html>[Whonix-devel] [Tor Bug Tracker &amp; Wiki] Batch modify: #2554, #17740, #17983, #11480, #12600, #13966, #15055, #9662, #10218, #10969, #13802, #14164, #14921, #15087, #16794, #17193, #17272, #8001, #15618, #17808, #18153, #15588, #17592, #17604, #4581, #7144, #11327, #13339, #9729, #12389, #14881, #16698, #17020, #17684, #17949, #17280, #17285, #18457, #17598, #17911, #18196, #18337
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/000601.html>[Whonix-devel] #18002 [operations]: move away from OFTC to new functional, Tor-friendly IRC network
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/date.html#600">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/thread.html#600">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/subject.html#600">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/author.html#600">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Intended for qemu-discuss
+/cc/ libvir-list, whonix-devel, tor-dev
+
+***
+
+Hello. I work on WhonixOS an anonymity distro based on Tor. This feature 
+request is related to the topics of privacy and anonymity. Its a complex 
+topic and probably not in your area of focus but I think it has 
+important implications because security and privacy are very much 
+related in today's hostile computing environment.
+
+Virtualization is useful in presenting an identical environment and set 
+of &quot;hardware&quot; for each user which goes a long way in creating an 
+anonymity set of systems. That way a system attacker, advertisers and 
+online trackers would not be able to fingerprint a user or their 
+hardware.
+
+The problem: Tracking techniques have become more sophisticated with 
+time. They advanced from simple cookies to browser/device fingerprinting 
+(which Tor Browser focuses on defeating) to user behavior 
+fingerprinting. The latter is about profiling how a user types on a 
+keyboard or uses a mouse [2].
+
+Keystroke dynamics is a super creepy way to track users based on how 
+long they press keys (dwell time) and the time between key presses (gap 
+time). This is extremely accurate at identifying individuals because of 
+how unique these measurements are. Advertising networks  (Google, 
+Facebook...) that fingeprprint users on both the clearnet and Tor can 
+deanonymize users. This technique is already actively used in the wild 
+[6][7].
+
+
+Potential Solutions:
+
+Since input devices are all emulated its a great opportunity to stop 
+this profiling technique.
+
+* A security researcher designed a proof of concept plugin for Chrome 
+browser that mitigates this. Implementing something like the PoC addon 
+in [1] known as KeyBoardPrivacy. Some random delay in milliseconds in a 
+50 millisecond range for dwell and gap times for the emulated keyboards 
+is enough to skew the values to render this attack useless while not 
+affecting performance.
+
+* The changes made to Tor Borwser to make JS timers more coarse grained 
+but constant (250ms for keyboard events) were not enough to stop 
+keystroke dynamics fingerprinting because a malicious script can evict 
+the cache and allow extrapolation of true timing events within 1-5ms 
+accuracy .[3][5] Their goal is to instead add jitter to the timers [4]. 
+A similar solution proposed in [4] can be implemented in all QEMU-KVM 
+timers to mitigate both attacks.
+
+
+[1] 
+<A HREF="../../../../external.html?link=https://paul.reviews/behavioral-profiling-the-password-you-cant-change/">https://paul.reviews/behavioral-profiling-the-password-you-cant-change/</A>
+[2] 
+<A HREF="../../../../external.html?link=http://jcarlosnorte.com/security/2016/03/06/advanced-tor-browser-fingerprinting.html">http://jcarlosnorte.com/security/2016/03/06/advanced-tor-browser-fingerprinting.html</A>
+[3] 
+<A HREF="../../../../external.html?link=https://www.lightbluetouchpaper.org/2015/07/30/double-bill-password-hashing-competition-keyboardprivacy/#comment-1288166">https://www.lightbluetouchpaper.org/2015/07/30/double-bill-password-hashing-competition-keyboardprivacy/#comment-1288166</A>
+[4] <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/16110">https://trac.torproject.org/projects/tor/ticket/16110</A>
+[5] <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/1517">https://trac.torproject.org/projects/tor/ticket/1517</A>
+[6] <A HREF="../../../../external.html?link=http://scraping.pro/no-captcha-recaptcha-challenge/">http://scraping.pro/no-captcha-recaptcha-challenge/</A>
+[7] 
+<A HREF="../../../../external.html?link=https://nakedsecurity.sophos.com/2013/11/01/facebook-to-silent-track-users-cursor-movements-to-see-which-ads-we-like-best/">https://nakedsecurity.sophos.com/2013/11/01/facebook-to-silent-track-users-cursor-movements-to-see-which-ads-we-like-best/</A>
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/000599.html>[Whonix-devel] [Tor Bug Tracker &amp; Wiki] Batch modify: #2554, #17740, #17983, #11480, #12600, #13966, #15055, #9662, #10218, #10969, #13802, #14164, #14921, #15087, #16794, #17193, #17272, #8001, #15618, #17808, #18153, #15588, #17592, #17604, #4581, #7144, #11327, #13339, #9729, #12389, #14881, #16698, #17020, #17684, #17949, #17280, #17285, #18457, #17598, #17911, #18196, #18337
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/000601.html>[Whonix-devel] #18002 [operations]: move away from OFTC to new functional, Tor-friendly IRC network
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/date.html#600">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/thread.html#600">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/subject.html#600">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/author.html#600">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/000600.html','y7aelHq7wr','9HECgFR9pHo',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-March/000600.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-March/000600.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:42 GMT -->
+</HTML>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-May/000360.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] torsocks: How to hide 'Unsupported syscall	number' messages?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20torsocks%3A%20How%20to%20hide%20%27Unsupported%20syscall%0A%09number%27%20messages%3F&In-Reply-To=%3C20150520123448.GA12530%40raoul%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-May/000359.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] torsocks: How to hide 'Unsupported syscall	number' messages?</H1>
+<B>David Goulet</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20torsocks%3A%20How%20to%20hide%20%27Unsupported%20syscall%0A%09number%27%20messages%3F&In-Reply-To=%3C20150520123448.GA12530%40raoul%3E" TITLE="[Whonix-devel] torsocks: How to hide 'Unsupported syscall	number' messages?">dgoulet at ev0ke.net
+</A><BR>
+<I>Wed May 20 14:34:48 CEST 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-May/000359.html>[Whonix-devel] torsocks: How to hide 'Unsupported syscall number'	messages?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-May/date.html#360">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-May/thread.html#360">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-May/subject.html#360">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-May/author.html#360">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On 20 May (11:51:51), Patrick Schleizer wrote:
+&gt;<i> Hi David!
+</i>&gt;<i> 
+</i>&gt;<i> We make heavy use of torsocks in Whonix. For example, apt-get is run
+</i>&gt;<i> through torsocks for better stream isolation.
+</i>&gt;<i> 
+</i>&gt;<i> This generated loads of, hundreds of these kinds of messages.
+</i>&gt;<i> 
+</i>&gt;<i> [May 20 11:45:27] WARNING torsocks[2645]: [syscall] Unsupported syscall
+</i>&gt;<i> number 224. Denying the call (in tsocks_syscall() at syscall.c:165)
+</i>&gt;<i> 
+</i>&gt;<i> Is there any way to hide those?
+</i>
+I will release a new version in a matter of days that deals with most of
+the _non_ dangerous syscalls we've been denying for no good reason.
+
+Unfortunately, how that call is made in the libc, we have to do it on a
+whitelist basis and denying the rest.
+
+224 is gettid() on 32 bit and gettime() on 64 bit. I would assume that
+your log message here is probably gettid(), it's a syscall that doesn't
+have a libc wrapper.
+
+Also, you can silence all debug message with TORSOCKS_LOG_LEVEL=1 env.
+variable. To my surprise, logging options are not in the conf file so it
+should be at some point! :)
+
+Cheers!
+David
+
+&gt;<i> 
+</i>&gt;<i> CC'd whonix-devel. By answering to this e-mail, your reply will also be
+</i>&gt;<i> posted on the whonix-devel public mailing list.
+</i>&gt;<i> 
+</i>&gt;<i> Cheers,
+</i>&gt;<i> Patrick
+</i>-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 603 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="../../../../external.html?link=http://www.whonix.org/pipermail/whonix-devel/attachments/20150520/b7590c50/attachment.sig">http://www.whonix.org/pipermail/whonix-devel/attachments/20150520/b7590c50/attachment.sig</A>&gt;
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-May/000359.html>[Whonix-devel] torsocks: How to hide 'Unsupported syscall number'	messages?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-May/date.html#360">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-May/thread.html#360">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-May/subject.html#360">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-May/author.html#360">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-May/000360.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-May/000360.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:52 GMT -->
+</HTML>

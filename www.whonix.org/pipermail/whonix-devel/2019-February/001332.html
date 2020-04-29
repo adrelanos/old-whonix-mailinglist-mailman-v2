@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-February/001332.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Whonix testing (was: Re: [qubes-devel] More regular point releases schedule?)
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Whonix%20testing%20%28was%3A%20Re%3A%20%5Bqubes-devel%5D%20More%0A%20regular%20point%20releases%20schedule%3F%29&In-Reply-To=%3C456e8ea0-591e-00b8-9463-280ff170d301%40whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001331.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001333.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Whonix testing (was: Re: [qubes-devel] More regular point releases schedule?)</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Whonix%20testing%20%28was%3A%20Re%3A%20%5Bqubes-devel%5D%20More%0A%20regular%20point%20releases%20schedule%3F%29&In-Reply-To=%3C456e8ea0-591e-00b8-9463-280ff170d301%40whonix.org%3E" TITLE="[Whonix-devel] Whonix testing (was: Re: [qubes-devel] More regular point releases schedule?)">patrick-mailinglists at whonix.org
+</A><BR>
+<I>Sat Feb 23 17:54:00 CET 2019</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001331.html>[Whonix-devel] Whonix testing (was: Re: [qubes-devel] More regular point releases schedule?)
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001333.html>[Whonix-devel] Whonix testing (was: Re: [qubes-devel] More regular point releases schedule?)
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/date.html#1332">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/thread.html#1332">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/subject.html#1332">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/author.html#1332">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Marek Marczykowski-Górecki:
+&gt;<i> On Sat, Feb 23, 2019 at 01:49:00PM +0000, Patrick Schleizer wrote:
+</i>&gt;&gt;<i> Marek Marczykowski-Górecki:
+</i>&gt;&gt;&gt;<i> On Mon, Feb 18, 2019 at 08:06:00AM +0000, Patrick Schleizer wrote:
+</i>&gt;&gt;&gt;&gt;<i> So perhaps modification of the whonixcheck_unwanted_package variable is
+</i>&gt;&gt;&gt;&gt;<i> the way to go?
+</i>&gt;&gt;&gt;<i>
+</i>&gt;&gt;&gt;<i> I've done that and indeed whonixcheck doesn't complain anymore. But it
+</i>&gt;&gt;&gt;<i> still exit with code 1. I don't see why, as there are only INFO lines.
+</i>&gt;&gt;&gt;<i> Full output: <A HREF="../../../../external.html?link=https://gist.github.com/marmarek/13626b87d03921e7fb199a4c6fd718cf">https://gist.github.com/marmarek/13626b87d03921e7fb199a4c6fd718cf</A>
+</i>&gt;&gt;&gt;<i> Any idea?
+</i>&gt;<i> 
+</i>&gt;&gt;<i> This should now be fixed.
+</i>&gt;<i> 
+</i>&gt;&gt;<i> <A HREF="../../../../external.html?link=https://github.com/Whonix/whonixcheck/commit/ddae5dddb09e1194fac06701a73a21da02c34047">https://github.com/Whonix/whonixcheck/commit/ddae5dddb09e1194fac06701a73a21da02c34047</A>
+</i>&gt;<i> 
+</i>&gt;<i> Which repository should I enable? I see the new package is in all
+</i>&gt;<i> stretch-testers, stretch-proposed-updates and stretch-developers.
+</i>&gt;<i> I ask generally, not only for this instance - which testing repository
+</i>&gt;<i> should be included in automated tests?
+</i>
+qubes-template-whonix is currently using as default:
+
+[ -n &quot;$whonix_repository_suite&quot; ] ||
+whonix_repository_suite=&quot;stretch-proposed-updates&quot;
+
+Was wondering to change that to stretch-testers but not sure.
+
+Not sure, I guess stretch-proposed-updates should be ok until we decide
+to change above?
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001331.html>[Whonix-devel] Whonix testing (was: Re: [qubes-devel] More regular point releases schedule?)
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001333.html>[Whonix-devel] Whonix testing (was: Re: [qubes-devel] More regular point releases schedule?)
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/date.html#1332">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/thread.html#1332">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/subject.html#1332">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/author.html#1332">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001332.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-February/001332.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:07 GMT -->
+</HTML>

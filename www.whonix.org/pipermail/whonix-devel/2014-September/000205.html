@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-September/000205.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Release Candidate Whonix 9 ( 8.6.6.7 ) - testers	wanted!
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Release%20Candidate%20Whonix%209%20%28%208.6.6.7%20%29%20-%20testers%0A%09wanted%21&In-Reply-To=%3C36b5be23a9545fe338ba70fc1f4775e5%40www.whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/000204.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/000206.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Release Candidate Whonix 9 ( 8.6.6.7 ) - testers	wanted!</H1>
+<B>Whonix | Privacy and Anonymity OS</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Release%20Candidate%20Whonix%209%20%28%208.6.6.7%20%29%20-%20testers%0A%09wanted%21&In-Reply-To=%3C36b5be23a9545fe338ba70fc1f4775e5%40www.whonix.org%3E" TITLE="[Whonix-devel] Release Candidate Whonix 9 ( 8.6.6.7 ) - testers	wanted!">newblogpost at whonix.org
+</A><BR>
+<I>Sat Sep 13 00:28:27 CEST 2014</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/000204.html>[Whonix-devel] suggest trustworthy, https, stable,	busy web servers for sdwdate
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/000206.html>[Whonix-devel] Release Candidate Pre Final Whonix 9 - testers	wanted!
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/date.html#205">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/thread.html#205">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/subject.html#205">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/author.html#205">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>The version number for this testers-only release is 8.6.6.7, which will become Whonix 9 the moment it's blessed stable.
+
+Download link for Virtual Box images (.ova), experimental kvm /qemu / Qubes images and OpenPGP signatures (.asc):
+<A HREF="../../../../external.html?link=http://mirror.whonix.de/8.6.6.7">http://mirror.whonix.de/8.6.6.7</A>
+
+Upgrading Whonix 8 to Whonix 9
+- You cannot upgrade using apt-get dist-upgrade or you will break the packaging system!
+- You can upgrade using these instructions: <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Upgrading_Whonix_8_to_Whonix_9">https://www.whonix.org/wiki/Upgrading_Whonix_8_to_Whonix_9</A>
+
+If you want to build from source code, see:
+<A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Dev/Build_Documentation">https://www.whonix.org/wiki/Dev/Build_Documentation</A>
+
+Thanks to everyone who made this test release possible!
+
+Changlog between 8.6.6.0 and 8.6.6.7:
+- whonixcheck, timesync: minor output
+- anon-meta-packages: fix, added &quot;Pre-Depends: whonix-legacy&quot; to whonix-gateway and whonix-workstation
+- whonix-legacy: clean up old Whonix-Gateway shortcuts
+- updated debian stable frozen sources
+- makefile: added new feature &quot;make deb-chl-bumpup&quot; - Bump upstream version number in debian/changelog.
+- rads: made compatible with systemd / debian testing by adding tty1 autologin drop-in config
+- xchat-improved-privacy.postinst: fix, disable XChat plugins by default even if folder /home/user/.xchat2 exists
+- libvirt xml files: Enable use of Hardware Assisted Paging if available in the hardware.
+- sdwdate: fixed systemd spams syslog due to time changed by sclockadj (fixed #289)
+- sdwdate: fix, clean up temporary directory on exit
+- uwt: all temporary files are now in /tmp/uwt
+- anon-base-files /usr/lib/pre.bsh: all temporary files are now in /tmp/prepost
+- whonixcheck, timesync, tb-updater: fix, clean up temporary files/directory
+- whonix-repository tool: fix, clean up temporary directory
+- control-port-filter: fix, clean up temporary directory
+- build script: install whonix-gateway or whonix-workstation meta package respectively
+- build script: Use SAS rather than SATA as virtual hard disk controller for VirtualBox hdds to work around a VirtualBox upstream bug that causes filesystem corruption on high disk I/O (<A HREF="../../../../external.html?link=https://www.virtualbox.org/ticket/10031">https://www.virtualbox.org/ticket/10031</A>). Thanks to @Neurodrive for the bug report (<A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/274">https://github.com/Whonix/Whonix/issues/274</A>).
+- whonix-repository tool, anon-shared-build-apt-sources-tpo, anon-apt-sources-list: use wheezy rather than stable as per <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,445.msg3640.html">https://www.whonix.org/forum/index.php/topic,445.msg3640.html</A>
+- build script: added --file-system (var: whonix_build_file_system)
+- build script: added --hostname (var: whonix_build_hostname)
+- build script: added --os-password (var: whonix_build_os_password)
+- build script: added --debopt (var: whonix_build_debopt)
+- whonixcheck: check_virtualizer, no longer warn if Qubes (<A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Qubes">https://www.whonix.org/wiki/Qubes</A>) is detected; improved output, improved html tags
+- anon-shared-build-apt-sources-tpo: updated The Tor Project's apt signing key as per <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/12994#comment:9">https://trac.torproject.org/projects/tor/ticket/12994#comment:9</A>
+- build script: fix --terminal-only
+- build script: fix --no-default-applications
+- whonixcheck: refactoring, use /usr/lib/msgcollector/striphtml rather than sed in usr/lib/whonixcheck/check_tor_socks_or_trans_port
+- tb-updater: update tbb version url as per <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/8940#comment:21">https://trac.torproject.org/projects/tor/ticket/8940#comment:21</A>
+- tb-updater: compatibility with new recommended tbb versions format as per <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/8940#comment:28">https://trac.torproject.org/projects/tor/ticket/8940#comment:28</A>
+- anon-ws-disable-stacked-tor: Set environment variable &quot;export TOR_SKIP_CONTROLPORTTEST=1&quot; to skip TorButton control port verification as per <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/13079.">https://trac.torproject.org/projects/tor/ticket/13079.</A> Will take effect as soon as The Tor Project merges the TOR_SKIP_CONTROLPORTTEST patch.
+- sdwdate: curl, use --head rather than --include as per <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/315">https://github.com/Whonix/Whonix/issues/315</A>
+- sdwdate: Breaking change: pool variable names were renamed. SDWDATE_POOL_PAL, SDWDATE_POOL_NEUTRAL, are now called SDWDATE_POOL_ONE, SDWDATE_POOL_TWO, SDWDATE_POOL_THREE. If you were using custom pools, you should update your config according to the new variable names. As per <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/310.">https://github.com/Whonix/Whonix/issues/310.</A>
+- sdwdate: no longer using pal/neutral/foe pool design. Using three pools instead, that only contain servers of the type &quot;pal&quot;. As per <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/310.">https://github.com/Whonix/Whonix/issues/310.</A> Thanks to <A HREF="../../../../external.html?link=https://github.com/HulaHoopWhonix">https://github.com/HulaHoopWhonix</A> for suggesting it.
+
+This post has been automatically cross-posted by whonix.org/blog To see the original (including links), go to <A HREF="../../../../external.html?link=https://www.whonix.org/blog/whonix-9-release-candidate">https://www.whonix.org/blog/whonix-9-release-candidate</A>
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/000204.html>[Whonix-devel] suggest trustworthy, https, stable,	busy web servers for sdwdate
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/000206.html>[Whonix-devel] Release Candidate Pre Final Whonix 9 - testers	wanted!
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/date.html#205">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/thread.html#205">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/subject.html#205">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/author.html#205">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-September/000205.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-September/000205.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:00 GMT -->
+</HTML>

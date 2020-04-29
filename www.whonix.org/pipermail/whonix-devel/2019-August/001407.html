@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-August/001407.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [qubes-devel] Whonix 15.0.0.3.6 - Development Discussion and Testers Wanted! introduction of sdwdate-gui; Tor Browser first startup popup, disabled whonixcheck &#8220;Connecting to Tor&#8230;&#8221; passive popup
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%0A%20%3D%3Futf-8%3Fq%3F%3D5Bqubes-devel%3D5D_Whonix_15%3D2E0%3D2E0%3D2E3%3F%3D%0A%20%3D%3Futf-8%3Fq%3F%3D2E6_-_Development_Discussion_and_Testers_Wanted%21_introduction_%3F%3D%0A%20%3D%3Futf-8%3Fq%3Fof_sdwdate-gui%3D3B_Tor_Browser_first_startup_popup%3D2C_disabled_w%3F%3D%0A%20%3D%3Futf-8%3Fb%3FaG9uaXhjaGVjayDigJxDb25uZWN0aW5nIHRvIFRvcuKApuKAnSBwYXNzaXZl%3F%3D%0A%20%3D%3Futf-8%3Fq%3F_popup%3F%3D&In-Reply-To=%3C20190809111854.GA11128%40mail-itl%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001406.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001408.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [qubes-devel] Whonix 15.0.0.3.6 - Development Discussion and Testers Wanted! introduction of sdwdate-gui; Tor Browser first startup popup, disabled whonixcheck &#8220;Connecting to Tor&#8230;&#8221; passive popup</H1>
+<B>Marek Marczykowski-G&#243;recki</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%0A%20%3D%3Futf-8%3Fq%3F%3D5Bqubes-devel%3D5D_Whonix_15%3D2E0%3D2E0%3D2E3%3F%3D%0A%20%3D%3Futf-8%3Fq%3F%3D2E6_-_Development_Discussion_and_Testers_Wanted%21_introduction_%3F%3D%0A%20%3D%3Futf-8%3Fq%3Fof_sdwdate-gui%3D3B_Tor_Browser_first_startup_popup%3D2C_disabled_w%3F%3D%0A%20%3D%3Futf-8%3Fb%3FaG9uaXhjaGVjayDigJxDb25uZWN0aW5nIHRvIFRvcuKApuKAnSBwYXNzaXZl%3F%3D%0A%20%3D%3Futf-8%3Fq%3F_popup%3F%3D&In-Reply-To=%3C20190809111854.GA11128%40mail-itl%3E" TITLE="[Whonix-devel]  [qubes-devel] Whonix 15.0.0.3.6 - Development Discussion and Testers Wanted! introduction of sdwdate-gui; Tor Browser first startup popup, disabled whonixcheck &#8220;Connecting to Tor&#8230;&#8221; passive popup">marmarek at invisiblethingslab.com
+</A><BR>
+<I>Fri Aug 9 13:18:54 CEST 2019</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001406.html>[Whonix-devel] Whonix 15.0.0.3.6 - Development Discussion and Testers Wanted! introduction of sdwdate-gui; Tor Browser first startup popup, disabled whonixcheck &#8220;Connecting to Tor&#8230;&#8221; passive popup
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001408.html>[Whonix-devel] [qubes-devel] Whonix 15.0.0.3.6 - Development Discussion and Testers Wanted! introduction of sdwdate-gui; Tor Browser first startup popup, disabled whonixcheck &#8220;Connecting to Tor&#8230;&#8221; passive popup
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/date.html#1407">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/thread.html#1407">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/subject.html#1407">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/author.html#1407">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+On Fri, Aug 09, 2019 at 08:00:00AM +0000, Patrick Schleizer wrote:
+&gt;<i> The Whonix 15.0.0.3.6 release comes with numerous security enhancements,
+</i>&gt;<i> usability improvements and minor bugfixes. [1] The purpose of this post
+</i>&gt;<i> is to discuss potentially controversial changes as well as to call for
+</i>&gt;<i> testers.
+</i>&gt;<i> 
+</i>&gt;<i> Potentially controversial changes:
+</i>&gt;<i> 
+</i>&gt;<i> ##########
+</i>&gt;<i> 
+</i>&gt;<i> - add Tor Browser first startup popup to ask whether security slider
+</i>&gt;<i> should be set to safest [2] [3] - Qubes users will be asked that when
+</i>&gt;<i> creating a new Whonix-Workstation AppVM and each time they start a
+</i>&gt;<i> DispVM - unless they preseed the answer to the question by changing a
+</i>&gt;<i> configuration file as described in the popup.
+</i>
+A popup on every Whonix-based DisposableVM start is an issue. What about
+bypassing it in DispVM? Persistent compromise is less of an issue in
+DisposableVM, but on the other hand JS could still be used for some
+fingerprinting.
+Alternative idea: have a firstboot wizard that preseed it in
+DisposableVM template. Basically the same thing but only saving the
+setting without starting the actual browser. Then we could think how to
+integrate it into Whonix installation / update, and fresh Qubes
+installation.
+Yet another idea, from [2]: use two menu entries for DisposableVM case
+specifically. It isn't clear to me how to distinguish it at menu level,
+but it shouldn't be hard to figure out (qubes menu scripts change may be
+needed).
+
+&gt;<i> ##########
+</i>&gt;<i> 
+</i>&gt;<i> - disable whonixcheck &#8220;Connecting to Tor&#8230;&#8221;, &#8220;Connected to Tor.&#8221; messages
+</i>
+No notifications at all? Ok. (I need to adjust tests for this change)
+- From time to time, there is also big whonixcheck dialog when it timeout.
+Does this change applies to that dialog too?
+
+&gt;<i> - In favor of sdwdate-gui. whonixcheck connectivity check code checks
+</i>&gt;<i> Tor as well as sdwdate. Due to Tor/onion slowness it often times out.
+</i>&gt;<i> Since improving that code [4] is difficult, sdwdate-gui is used instead
+</i>&gt;<i> as a solution that provides better visual feedback to users.
+</i>&gt;<i> 
+</i>&gt;<i> ##########
+</i>&gt;<i> 
+</i>&gt;<i> - Start sdwdate-gui [5] [6], which is a systray by default in
+</i>&gt;<i> Whonix-Gateway.
+</i>&gt;<i> 
+</i>&gt;<i> ##########
+</i>&gt;<i> 
+</i>&gt;<i> - Due to sdwdate-gui, Qubes-Whonix who use multiple Whonix-Gateway [7]
+</i>&gt;<i> should note updated instructions for multiple Whonix-Workstation [8] due
+</i>&gt;<i> introduction of sdwdate-gui. Essentially, Whonix-Workstation's using any
+</i>&gt;<i> Whonix-Gateway named other than sys-whonix need to configure their
+</i>&gt;<i> Whonix-Workstation by declaring the name of their Whonix-Gateway VM.
+</i>&gt;<i> 
+</i>&gt;<i> Sparing users from needing to change this setting would require upstream
+</i>&gt;<i> Qubes feature request &quot;way to find out name of gateway from witin VM -
+</i>&gt;<i> qubesdb-read /qubes-gateway-name to get implemented&quot; [9] or some other
+</i>&gt;<i> solution.
+</i>&gt;<i> 
+</i>&gt;<i> Not following these instructions would lead to the following confusion.
+</i>&gt;<i> Someone who didn't start sys-whonix, starting an AppVM using
+</i>&gt;<i> sys-whonix-two would wonder why sys-whonix gets started. It would get
+</i>&gt;<i> started by Qubes qrexec. The sdwdate-gui entry for that AppVM would be
+</i>&gt;<i> registered in sys-whonix's sdwdate-gui rather than in sys-whonix-two's
+</i>&gt;<i> sdwdate-gui.
+</i>&gt;<i> 
+</i>&gt;<i> I have no idea how many users will be affected. How many are using
+</i>&gt;<i> multiple Whonix-Gateway.
+</i>&gt;<i> 
+</i>&gt;<i> Since the name of the VM running sdwdate-gui is currently pre-configured
+</i>&gt;<i> to sys-whonix, I am wondering if sdwdate-gui should run in any other VM
+</i>&gt;<i> by default? Do we already have any VM running in Qubes anyhow that would
+</i>&gt;<i> be more suitable?
+</i>
+Hmm, I have two thoughts about it:
+1. Isn't exposing Whonix Gateway name leaking some potentially
+de anonymization info? It can be retrieved only after full compromise of
+that VM (command execution), but still.
+
+2. How about using TCP socket for it instead? It would naturally go to
+the right Whonix Gateway, without any auxiliary VM name discovery
+needed. Since Whonix Workstation has access to this service and network
+access to Whonix Gateway anyway, it shouldn't significantly affect
+attack surface.
+2a. This could break if you put something between Whonix Workstation and
+Whonix Gateway (for example VPN). But in that case automatic discovery
+of netvm would break too.
+
+&gt;<i> ##########
+</i>&gt;<i> 
+</i>&gt;<i> Testers wanted!
+</i>&gt;<i> 
+</i>&gt;<i> How to test?
+</i>&gt;<i> 
+</i>&gt;<i> Switch to testers repository.
+</i>&gt;<i> 
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Project-APT-Repository">https://www.whonix.org/wiki/Project-APT-Repository</A>
+</i>&gt;<i> 
+</i>&gt;<i> Upgrade as usual.
+</i>&gt;<i> 
+</i>&gt;<i> Cheers,
+</i>&gt;<i> Patrick
+</i>&gt;<i> 
+</i>&gt;<i> [1] (The release announcement is VirtualBox specific but the changelog
+</i>&gt;<i> applies to Qubes-Whonix users using Whonix testers repository equally.)
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://forums.whonix.org/t/whonix-virtualbox-15-0-0-3-6-testers-wanted-stronger-linux-user-account-isolation-and-more-hardening/7891">https://forums.whonix.org/t/whonix-virtualbox-15-0-0-3-6-testers-wanted-stronger-linux-user-account-isolation-and-more-hardening/7891</A>
+</i>&gt;<i> 
+</i>&gt;<i> [2]
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://forums.whonix.org/t/add-tor-browser-first-startup-popup-to-ask-whether-security-slider-should-be-set-to-safest/7591">https://forums.whonix.org/t/add-tor-browser-first-startup-popup-to-ask-whether-security-slider-should-be-set-to-safest/7591</A>
+</i>&gt;<i> 
+</i>&gt;<i> [3]
+</i>&gt;<i> &gt; **First Start of Tor Browser (AnonDist) - Security vs Usability
+</i>&gt;<i> Trade-off**
+</i>&gt;<i> &gt;
+</i>&gt;<i> &gt; In the stock Tor Browser configuration, JavaScript is enabled by
+</i>&gt;<i> default for greater usability. The Tor Project provides a rationale for
+</i>&gt;<i> this decision.
+</i>&gt;<i> &gt;
+</i>&gt;<i> &gt; The producers of Tor Browser decided the security slider setting to be
+</i>&gt;<i> set to &quot;Standard&quot; by default. Quote Tor Browser Manual:
+</i>&gt;<i> &gt;
+</i>&gt;<i> &gt;&gt; You can further increase your security by choosing to disable certain
+</i>&gt;<i> web features that can be used to attack your security and anonymity. You
+</i>&gt;<i> can do this by increasing Tor Browser's Security Settings in the shield
+</i>&gt;<i> menu. Increasing Tor Browser's security level will stop some web pages
+</i>&gt;<i> from functioning properly, so you should weigh your security needs
+</i>&gt;<i> against the degree of usability you require.
+</i>&gt;<i> &gt; This popup question does not restrict your freedom to change security
+</i>&gt;<i> slider settings at any time.
+</i>&gt;<i> &gt;
+</i>&gt;<i> &gt; Responsible for this popup question is Tor Browser Starter by Whonix
+</i>&gt;<i> developers. It is an usability feature, which might break in future.
+</i>&gt;<i> Therefore the user is advised to verify that the security slider has the
+</i>&gt;<i> expected setting. Please donate!
+</i>&gt;<i> &gt;
+</i>&gt;<i> &gt; Preseeding:
+</i>&gt;<i> &gt;
+</i>&gt;<i> &gt; It is possible to avoid this popup question by preseeding the answer
+</i>&gt;<i> to it. For that create a file /etc/torbrowser.d/50_user.conf with the
+</i>&gt;<i> follow contents, if you want to answer &quot;Yes&quot;.
+</i>&gt;<i> &gt;&gt; tb_security_slider_safest=true
+</i>&gt;<i> &gt; Or if you want to answer &quot;No&quot;.
+</i>&gt;<i> &gt;&gt; tb_security_slider_safest=false
+</i>&gt;<i> &gt;
+</i>&gt;<i> &gt; Technical Details:
+</i>&gt;<i> &gt;
+</i>&gt;<i> &gt; This script is: /usr/bin/torbrowser
+</i>&gt;<i> &gt; Function: tb_security_slider
+</i>&gt;<i> &gt; All this would do is copying file
+</i>&gt;<i> /usr/share/torbrowser/security-slider-highest.js to
+</i>&gt;<i> /var/cache/tb-binary/.tb/tor-browser/Browser/TorBrowser/Data/Browser/profile.default/user.js.
+</i>&gt;<i> 
+</i>&gt;<i> &gt; cp /usr/share/torbrowser/security-slider-highest.js
+</i>&gt;<i> /var/cache/tb-binary/.tb/tor-browser/Browser/TorBrowser/Data/Browser/profile.default/user.js
+</i>&gt;<i> &gt;
+</i>&gt;<i> &gt; **Set Tor Browser Security Slider to Safest?**
+</i>&gt;<i> 
+</i>&gt;<i> [4]
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://github.com/Whonix/whonixcheck/blob/master/usr/lib/whonixcheck/check_tor_bootstrap.bsh">https://github.com/Whonix/whonixcheck/blob/master/usr/lib/whonixcheck/check_tor_bootstrap.bsh</A>
+</i>&gt;<i> 
+</i>&gt;<i> [5] <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/sdwdate-gui">https://www.whonix.org/wiki/sdwdate-gui</A>
+</i>&gt;<i> [6] <A HREF="../../../../external.html?link=https://github.com/Whonix/sdwdate-gui">https://github.com/Whonix/sdwdate-gui</A>
+</i>&gt;<i> 
+</i>&gt;<i> [7] <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Multiple_Whonix-Gateway">https://www.whonix.org/wiki/Multiple_Whonix-Gateway</A>
+</i>&gt;<i> [8] <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Multiple_Whonix-Workstation#qubes">https://www.whonix.org/wiki/Multiple_Whonix-Workstation#qubes</A>
+</i>&gt;<i> 
+</i>&gt;<i> [9] <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/4117">https://github.com/QubesOS/qubes-issues/issues/4117</A>
+</i>&gt;<i> 
+</i>
+- -- 
+Best Regards,
+Marek Marczykowski-G&#243;recki
+Invisible Things Lab
+A: Because it messes up the order in which people normally read text.
+Q: Why is top-posting such a bad thing?
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAl1NVp0ACgkQ24/THMrX
+1yzY8wf9ETq0/eG8DzeM3tvKcjLODU58aKiXouIlljVB3xM07sXZ3+9hCOO0AqMm
+02fxd39lllgfKo/ZOt2/DVpMMdkKG39AluK3Zy5SMeQNiyjHIUJ89XqoCwGBMor3
+vTisk7KHwuHj+79yoBKeSsXEb13Vfts/okmppeVBCWi11aRiK8t3UmHrkvPa33AW
+vZmeGb/GJrnj05ucKo6SvVkfZLPt3DJgs+XvhLeD21Xl5VQcjn2aUUFDqw5XaaQN
+gq0snKzzL/DahfMoMgZ+LuX3oZSMOIY8Z1ZGkCZhAG3JHoIegydMxsuGB2UheP75
+OPcl+Y7DT0fWMN+OOITPqddNCX6YWA==
+=PvHD
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001406.html>[Whonix-devel] Whonix 15.0.0.3.6 - Development Discussion and Testers Wanted! introduction of sdwdate-gui; Tor Browser first startup popup, disabled whonixcheck &#8220;Connecting to Tor&#8230;&#8221; passive popup
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001408.html>[Whonix-devel] [qubes-devel] Whonix 15.0.0.3.6 - Development Discussion and Testers Wanted! introduction of sdwdate-gui; Tor Browser first startup popup, disabled whonixcheck &#8220;Connecting to Tor&#8230;&#8221; passive popup
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/date.html#1407">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/thread.html#1407">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/subject.html#1407">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/author.html#1407">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001407.html','y7aelHq7wr','-72XsRlWr_Q',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001407.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-August/001407.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:01 GMT -->
+</HTML>

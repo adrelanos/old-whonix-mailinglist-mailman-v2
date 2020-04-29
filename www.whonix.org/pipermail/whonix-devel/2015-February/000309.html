@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-February/000309.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [qubes-devel] Re: Exposing AnonVM Users with Dom0 Hardware Fingerprint Leaks
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Re%3A%20Exposing%20AnonVM%20Users%20with%0A%20Dom0%20Hardware%20Fingerprint%20Leaks&In-Reply-To=%3C54E36784.2030507%40openmailbox.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000308.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000310.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [qubes-devel] Re: Exposing AnonVM Users with Dom0 Hardware Fingerprint Leaks</H1>
+<B>Axon</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Re%3A%20Exposing%20AnonVM%20Users%20with%0A%20Dom0%20Hardware%20Fingerprint%20Leaks&In-Reply-To=%3C54E36784.2030507%40openmailbox.org%3E" TITLE="[Whonix-devel] [qubes-devel] Re: Exposing AnonVM Users with Dom0 Hardware Fingerprint Leaks">axon at openmailbox.org
+</A><BR>
+<I>Tue Feb 17 17:08:36 CET 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000308.html>[Whonix-devel] Exposing AnonVM Users with Dom0 Hardware	Fingerprint Leaks
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000310.html>[Whonix-devel] [qubes-devel] Re: Exposing AnonVM Users with Dom0 Hardware Fingerprint Leaks
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/date.html#309">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/thread.html#309">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/subject.html#309">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/author.html#309">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+WhonixQubes wrote:
+&gt;<i> On 2015-02-17 11:28 am, Joanna Rutkowska wrote:
+</i>&gt;&gt;<i> Other platforms simply do not offer any meaningful separation 
+</i>&gt;&gt;<i> between the apps that primary targeted apps (e.g. a Web browser 
+</i>&gt;&gt;<i> used for anon browsing) and the hw specific personal identifying 
+</i>&gt;&gt;<i> info (NIC MACs, IP, avilable WiFi networks in the neighborhood, 
+</i>&gt;&gt;<i> etc). In these case if the attacker (e.g. NSA) exploits your
+</i>&gt;&gt;<i> anon Web browser they already get you. In case of Qubes they can
+</i>&gt;&gt;<i> start gather info such as CPUID output and mining through a
+</i>&gt;&gt;<i> database of Qubes users. Quite a different level of threat IMHO.
+</i>&gt;<i> 
+</i>&gt;<i> The former is a huge reason why I use Whonix in VMs, because of 
+</i>&gt;<i> this fundamental architectural problem with systems like Tails, 
+</i>&gt;<i> etc, which have access to bare metal and don't isolate the Tor 
+</i>&gt;<i> proxy from apps.
+</i>
+Speaking of this, the Tor Porject has had a ticket open for over 2 years
+now about wanting to &quot;Wrap Tails inside a VM, where the out VM runs
+Tor and handles the network.&quot;[1]
+
+Interestingly, the latest post from Erinn Clark (7 months ago) was:
+
+&quot;What should we do with this ticket? Leave it here? Assign to Tor VM
+(what is that?)?&quot;
+
+But I'm pretty sure she's not referring to Qubes TorVM. (Apparently
+there's something else associated with the Tor Project called &quot;Tor VM.&quot;)
+
+It would be cool if Qubes ended up being the solution for this.
+
+
+[1]<A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/7681">https://trac.torproject.org/projects/tor/ticket/7681</A>
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCgAGBQJU42d+AAoJEJh4Btx1RPV8Nh8P/1tfkHPRNF8vLZvvfkw4g1KU
+/RljHONhdcOqVjf+JJLz8jDvSDAOXXNU/XoVDF5q09cDzJjjVbK0ZQup451ZcGD+
+DPsbXBZIpP9upQStgFKazzz3gh0z2aLoB/3wztuvgm+fZ3ab4xidhROgguiwSv1Z
+BvrjjRpe+UUYS3ycV1rSZXyz80gVnRAiWDH/l0CjzbRxHpaxPsRFEY43++pVfWq1
+FSXRaeGQGQOU6kiWaxcc5YpCfJ/zFFQsxEpEasIyNpuGY0bvNMtJmlRS38v9xjxc
+ccouq4jKyqhHgWrK+qN9RTcoiY1qyWADDRkmycc4yMNWWpJ4hBcDfjWs92Z7uLiP
+AUNvIk1Fa7NPlLppwDIlKQ+9NS3csMcjKUNn5Yn2X8TbWOqFSEh1l9KPxTunz3Z0
+EZB+/aLM453EIr6yRVPm1kXOnY4QZdghxBzYL9ueiBgwc9EqUgnCWmahVwa2aQYq
+C9SEj+o7bwjjZyXEmXJ5m/Zcdr5DSs7iDJRi8AdwX/8I7EZTZDMhOps+unPWOEo8
++ZxpjheisyY7aM+QvLeedzN5fChKpTq5GYNMZ4SXmvzg61BhLx6TqBo+xkZ+8o30
+Pu0o16Yq/QF+6QKU56sg8RGvEYpZvDQo5OqBi2Eha/ausG252jQiEq1CQVVDcKTA
+yLQZQnluNjqhc46f+YTc
+=AR2c
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000308.html>[Whonix-devel] Exposing AnonVM Users with Dom0 Hardware	Fingerprint Leaks
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000310.html>[Whonix-devel] [qubes-devel] Re: Exposing AnonVM Users with Dom0 Hardware Fingerprint Leaks
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/date.html#309">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/thread.html#309">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/subject.html#309">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/author.html#309">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000309.html','y7aelHq7wr','3eIJlnjYZh4',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000309.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-February/000309.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:55 GMT -->
+</HTML>

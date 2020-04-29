@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2020-February/001513.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:54:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] revive randomsound?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20revive%20randomsound%3F&In-Reply-To=%3C20200211192624.GF4407%40somnambulist.local%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001509.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001510.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] revive randomsound?</H1>
+<B>Daniel Silverstone</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20revive%20randomsound%3F&In-Reply-To=%3C20200211192624.GF4407%40somnambulist.local%3E" TITLE="[Whonix-devel] revive randomsound?">dsilvers at digital-scurf.org
+</A><BR>
+<I>Tue Feb 11 20:26:24 CET 2020</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001509.html>[Whonix-devel] revive randomsound?
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001510.html>[Whonix-devel] GUChaos
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/date.html#1513">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/thread.html#1513">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/subject.html#1513">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/author.html#1513">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On Mon, Feb 03, 2020 at 11:53:09 +0000, Patrick Schleizer wrote:
+&gt;<i> &gt; There are also devices one can purchase which can increase the available
+</i>&gt;<i> &gt; entropy pool if your hosts are regularly running dry.  For example the
+</i>&gt;<i> &gt; chaoskey by Keith Packard and Bdale Garbee.
+</i>&gt;<i> This might work well for an individual, however we as a Linux distribution
+</i>&gt;<i> are working on software solutions to make good entropy quality available
+</i>&gt;<i> easily for as many users in the default installation.
+</i>
+I see.
+
+&gt;<i> That is our plan. Using as many diverse entropy sources as possible. We
+</i>&gt;<i> already install by default haveged, jitterentropy-rng package, load
+</i>&gt;<i> jitterentropy-rng kernel module, use virtio-rng for VMs. Currently I am
+</i>&gt;<i> working on packaging and integration of twuewand (a truerand algorithm
+</i>&gt;<i> for generating entropy). [1]
+</i>
+That sounds like an excellent approach.
+
+&gt;<i> Could we test that please? I am eager to test entropy by randomsound but
+</i>&gt;<i> I would need help with the C code.
+</i>
+I'm afraid I've literally not touched the code since I wrote it, and have not
+really been a C programmer on much since then.  I'm more of a Rust person these
+days as it happens.
+
+&gt;<i> I am still wondering if randomsound could be made useful nowadays. It is
+</i>&gt;<i> packages in Debian and probably other Linux distributions. [2] This
+</i>&gt;<i> results in an easy &quot;sudo apt install randomsound&quot; usability.
+</i>
+Yeah, the Debian maintainer of `randomsound` was a friend of mine who used it
+back in the dim and distant past.  You'd probably have more luck talking to Steve
+than myself really.
+
+&gt;<i> I've looked at the source code of randomsound and it looks good. Not too
+</i>&gt;<i> much code.
+</i>
+It surely was simple :D
+
+&gt;<i> Biggest problem currently I see with randomsound is that it cannot be
+</i>&gt;<i> easily analyzed. It writes directly to /dev/random. Hacking the code to
+</i>&gt;<i> write to /tmp/randomsound.bin instead (and a previous &quot;touch
+</i>&gt;<i> /tmp/randomsound.bin&quot;) does not work either.
+</i>
+Yeah, I imagine it runs `ioctl()` on it so it'd not be pleased by writing
+to a file directly.
+
+&gt;<i> Nowadays lots of randomsound features could be dropped in order to
+</i>&gt;<i> reduce the code size and make it more maintainable.
+</i>[snip]
+
+Honestly given how much you'd be taking out; it'd be easier for you to
+extract the code which retrieves the sound bytes and cleans them up,
+and put it into a brand new service program.
+
+&gt;<i> Would you be interested to revive randomsound? If yes, could you please
+</i>&gt;<i> add randomsound to git(hub) (or something) and add a branch that writes
+</i>&gt;<i> to stdout?
+</i>
+I'm not personally interested in doing anything on the project any longer,
+as I mentioned I'm not really a C programmer any more; and I've not needed
+`randomsound` in many years as I was part of the Simtec EntropyKey project.
+
+I am very happy for you take any code you want from `randomsound`'s source and
+use it in an equivalent replacement tool to serve as another entropy source for
+your users.  You're at liberty to credit me if you wish, but I won't chase you
+down if you don't.  I've digitally signed this email so that this can act as a
+binding statement should you so wish.
+
+Good luck, I apologise for taking so long to reply to you, I was simply very
+busy and kept putting off the reply until I could really sit and consider if
+I was prepared to put coding work in for you.
+
+Stay safe, and keep on encrypting...
+
+D.
+
+-- 
+Daniel Silverstone                         <A HREF="../../../../external.html?link=http://www.digital-scurf.org/">http://www.digital-scurf.org/</A>
+PGP mail accepted and encouraged.            Key Id: 3CCE BABE 206C 3B69
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 488 bytes
+Desc: not available
+URL: &lt;<A HREF="../../../../external.html?link=http://www.whonix.org/pipermail/whonix-devel/attachments/20200211/a59c8e33/attachment.sig">http://www.whonix.org/pipermail/whonix-devel/attachments/20200211/a59c8e33/attachment.sig</A>&gt;
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001509.html>[Whonix-devel] revive randomsound?
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001510.html>[Whonix-devel] GUChaos
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/date.html#1513">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/thread.html#1513">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/subject.html#1513">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/author.html#1513">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001513.html','y7aelHq7wr','1SLTyTw2oGA',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001513.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2020-February/001513.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:54:55 GMT -->
+</HTML>

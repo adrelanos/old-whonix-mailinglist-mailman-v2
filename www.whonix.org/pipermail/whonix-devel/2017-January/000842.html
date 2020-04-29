@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-January/000842.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] RFC 6528 revision for better system privacy
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20RFC%206528%20revision%20for%20better%20system%20privacy&In-Reply-To=%3CF289A54E-3DB8-499B-9DBC-2561A9FF91D1%40cs.columbia.edu%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000835.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000836.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] RFC 6528 revision for better system privacy</H1>
+<B>Steven M. Bellovin</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20RFC%206528%20revision%20for%20better%20system%20privacy&In-Reply-To=%3CF289A54E-3DB8-499B-9DBC-2561A9FF91D1%40cs.columbia.edu%3E" TITLE="[Whonix-devel] RFC 6528 revision for better system privacy">smb at cs.columbia.edu
+</A><BR>
+<I>Fri Jan 13 04:21:36 CET 2017</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000835.html>[Whonix-devel] RFC 6528 revision for better system privacy
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000836.html>[Whonix-devel] RFC 6528 revision for better system privacy
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/date.html#842">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/thread.html#842">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/subject.html#842">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/author.html#842">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On 12 Jan 2017, at 20:49, <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">bancfc at openmailbox.org</A> wrote:
+
+&gt;<i> Hi Steven and Fernando,
+</i>&gt;<i>
+</i>&gt;<i> I am a Whonix (anonymity OS) dev and would like to discuss the RFC 
+</i>&gt;<i> 6528 [0] you worked on. There has been privacy research in the area of 
+</i>&gt;<i> timer and clock leaks in network protocols that can aid adversaries in 
+</i>&gt;<i> deanonymizing Tor clients and hidden services. There is a practical 
+</i>&gt;<i> attack where an adversary can skew timer measurements by overloading 
+</i>&gt;<i> target machines and affect the oscillation of timer crystals in 
+</i>&gt;<i> predictable patterns that can be remotely measured in TCP sequence 
+</i>&gt;<i> numbers.[1]
+</i>&gt;<i>
+</i>&gt;<i> Please consider revising the RFC to omit the requirement of xoring 
+</i>&gt;<i> timer output with TCP ISNs. Recently the Linux kernel gained the 
+</i>&gt;<i> SipHash PRF to generate better sequence numbers and deprecated MD5. 
+</i>&gt;<i> This further reduces the necessity of including timer input which has 
+</i>&gt;<i> become a side channel that aids traffic correlation and endangers 
+</i>&gt;<i> privacy focused use cases.
+</i>
+I'm a bit confused -- there's no requirement in 6528 for XORing a timer. 
+  That plus sign in the equation at the start of Section 3 signifies 
+addition (modulo 2^32, I should mention, since it's a 32-bit field), not 
+exclusive-OR.  I'd have to think about it, but I'm not at all convinced 
+that XOR would even work in that context.  The result of the actually 
+specified operation is that the ISN of a given connection is uniformly 
+randomly distributed in [0,2^32-1] and independent of the ISN of any 
+other connection.
+
+I'm still reading [2], but I don't see the relevance of the attack to 
+Tor.  Tor does not provide end-to-end TCP; rather, it provides 
+end-to-end transport of the TCP payload, correct?  In that case, the 
+sequence numbers of the sender are only visible as far as its Tor 
+entrance node, but they're useless for an attack -- anyone who observes 
+those sequence numbers already has the source IP address; there's no 
+added value, unless the threat is some machine whose source IP address 
+is changing rapidly.  But if that's your threat model, you can look at 
+the TCP PAWS timer.  Beyond that, though [2] notes that subtracting two 
+ISN will give you the timer difference, that's only true if you subtract 
+two ISNs for the same connection -- and that's very hard in this 
+context.  The source port will change constantly, with each new TCP 
+open, and while you can manage the same connection when calling a 
+server, with a Tor hidden service the server is actually a client at the 
+TCP level, so it picks its own port numbers.
+
+I'm unfamiliar with what Linux has done to get away from RFC 1948/6528.  
+Simply replacing MD5 with SipHash does not do away with the need for the 
+timer.  The whole purpose of the timer is to preserve TCP connection 
+integrity semantics; omitting it changes those semantics.  Preserving 
+them was the whole point of 1948, or I'd have suggesting simply using a 
+good PRNG for ISNs in my 1989 paper.  Do you have a pointer to any 
+documentation describing what's done?
+
+Anyway -- at the moment, I don't see an attack.  As best I can tell, [2] 
+describes a way to leak data via the ISN without risk of detection (and 
+I'm not even convinced that the threat of detection is real for a Tor 
+hidden service, given the client port number issue).  That's not the 
+same as being able to fingerprint a timer in a real Tor situation.  Even 
+if it was, Tor does not relay TCP headers, so they're not visible past 
+the first Tor hop.
+
+Mind you, I'm not saying you're wrong.  I am saying that you haven't 
+persuaded me that you're right or that your suggestion preserves TCP 
+semantics for non-Tor situations.
+
+&gt;<i> [0] <A HREF="../../../../external.html?link=https://tools.ietf.org/html/rfc6528">https://tools.ietf.org/html/rfc6528</A>
+</i>&gt;<i> [1] <A HREF="../../../../external.html?link=http://sec.cs.ucl.ac.uk/users/smurdoch/papers/ccs06hotornot.pdf">http://sec.cs.ucl.ac.uk/users/smurdoch/papers/ccs06hotornot.pdf</A>
+</i>&gt;<i> [2] <A HREF="../../../../external.html?link=http://sec.cs.ucl.ac.uk/users/smurdoch/papers/ih05coverttcp.pdf">http://sec.cs.ucl.ac.uk/users/smurdoch/papers/ih05coverttcp.pdf</A>
+</i>
+
+
+         --Steve Bellovin, <A HREF="../../../../external.html?link=https://www.cs.columbia.edu/~smb">https://www.cs.columbia.edu/~smb</A>
+
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000835.html>[Whonix-devel] RFC 6528 revision for better system privacy
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000836.html>[Whonix-devel] RFC 6528 revision for better system privacy
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/date.html#842">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/thread.html#842">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/subject.html#842">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/author.html#842">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000842.html','y7aelHq7wr','kDLbtJx4MbY',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000842.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-January/000842.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:32 GMT -->
+</HTML>

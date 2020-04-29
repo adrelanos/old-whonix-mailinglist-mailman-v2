@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-June/000371.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Testers Wanted! Whonix 11 ( 11.0.0.3.0 ) - Release	Candidate
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Testers%20Wanted%21%20Whonix%2011%20%28%2011.0.0.3.0%20%29%20-%20Release%0A%09Candidate&In-Reply-To=%3C74c128614de719c61eeeddb3565fc352%40www.whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000370.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000372.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Testers Wanted! Whonix 11 ( 11.0.0.3.0 ) - Release	Candidate</H1>
+<B>Whonix | Privacy and Anonymity OS</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Testers%20Wanted%21%20Whonix%2011%20%28%2011.0.0.3.0%20%29%20-%20Release%0A%09Candidate&In-Reply-To=%3C74c128614de719c61eeeddb3565fc352%40www.whonix.org%3E" TITLE="[Whonix-devel] Testers Wanted! Whonix 11 ( 11.0.0.3.0 ) - Release	Candidate">newblogpost at whonix.org
+</A><BR>
+<I>Wed Jun 17 16:53:49 CEST 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000370.html>[Whonix-devel] whonix-developer-meta-files, packages/whonix-developer-meta-files/whonix_build command; .xz creation/compression
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000372.html>[Whonix-devel] How to remove a widget from systemtray? removeSystrayApplet.js example is broken.
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/date.html#371">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/thread.html#371">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/subject.html#371">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/author.html#371">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>The version number for this testers-only release is 11.0.0.3.0, which will become Whonix 11 the moment it’s blessed stable.
+
+Major changes are port of Whonix from being Debian wheezy (that is Debian oldstable) based to Debian jessie (that now is Debian stable) based. And port from sysvinit to systemd among other enhancements, see changelog below.
+
+Download link for Virtual Box images (.ova), kvm / qemu images and OpenPGP signatures (.asc):
+<A HREF="../../../../external.html?link=http://mirror.whonix.de/11.0.0.3.0/">http://mirror.whonix.de/11.0.0.3.0/</A>
+
+Upgrading Whonix 10 to Whonix 11:
+ <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Upgrading_Whonix_10_to_Whonix_11">https://www.whonix.org/wiki/Upgrading_Whonix_10_to_Whonix_11</A>
+
+If you want to build from source code, see:
+<A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Dev/Build_Documentation">https://www.whonix.org/wiki/Dev/Build_Documentation</A>
+
+Thanks to everyone who made this test release possible!
+
+Forum Discussion:
+link soon
+
+Changelog between Whonix 10.0.0.5.5 and Whonix 11.0.0.2.3:
+
+<A HREF="../../../../external.html?link=https://www.whonix.org/blog/whonix-11-testers-wanted">https://www.whonix.org/blog/whonix-11-testers-wanted</A>
+
+Changelog between Whonix 11.0.0.2.3 and Whonix 11.0.0.3.0:
+
+- tb-starter: Made path to Tor Browser configurable by tb_home_folder variable. Renamed variable home_folder to tb_home_folder to synchronize it with tb-updater. - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T338">https://phabricator.whonix.org/T338</A>
+- anon-meta-packages: added dependency on 'gir1.2-gtk-3.0' to 'anon-workstation-default-applications' because 'mat' misses it - <A HREF="../../../../external.html?link=http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=788099">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=788099</A> - <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,1287.0.html">https://www.whonix.org/forum/index.php/topic,1287.0.html</A>
+upstream bug report: mat missed dependency gir1.2-gtk-3.0 - <A HREF="../../../../external.html?link=http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=788099">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=788099</A>
+- genmkfile: cleanup debian.tar.xz (jessie support)
+- tb-updater: output: improved message in case hash verification failed - <A HREF="../../../../external.html?link=https://github.com/Whonix/tb-updater/commit/285cb5c0ed3bb77c1f9d6a4c3e01a62b1fc7a650">https://github.com/Whonix/tb-updater/commit/285cb5c0ed3bb77c1f9d6a4c3e01a62b1fc7a650</A>
+- msgcollector: progress bar initial value fix for Debian jessie - <A HREF="../../../../external.html?link=https://github.com/Whonix/msgcollector/commit/bc26aee153a5a939a621ac198b11a445e2b74a38">https://github.com/Whonix/msgcollector/commit/bc26aee153a5a939a621ac198b11a445e2b74a38</A>
+- grub-enable-apparmor: backwards compatiblity fix with Whonix 10, restore original /etc/default/grub - <A HREF="../../../../external.html?link=https://github.com/Whonix/grub-enable-apparmor/commit/b99978709575365b99bebf4ca3bda129890f7d97">https://github.com/Whonix/grub-enable-apparmor/commit/b99978709575365b99bebf4ca3bda129890f7d97</A>
+- rads: backwards compatiblity fix with Whonix &lt;= 10.x: <A HREF="../../../../external.html?link=https://github.com/Whonix/rads/commit/cf0267514e6f2e472466ce30aaa4b6f3d807fb65">https://github.com/Whonix/rads/commit/cf0267514e6f2e472466ce30aaa4b6f3d807fb65</A>
+- whonixcheck: fixed Tor Config Check Result issue that was caused by the Tor upgrade; improved output for Tor Config Check Result - <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,1295">https://www.whonix.org/forum/index.php/topic,1295</A> - <A HREF="../../../../external.html?link=https://github.com/Whonix/whonixcheck/commit/bf55af20a5856d8a024a7eb821f5d54692dc5b15">https://github.com/Whonix/whonixcheck/commit/bf55af20a5856d8a024a7eb821f5d54692dc5b15</A>
+- whonix-legacy: anon-gw-first-run-notice has been deprecated, merged into whonix-setup-wizard, therefore get rid of &quot;/etc/xdg/autostart/gateway_first_run_notice.desktop&quot;; Get rid of &quot;/etc/grub.d/30_apparmor.cfg&quot;, because that file has been moved from /etc/grub.d/30_apparmor.cfg to /etc/default/grub.d/30_apparmor.cfg since the path has changed since release of jessie. - <A HREF="../../../../external.html?link=https://github.com/Whonix/whonix-legacy/commit/9b50b5c33acee1a260acae2c1abccbef8f47663f">https://github.com/Whonix/whonix-legacy/commit/9b50b5c33acee1a260acae2c1abccbef8f47663f</A>
+- vbox-disable-timesync: Do not try to (re-)start the service after package install/upgrade, because it could fail if kernel was upgraded, which would make the whole postinst script fail. - <A HREF="../../../../external.html?link=https://github.com/Whonix/vbox-disable-timesync/commit/f18af1107cedfc50ef06b054d1463835376e0415">https://github.com/Whonix/vbox-disable-timesync/commit/f18af1107cedfc50ef06b054d1463835376e0415</A>
+- whonixcheck 2.2.1-1 / Whonix 10: stable fix, no longer run test check_tor_config, because it false positively detects an issue since the Tor upgrade - <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,1295.0.html">https://www.whonix.org/forum/index.php/topic,1295.0.html</A> - <A HREF="../../../../external.html?link=https://github.com/Whonix/whonixcheck/commit/44b8921a214799b2d3e17281b2f4b0ee04643295">https://github.com/Whonix/whonixcheck/commit/44b8921a214799b2d3e17281b2f4b0ee04643295</A>
+- debian-systemd mailing list: cannot extend network-manager unit file by using network-manager.service.d - <A HREF="../../../../external.html?link=https://lists.alioth.debian.org/pipermail/pkg-systemd-maintainers/2015-June/007613.html">https://lists.alioth.debian.org/pipermail/pkg-systemd-maintainers/2015-June/007613.html</A>
+- control-port-filter-python: added apparmor profile
+documentation: Improved gpg import instructions. Key fingerprint is now checked before importing the key for better security. - <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Template:Build_Documentation_Get_Source_Code#Get_the_Signing_Key">https://www.whonix.org/wiki/Template:Build_Documentation_Get_Source_Code#Get_the_Signing_Key</A> - <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Whonix_Signing_Key#Download_the_key">https://www.whonix.org/wiki/Whonix_Signing_Key#Download_the_key</A>
+- msgcollector: increased MinimumSize so first line of gpg output is not needlessy line broken into two - <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,261.150.html">https://www.whonix.org/forum/index.php/topic,261.150.html</A>
+- rads: silence by default when disabled - <A HREF="../../../../external.html?link=https://github.com/Whonix/rads/commit/270db5b186417dc38d938f014bd8006aeaf6cdc0">https://github.com/Whonix/rads/commit/270db5b186417dc38d938f014bd8006aeaf6cdc0</A>
+- repository: updated repository as per 11.0.0.3.0
+- build script: added grub-screen-resolution and grub-output-verbose as weak recommended packages - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T354">https://phabricator.whonix.org/T354</A>
+
+This post has been automatically cross-posted by whonix.org/blog To see the original (including links), go to <A HREF="../../../../external.html?link=https://www.whonix.org/blog/testers-wanted-rc-11-0-0-3-0">https://www.whonix.org/blog/testers-wanted-rc-11-0-0-3-0</A>
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000370.html>[Whonix-devel] whonix-developer-meta-files, packages/whonix-developer-meta-files/whonix_build command; .xz creation/compression
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000372.html>[Whonix-devel] How to remove a widget from systemtray? removeSystrayApplet.js example is broken.
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/date.html#371">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/thread.html#371">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/subject.html#371">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/author.html#371">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000371.html','y7aelHq7wr','xS6snyYEsOE',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-June/000371.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-June/000371.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:51 GMT -->
+</HTML>

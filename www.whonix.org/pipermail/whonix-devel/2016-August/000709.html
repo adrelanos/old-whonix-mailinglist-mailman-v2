@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-August/000709.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] DRAMA countermeasures
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20DRAMA%20countermeasures&In-Reply-To=%3C6c43d7b860ccf766ba3611aab97cad0e%40openmailbox.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/000707.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/000717.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] DRAMA countermeasures</H1>
+<B>bancfc at openmailbox.org</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20DRAMA%20countermeasures&In-Reply-To=%3C6c43d7b860ccf766ba3611aab97cad0e%40openmailbox.org%3E" TITLE="[Whonix-devel] DRAMA countermeasures">bancfc at openmailbox.org
+</A><BR>
+<I>Tue Aug 23 20:18:28 CEST 2016</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/000707.html>[Whonix-devel] DRAMA countermeasures
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/000717.html>[Whonix-devel] DRAMA countermeasures
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/date.html#709">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/thread.html#709">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/subject.html#709">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/author.html#709">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On 2016-08-23 10:12, Daniel Gruss wrote:
+&gt;<i> On 23.08.2016 00:34, <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">bancfc at openmailbox.org</A> wrote:
+</i>&gt;&gt;<i> Very neat attack. We are looking at the options for 
+</i>&gt;&gt;<i> countermeasures.[1]
+</i>&gt;<i> 
+</i>&gt;<i> Thank You!
+</i>&gt;<i> 
+</i>&gt;&gt;<i> Please feel free to correct me, the options are:
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> * Running stress-m2 in parallel
+</i>&gt;<i> 
+</i>&gt;<i> At least -m2, or even more, depending on the system. And I'm not
+</i>&gt;<i> convinced that will reliably prevent attacks. We have seen both the
+</i>&gt;<i> covert and side channel being able to work in the presence of some
+</i>&gt;<i> noise. Even if reliability goes down it might not make an attack
+</i>&gt;<i> impossible. And, stress -m 2 is rather expensive.
+</i>
+I see. Thanks for making this clear.
+
+&gt;<i> 
+</i>&gt;&gt;<i> * NUMA with non-interleaved memory combined with CPU pinning
+</i>&gt;<i> 
+</i>&gt;<i> Yes.
+</i>&gt;<i> 
+</i>&gt;&gt;<i> I prefer option two because its less resource intensive. However most
+</i>&gt;&gt;<i> commodity (non-server) PCs have only a single NUMA node. Can this be
+</i>&gt;&gt;<i> used meaningfully to prevent this attack?
+</i>&gt;<i> 
+</i>&gt;<i> Keeping tenants on different NUMA nodes with non-interleaved memory is
+</i>&gt;<i> effective to prevent the attack.
+</i>&gt;<i> 
+</i>&gt;<i> If the system has only a single NUMA node, it's more difficult.
+</i>
+Can you please go into more details on what can be done under such 
+constraints?
+
+&gt;<i> 
+</i>&gt;&gt;<i> You don't have to but I'd appreciate if you give an example Libvirt
+</i>&gt;&gt;<i> config [2] (for a system with 4 pCPUs one NUMA node) that defends
+</i>&gt;&gt;<i> against DRAMA successfully.
+</i>&gt;<i> 
+</i>&gt;<i> Sorry, not much experience with libvirt ;)
+</i>&gt;<i> 
+</i>&gt;<i> Important part is that the VMs on the different CPUs cannot access
+</i>&gt;<i> memory of the other CPU. Then you prevent all cross-CPU DRAM attacks.
+</i>
+I am very new to NUMA in general so please overlook what I say if its 
+dumb -
+
+Is there a concept of per-CPU memory boundaries within a single cell 
+that can guarantee resource partitioning? Say 4GB RAM split among 4 CPUs 
+- each CPU has a gig each (which becomes the max limit we can safely 
+assign per guest)
+
+
+KVM supports memory locking so that not even the host can use the pages 
+assigned to a VM. Can this help?:
+
+&quot;When set and supported by the hypervisor, memory pages belonging to the 
+domain will be locked in host's memory and the host will not be allowed 
+to swap them out.&quot;
+
+&gt;<i> 
+</i>&gt;<i> If you have any other questions, feel free to ask!
+</i>
+Thanks. I hope my questions aren't a bother :) I appreciate your 
+feedback.
+
+&gt;<i> 
+</i>&gt;<i> Cheers,
+</i>&gt;<i> Daniel
+</i>
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/000707.html>[Whonix-devel] DRAMA countermeasures
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/000717.html>[Whonix-devel] DRAMA countermeasures
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/date.html#709">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/thread.html#709">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/subject.html#709">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/author.html#709">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/000709.html','y7aelHq7wr','foNrezN0oHw',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-August/000709.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-August/000709.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:37 GMT -->
+</HTML>

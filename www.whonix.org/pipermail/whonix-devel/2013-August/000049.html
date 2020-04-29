@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2013-August/000049.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] timesync for Whonix 6
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20timesync%20for%20Whonix%206&In-Reply-To=%3C520D2A41.9090402%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000036.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000055.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] timesync for Whonix 6</H1>
+<B>adrelanos</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20timesync%20for%20Whonix%206&In-Reply-To=%3C520D2A41.9090402%40riseup.net%3E" TITLE="[Whonix-devel] timesync for Whonix 6">adrelanos at riseup.net
+</A><BR>
+<I>Thu Aug 15 21:21:37 CEST 2013</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000036.html>[Whonix-devel] New small whonix
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000055.html>[Whonix-devel] Where to place grml_packages grml_config	grml_sources.list?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/date.html#49">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/thread.html#49">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/subject.html#49">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/author.html#49">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Could you glimpse at this page please? You don't have to read all of it.
+<A HREF="../../../../external.html?link=https://whonix.org/wiki/Dev/TimeSync">https://whonix.org/wiki/Dev/TimeSync</A>
+
+I am currently in process of redesigning how whonixcheck and timesync
+are started as daemon and notify the user to fix issues #55.
+
+If everything goes well, timesync shouldn't often fail.
+
+If it fails after boot, because network is down, it could say network
+is down and it will keep asking Whonix-Gateway if network is up and
+run after Whonix-Gateway says network is up. Or say nothing at all.
+This is more a question of balance between better debugging our tools
+and educating internals vs. making it just work. I am not sure, I am
+yet capable of just works always in all cases.
+
+Timesync in Whonix-Workstation 6 will run at least every 60 minutes.
+With a minimum of 10 minutes in between. And the rest of the numbers
+between 60 and 10 are randomly choose to prevent creating a Whonix
+network fingerprint (such as always x amount of traffic at x.30).
+
+If it fails once, its not a big deal. Maybe it fails because the host
+internet connection went down. What should it do? Inform? Or wait
+until it failed 5 times and inform then?
+
+Well, it could start failing forever, if there is a bug in timesync.
+There shouldn't be any now, but you never know what happens for
+example when curl gets updated.
+
+It could also fail when users change settings in /etc/sdwdate.d/
+configuration folder. Or it could fail if the servers we are using
+stop accepting connections from the Tor network. Or an evil Tor exit
+node could let timesync fail by blocking connections to those servers.
+
+(Timesync fails are recognized and won't cause a crash, I am thinking
+how to react on such failures.)
+
+At the moment in Whonix 0.5.6 timesync will also inform the user after
+boot, that timesync succeeded using a passive popup (fade in message).
+- From then, when its succeeds, it says nothing, if it fails, it will
+show a popup with an error message. [1]
+
+For Whonix 6, when no graphical user environment is started, success
+messages after boot, timesync failure messages and whonixcheck
+periodic run (at least every 24 hours) results are written to tty1,
+which is documented here:
+<A HREF="../../../../external.html?link=https://whonix.org/wiki/Desktop#whonixcheck.2Ftimesync_writing_to_tty1">https://whonix.org/wiki/Desktop#whonixcheck.2Ftimesync_writing_to_tty1</A>
+
+I am not entirely liking it yet. When you are using a graphical
+desktop environment (most Whonix-Workstation users will do), you'll
+see those old messages when restarting or powering off. That might be
+confusing. If they reacted to the graphical whonixcheck and followed
+advice to update, then they shut down and see the old notification, I
+am sure it will cause confusion. I am not sure how to solve that best.
+Maybe when a graphical desktop environment is running, it shouldn't
+write the tty1? Not sure if I can reliably detect that.
+
+Later, after Whonix 6, whonixcheck/timesync gui can be improved. I
+have a tray icon in mind, with is either green, yellow, red or working
+depending on its state.
+Green: everything ok.
+Yellow: no connection to Whonix-Gateway (maybe that should be a symbol)
+Red: There are updates not installed yet, other issues or any bugs
+have been caught.
+
+[1]
+timesync
+- ----------------------------------------------------------------------
+
+Network Time Synchronization (timesync) done, but no success!!!
+Is your internet connection down?
+
+Test your internet connection: Start menu -&gt; Applications -&gt; System -&gt;
+Whonixcheck
+                               or in Terminal: whonixcheck
+                               or in Terminal with debugging:
+whonixcheck -v
+
+See logfile: tail -f -n 20 /var/log/htpdate.log
+See status files: cd /var/run/htpdate &amp;&amp; dir
+Try again: Start menu -&gt; Applications -&gt; System -&gt; Whonix Timesync
+           or in Terminal: timesync
+Last resort: manually set the clock! (In UTC!):
+             sudo su
+             date -s &quot;17 FEB 2012 24:00:00&quot; &amp;&amp; hwclock -w
+
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCgAGBQJSDSo2AAoJEJwTGtNxOq7vJ7sP/iiAGJ02x/yR0KadxLC9syIN
+//0oN9ohIYP+yjqCh5n8tLc8tUXeXf1GYvu1uN4aQgGv7FHz+hbhX0LRoZjMMwsI
+0z2HSx3YCch0tP4zXR3fc0JwkzDxV282svMIu/ofM4clDv6uOT0jYr/zLxeccjWc
+eLh6I0Q3F3l4pRqEhQKqtWLJykOxviPod8zkZuaiWNyKGaIaMz1oT8czmS3ReUBv
+arZkSiwLfqX1ynyiVekSXlkl2UGGLJ4xhSUyLj3l9UZ0zL74ynshqdmRn8n2ufXG
+uiQ2k+WqtTeIAO+BshW7CzvmDS4BbdruBT4+Le6n6RXaExiScHQ/NSkuI36LbhI4
+yVKlDtnN5op5xOzoQfgq9aNkI/wN6PsyXdBj4EKoWyaDZudZZYOAkRcopn8bH8Xa
+zwduHColVemmWximRdk9UQ/MOlrvdxUbG4qP1b2MAaOrJ2O322fSF3KMoBDqbvig
+uLeeaA8RAINz7woCMZEsupeoEKIlBmXE+d7dlwLL9nSFftV3U3FBJrogDmOvbeLv
+LPzjvCm8Lrjyr7Z4rLisTOTVP7A1/E28VFCgp0n1+fbPjEmnmREh90L2l7/O1MIm
+qzOLRHLaOtFt45a7nbPVS4Kr2TZ6Yn3HS4saeOSJZwr1HPo9e8etAmsOBwPX6eaB
+GuEW/Xm95/PLTehAdRr0
+=U+wW
+-----END PGP SIGNATURE-----
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000036.html>[Whonix-devel] New small whonix
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000055.html>[Whonix-devel] Where to place grml_packages grml_config	grml_sources.list?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/date.html#49">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/thread.html#49">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/subject.html#49">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/author.html#49">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000049.html','y7aelHq7wr','Sdlb0B6-FkA',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000049.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2013-August/000049.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:13 GMT -->
+</HTML>

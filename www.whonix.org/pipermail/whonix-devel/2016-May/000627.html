@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-May/000627.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] revisiting decision of using stable as a Whonix base
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20revisiting%20decision%20of%20using%20stable%20as%20a%20Whonix%0A%20base&In-Reply-To=%3Cb4a7bbd3054582de90e355dbe838e7ae%40openmailbox.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/000625.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/000628.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] revisiting decision of using stable as a Whonix base</H1>
+<B>bancfc at openmailbox.org</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20revisiting%20decision%20of%20using%20stable%20as%20a%20Whonix%0A%20base&In-Reply-To=%3Cb4a7bbd3054582de90e355dbe838e7ae%40openmailbox.org%3E" TITLE="[Whonix-devel] revisiting decision of using stable as a Whonix base">bancfc at openmailbox.org
+</A><BR>
+<I>Fri May 13 03:35:38 CEST 2016</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/000625.html>[Whonix-devel] revisiting decision of using stable as a Whonix base
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/000628.html>[Whonix-devel] revisiting decision of using stable as a Whonix base
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/date.html#627">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/thread.html#627">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/subject.html#627">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/author.html#627">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On 2016-05-10 18:09, Patrick Schleizer wrote:
+&gt;&gt;<i> I wanted to revisit the decision of using stable as a Whonix base. The
+</i>&gt;&gt;<i> biggest (and only) advantage of using stable is to avoid unexpected
+</i>&gt;&gt;<i> dependency breakages that increase maintenance burden.
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> From a security POV stable is a disaster that's guaranteed to have
+</i>&gt;&gt;<i> security bugs that are not patched for years at a time. Not every
+</i>&gt;&gt;<i> potentially exploitable bug that is discovered and fixed in upstream
+</i>&gt;&gt;<i> software versions is marked as a cve for backporting. What appears as 
+</i>&gt;&gt;<i> a
+</i>&gt;&gt;<i> crash or DoS bug have security implications with enough effort. Linus 
+</i>&gt;&gt;<i> is
+</i>&gt;&gt;<i> infamous for doing &quot;silent&quot; fixes where he marks scores of bugs as DoS
+</i>&gt;&gt;<i> when they have security implications and so they never make it into
+</i>&gt;&gt;<i> stable distro kernels. The situation is similar for userspace software
+</i>&gt;&gt;<i> in Debian stable to that suffer from publically discovered security
+</i>&gt;&gt;<i> problems but don't get upgraded because of policy.
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> See:
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> <A HREF="../../../../external.html?link=https://mjg59.dreamwidth.org/41085.html">https://mjg59.dreamwidth.org/41085.html</A>
+</i>&gt;&gt;<i> <A HREF="../../../../external.html?link=https://cxsecurity.com/issue/WLB-2008070032">https://cxsecurity.com/issue/WLB-2008070032</A>
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> Are testing snapshots a workable compromise between security and 
+</i>&gt;&gt;<i> stability?
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> (Its up to you to post this conversation for public record)
+</i>&gt;&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> I not mind about public vs private.
+</i>&gt;<i> 
+</i>&gt;<i> Debian testing:
+</i>&gt;<i> 
+</i>&gt;<i> - build keeps breaking (ok, never mind and testing snapshots would do)
+</i>&gt;<i> 
+</i>&gt;<i> - flood of constant upgrades (maybe also say never mind)
+</i>&gt;<i> 
+</i>&gt;<i> - users will keep running into issues which creates a user support hell
+</i>&gt;<i> (this is serious)
+</i>&gt;<i> 
+</i>&gt;<i> - it's impossible to keep up and to see how it interacts with Whonix.
+</i>&gt;<i> Just using testing in sources.list could quickly end in obscure stuff
+</i>&gt;<i> (like apparmor changes) resulting in Tor not longer starting and 
+</i>&gt;<i> whatnot.
+</i>&gt;<i> 
+</i>&gt;<i> Or do you suggest somehow slowing down testing by having Whonix decide
+</i>&gt;<i> which snapshot of users are going to use?
+</i>
+Exactly so. This would resolve the most pressing problems like the 
+breakage and support hell scenarios you describe while giving users a 
+fresher/patched base for better security.
+
+&gt;<i> 
+</i>&gt;<i> Cheers,
+</i>&gt;<i> Patrick
+</i>
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/000625.html>[Whonix-devel] revisiting decision of using stable as a Whonix base
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/000628.html>[Whonix-devel] revisiting decision of using stable as a Whonix base
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/date.html#627">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/thread.html#627">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/subject.html#627">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/author.html#627">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/000627.html','y7aelHq7wr','uUDyCZImKMU',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-May/000627.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-May/000627.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:40 GMT -->
+</HTML>

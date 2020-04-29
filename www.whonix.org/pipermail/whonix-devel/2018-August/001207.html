@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-August/001207.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] #27193 [Applications/Tor Browser]: remove Tor Browser version 7.5.5 from RecommendedTBBVersions
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%2327193%20%5BApplications/Tor%20Browser%5D%3A%20remove%20Tor%0A%20Browser%20version%207.5.5%20from%20RecommendedTBBVersions&In-Reply-To=%3C049.dbc7e09a97c251870d88dc74fa3565ee%40torproject.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001206.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001208.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] #27193 [Applications/Tor Browser]: remove Tor Browser version 7.5.5 from RecommendedTBBVersions</H1>
+<B>Tor Bug Tracker &amp; Wiki</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%2327193%20%5BApplications/Tor%20Browser%5D%3A%20remove%20Tor%0A%20Browser%20version%207.5.5%20from%20RecommendedTBBVersions&In-Reply-To=%3C049.dbc7e09a97c251870d88dc74fa3565ee%40torproject.org%3E" TITLE="[Whonix-devel] #27193 [Applications/Tor Browser]: remove Tor Browser version 7.5.5 from RecommendedTBBVersions">blackhole at torproject.org
+</A><BR>
+<I>Fri Aug 17 22:18:34 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001206.html>[Whonix-devel] Diceware and Quantum Computing resilience
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001208.html>[Whonix-devel] #27193 [Applications/Tor Browser]: remove Tor Browser version 7.5.5 from RecommendedTBBVersions
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/date.html#1207">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/thread.html#1207">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/subject.html#1207">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/author.html#1207">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>#27193: remove Tor Browser version 7.5.5 from RecommendedTBBVersions
+------------------------------------------+----------------------
+     Reporter:  adrelanos                 |      Owner:  tbb-team
+         Type:  defect                    |     Status:  new
+     Priority:  Medium                    |  Milestone:
+    Component:  Applications/Tor Browser  |    Version:
+     Severity:  Normal                    |   Keywords:
+Actual Points:                            |  Parent ID:
+       Points:                            |   Reviewer:
+      Sponsor:                            |
+------------------------------------------+----------------------
+ External applications such as [<A HREF="../../../../external.html?link=https://github.com/Whonix/tb-updater">https://github.com/Whonix/tb-updater</A> tb-
+ updater] and torbrowser-downloader parse, depend on
+ [<A HREF="../../../../external.html?link=https://www.torproject.org/projects/torbrowser/RecommendedTBBVersions">https://www.torproject.org/projects/torbrowser/RecommendedTBBVersions</A>
+ RecommendedTBBVersions] being up to date.
+
+ {{{7.5.6}}} was [<A HREF="../../../../external.html?link=https://blog.torproject.org/tor-browser-756-released-">https://blog.torproject.org/tor-browser-756-released-</A>
+ released] June 26, 2018.
+
+ Yet on August 18, 2018 {{{7.5.5}}} was still included in
+ RecommendedTBBVersions. Why? Forgotten or is there a policy to it?
+
+ Could you please kindly explain the policy on when old versions are
+ removed from RecommendedTBBVersions?
+
+ I am asking, so ​tb-updater parsing code can be updated accordingly. (At
+ the moment it's &quot;suggest the lowest version number among them otherwise it
+ might be an alpha/beta version&quot;.)
+
+--
+Ticket URL: &lt;<A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/27193">https://trac.torproject.org/projects/tor/ticket/27193</A>&gt;
+Tor Bug Tracker &amp; Wiki &lt;<A HREF="../../../../external.html?link=https://trac.torproject.org/">https://trac.torproject.org/</A>&gt;
+The Tor Project: anonymity online
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001206.html>[Whonix-devel] Diceware and Quantum Computing resilience
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001208.html>[Whonix-devel] #27193 [Applications/Tor Browser]: remove Tor Browser version 7.5.5 from RecommendedTBBVersions
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/date.html#1207">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/thread.html#1207">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/subject.html#1207">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/author.html#1207">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001207.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-August/001207.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:13 GMT -->
+</HTML>

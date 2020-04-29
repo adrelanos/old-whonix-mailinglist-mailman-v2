@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2020-February/001507.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:54:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] PRNGD questions
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20PRNGD%20questions&In-Reply-To=%3Ce29d0624-371c-b0cc-0949-484139f895a2%40lutz-jaenicke.de%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001506.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001508.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] PRNGD questions</H1>
+<B>Lutz J&#228;nicke</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20PRNGD%20questions&In-Reply-To=%3Ce29d0624-371c-b0cc-0949-484139f895a2%40lutz-jaenicke.de%3E" TITLE="[Whonix-devel] PRNGD questions">lutz at lutz-jaenicke.de
+</A><BR>
+<I>Sun Feb 2 12:51:18 CET 2020</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001506.html>[Whonix-devel] PRNGD questions
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001508.html>[Whonix-devel] VonNeumannBytes() License
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/date.html#1507">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/thread.html#1507">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/subject.html#1507">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/author.html#1507">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Hello,
+
+long time not thought about the project.
+
+On 01.02.20 14:43, Patrick Schleizer wrote:
+&gt;<i> Does use of PRNGD still make sense nowadays on Linux with /dev/random?
+</i>&gt;<i> You might say, /dev/random provides good entropy. Right. However, we are
+</i>&gt;<i> looking for additional sources of entropy. For that purpose we are using
+</i>&gt;<i> haveged and jitterentropy_rng but wouldn't like to add add additional
+</i>&gt;<i> sources. Ideally those not reliant on the CPU.
+</i>
+TPMs or other secure elements normally contain strong random number
+generators.
+
+Having this said, I have been working in the embedded area in the last
+years (decades!?) and within which gathering entropy with stock PRNGD
+would not have worked either
+
+&gt;<i> Can PRNGD output a stream of random output on the console? If yes, we
+</i>&gt;<i> could invent a simple wrapper around it and redirect/write it to
+</i>&gt;<i> /dev/random?
+</i>
+
+No, it can not. It provides an EGD compatible interface that you could
+however query with a respective client.
+
+Or you can just modify PRNGD.
+
+&gt;<i> (I don't worry about updating the entropy counters using RNDADDENTROPY.
+</i>&gt;<i> Thanks to haveged and jitterentropy_rng these counters are always very
+</i>&gt;<i> high anyhow with no observed case of /dev/random starvation ever yet.
+</i>&gt;<i> The main point here is to improve entropy quality in case other sources
+</i>&gt;<i> are later found out to be less random than anticipated. Performance
+</i>&gt;<i> isn't a concern here.)
+</i>&gt;<i>
+</i>&gt;<i> Trying to verify PRNGD.
+</i>&gt;<i>
+</i>&gt;<i> gpg --verify prngd-0.9.9.tar.gz.sig
+</i>&gt;<i> gpg: keybox '/home/user/.gnupg/pubring.kbx' created
+</i>&gt;<i> gpg: assuming signed data in 'prngd-0.9.9.tar.gz'
+</i>&gt;<i> gpg: Signature made Mon 26 Feb 2001 12:20:08 PM EST
+</i>&gt;<i> gpg:                using RSA key 78993B149C58A66D
+</i>&gt;<i> gpg: Can't check signature: No public key
+</i>
+
+Hmm. I have not been using the key for many years and pgp as well and it
+seems that the old key and newer versions of the software do not go well
+together.
+
+From <A HREF="../../../../external.html?link=http://keys2.kfwebs.net/pks/lookup?op=get&amp;search=0x78993b149c58a66d">http://keys2.kfwebs.net/pks/lookup?op=get&amp;search=0x78993b149c58a66d</A>
+I have hence downloaded the respective public key myself (attached) but
+could not verify the file myself. I am getting rusty...
+
+&gt;<i> Could you please let me know where to acquire key 78993B149C58A66D since
+</i>&gt;<i> keyservers are unreliable nowadays.
+</i>&gt;<i>
+</i>&gt;<i> cc'd whonix-devel public mailing list so all our readers can benefit
+</i>&gt;<i> from you reply.
+</i>
+Best regards,
+
+Lutz
+
+-------------- next part --------------
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: SKS 1.1.6
+Comment: Hostname: keys2.kfwebs.net
+
+mI0DM0NxmAAAAQQA16KIecaNDugupPpzpbRgNuX7510LVozgw2+DMOwQ+vMCgopapBCQqVIw
+XbHwc/PwhTuYqIFt9Fa8XiQg1cISfqFCu2c/5VdX1vACWCRsrWkCcmx1I6W6SzBSkSjPi/8I
+wY603jipiR/tuQgHkidlyKDsfHeXglgUeJk7FJxYpm0ABRG0FGphZW5pY2tlQG9wZW5zc2wu
+b3JniEYEEBECAAYFAj9P5NkACgkQF61PwTbSxlgXhQCffIh1J6qboLIfn2i3KQMyWPk1KzMA
+oNEfnz4saj9gPT4fZHMx5A5ADhhfiEYEEBECAAYFAj9P5OIACgkQ6afICEo5fqLSEwCgpRrQ
+kv6qTdvcHsjW1xhfa1QOMYMAnjpXo+rN/J/AhPdUpTjwdVqRth98iEYEEBECAAYFAkcYiAUA
+CgkQi9gubzC5S1yCZwCfZlPTVxoky2H9LUeQry9Z+tGkZIUAni1UFqEKraDtI4/Da2egtO/z
+LhpDiEYEExECAAYFAj9S3rIACgkQ07q73eD+4RIO9QCfTkvKKOWrkTUeNetFKjPvvDLpVacA
+nRlO8tq7S32iqM/y/qsvxxlCPzMwiJUCBRA/T+TEqlidrFpqm4UBASF4A/9OoMGkmMha/3ia
+j+6u9gNmw8sobZvr4XQ8qlgym3Htj3tS4DcJwQx7VlfCOD+gvnVgCWYhSKzp4fbR0FOW4nuN
+kRBCgrbsLq/WdL5DeiopM7UU9E4sKWk+DSK1I50t8en6av4Nw7P/sqlSph6URRE0iYHB1aYE
+dutuqXz8XG6VtoiVAwUQPW80zXiZOxScWKZtAQE/OgQA1elfxt2/ZWjuqkBaMaZpL8I1nib+
+O/XVsQ64W3TyymjYPni1sHhOdDx15+WBulm3ZPSxxgv5+oPC43yBjpeSpnjeK53sT+eiRnUE
+usBVYm3B9Mujub3IuYVX3BjmlXJ/S7P0fQXU1w6+kWDkvIB4NKDN4t+YK2O4PD6B6rjyKZ2J
+ARUDBRBBZDmXjj4ZeCrcMLUBAShHCACYqig9/RxHaYB6vobmA4sSFZ85/zkWb6DnKB/jNi5g
+QYldgkFai2tpJnw+fyZYw1WaPCBf0wm9Yj/HhCcI1FYOetz5Zr3/fas2WOpRvI/q1n7S1jVl
+SRttkHi2si8N4SO/TfSUJuz7745soJjfcWijdjpWsaAEfdXwJwiXxba8J3XCuxKjlaiS/vDw
+ZDZCjUnK75YcVYnx9vWMzrFTi/RnPn+xWD5vT9KLIfoyYSGzJHUycNDgjiNl83Q+E2CpVQfN
+gIm4Q/qrKStNssryBTiV3wOM/hR/qUzbuxcomotT5YyIYsVcp+ZSWJ+/aLfMFgRi47cDOGi4
+fwQX/BjzBwZktCVMdXR6IEphZW5pY2tlIDxsdXR6QGx1dHotamFlbmlja2UuZGU+iJUDBRNL
+ljl3eJk7FJxYpm0BAT5FBACDP4kwJv/yKj1YzifcRZj6BQa1EKvbfOfDM6KeyqUOYN3QMros
+KfV+ltrLEz5olWNGj+U3goqOT19VORl9O5tRTzFVmfPneH/fSbUYbLt1JhRTGLkW+prdklT9
+MrjFqvExY8wJUtIlcGEtZagLF4bL9ym2WDrWxYlGB+BWeH/bsYhGBBARAgAGBQJLljnzAAoJ
+ENO6u93g/uESKX8AniegDRal5TKg6OFahVEQx6GIbnw4AJ49YKNCzbl5mu8NyEnL4ZTEn7ki
+x7QvTHV0eiBKYWVuaWNrZSA8THV0ei5KYWVuaWNrZUBhZXQuVFUtQ290dGJ1cy5ERT6IRgQQ
+EQIABgUCP029FAAKCRAXrU/BNtLGWDGSAKCSk71G4SeAHiN/kGRkWINAQ3GENwCdHgTDfmnB
+eqv7ARP0b4CIQgGcnliIRgQQEQIABgUCP029GgAKCRDpp8gISjl+oqa6AKCFlbrvbQgGQLZa
+erXFMvA246FYnwCgmHR64JWprPsr/DaaJRtjNIOzblWIRgQQEQIABgUCRxiIBQAKCRCL2C5v
+MLlLXBZAAJ0SMSNpD4BzY9iGym/C0aGryNwpnACfb7QSgY/9dqQAzYl+nE33g5qF82iIRgQR
+EQIABgUCPUbfvQAKCRDTocUdzU3yBQ7iAJ9NFlY1EQ7s7Hmgcmx/WCnU9cDGkQCfVs+HXMcB
+eDQuGcfOPjY5ilOglouIRgQTEQIABgUCP1LetAAKCRDTurvd4P7hEqWZAJ4oM6K+J/gdFs1z
+pdhpqjBmjGjKqwCdH44GSsu9taIQNXoAXUDYBaq/IBSIlQIFED9NvQqqWJ2sWmqbhQEBWy8E
+AJH40hyfbg+pNZX2drQjVvj1wp2PI3tJ6CZ5sFtf5B+awZkKoyqFt1f3vtGgep9mo/S32BNl
+R1VNylZ2HbxG8xDtCKQcsyMuuQD7CZxGnmZL8cRMKVMY/Zxr0x+eeIaTN0kp2Yba7t+iDmju
+5/OUBGK3V7Bd7L670qcKqvA9hUQPiJUDBRAzQ3GYeJk7FJxYpm0BARJbBADG9iDCHwbeCQEJ
+71qCHqVOrYyXkz1EYeup1iHeee7f4ZnQXA0HDOEiJISaT1p/IQj7rb+O11k+D7ss7+gGDi7S
+pCuOfeO+gGuUhctno8Lt5YkMZweGakWcvml8ymKe/1Yf1iHd9MS/qTeoQ8awyQWq45U6ilSb
+q2vi6T58kFKXDYiVAwUTPlgn6xRPLUVPVwujAQFVsgP+Jn6rp6v/Lc47tLLvH7pyUAioZSr2
+DeKDEVjNRiAx3V1quDJimYVNILwoKj4W48itwTkA2tXuJ36DAm7W5PaXvip8wpmnM2SjTN96
+sKYaNLhfV71BPAIii0cYcSHC8zPRaiv2k4cJI3meia9CKMhCvvrBWNamyXbxUAyUrvxV6eWJ
+ARUDBRA2NOP9s0r1v4QnEoUBAQyNB/9pcCwqCXtfiGw6dN/WrANGpfH/bVIvOmrhUErUoF5H
+T9WylvTjEWloWpeOJYEyAY1gY0giKQ4lSlAR6MWssdjd45RSv/EpVRjrMm7Bj7Z98CWMQR2u
+E4f+YGjNGIxSkvKMR6jWQhexuVNWUs4LkjWmYPqzCv9K0SP/7k2leEFftMBacvWzmSvDcrl0
+HIn0Xmkvnq6Gp3uhXvu3BxCZieQnGRvvBwVWJNUW6TnE9uWUU4IIn1sko7tID+Kjmi7xKL/E
+eVuS8qwRXmx73a6WjwQm8oG+PpuiWg776hopT3BIWMoQKIMp1DfLW46axOcIDER5Wy1f5Bru
+fRE26GXjPhVpiQEVAwUQQWQyeo4+GXgq3DC1AQFCFwgAmyY3SUBOy2ssL5tIKr54mzrYtT4E
+Y6HhDNc1eS+O19qL6GXG+2fxQLfkfcI1nzSIwoiqagZDZSWD8eVHj14wKPEPjnqDsc/1vjAA
++M815GZO/8GiL0R+8Ii6ZSBB3BuRGQa0EtMWyhlEGU++hUxTS/lle+a5pXPruB459k9KIlIF
+WeDQJWno+uKOpN/SxMXS9x6FSs0Ch1a7RkYg22/fq0sheB+fUs1nhfpu+zSDeezeN9WDMWU5
+IxhSFdfzP31W6zo7+GvmdeT5Y2Ge7wmO/5PH9TIqvzTC/k3KH6IBV6+nF1F9E+/kfUb0FEwK
+BS+Sajco8/u26y9eQdQAaqtysQ==
+=S+TS
+-----END PGP PUBLIC KEY BLOCK-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001506.html>[Whonix-devel] PRNGD questions
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001508.html>[Whonix-devel] VonNeumannBytes() License
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/date.html#1507">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/thread.html#1507">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/subject.html#1507">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/author.html#1507">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001507.html','y7aelHq7wr','q-BpVchFFM8',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-February/001507.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2020-February/001507.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:54:55 GMT -->
+</HTML>

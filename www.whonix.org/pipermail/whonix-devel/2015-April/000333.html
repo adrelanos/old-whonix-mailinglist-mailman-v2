@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-April/000333.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [qubes-devel] qubes-builder gpg verification security, check for rollback (downgrade) or indefinite freeze attacks
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20qubes-builder%20gpg%20verification%0A%20security%2C%20check%20for%20rollback%20%28downgrade%29%20or%20indefinite%20freeze%20attacks&In-Reply-To=%3C551EBA98.40806%40whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000330.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000334.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [qubes-devel] qubes-builder gpg verification security, check for rollback (downgrade) or indefinite freeze attacks</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20qubes-builder%20gpg%20verification%0A%20security%2C%20check%20for%20rollback%20%28downgrade%29%20or%20indefinite%20freeze%20attacks&In-Reply-To=%3C551EBA98.40806%40whonix.org%3E" TITLE="[Whonix-devel] [qubes-devel] qubes-builder gpg verification security, check for rollback (downgrade) or indefinite freeze attacks">patrick-mailinglists at whonix.org
+</A><BR>
+<I>Fri Apr 3 18:06:48 CEST 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000330.html>[Whonix-devel] [qubes-devel] qubes-builder gpg verification security, check for rollback (downgrade) or indefinite freeze attacks
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000334.html>[Whonix-devel] [qubes-devel] qubes-builder gpg verification security, check for rollback (downgrade) or indefinite freeze attacks
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/date.html#333">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/thread.html#333">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/subject.html#333">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/author.html#333">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Marek Marczykowski-Górecki:
+&gt;<i> On Thu, Apr 02, 2015 at 12:11:03PM +0000, Patrick Schleizer wrote:
+</i>&gt;&gt;<i> function:
+</i>&gt;&gt;<i> verify_tag
+</i>&gt;<i> 
+</i>&gt;&gt;<i> link:
+</i>&gt;&gt;<i> <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-builder/blob/7d21e6b7b0a5ab3a68e8acdbc3f540f2221b47c0/scripts/verify-git-tag#L38">https://github.com/QubesOS/qubes-builder/blob/7d21e6b7b0a5ab3a68e8acdbc3f540f2221b47c0/scripts/verify-git-tag#L38</A>
+</i>&gt;<i> 
+</i>&gt;&gt;<i> code:
+</i>&gt;&gt;<i> gpg --verify --status-fd=1 $temp_name/content.asc 2&gt;/dev/null|grep -q
+</i>&gt;&gt;<i> '^\[GNUPG:\] TRUST_\(FULLY\|ULTIMATE\)$'
+</i>&gt;<i> 
+</i>&gt;&gt;<i> It does not check freshness? So any older tag/signature would be
+</i>&gt;&gt;<i> accepted, a rollback attack would succeed?
+</i>&gt;<i> 
+</i>&gt;<i> Yes, older tag/signature would be accepted in this function. But when
+</i>&gt;<i> verified, it is *merged* into local sources, not *reseted*. So if you have
+</i>&gt;<i> newer sources (in terms of git history) already downloaded it will not
+</i>&gt;<i> downgrade it. Personally I use combo make prepare-merge + do-merge,
+</i>&gt;<i> which additionally show me color coded info if the merge is
+</i>&gt;<i> fast-forward or not (in addition to all the new commits to be merged).
+</i>&gt;<i> Perhaps we should even introduce an option to fail on non-fast-forward
+</i>&gt;<i> updates.
+</i>&gt;<i> 
+</i>&gt;<i> It doesn't protect you in any way against such type of attacks during
+</i>&gt;<i> first time source download. But you can easily list version tags
+</i>&gt;<i> (including release tags) - make show-vtags - and check if the versions
+</i>&gt;<i> are what you've expected.
+</i>
+Git merge rather than reset is useful indeed. Prevents people who
+already got the sources from being targetd for rollback (downgrade)
+attacks. Wouldn't prevent indefinite freeze attacks, though.
+
+Also users who get the source for the very first time are more at risk?
+At that point, nothing protects them from rollback (downgrade) attacks?
+
+That's my main target audience here. People who prefer to build from
+source code to make sure they don't get backdoored by eventual backdoors
+in the binary builds injected by the build machine during build. [Not
+claiming any backdoor by the Qubes team. But build machines seem
+worthwhile targets to me for powerful adversaries.] Building from source
+code is a cheap way to prevent those. But if they buy that advantage of
+cost of eventual targeted rollback (downgrade) attacks, that's non-ideal.
+
+&gt;&gt;<i> Having said that, do you have any other gpg verification code in other
+</i>&gt;&gt;<i> files that I could look into?
+</i>&gt;<i> 
+</i>&gt;<i> Some components downloads additional sources - like kernel, KDE, etc. There
+</i>&gt;<i> is also code to verify that downloads - just a simple gpg -v with
+</i>&gt;<i> isolated keyring (one key in most cases).  That keyring isolation is
+</i>&gt;<i> provided by qubes-builder (scripts/get-sources).  When upstream do not
+</i>&gt;<i> provide signatures, we have file hashes committed into the git repo.
+</i>&gt;<i> This code is in Makefiles in those repositories:
+</i>&gt;<i>  - linux-kernel
+</i>&gt;<i>  - desktop-linux-kde
+</i>&gt;<i>  - desktop-linux-xfce
+</i>&gt;<i>  - vmm-xen
+</i>&gt;<i>  - core-libvirt
+</i>
+I see. Checked linux-kernel. Code:
+
+@xzcat $(SRC_FILE) | gpg -q --verify $(SIGN_FILE) - 2&gt;/dev/null
+
+I don't think this is safe.
+
+Quote Werner Koch (gnupg lead developer):
+<A HREF="../../../../external.html?link=http://lists.gnupg.org/pipermail/gnupg-devel/2005-December/022559.html">http://lists.gnupg.org/pipermail/gnupg-devel/2005-December/022559.html</A>
+
+&quot;there is no clear distinction between the codes and for proper error
+reporting you are advised to use the --status-fd messages.&quot;
+
+Cheers,
+Patrick
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000330.html>[Whonix-devel] [qubes-devel] qubes-builder gpg verification security, check for rollback (downgrade) or indefinite freeze attacks
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000334.html>[Whonix-devel] [qubes-devel] qubes-builder gpg verification security, check for rollback (downgrade) or indefinite freeze attacks
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/date.html#333">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/thread.html#333">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/subject.html#333">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/author.html#333">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000333.html','y7aelHq7wr','XtdO-VcxnlY',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000333.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-April/000333.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:53 GMT -->
+</HTML>

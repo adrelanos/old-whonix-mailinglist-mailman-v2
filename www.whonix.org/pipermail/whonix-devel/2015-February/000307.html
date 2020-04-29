@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-February/000307.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Exposing AnonVM Users with Dom0 Hardware	Fingerprint Leaks
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Exposing%20AnonVM%20Users%20with%20Dom0%20Hardware%0A%09Fingerprint%20Leaks&In-Reply-To=%3C54E325E3.8040104%40invisiblethingslab.com%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000306.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000308.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Exposing AnonVM Users with Dom0 Hardware	Fingerprint Leaks</H1>
+<B>Joanna Rutkowska</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Exposing%20AnonVM%20Users%20with%20Dom0%20Hardware%0A%09Fingerprint%20Leaks&In-Reply-To=%3C54E325E3.8040104%40invisiblethingslab.com%3E" TITLE="[Whonix-devel] Exposing AnonVM Users with Dom0 Hardware	Fingerprint Leaks">joanna at invisiblethingslab.com
+</A><BR>
+<I>Tue Feb 17 12:28:35 CET 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000306.html>[Whonix-devel] Exposing AnonVM Users with Dom0 Hardware	Fingerprint Leaks
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000308.html>[Whonix-devel] Exposing AnonVM Users with Dom0 Hardware	Fingerprint Leaks
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/date.html#307">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/thread.html#307">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/subject.html#307">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/author.html#307">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On 02/17/15 11:55, WhonixQubes wrote:
+&gt;<i> Hi Joanna,
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> On 2015-02-16 9:38 am, Joanna Rutkowska wrote:
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> Xen has support for emulating CPUID for HVM guests -- take a look at the
+</i>&gt;&gt;<i> config examples in:
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> xen-4.1.6.1/tools/examples/xmexample.hvm-stubdom
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> I looked through the CPUID feature in this example file:
+</i>&gt;<i> 
+</i>&gt;<i> -
+</i>&gt;<i> <A HREF="../../../../external.html?link=http://xenbits.xen.org/gitweb/?p=xen.git;a=blob_plain;f=tools/examples/xmexample.hvm-stubdom;hb=stable-4.1">http://xenbits.xen.org/gitweb/?p=xen.git;a=blob_plain;f=tools/examples/xmexample.hvm-stubdom;hb=stable-4.1</A>
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> More general info on CPUID for others:
+</i>&gt;<i> - <A HREF="../../../../external.html?link=https://en.wikipedia.org/wiki/CPUID">https://en.wikipedia.org/wiki/CPUID</A>
+</i>&gt;<i> 
+</i>&gt;<i> Some of the very low-level x86 implementation details of it are beyond
+</i>&gt;<i> me currently, but, from what I can glean it looks like it is generally
+</i>&gt;<i> the right type of thing, since it seems to be baked into the Xen Dom0
+</i>&gt;<i> layer beyond the reach of the HVM's OS.
+</i>&gt;<i> 
+</i>
+The CPUID interception is implemented in the hypervisor via VT-x. Dom0
+has nothing to do with that...
+
+&gt;<i> Would be looking for AnonVMs to simply not be able to know what CPU the
+</i>&gt;<i> host machine is running on, by any means (barring covert channels or Xen
+</i>&gt;<i> breakouts), but even including privilege-escalated malware in the VM.
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;&gt;<i> I haven't played with it, but see no reasons it should not work. I can
+</i>&gt;&gt;<i> imagine we introduce a prefs for VMs (say &quot;generic_cpuid&quot; settable via
+</i>&gt;&gt;<i> qvm-prefs) that would be resulting in additional config for cpuid
+</i>&gt;&gt;<i> emulation inserted in the config file for such VMs.
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> Sounds good.
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;&gt;<i> We would need to
+</i>&gt;&gt;<i> agree on good-enough-for-everybody CPUID config and stick to it then.
+</i>&gt;&gt;<i> Again, this would be use-able for anon VMs mostly.
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> Yes. Sounds like a plan.
+</i>&gt;<i> 
+</i>&gt;<i> I'm guessing that this would *not* limit the speed of the CPU(s) that
+</i>&gt;<i> the HVM is exposed to? Just changes the info/attributes of the AnonVM
+</i>&gt;<i> domain's CPU (including reported MHz?)?
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>
+No.
+
+&gt;<i> 
+</i>&gt;&gt;<i> However, this will not work for PV VMs, because the CPUID instruction is
+</i>&gt;&gt;<i> not a privileged instruction, so malware in a PV VM can always execute
+</i>&gt;&gt;<i> this instruction (even if we hooked Xen interface for CPUID-like info to
+</i>&gt;&gt;<i> the guest) without trapping into XEN in PV operation.
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> That's too bad for excluding paravirtualized VMs.
+</i>&gt;<i> 
+</i>
+BTW, it should be obvious, but let me point out that any
+compartmentalizing technology for x86 that is *not* based on VT-x/AMD-v
+would be prone to this problem. This is b/c CPUID is an *instruction*
+and its execution cannot otherwise be controlled by the OS, other than
+via VT-x intercept.
+
+&gt;<i> However, if there is no way to achieve a masked CPU with PVMs, then so
+</i>&gt;<i> be it.
+</i>&gt;<i> 
+</i>&gt;<i> Given the general statistical environment of AnonVM users, I think
+</i>&gt;<i> unique CPU info is too important of a de-anonymization vector to hold
+</i>&gt;<i> onto PVMs for.
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;&gt;<i> AFAIU, there are not personal identifying info returned by CPUID, but I
+</i>&gt;&gt;<i> can see how this could be used as an additional fingerprinting vector.
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> Right.
+</i>&gt;<i> 
+</i>&gt;<i> For example, subdividing the cross-section of privacy/anonymity users by
+</i>&gt;<i> the following attributes would no doubt be a privacy/anonymity killer
+</i>&gt;<i> for individual human identities...
+</i>&gt;<i> 
+</i>&gt;<i> # of unique combined mixtures of the following attributes:
+</i>&gt;<i> - # of Qubes Users
+</i>&gt;<i> - # of Qubes + Tor AnonVM Users
+</i>&gt;<i> - # of Qubes + Whonix AnonVM Users
+</i>&gt;<i> - # of CPU Model Info
+</i>&gt;<i> - # of CPU Microcode Version
+</i>&gt;<i> 
+</i>
+FWIW, CPU ucode, AFAIK, is not CPU-persistence -- it is applied on each
+boot.
+
+&gt;<i> ...should be pretty easy to reveal individual people through their usage
+</i>&gt;<i> of Qubes privacy/anonymity this way.
+</i>&gt;<i> 
+</i>&gt;<i> Although, AFAIK, other platforms are not totally immune from this. Some
+</i>&gt;<i> just have a higher # of total users out in the world, but at their
+</i>&gt;<i> technical expense of lacking strong security isolation to protect the
+</i>&gt;<i> integrity of their privacy/anonymity systems.
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>
+Other platforms simply do not offer any meaningful separation between
+the apps that primary targeted apps (e.g. a Web browser used for anon
+browsing) and the hw specific personal identifying info (NIC MACs, IP,
+avilable WiFi networks in the neighborhood, etc). In these case if the
+attacker (e.g. NSA) exploits your anon Web browser they already get you.
+In case of Qubes they can start gather info such as CPUID output and
+mining through a database of Qubes users. Quite a different level of
+threat IMHO.
+
+&gt;<i> 
+</i>&gt;&gt;<i> Thus, perhaps we should consider distributing Whonix workstation
+</i>&gt;&gt;<i> template as an HVM template instead of a PVM one? Fortunately we do have
+</i>&gt;&gt;<i> templates support for HVMs, so this should be perfectly possible.
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> Assuming there is no feasible way to accomplish this objective with
+</i>&gt;<i> PVMs, then implementing the Whonix-Workstation in a HVM template with
+</i>&gt;<i> &quot;generic_cpuid&quot; sounds like the right move.
+</i>&gt;<i> 
+</i>&gt;<i> Another anonymity upshot of HVMs is their, by default, non-seamless
+</i>&gt;<i> fixed single windowing.
+</i>
+You can have seamless GUI for HVM VMs.
+
+&gt;<i> Even though the seamless desktop mode of the new Qubes + Whonix
+</i>&gt;<i> platform is sexy and smooth to use, it does expose another
+</i>&gt;<i> semi-unique host machine attribute to the AnonVMs, which is the 
+</i>&gt;<i> host's unique display resolution size and pixel depth (maybe some
+</i>&gt;<i> other related stuff too?).
+</i>
+Don't quite get it? Like 1600x900 instead of 1920x1080 you mean?
+
+&gt;<i> Not as bad of an attribute as the host's
+</i>&gt;<i> unique CPU info, but still would be best to make use of the fixed
+</i>&gt;<i> single windowing for AnonVMs so this could be generic. Maybe both
+</i>&gt;<i> seamless and non-seamless windowing options could be offered for
+</i>&gt;<i> Whonix-Workstation HVM template, since some people hate
+</i>&gt;<i> non-seamless.
+</i>&gt;<i> 
+</i>
+&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;&gt;<i> Let me also point out the already discussed-multiple-times topic of
+</i>&gt;&gt;<i> potential covert channels between cooperative VMs, which might also be
+</i>&gt;&gt;<i> potentially exploited in some scenarios to fingerprint user environment.
+</i>&gt;&gt;<i> That is more difficult to address on PC architecture though, but some
+</i>&gt;&gt;<i> work on Xen-level is nevertheless very welcome (see #817).
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> Yes. I have read through some of your stuff on covert channels in the
+</i>&gt;<i> past, including in the original Qubes architecture spec doc.
+</i>&gt;<i> 
+</i>&gt;<i> Just read through the thread linked in Qubes ticket #817 from 2014. Good
+</i>&gt;<i> stuff.
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> WhonixQubes
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>
+joanna.
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 801 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="../../../../external.html?link=http://www.whonix.org/pipermail/whonix-devel/attachments/20150217/a470d860/attachment.sig">http://www.whonix.org/pipermail/whonix-devel/attachments/20150217/a470d860/attachment.sig</A>&gt;
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000306.html>[Whonix-devel] Exposing AnonVM Users with Dom0 Hardware	Fingerprint Leaks
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000308.html>[Whonix-devel] Exposing AnonVM Users with Dom0 Hardware	Fingerprint Leaks
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/date.html#307">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/thread.html#307">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/subject.html#307">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/author.html#307">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000307.html','y7aelHq7wr','SAnaGkspdE0',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000307.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-February/000307.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:55 GMT -->
+</HTML>

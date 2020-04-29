@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001255.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Argon2id Security Margin Calculation
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Argon2id%20Security%20Margin%20Calculation&In-Reply-To=%3C20180922183620.GA6543%40openwall.com%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001254.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001256.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Argon2id Security Margin Calculation</H1>
+<B>Solar Designer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Argon2id%20Security%20Margin%20Calculation&In-Reply-To=%3C20180922183620.GA6543%40openwall.com%3E" TITLE="[Whonix-devel] Argon2id Security Margin Calculation">solar at openwall.com
+</A><BR>
+<I>Sat Sep 22 20:36:20 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001254.html>[Whonix-devel] Argon2id Security Margin Calculation
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001256.html>[Whonix-devel] Argon2id Security Margin Calculation
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1255">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1255">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1255">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1255">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Hi,
+
+On Sat, Sep 22, 2018 at 03:29:00PM +0000, procmem wrote:
+&gt;<i> Best practice says to use a diceware passphrase that has equivalent
+</i>&gt;<i> entropy to the master-key. Since Grovers cuts down passphrase strength
+</i>&gt;<i> by half then a 256-bit diceware phrase is needed for future-proofing but
+</i>&gt;<i> that becomes unwieldly as 20 words are necessary. The only realistic
+</i>&gt;<i> option is to use keystretching to make passphrase length manageable.
+</i>
+To me, best practice is to use a reasonably affordable combination and
+balance of key stretching (your job) and passphrase complexity (users'
+responsibility, but you need to provide them with some guidance).
+
+&quot;Reasonably affordable&quot; key stretching for that use case is something
+that runs for e.g. 1 second.  More than that is rarely a good idea for
+everyday usage - you could type in an extra word instead of having to
+wait for more than 1 second.  Also, it probably means using something
+like 1 GB of RAM, so that it works on current typical computers and VMs.
+
+Then you see how many Diceware words or whatever you still need in that
+passphrase in order to achieve a certain security level.
+
+Regarding post-quantum, I'm no expert but realistically I'd just assume
+that Argon2id will remain too complicated to implement and correctly
+compute on a quantum computer in the foreseeable future, if ever.  So
+it's not a matter of how much stretching it provides - it primarily
+provides &quot;complication&quot;.
+
+The stretching per se is thus against non-quantum computers.  It goes
+either as the number of operations (like Steve tried to calculate)
+relative to a certain fast cryptographic hash, or as the product of that
+and the memory usage (or as square of the number of operations if you
+set t=1 to maximize the memory usage per time elapsed).  Which is these
+metrics or something inbetween is relevant depends on the kind of attack
+hardware - whether it has the required memory anyway (a typical
+computer) or the memory would cost extra (ASIC) or the memory is
+available anyway but its size and latency are limiting what the attacker
+can do (GPU).
+
+&gt;<i> I was looking for advice on how to accurately calculate the security
+</i>&gt;<i> margin of argon2id against nation-state adversaries with a lot of
+</i>&gt;<i> computing power (of every type). The hashing implementation is the one
+</i>&gt;<i> included in Debian (as of Buster) LUKS2 with AES-256 XTS.
+</i>
+I think &quot;security margin&quot; means a different thing than what you ask
+about in the message, so I suggest you avoid this wording.
+
+&gt;<i> I've been trying to find an answer to this question by reading through
+</i>&gt;<i> the literature on argon2 with no success. Many people say it's hard so a
+</i>&gt;<i> non-cryptographer like me stands no chance understanding this. I asked
+</i>&gt;<i> JP Aumasson and he recommended I talk to you. Steve Thomas gave me the
+</i>&gt;<i> estimate quoted below but he also advised me to ask you.
+</i>&gt;<i> 
+</i>&gt;<i> Can you please share an equation and show me how to plug in the numbers
+</i>&gt;<i> to calculate the entropy added when any of the parameters are changed?
+</i>&gt;<i> 
+</i>&gt;<i> Steve:
+</i>&gt;<i>  &quot;2^27 &lt; entropy &lt; 2^35&quot; for Argon2id m=1GiB, i=50, p=4.
+</i>
+I don't know what baseline hash Steve's estimate is against.  Maybe the
+uncertainty of this estimate is in part because the baseline is not
+clearly defined - just something fast, which could be e.g. a round of
+BLAKE2 or the whole BLAKE2.
+
+More importantly, I doubt most of your userbase would be able to
+consider such nuance without prior knowledge, nor do they need that.
+
+So, no, you do not need &quot;to accurately calculate&quot; this.  You could have
+some accurate formula and figure, but without context and understanding
+its nuances it'd be meaningless.
+
+Anyway, taking your parameters m=1GiB, t=50 we have this for the number
+of 1 KiB block operations:
+
+20+log2(50) = ~26 bits
+
+Each block consists of 16 BLAKE2b round computations (2 sequential sets
+of 8), which is on par with 12 that BLAKE2b normally uses.  We could
+also consider the change from BLAKE2b to BlaMka, which will possibly
+give Steve's minimum of 27 or more, but that's not obviously right -
+this way of calculation (of the number of operations only) is most
+relevant for typical computers, and on them BlaMka is about as fast as a
+normal BLAKE2b round.
+
+Now, going for the product of number of operations and memory usage
+(relevant on attack hardware where memory is costly, which fits your
+mentioned threat model with nation-state attackers potentially with
+ASICs) we'd have:
+
+20+20-log2(8*4)+log2(50) = ~41 bits
+
+Again, this is against a rather arbitrary baseline now also of 1 KiB of
+memory - but it's a realistic amount of memory that a fast cryptographic
+hash not intended for key stretching could have used.
+
+I subtract the parallelism (8x within a block and 4x thread-level p=4),
+because for this sort of attacks the parallelism reduces the duration
+for which the memory has to be occupied.  On the other hand, this is
+where the presumed additional slowness of BlaMka compared to a regular
+BLAKE2b round on specialized hardware could finally matter.  That could
+give 3 or so bits more than the above estimate relative to BLAKE2b.
+
+Then, I think t=50 is excessive.  It isn't even the equivalent of a one
+word longer passphrase, but it takes more time than typing a word would.
+
+Perhaps you should consider t=3.  That will be only &quot;4 bits&quot; less,
+giving you something like 22 to 40 bits (depending on attack hardware)
+of stretching relative to BLAKE2b.
+
+&gt;<i> *I saw somehwere that increasing CPU cost lessens the effectiveness of
+</i>&gt;<i> memory cost and vice versa, is this how it works?
+</i>
+Not exactly.  It doesn't &quot;lessen the effectiveness of memory cost&quot;, but
+it may limit what memory cost you'd use to fit in your time budget.
+This usually applies in password hashing scenarios, and not in your KDF
+scenario where you got ample time (1 second or more).  Also, no, not
+&quot;vice versa&quot;.
+
+A higher memory cost is more valuable to have than a higher time cost
+parameter, because higher memory cost also implies more time spent.
+
+Summary: you can use something like m=1 GiB, t=3, p=4.  You can estimate
+that this gives you stretching equivalent to 22 to 40 bits of Shannon
+entropy against conventional computers (and especially against custom
+hardware, which would otherwise have a greater advantage), and hope that
+the very use of a complicated, long-running algorithm needing this much
+memory breaks implementation/computation on quantum computers.
+
+So m=1 GiB, t=3, p=4 combined with 7 Diceware words will give you
+something like ~112 to ~128 bits, where the latter figure would actually
+matter against attackers who could not-too-unrealistically pull this
+kind of key search off.  That's probably the maximum number of Diceware
+words you'd recommend your users to use in combination with those
+settings.  In practice, I'd be surprised if 4 words were not enough as
+that's ~90 bits against this sort of attackers, and why would they care
+to invest more resources in an attack?  (It's maybe ~74 bits against
+regular computer attackers, but those attackers are relatively weak.)
+
+Of course, your users should feel free to add some reasonable security
+margin on top of this, through adding a few more Diceware words.  Here,
+I'm using the words to mean what I think they mean: an extra on top of
+what's known to be required to achieve the desired security level.
+
+Also, please note and make your users aware that the use of Shannon
+entropy to measure password strength applies only when the distribution
+is uniform, which in practice means that it applies only to a subset of
+cases of generated (including e.g. with dice) passwords/phrases (the
+subset where the distribution is uniform, which it should be).  For
+almost all purposes, it isn't a valid metric to use for human-chosen
+passwords/phrases, where the distribution is highly non-uniform.
+
+I hope this helps.
+
+Alexander
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001254.html>[Whonix-devel] Argon2id Security Margin Calculation
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001256.html>[Whonix-devel] Argon2id Security Margin Calculation
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1255">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1255">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1255">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1255">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001255.html','y7aelHq7wr','AUfgS3CGL78',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001255.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001255.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+</HTML>

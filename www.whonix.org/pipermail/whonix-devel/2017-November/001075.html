@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-November/001075.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] #24040 [Applications/Tor Browser]: TorBrowser crashes at riot.im/app
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%2324040%20%5BApplications/Tor%20Browser%5D%3A%20TorBrowser%0A%20crashes%20at%20riot.im/app&In-Reply-To=%3C059.7e43d75b8e77278f601432b34be1b7a2%40torproject.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/001074.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/001076.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] #24040 [Applications/Tor Browser]: TorBrowser crashes at riot.im/app</H1>
+<B>Tor Bug Tracker &amp; Wiki</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%2324040%20%5BApplications/Tor%20Browser%5D%3A%20TorBrowser%0A%20crashes%20at%20riot.im/app&In-Reply-To=%3C059.7e43d75b8e77278f601432b34be1b7a2%40torproject.org%3E" TITLE="[Whonix-devel] #24040 [Applications/Tor Browser]: TorBrowser crashes at riot.im/app">blackhole at torproject.org
+</A><BR>
+<I>Thu Nov 2 23:09:38 CET 2017</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/001074.html>[Whonix-devel] #24040 [Applications/Tor Browser]: TorBrowser crashes at riot.im/app (was: TorBrowser under Whonix crashes at riot.im/app)
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/001076.html>[Whonix-devel] #24040 [Applications/Tor Browser]: TorBrowser crashes at riot.im/app
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/date.html#1075">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/thread.html#1075">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/subject.html#1075">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/author.html#1075">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>#24040: TorBrowser crashes at riot.im/app
+--------------------------------------+-----------------------------------
+ Reporter:  user                      |          Owner:  tbb-team
+     Type:  defect                    |         Status:  needs_information
+ Priority:  High                      |      Milestone:
+Component:  Applications/Tor Browser  |        Version:
+ Severity:  Major                     |     Resolution:
+ Keywords:  tbb-crash                 |  Actual Points:
+Parent ID:                            |         Points:
+ Reviewer:                            |        Sponsor:
+--------------------------------------+-----------------------------------
+
+Comment (by user):
+
+ Backtrace for crash on torbrowser-7.0.8 on debian-10-buster:
+
+ {{{
+ [New Thread 0x7fffc1889700 (LWP 5455)]
+ [New Thread 0x7fffb6a77700 (LWP 5456)]
+ [New Thread 0x7fffce9ff700 (LWP 5457)]
+ [New Thread 0x7fffc04fe700 (LWP 5458)]
+ [Thread 0x7fffc04fe700 (LWP 5458) exited]
+ [Thread 0x7fffc1889700 (LWP 5455) exited]
+ [Thread 0x7fffce9ff700 (LWP 5457) exited]
+ [New Thread 0x7fffce9ff700 (LWP 5459)]
+ [New Thread 0x7fffc1889700 (LWP 5460)]
+
+ Thread 76 &quot;IndexedDB #4&quot; received signal SIGSEGV, Segmentation fault.
+ [Switching to Thread 0x7fffc1889700 (LWP 5460)]
+ mozilla::dom::quota::QuotaObject::DisableQuotaCheck (this=0x0)
+     at /home/debian/build/tor-browser/dom/quota/ActorsParent.cpp:2714
+ 2714    /home/debian/build/tor-browser/dom/quota/ActorsParent.cpp: No such
+ file or directory.
+ (gdb) backtrace
+ #0  mozilla::dom::quota::QuotaObject::DisableQuotaCheck (this=0x0)
+     at /home/debian/build/tor-browser/dom/quota/ActorsParent.cpp:2714
+ #1  0x00007ffff39cf5ad in mozilla::dom::indexedDB::(anonymous
+ namespace)::DatabaseConnection::DisableQuotaChecks (
+     this=0x7fffcac91580) at /home/debian/build/tor-
+ browser/dom/indexedDB/ActorsParent.cpp:11355
+ #2  mozilla::dom::indexedDB::(anonymous
+ namespace)::Database::StartTransactionOp::DoDatabaseWork
+ (this=0x7fffcac79040,
+     aConnection=0x7fffcac91580) at /home/debian/build/tor-
+ browser/dom/indexedDB/ActorsParent.cpp:14927
+ #3  0x00007ffff39cf10e in mozilla::dom::indexedDB::(anonymous
+ namespace)::TransactionDatabaseOperationBase::RunOnConnectionThread
+ (this=<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">this at entry</A>=0x7fffcac79040) at /home/debian/build/tor-
+ browser/dom/indexedDB/ActorsParent.cpp:23735
+ #4  0x00007ffff39cf28a in mozilla::dom::indexedDB::(anonymous
+ namespace)::Database::StartTransactionOp::RunOnConnectionThread
+     (this=0x7fffcac79040) at /home/debian/build/tor-
+ browser/dom/indexedDB/ActorsParent.cpp:14914
+ #5  0x00007ffff39c71b4 in mozilla::dom::indexedDB::(anonymous
+ namespace)::TransactionDatabaseOperationBase::Run (
+     this=0x7fffcac79040) at /home/debian/build/tor-
+ browser/dom/indexedDB/ActorsParent.cpp:23906
+ #6  0x00007ffff28ca7b1 in nsThread::ProcessNextEvent (this=0x7fffcc480590,
+ aMayWait=&lt;optimized out&gt;, aResult=0x7fffc1888ccf)
+     at /home/debian/build/tor-browser/xpcom/threads/nsThread.cpp:1216
+ #7  0x00007ffff28e53b5 in NS_ProcessNextEvent (aThread=&lt;optimized out&gt;,
+ <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">aThread at entry</A>=0x7fffcc480590,
+     aMayWait=<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">aMayWait at entry</A>=true) at /home/debian/build/tor-
+ browser/xpcom/glue/nsThreadUtils.cpp:361
+ #8  0x00007ffff39b9e55 in mozilla::dom::indexedDB::(anonymous
+ namespace)::ConnectionPool::ThreadRunnable::Run (
+     this=0x7fffcc0aaca0) at /home/debian/build/tor-
+ browser/dom/indexedDB/ActorsParent.cpp:13539
+ #9  0x00007ffff28ca7b1 in nsThread::ProcessNextEvent (this=0x7fffcc480590,
+ aMayWait=&lt;optimized out&gt;, aResult=0x7fffc1888dff)
+     at /home/debian/build/tor-browser/xpcom/threads/nsThread.cpp:1216
+ #10 0x00007ffff28e53b5 in NS_ProcessNextEvent (aThread=&lt;optimized out&gt;,
+ <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">aThread at entry</A>=0x7fffcc480590,
+     aMayWait=<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">aMayWait at entry</A>=false) at /home/debian/build/tor-
+ browser/xpcom/glue/nsThreadUtils.cpp:361
+ #11 0x00007ffff2bb0f81 in mozilla::ipc::MessagePumpForNonMainThreads::Run
+ (this=0x7fffcc4085c0, aDelegate=0x7fffc70b9d50)
+     at /home/debian/build/tor-browser/ipc/glue/MessagePump.cpp:338
+ #12 0x00007ffff2b81b1c in MessageLoop::RunHandler (this=&lt;optimized out&gt;)
+     at /home/debian/build/tor-
+ browser/ipc/chromium/src/base/message_loop.cc:225
+ #13 MessageLoop::Run (this=<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">this at entry</A>=0x7fffc70b9d50)
+     at /home/debian/build/tor-
+ browser/ipc/chromium/src/base/message_loop.cc:205
+ #14 0x00007ffff28c953f in nsThread::ThreadFunc (aArg=0x7fffcc480590)
+     at /home/debian/build/tor-browser/xpcom/threads/nsThread.cpp:467
+ #15 0x00007ffff7f96ec7 in _pt_root (arg=0x7fffcc0630c0)
+     at /home/debian/build/tor-
+ browser/nsprpub/pr/src/pthreads/ptthread.c:216
+ #16 0x00007ffff7bc3494 in start_thread (arg=0x7fffc1889700) at
+ pthread_create.c:333
+ #17 0x00007ffff6c51abf in clone () at
+ ../sysdeps/unix/sysv/linux/x86_64/clone.S:97
+ }}}
+
+--
+Ticket URL: &lt;<A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/24040#comment:15">https://trac.torproject.org/projects/tor/ticket/24040#comment:15</A>&gt;
+Tor Bug Tracker &amp; Wiki &lt;<A HREF="../../../../external.html?link=https://trac.torproject.org/">https://trac.torproject.org/</A>&gt;
+The Tor Project: anonymity online
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/001074.html>[Whonix-devel] #24040 [Applications/Tor Browser]: TorBrowser crashes at riot.im/app (was: TorBrowser under Whonix crashes at riot.im/app)
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/001076.html>[Whonix-devel] #24040 [Applications/Tor Browser]: TorBrowser crashes at riot.im/app
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/date.html#1075">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/thread.html#1075">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/subject.html#1075">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/author.html#1075">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-November/001075.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-November/001075.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:22 GMT -->
+</HTML>

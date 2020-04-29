@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2013-August/000030.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] AppArmor
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20AppArmor&In-Reply-To=%3C52057241.4050604%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000029.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000028.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] AppArmor</H1>
+<B>adrelanos</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20AppArmor&In-Reply-To=%3C52057241.4050604%40riseup.net%3E" TITLE="[Whonix-devel] AppArmor">adrelanos at riseup.net
+</A><BR>
+<I>Sat Aug 10 00:50:41 CEST 2013</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000029.html>[Whonix-devel] AppArmor
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000028.html>[Whonix-devel] How to decide which apps come with Whonix? - new	design page
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/date.html#30">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/thread.html#30">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/subject.html#30">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/author.html#30">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Jason Ayala:
+&gt;<i> Really? :/
+</i>&gt;<i> 
+</i>&gt;<i> I was being purposes provocative, hoping you'd contradict me :)
+</i>&gt;<i> I've been doing my best to find answers, but it's not going well.
+</i>&gt;<i> 
+</i>&gt;<i> I take back &quot;poorly developed&quot;. Development is active and ongoing.
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> For poorly understood and underpowered, take a look at: 
+</i>&gt;<i> <A HREF="../../../../external.html?link=http://blog.azimuthsecurity.com/2012/09/poking-holes-in-apparmor-profiles.html">http://blog.azimuthsecurity.com/2012/09/poking-holes-in-apparmor-profiles.html</A>
+</i>
+Yes,
+&gt;<i> 
+</i>that sounds pretty devastating. However, in the comments section
+there is a link to a bug report and the related bugs are all marked as
+fixed. We could contact the author and ask what he now things about
+AppArmor.
+
+&gt;<i> I dare you to find anyone working on and sharing profiles...
+</i>&gt;<i> 
+</i>&gt;<i> Apparmor apparently used to have a repo but shut it down (no
+</i>&gt;<i> explanation) <A HREF="../../../../external.html?link=http://wiki.apparmor.net/index.php/Profile_repo">http://wiki.apparmor.net/index.php/Profile_repo</A>
+</i>&gt;<i> 
+</i>&gt;<i> Ubuntu has a repo for the profiles they include with the OS (with
+</i>&gt;<i> various levels of quality. Half are off by default) 
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://wiki.ubuntu.com/SecurityTeam/KnowledgeBase/AppArmorProfiles">https://wiki.ubuntu.com/SecurityTeam/KnowledgeBase/AppArmorProfiles</A>
+</i>&gt;<i>
+</i>&gt;<i> 
+</i><A HREF="../../../../external.html?link=http://bazaar.launchpad.net/~apparmor-dev/apparmor-profiles/master/files/head:/ubuntu/13.10/">http://bazaar.launchpad.net/~apparmor-dev/apparmor-profiles/master/files/head:/ubuntu/13.10/</A>
+&gt;<i> 
+</i>&gt;&gt;<i> Those two are not mutually exclusive. Together with compiler
+</i>&gt;&gt;<i> hardening, they're all useful.
+</i>&gt;<i> ...
+</i>&gt;&gt;<i> Is it really that bad?
+</i>&gt;<i> 
+</i>&gt;<i> Ok fine. You're right. If someone wants to work on apparmor
+</i>&gt;<i> profiles, why not?
+</i>
+Yes.
+
+&gt;<i> Hell, I'm a bit interested in it too. But I'm discouraged by what I
+</i>&gt;<i> see so far... Browsing through several profiles, there's a
+</i>&gt;<i> suprising amount of &quot;WTF does this do?&quot; comments.
+</i>
+Yes, its not perfect due to lack of interest from kernel devs and
+general few people working on such things. grsecurity is no
+alternative, unfortunately:
+<A HREF="../../../../external.html?link=https://whonix.org/wiki/Advanced_Security_Guide#About_grsecurity">https://whonix.org/wiki/Advanced_Security_Guide#About_grsecurity</A>
+
+The main work has to be done by the underlying operating system and
+much too few people are working on Whonix. There are distributions
+focusing on usability (and a bit security) - Ubuntu, distributions
+focusing on usability and pretty looks - Mint, but none focusing on
+security while providing better security than Debian. At least not
+that I know off.
+
+Only alternatives would be Fedora+selinux which Qubes OS is based on.
+Switching to Qubes OS would be another unrelated security enhancement.
+
+The full story is here:
+<A HREF="../../../../external.html?link=https://whonix.org/wiki/Dev/Operating_System">https://whonix.org/wiki/Dev/Operating_System</A>
+
+&gt;<i> And I'm discouraged by the fact that there's no working tor browser
+</i>&gt;<i> profile nor user developed profiles being shared. I just wouldn't 
+</i>&gt;<i> put my hopes in it.
+</i>
+AppArmor needs someone dedicated and having fun to work on this, while
+this work may not be the most prestige and rewarding work.
+
+&gt;&gt;<i> (For example, it would NOT have prevented the FH js exploit).
+</i>&gt;<i> 
+</i>&gt;<i> Though I don't pretend to understand concepts surrounding injecting
+</i>&gt;<i> machine code into memory via an exploit... (Did the injected code
+</i>&gt;<i> run under the firefox process? What was the nature of the crash of
+</i>&gt;<i> firefox that it induced? Was it a buffer overflow?)
+</i>
+I don't know. We could ask @vlad902.
+
+&gt;<i> The article above explains that apparmor poorly defends against
+</i>&gt;<i> arbitrary code execution.
+</i>
+It is my understanding, that AppArmor doesn't try to prevent that.
+Other techniques do (compiler hardening flags). AppArmor confines the
+process once it has been taken over. Yes, and fails once a kernel
+vulnerability has been found as well.
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCgAGBQJSBXI+AAoJEJwTGtNxOq7vbtQP/3cpQzIm69zMldh2spi2JUJJ
+Zjzkk2NWL2QSIat/8qReeFvLCTEnBTl26qYHMF35hWkYcTYy0OXni/si8P/DApOb
+H6n761MoGS5lCJMHxp8H0YRLXsjMF1WEeB4RQxIRXftlMvk14HW918nxlb/sH0Nn
+hs2Y+YCmUFLnjvxsYorpnZK/U4oO9pX7+80V42/dy3sFuiYyEP9zAODU5CjXkRAG
+A6NUpuXRTjXATQsH+3vB2lIjXWoJwSBKUabYjjrMaZS7aPMhUUtD/rBPKD3moRXS
+JkHoWXhaW5joWNfo6TQ+x6S7xI4EjCPIr534k3LXOTWwhvp+H0gL3NA1ImqilODe
+pufo2XgSS1/+tUr3BaGB67Qncj5WFdkwsOrLy6fOaPmxW/BOH3SRHnY6pp1R/mPT
+/Q5pVeawSVF3k7rd6fPUpFcb3ji5985SD9GYrqu1+h9NpWjMEwVCpQhOV2nUuhii
+p5J7pxPPXbZLrrWsqvY20LBTKH5GGGeFF7P4ntY/L3A45cSOPVpIoqE0wHl+cTN5
+ZkWV7PkgkJvCRGGx85lLjTPkxNhZCrTzTbt6zkWgHoaGZY8Zpte4buOwHBtCEv10
+DzO4eU+6fBEFSslOHXSzJzWiNW+5s30nJM5fLD3QCi/HxztToh5iUeR0WSO4e70W
+F+piIZXEA7gU1i/4pUX8
+=rnVg
+-----END PGP SIGNATURE-----
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000029.html>[Whonix-devel] AppArmor
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000028.html>[Whonix-devel] How to decide which apps come with Whonix? - new	design page
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/date.html#30">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/thread.html#30">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/subject.html#30">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/author.html#30">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000030.html','y7aelHq7wr','ErdNCMOrnD4',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-August/000030.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2013-August/000030.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:13 GMT -->
+</HTML>

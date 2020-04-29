@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-February/000297.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Hidden Service as Time Source
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Hidden%20Service%20as%20Time%20Source&In-Reply-To=%3C54D3EC5A.3080101%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000296.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000298.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Hidden Service as Time Source</H1>
+<B>Thomas White</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Hidden%20Service%20as%20Time%20Source&In-Reply-To=%3C54D3EC5A.3080101%40riseup.net%3E" TITLE="[Whonix-devel] Hidden Service as Time Source">thomaswhite at riseup.net
+</A><BR>
+<I>Thu Feb 5 23:19:06 CET 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000296.html>[Whonix-devel] Hidden Service as Time Source
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000298.html>[Whonix-devel] Suggest Trustworthy Tor Hidden Services as Time	Sources for sdwdate
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/date.html#297">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/thread.html#297">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/subject.html#297">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/author.html#297">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Hi Patrick,
+
+Yes that's fine. Some of my hidden services are as follows:
+
+<A HREF="../../../../external.html?link=http://atlas777hhh7mcs7.onion/">http://atlas777hhh7mcs7.onion/</A>
+<A HREF="../../../../external.html?link=http://compass6vpxj32p3.onion/">http://compass6vpxj32p3.onion/</A>
+<A HREF="../../../../external.html?link=http://globe223ezvh6bps.onion/">http://globe223ezvh6bps.onion/</A>
+<A HREF="../../../../external.html?link=http://bbbbbb6qtmqg65g6.onion/">http://bbbbbb6qtmqg65g6.onion/</A>
+<A HREF="../../../../external.html?link=http://pppppptkftqqnfsq.onion/">http://pppppptkftqqnfsq.onion/</A>
+
+Regards,
+Tom
+
+On 05/02/2015 19:19, Patrick Schleizer wrote:
+&gt;<i> Hi Thomas!
+</i>&gt;<i> 
+</i>&gt;<i> As you know, I am a developer of an anonymity centric
+</i>&gt;<i> distribution. Similar to TAILS but optimized for virtual machines.
+</i>&gt;<i> The Whonix Project.
+</i>&gt;<i> 
+</i>&gt;<i> In the same way, we need to use a source to calibrate our system
+</i>&gt;<i> clock. That isn't NTP, for one because NTP uses UDP and the Tor
+</i>&gt;<i> network does not support UDP and a few other reasons. The way this
+</i>&gt;<i> is done at the moment is to fetch HTTP headers over SSL from
+</i>&gt;<i> trusted servers and use the timestamp data at the time.
+</i>&gt;<i> 
+</i>&gt;<i> We wanted to get rid of SSL and make use of the strong security 
+</i>&gt;<i> properties of Tor's end to end encryption for Hidden Services to 
+</i>&gt;<i> safeguard against clearnet SSL man in the middle attacks, that are 
+</i>&gt;<i> within reach of powerful adversaries at the moment.
+</i>&gt;<i> 
+</i>&gt;<i> We are asking permission to use your Hidden Service[s] instance[s] 
+</i>&gt;<i> as one of our time sources.
+</i>&gt;<i> 
+</i>&gt;<i> We are going to add multiple trustworthy hidden services to the
+</i>&gt;<i> list for redundancy and to distribute the load. Our estimated user
+</i>&gt;<i> base is 5000. The requests will only involve fetching a HTTP header
+</i>&gt;<i> from your server.
+</i>&gt;<i> 
+</i>&gt;<i> By replying to this e-mail, your answer will be posted on the 
+</i>&gt;<i> whonix-devel public mailing list. Please let us know if this use
+</i>&gt;<i> case is alright with your Hidden Service[s] instance[s].
+</i>&gt;<i> 
+</i>&gt;<i> Cheers, Patrick
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>
+- -- 
+Activist, anarchist and a bit of a dreamer.
+Keybase: <A HREF="../../../../external.html?link=https://keybase.io/thomaswhite">https://keybase.io/thomaswhite</A>
+
+PGP Keys: key.thecthulhu.com
+Current Fingerprint: E771 BE69 4696 F742 DB94 AA8C 5C2A 8C5A 0CCA 4983
+Key-ID: 0CCA4983
+Master Fingerprint: DDEF AB9B 1962 5D09 4264 2558 1F23 39B7 EF10 09F0
+Key-ID: EF1009F0
+
+Twitter: @CthulhuSec
+XMPP: thecthulhu at jabber.ccc.de
+XMPP-OTR: 4321B19F A9A3462C FE64BAC7 294C8A7E A53CC966
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBAgAGBQJU0+xXAAoJEFwqjFoMykmDETIP/jE7xlDOr8RkUtt0ApR3FZ27
+zrJKABzV+50qqpeWj+7o0cKd7tpOyuFaBaP/+jZifyceMRLK9zPElYhB9oHxvdZV
+ssDjsiwn3vLid9TCkslrBz93P399ht0Hpa8byVdS2rtE8kSK49kt6Kyi90RX61CI
+PZ+L/KAjaA4pn/3LTWZ24VspBilXz/3jhXZMwmnyz1/8zRLrFYVZK318PgzoseLd
+y7bG3bTjYGpb8+6w/Xhem924DtRuRM1lA0paNdgO/2MWBro3PbAlxgOVu0L9DBsi
+nAwPZ50o4Ies/yAdHkdVfrWlCHlgn0mB/O8eZnTu04QK1lgoY0+ly0wvkvHfzDMc
+kM5QWzB/IyUUWi2pZ2hlObs2aIoYedCgjeDyyStTSyuPvOPH9Vwmt2oSB3KFBYvQ
+dj042CJgWa3Y/i9Z4AqA6ttRTh9l4B/rjRR6Zif+RN1QZsEH4fJkCymlc5YWgBqw
+ubiIGfQoLOMYq0gydLmqpsbLetOSZrAysTO58f4ZL6ok5I0l/hUHjA3V0BNRlOSG
+koiMgUbupEzz40s54mfUlEdpVAynpR5v6A12wnc7fZgb6CctKOg5Ux0GPRwab3LK
+HQ+HeqFPVsKUuzv4OR6X2joyQzwnS3glDYBCsi1HYuy2c3JulXjKVVi2gyhrHbDD
+Rn3zXMLkX08Z+sJ8ZKIf
+=VkY6
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000296.html>[Whonix-devel] Hidden Service as Time Source
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000298.html>[Whonix-devel] Suggest Trustworthy Tor Hidden Services as Time	Sources for sdwdate
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/date.html#297">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/thread.html#297">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/subject.html#297">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/author.html#297">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-February/000297.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-February/000297.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:55 GMT -->
+</HTML>

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2013-October/000080.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Plastique kwin style &amp; Widget Style
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Plastique%20kwin%20style%20%26%20Widget%20Style&In-Reply-To=%3C52614676.6080407%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000079.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000087.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Plastique kwin style &amp; Widget Style</H1>
+<B>scarp</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Plastique%20kwin%20style%20%26%20Widget%20Style&In-Reply-To=%3C52614676.6080407%40riseup.net%3E" TITLE="[Whonix-devel] Plastique kwin style &amp; Widget Style">scarp at riseup.net
+</A><BR>
+<I>Fri Oct 18 16:32:22 CEST 2013</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000079.html>[Whonix-devel] bug in whonix_repository tool
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000087.html>[Whonix-devel] Plastique kwin style &amp; Widget Style
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/date.html#80">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/thread.html#80">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/subject.html#80">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/author.html#80">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+It looks like when ubuntu-lowfat settings were pulled in the default
+kwin style and widget style was changed to the old KDE3 looking
+Plastique style.
+
+This is probably less tested than Oxygen, and will probably have less
+continuity with GTK+ applications. I also read here
+<A HREF="../../../../external.html?link=http://blog.qt.digia.com/blog/2012/10/30/cleaning-up-styles-in-qt5-and-adding-fusion/">http://blog.qt.digia.com/blog/2012/10/30/cleaning-up-styles-in-qt5-and-adding-fusion/</A>
+they're removing it from the default Qt5 base install.
+
+Maybe we should change this default back to Oxygen (the default for
+the KDE4 distribution). It's also the default in practically every
+distribution that ships KDE, so that means it's going to be better
+tested, especially with third party applications, where those
+unfortunate rendering bugs often crop up.
+
+As silly as it sounds, it might also turn people off using Whonix if
+it is ugly, especially if they've come from a recent version of
+Windows or MacOSX.
+
+We can easily accomplish this change by changing the value PluginLib
+in kwinrc (this is for the window border decoration)
+
+   -PluginLib=kwin3_aurorae
+   +PluginLib=kwin3_oxygen
+
+We would also need to change the WidgetStyle in kdeglobals
+
+   -widgetStyle=plastique
+   +widgetStyle=oxygen
+
+We should also create a file that is put in ~/.kde/share/config/gtkrc
+which contains:
+
+   include &quot;/usr/share/themes/oxygen-gtk/gtk-2.0/gtkrc&quot;
+   gtk-theme-name=&quot;oxygen-gtk&quot;
+
+and one in ~/.kde/share/config/gtkrc-2.0 which contains:
+
+   gtk-alternative-button-order = 1
+   include &quot;/usr/share/themes/oxygen-gtk/gtk-2.0/gtkrc&quot;
+   gtk-theme-name=&quot;oxygen-gtk&quot;
+
+This way new users won't have to do anything to make it look proper again.
+
+- -- 
+scarp | A4F7 25DB 2529 CB1A 605B  3CB4 5DA0 4859 0FD4 B313
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCgAGBQJSYUZ0AAoJEF2gSFkP1LMTQcQP/3rPycOClaHpxv2jKBv0q6Cb
+APgSEhRBPxa0eAvhGWulhUdlK2r85AuGiiTuYr/TM606vwdK0DBOrAFSpZjTjtcH
+vjLXMDJhc9nwbWFKHuUcMczTyzoi08XwgFDk2wcf6LF1e/Xu9x5EuQfNdgYypnhU
+3wMpQmUHm+Ka3wc6qxr4WEa77YqloPB9gQlZNkr2Sq1vlj/8XKQkZyDR2LmKgmxQ
+ZZsZK5XMQJKYqFfw9weHMw+UYz1uGVKExd3lGkqI+A8HHrb1QQnjKVnX/RJdTA3x
+v0Q5wndBfh7xD9qd7M4cSo/VrKvT/FTppJtseteOGCahV3iDzNPmt5wdCIQrkO9Q
+LmDLjo1oqd06989kD/hsZQ+tYlacvOdUt+evbR0knj2jxyz0/hYmUT9+6xUx07/p
+HqjdFZhJGZPiH5BIjcCLRVySVK9N7mCe9a5w2UG0/USHAwjGGMhuhrAtST/Juqzw
+6Bm0gFKrvigQZc6eXR8biSzA4ZJoHZUt9thYX9thX0pGhByz++RaFsD+we1d0OBe
+GkG+mEHiizjLTQHFizuN2v7lU9K+0eCFqvFmmzJfzqyUIOaptum0RRzAChmpxgs3
+QAcMtEt5wPL/f4rqpNztU5f886v6JT0ijHc+O29+wBAD0n9htCsUSbXmpp1lgVP4
+FxkoIa2kc84R8fJnrSTA
+=2D3N
+-----END PGP SIGNATURE-----
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000079.html>[Whonix-devel] bug in whonix_repository tool
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000087.html>[Whonix-devel] Plastique kwin style &amp; Widget Style
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/date.html#80">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/thread.html#80">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/subject.html#80">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/author.html#80">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000080.html','y7aelHq7wr','7zlTmn_05n8',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2013-October/000080.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2013-October/000080.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:11 GMT -->
+</HTML>

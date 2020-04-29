@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-February/001302.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Bug#921163: coreutils such as /bin/mkdir are duplicated in /usr/bin/mkdir
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Bug%23921163%3A%20coreutils%20such%20as%20/bin/mkdir%20are%0A%20duplicated%20in%20/usr/bin/mkdir&In-Reply-To=%3Cbe1af8a8-b28d-1c1a-c3fd-9cfb63db8276%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001316.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001303.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Bug#921163: coreutils such as /bin/mkdir are duplicated in /usr/bin/mkdir</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Bug%23921163%3A%20coreutils%20such%20as%20/bin/mkdir%20are%0A%20duplicated%20in%20/usr/bin/mkdir&In-Reply-To=%3Cbe1af8a8-b28d-1c1a-c3fd-9cfb63db8276%40riseup.net%3E" TITLE="[Whonix-devel] Bug#921163: coreutils such as /bin/mkdir are duplicated in /usr/bin/mkdir">adrelanos at riseup.net
+</A><BR>
+<I>Sat Feb 2 15:05:00 CET 2019</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001316.html>[Whonix-devel] #17216 [Applications/Tor Browser]: Make Tor Browser's updater work over Hidden Services
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001303.html>[Whonix-devel] Bug#921163: coreutils such as /bin/mkdir are duplicated in /usr/bin/mkdir
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/date.html#1302">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/thread.html#1302">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/subject.html#1302">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/author.html#1302">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Package: mmdebstrap
+Severity: normal
+X-Debbugs-CC: <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">whonix-devel at whonix.org</A>
+
+Dear maintainer,
+
+# How to reproduce:
+
+sudo mmdebstrap --mode=root
+--aptopt=/home/user/whonix_binary/aptgetopt.conf stretch
+/var/cache/pbuilder/base.cow
+/home/user/whonix_dot/Whonix/build_sources/debian_stable_current_clearnet.list
+
+(Could probably simplified but I hope you can reproduce this easily /
+hope you also have usr/bin/mkdir.)
+
+# Expected result:
+
+base.cow/bin/mkdir exists.
+
+base.cow/usr/bin/mkdir does not exist
+
+# Actual result:
+
+base.cow/bin/mkdir exists.
+
+base.cow/usr/bin/mkdir exists.
+
+base.cow/usr/bin/mkdir matches base.cow/bin/mkdir.
+
+diff base.cow/usr/bin/mkdir base.cow/bin/mkdir ; echo $?
+0
+
+Also many (if not all) other coreutils that should only reside in /bin
+such as /bin/rm are duplicated in /usr/bin such as /usr/bin/rm.
+
+# Why this is a problem:
+
+/usr/bin is preferred over /bin with default $PATH setting.
+
+- When coreutils is later updated, it will only update /bin/mkdir and so
+forth but not /usr/bin/mkdir. This is because /bin/mkdir is owned by
+coreutils (dpkg -S /bin/mkdir) but /usr/bin/mkdir is owned by no package
+(dpkg -S /usr/bin/mkdir).
+
+- This leads to apparmor issues. In apparmor profiles one has to
+hardcode for example /bin/mkdir but since /usr/bin/mkdir exists, this
+call will be denied.
+
+# Misc:
+
+I couldn't figure out from the source code why this is happening.
+Intended or unintended behavior? If intended, can this be turned off?
+Are also other files in unusual places?
+
+Kind regards,
+Patrick
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001316.html>[Whonix-devel] #17216 [Applications/Tor Browser]: Make Tor Browser's updater work over Hidden Services
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001303.html>[Whonix-devel] Bug#921163: coreutils such as /bin/mkdir are duplicated in /usr/bin/mkdir
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/date.html#1302">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/thread.html#1302">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/subject.html#1302">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/author.html#1302">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001302.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-February/001302.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:07 GMT -->
+</HTML>

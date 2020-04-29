@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2020-March/001532.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:54:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] #19409 [Circumvention/Snowflake]: Make a deb of snowflake and get into Debian
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%2319409%20%5BCircumvention/Snowflake%5D%3A%20Make%20a%20deb%20of%0A%20snowflake%20and%20get%20into%20Debian&In-Reply-To=%3C064.9c4f1e774af74119f371130bfca8b3ad%40torproject.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/001531.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/001533.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] #19409 [Circumvention/Snowflake]: Make a deb of snowflake and get into Debian</H1>
+<B>Tor Bug Tracker &amp; Wiki</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%2319409%20%5BCircumvention/Snowflake%5D%3A%20Make%20a%20deb%20of%0A%20snowflake%20and%20get%20into%20Debian&In-Reply-To=%3C064.9c4f1e774af74119f371130bfca8b3ad%40torproject.org%3E" TITLE="[Whonix-devel] #19409 [Circumvention/Snowflake]: Make a deb of snowflake and get into Debian">blackhole at torproject.org
+</A><BR>
+<I>Wed Mar 18 01:23:41 CET 2020</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/001531.html>[Whonix-devel] #19409 [Circumvention/Snowflake]: Make a deb of snowflake and get into Debian
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/001533.html>[Whonix-devel] #19409 [Circumvention/Snowflake]: Make a deb of snowflake and get into Debian
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/date.html#1532">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/thread.html#1532">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/subject.html#1532">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/author.html#1532">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>#19409: Make a deb of snowflake and get into Debian
+-------------------------------------+--------------------------
+ Reporter:  adrelanos                |          Owner:  cohosh
+     Type:  enhancement              |         Status:  assigned
+ Priority:  High                     |      Milestone:
+Component:  Circumvention/Snowflake  |        Version:
+ Severity:  Major                    |     Resolution:
+ Keywords:                           |  Actual Points:
+Parent ID:                           |         Points:
+ Reviewer:                           |        Sponsor:
+-------------------------------------+--------------------------
+
+Comment (by arma):
+
+ Replying to [comment:21 anarcat]:
+ &gt; golang is still statically linked in Debian, just like everywhere else,
+ because the upstream tooling for dynamic linking is non-existent
+
+ Ah ha, right, great.
+
+ So that means definitely smart to get set up with the Debian go team,
+ because they will need to know that here is yet another package that needs
+ to get rebuilt whenever there's a security update to one of its go libs.
+
+ &gt; &gt;  One of the awesome things about a snowflake deb (i.e. a deb that lets
+ people become snowflakes) would be that you just install the deb and it
+ magically works from there -- no editing text files, no opening ports, no
+ installing tor, etc. Basically all the features of having a Snowflake
+ browser extension, but now also in the (headless) deb package world.
+ &gt;
+ &gt; ... that sometimes involves a lot of tricky debian packaging tricks. It
+ is much easier to do this when upstream already provides tools to do that
+ hard stuff (&quot;edit text file&quot;, &quot;open port&quot; (?), &quot;configure tor&quot;)...
+
+ We're in luck! I'm not doing the bad idea of saying &quot;oh we'll just
+ automate all of that in the deb somehow&quot;. I'm saying that snowflake, by
+ design, doesn't need it: there are no text files to edit, it only makes
+ outgoing connections so nothing needs to mess with port forwarding, it
+ doesn't use tor, etc.
+
+ So I think we won't need the tricky debian packaging tricks here either.
+ :)
+
+ &gt; Let me know if you have any other questions: I have packaged a few
+ golang libraries and one binary in Debian and learned some of the ropes,
+ so I can help. (Hey, and look at that - I *am* part of the golang team, so
+ you got a team member to ask right here. ;)
+
+ Anarcat: one other thing you could do here that would be really helpful:
+ give cohosh some intuition about how much future ongoing misery she's
+ signing herself up for, by offering to help package/maintain the set of go
+ libs she'll depend on. With that knowledge, the anti-censorship team
+ should think about whether signing up for that commitment is the best use
+ of their limited time -- or said another way, how to make things scale
+ well enough for the future.
+
+--
+Ticket URL: &lt;<A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/19409#comment:23">https://trac.torproject.org/projects/tor/ticket/19409#comment:23</A>&gt;
+Tor Bug Tracker &amp; Wiki &lt;<A HREF="../../../../external.html?link=https://trac.torproject.org/">https://trac.torproject.org/</A>&gt;
+The Tor Project: anonymity online
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/001531.html>[Whonix-devel] #19409 [Circumvention/Snowflake]: Make a deb of snowflake and get into Debian
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/001533.html>[Whonix-devel] #19409 [Circumvention/Snowflake]: Make a deb of snowflake and get into Debian
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/date.html#1532">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/thread.html#1532">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/subject.html#1532">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/author.html#1532">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/001532.html','y7aelHq7wr','T1CsnwYbQWY',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2020-March/001532.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2020-March/001532.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:54:54 GMT -->
+</HTML>

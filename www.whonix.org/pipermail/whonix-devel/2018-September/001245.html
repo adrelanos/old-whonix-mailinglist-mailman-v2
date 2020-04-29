@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001245.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bdm-crypt%5D%20Troubleshooting%3A%20Header%20Conversion%20to%0A%20argon2id&In-Reply-To=%3C8d1b69d6-9c35-7686-0c9c-9e4b8e92d7aa%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001243.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001230.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id</H1>
+<B>procmem</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bdm-crypt%5D%20Troubleshooting%3A%20Header%20Conversion%20to%0A%20argon2id&In-Reply-To=%3C8d1b69d6-9c35-7686-0c9c-9e4b8e92d7aa%40riseup.net%3E" TITLE="[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id">procmem at riseup.net
+</A><BR>
+<I>Sat Sep 15 03:33:00 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001243.html>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001230.html>[Whonix-devel] [Tor Bug Tracker &amp; Wiki] Batch modify: #26181, #4522, #9460, #9461, ...
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1245">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1245">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1245">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1245">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>
+
+Ondrej Kozina:
+&gt;<i> On 09/14/2018 02:21 AM, procmem wrote:
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> Guilhem Moulin:
+</i>&gt;&gt;&gt;<i> On Thu, 13 Sep 2018 at 14:22:00 +0000, procmem wrote:
+</i>&gt;&gt;&gt;&gt;<i> Ondrej Kozina:
+</i>&gt;&gt;&gt;&gt;&gt;<i> Well, this sounds like a bug. Could you please provide us with debug
+</i>&gt;&gt;&gt;&gt;&gt;<i> output for failing command trying to luksConvertKey that particular
+</i>&gt;&gt;&gt;&gt;&gt;<i> keyslot?
+</i>&gt;&gt;&gt;&gt;<i>
+</i>&gt;&gt;&gt;&gt;<i> Sure thing but I don't know how to access initramfs command history.
+</i>&gt;&gt;&gt;&gt;<i> Unlike a booted-up environment there is no opportunity to scroll and
+</i>&gt;&gt;&gt;&gt;<i> select entire output for saving.
+</i>&gt;&gt;&gt;<i>
+</i>&gt;&gt;&gt;<i> You can redirect the output to a file under /run/initramfs.  /run is
+</i>&gt;&gt;&gt;<i> moved to the rootfs at init-bottom stage, shortly before the execution
+</i>&gt;&gt;&gt;<i> is turned over to the `init` binary, so content added at early boot
+</i>&gt;&gt;&gt;<i> stage will also be available later during the boot process.
+</i>&gt;&gt;&gt;<i>
+</i>&gt;&gt;&gt;<i> (Again, assuming your initramfs is comes from initramfs-tools, which is
+</i>&gt;&gt;&gt;<i> the default in Debian — and I guess its derivatives.)
+</i>&gt;&gt;&gt;<i>
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> OK here are the contents of the redirected output:
+</i>&gt;&gt;<i>
+</i>&gt;<i> 
+</i>&gt;<i> Are you sure your keyslot 1 is active? The only way I can reproduce the
+</i>&gt;<i> same cryptic failure is with my keyslot passed in params being inactive.
+</i>&gt;<i> It's a bug because cryptsetup cli should emit proper error message about
+</i>&gt;<i> it.
+</i>&gt;<i> 
+</i>&gt;<i> New issue: <A HREF="../../../../external.html?link=https://gitlab.com/cryptsetup/cryptsetup/issues/416">https://gitlab.com/cryptsetup/cryptsetup/issues/416</A>
+</i>&gt;<i> 
+</i>&gt;<i> O.
+</i>
+
+Indeed that was it. My bad. I was blindly typing in the same command
+that designated the non-existent keyslot 1 while the key was in 0.
+Nonetheless a clearer error message should help.
+
+This command did work from initramfs:
+
+cryptsetup luksConvertKey --key-slot 0 --pbkdf argon2id
+--pbkdf-force-iterations 50 --pbkdf-memory 1048576 --pbkdf-parallel 4
+&lt;device&gt;
+
+
+Verified that the header data was changed as intended after boot. Also
+noticed a nice delay after entering passphrases now. That should throw a
+big fat wrench in brute-forcing efforts ;)
+
+
+
+sudo cryptsetup luksDump --debug /dev/vda5
+# cryptsetup 2.0.4 processing &quot;cryptsetup luksDump --debug /dev/vda5&quot;
+# Running command luksDump.
+# Locking memory.
+# Installing SIGINT/SIGTERM handler.
+# Unblocking interruption on signal.
+# Allocating context for crypt device /dev/vda5.
+# Trying to open and read device /dev/vda5 with direct-io.
+# Initialising device-mapper backend library.
+# Trying to load any crypt type from device /dev/vda5.
+# Crypto backend (gcrypt 1.8.3) initialized in cryptsetup library
+version 2.0.4.
+# Detected kernel Linux 4.17.0-3-amd64 x86_64.
+# Loading LUKS2 header (repair disabled).
+# Opening lock resource file /run/cryptsetup/L_254:5
+# Acquiring read lock for device /dev/vda5.
+# Verifying read lock handle for device /dev/vda5.
+# Device /dev/vda5 READ lock taken.
+# Trying to read primary LUKS2 header at offset 0x0.
+# Opening locked device /dev/vda5
+# Veryfing locked device handle (bdev)
+# LUKS2 header version 2 of size 16384 bytes, checksum sha256.
+#
+Checksum:267f3c4bc0b36cb98e99bc1f32066d9e8843c2977a65df04c43c2f474aca3efc
+(on-disk)
+#
+Checksum:267f3c4bc0b36cb98e99bc1f32066d9e8843c2977a65df04c43c2f474aca3efc
+(in-memory)
+# Trying to read secondary LUKS2 header at offset 0x4000.
+# Opening locked device /dev/vda5
+# Veryfing locked device handle (bdev)
+# LUKS2 header version 2 of size 16384 bytes, checksum sha256.
+#
+Checksum:70714e66fa9d9913bb85191a96cb5f4348d349a716b9c4a8dd297fe02431fc56
+(on-disk)
+#
+Checksum:70714e66fa9d9913bb85191a96cb5f4348d349a716b9c4a8dd297fe02431fc56
+(in-memory)
+# Device size 53429141504, header size 2097152.
+# Device /dev/vda5 READ lock released.
+# Only 2 active CPUs detected, PBKDF threads decreased from 4 to 2.
+# Not enough physical memory detected, PBKDF max memory decreased from
+1048576kB to 506360kB.
+# PBKDF argon2i, hash sha256, time_ms 2000 (iterations 0), max_memory_kb
+506360, parallel_threads 2.
+# {
+  &quot;keyslots&quot;:{
+    &quot;0&quot;:{
+      &quot;type&quot;:&quot;luks2&quot;,
+      &quot;key_size&quot;:64,
+      &quot;kdf&quot;:{
+        &quot;type&quot;:&quot;argon2id&quot;,
+        &quot;time&quot;:50,
+        &quot;memory&quot;:506360,
+        &quot;cpus&quot;:2,
+        &quot;salt&quot;:&quot;3K2QS1LyYWoQiVXz2sVfqYoRFgLNj8YOQUnj7PJacgg=&quot;
+      },
+      &quot;af&quot;:{
+        &quot;type&quot;:&quot;luks1&quot;,
+        &quot;hash&quot;:&quot;sha256&quot;,
+        &quot;stripes&quot;:4000
+      },
+      &quot;area&quot;:{
+        &quot;type&quot;:&quot;raw&quot;,
+        &quot;encryption&quot;:&quot;aes-xts-plain64&quot;,
+        &quot;key_size&quot;:64,
+        &quot;offset&quot;:&quot;32768&quot;,
+        &quot;size&quot;:&quot;258048&quot;
+      }
+    }
+  },
+  &quot;tokens&quot;:{
+  },
+  &quot;segments&quot;:{
+    &quot;0&quot;:{
+      &quot;type&quot;:&quot;crypt&quot;,
+      &quot;offset&quot;:&quot;2097152&quot;,
+      &quot;iv_tweak&quot;:&quot;0&quot;,
+      &quot;size&quot;:&quot;dynamic&quot;,
+      &quot;encryption&quot;:&quot;aes-xts-plain64&quot;,
+      &quot;sector_size&quot;:512
+    }
+  },
+  &quot;digests&quot;:{
+    &quot;0&quot;:{
+      &quot;type&quot;:&quot;pbkdf2&quot;,
+      &quot;keyslots&quot;:[
+        &quot;0&quot;
+      ],
+      &quot;segments&quot;:[
+        &quot;0&quot;
+      ],
+      &quot;hash&quot;:&quot;sha256&quot;,
+      &quot;salt&quot;:&quot;fXVLOCzOBLq+mYHHGE7Z6gTDcBZue\/N0ksKl2siGj1c=&quot;,
+      &quot;digest&quot;:&quot;kogLEtiHWaQBJQipVN9wMawxi28=&quot;,
+      &quot;iterations&quot;:64503
+    }
+  },
+  &quot;config&quot;:{
+    &quot;json_size&quot;:&quot;12288&quot;,
+    &quot;keyslots_size&quot;:&quot;2064384&quot;
+  }
+}
+LUKS header information
+Version:        2
+Epoch:          3
+Metadata area:  12288 bytes
+UUID:           fd28a001-e2a1-46dc-8e6c-99f0a55b1851
+Label:          (no label)
+Subsystem:      (no subsystem)
+Flags:          (no flags)
+
+Data segments:
+  0: crypt
+        offset: 2097152 [bytes]
+        length: (whole device)
+        cipher: aes-xts-plain64
+        sector: 512 [bytes]
+
+Keyslots:
+  0: luks2
+        Key:        512 bits
+        Priority:   normal
+        Cipher:     aes-xts-plain64
+        PBKDF:      argon2id
+        Time cost:  50
+        Memory:     506360
+        Threads:    2
+        Salt:       dc ad 90 4b 52 f2 61 6a 10 89 55 f3 da c5 5f a9
+                    8a 11 16 02 cd 8f c6 0e 41 49 e3 ec f2 5a 72 08
+        AF stripes: 4000
+        Area offset:32768 [bytes]
+        Area length:258048 [bytes]
+        Digest ID:  0
+Tokens:
+Digests:
+  0: pbkdf2
+        Hash:       sha256
+        Iterations: 64503
+        Salt:       7d 75 4b 38 2c ce 04 ba be 99 81 c7 18 4e d9 ea
+                    04 c3 70 16 6e 7b f3 74 92 c2 a5 da c8 86 8f 57
+        Digest:     92 88 0b 12 d8 87 59 a4 01 25
+                    08 a9 54 df 70 31 ac 31 8b 6f
+# Releasing crypt device /dev/vda5 context.
+# Releasing device-mapper backend.
+# Unlocking memory.
+Command successful.
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001243.html>[Whonix-devel] [dm-crypt] Troubleshooting: Header Conversion to argon2id
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001230.html>[Whonix-devel] [Tor Bug Tracker &amp; Wiki] Batch modify: #26181, #4522, #9460, #9461, ...
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1245">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1245">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1245">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1245">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001245.html','y7aelHq7wr','O_-9dz2MzUg',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001245.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001245.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+</HTML>

@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-August/001217.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Argon2id security margin estimate and LUKS2 usage
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Argon2id%20security%20margin%20estimate%20and%20LUKS2%20usage&In-Reply-To=%3C20180821024127.GA7462%40tansi.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001216.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001214.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Argon2id security margin estimate and LUKS2 usage</H1>
+<B>Arno Wagner</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Argon2id%20security%20margin%20estimate%20and%20LUKS2%20usage&In-Reply-To=%3C20180821024127.GA7462%40tansi.org%3E" TITLE="[Whonix-devel] Argon2id security margin estimate and LUKS2 usage">arno at wagner.name
+</A><BR>
+<I>Tue Aug 21 04:41:27 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001216.html>[Whonix-devel] Argon2id security margin estimate and LUKS2 usage
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001214.html>[Whonix-devel] Summarizer effectiveness for anti-stylometry
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/date.html#1217">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/thread.html#1217">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/subject.html#1217">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/author.html#1217">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On Tue, Aug 21, 2018 at 01:19:00 CEST, procmem wrote:
+&gt;<i> 
+</i>&gt;<i> Arno Wagner wrote:
+</i>&gt;<i> procmem wrote:
+</i>&gt;<i> &gt;&gt; Hi Milan, Whonix (privacy distro) maintainer here. We are researching
+</i>&gt;<i> &gt;&gt; the best password advice to give to our users and while diceware is a
+</i>&gt;<i> &gt;&gt; great improvement over the status quo, the recommendation by
+</i>&gt;<i> &gt;&gt; cryptographers in light of quantum computing is to choose pass phrases
+</i>&gt;<i> &gt;&gt; with a length equivalent to 256 bits because Grovers will halve the bit
+</i>&gt;<i> &gt;&gt; length. This requires phrases to be 20 words long for 256 bits which is
+</i>&gt;<i> &gt;&gt; excessive IMO and the reason we are looking at key-stretching for
+</i>&gt;<i> &gt;&gt; shorter ones instead.
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; This is completely irrelevant for key derivation. No QC
+</i>&gt;<i> &gt; will be able to do a few 1000 iterations of KDF this century,
+</i>&gt;<i> &gt; and actually it would need to reverse them. Also, the size of
+</i>&gt;<i> &gt; the QC needed is not the password-size, but the minimal memory
+</i>&gt;<i> &gt; needed to compute the KDF on it. So with something like 
+</i>&gt;<i> &gt; Argon2, the QC would need as many bits as the configured memory.
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; In addition, it is still completely unclear whether QC will 
+</i>&gt;<i> &gt; ever scale. There is no indication that it will after now 
+</i>&gt;<i> &gt; something like 40 years of intense research. This is just another
+</i>&gt;<i> &gt; hype that will not die because too many people believe in magic
+</i>&gt;<i> &gt; and normal computing has effectively stopped scaling half a 
+</i>&gt;<i> &gt; decade back or so.
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; Well, actually, it is pretty clear at this time that QC does
+</i>&gt;<i> &gt; not scale at all in practice and that its scale-up over time 
+</i>&gt;<i> &gt; may well be inverse exponential. If so, it will never be of any use.
+</i>&gt;<i> &gt; 
+</i>&gt;<i> 
+</i>&gt;<i> True. I've seen other cryptographers skeptical of QCs ever materializing
+</i>&gt;<i> in practice excepting a black swan event. However they still support
+</i>&gt;<i> development of PQ ciphers just in case this happens so we aren't caught
+</i>&gt;<i> with our oants down in a cryptocalypse. Projects like Tor are working on
+</i>&gt;<i> a PQ KEM just in case.
+</i>&gt;<i> 
+</i>&gt;<i> While I'd personally love to see quantum computing never succeed because
+</i>&gt;<i> it only benefits institutions and not regular people, common sense says
+</i>&gt;<i> its still a plausible scenario to consider until a mathematical proof
+</i>&gt;<i> disproving the possibility of a large QC surfaces.
+</i>
+For some ciphers, this makes some sense. But a KFD is not really
+vulnerable to QCs, even if they eventually work and scale.
+And with the large-memory property of Argon2, the QC even
+able to work on it would need to be enormous.
+
+ 
+&gt;<i> &gt; 
+</i>&gt;<i> &gt;&gt; 
+</i>&gt;<i> &gt;&gt; * What is the time/sec margin added to a password with Argon2id's best
+</i>&gt;<i> &gt;&gt; parameters?
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; There are no &quot;best&quot; parameters. It depends on your application and
+</i>&gt;<i> &gt; target system. That said, computationally, it is bascially just 
+</i>&gt;<i> &gt; the same as PBKDF2, ARGON2 just adds a minimal memory requirements 
+</i>&gt;<i> &gt; or you get exponentially worse.
+</i>&gt;<i> &gt; 
+</i>&gt;<i> 
+</i>&gt;<i> I've read arguments to the effect of LUKS1 PBKDF2 being a badly broken
+</i>&gt;<i> Maginot Line in the face of adversaries with GPUs even if configured
+</i>&gt;<i> with 10K iterations.
+</i>
+Well, LUKS1 is at arond 500k iteration for a modern CPU, so that
+is not a threat. Calling it &quot;badly broken&quot; is pretty much nonsense,
+even for only 10k iterations. All a KDF does is lower the amount
+of entropy in the passhrase somewhat, it does not prevent breaking
+of really bad passphrases and that is not its purpose in the first
+place. Its purpose is to shift the boder between &quot;good&quot; and &quot;bad&quot;
+a bit and that is it.
+
+&gt;<i> My reasoning was: An adversary who has a ton of GPUs can circumvent
+</i>&gt;<i> legacy PBKDF2's key-stretching benefits and then in the event of
+</i>&gt;<i> possessing a QC we then basically have nothing to rely on besides the
+</i>&gt;<i> master key bit size.
+</i>
+What makes you think a QC would be useful in breaking PBKDF2?
+To the best of my knowledge, breaking PBKDF2 requires brute-forcing.
+Again to the best of my knowledge, a QC has zero advantage
+under these conditions. I may be wrong.
+
+&gt;<i> But I'm getting the impression from you that Argon2 is merely a minor
+</i>&gt;<i> improvement over the original PBKDF2 and that the latter is not
+</i>&gt;<i> hopelessly defeated by GPUs?
+</i>
+The streteching effect is pretty much the same. The advantage 
+is that GPUs cannot efficiently calculate Argon2.
+
+&gt;<i> Unlike symmetric key strength and passphrase entropy that I can easily
+</i>&gt;<i> calculate, I have no idea how much PBKDF2 can delay bruteforcing by an
+</i>&gt;<i> adversary with massive CPU let alone GPU power. Do you know where I can
+</i>&gt;<i> read about this?
+</i>
+For GPU-power, nowhere, it is useless against Argon2, unless you
+configure a tiny memory footprint. Obvously, you should not do that.
+For CPU, it is pretty much &quot;time to calculate hash&quot; = &quot;time for one
+step brute-forcing attempt&quot;. This is a fundamental limitation, not
+one of Argon2. 
+
+[...]
+&gt;<i> &gt; Just keep in mind that with a good passphrase, even a single, plain,
+</i>&gt;<i> &gt; unsalted SHA-1 is unbroken at this time and even secure against the
+</i>&gt;<i> &gt; mythical extreme powers (not) of a QC. There is really no need to 
+</i>&gt;<i> &gt; fret over key derivation, the weaknesses are in entirely different 
+</i>&gt;<i> &gt; places.
+</i>&gt;<i> 
+</i>&gt;<i> Indeed. Hashing is quantum resistant and many PQ systems are based on
+</i>&gt;<i> this premise like DJB's SPHINCS signing suite. I guess I didn't frame my
+</i>&gt;<i> question properly and you thought I meant PBKDF2 being suddenly
+</i>&gt;<i> vulnerable to QC rather than GPUs.
+</i>&gt;<i> 
+</i>&gt;<i> Thanks for your insight and work on LUKS. I learn something new every day.
+</i>
+You are welcome. To sum this up, what Argon2 does is it
+makes a configurable amount of memory mandatory to attack 
+it. This is usually set to 1GB or so and makes GPUs completely
+unusable as attack platform. CPU-based brute-forcing is not
+impacted (if there is enough RAM) and nothing can be done there.
+After all, the normal usage scenario also use a normal CPU.
+So if a legitimate Argon2 hashing takes 1 sec on a normal
+CPU, an attacker gets pretty much the same rate for brute-forcing.
+
+Regards,
+Arno
+
+
+
+-- 
+Arno Wagner,     Dr. sc. techn., Dipl. Inform.,    Email: <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">arno at wagner.name</A>
+GnuPG: ID: CB5D9718  FP: 12D6 C03B 1B30 33BB 13CF  B774 E35C 5FA1 CB5D 9718
+----
+A good decision is based on knowledge and not on numbers. -- Plato
+
+If it's in the news, don't worry about it.  The very definition of 
+&quot;news&quot; is &quot;something that hardly ever happens.&quot; -- Bruce Schneier
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001216.html>[Whonix-devel] Argon2id security margin estimate and LUKS2 usage
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001214.html>[Whonix-devel] Summarizer effectiveness for anti-stylometry
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/date.html#1217">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/thread.html#1217">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/subject.html#1217">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/author.html#1217">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001217.html','y7aelHq7wr','bcMEKphL0bo',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-August/001217.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-August/001217.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:13 GMT -->
+</HTML>

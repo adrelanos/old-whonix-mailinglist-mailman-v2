@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-August/001423.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] stackable wrapper, .d configuration drop-in folders
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20stackable%20wrapper%2C%20.d%20configuration%20drop-in%20folders&In-Reply-To=%3C7bd31e86-34bb-e884-3826-46fd80e94cad%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001419.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001424.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] stackable wrapper, .d configuration drop-in folders</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20stackable%20wrapper%2C%20.d%20configuration%20drop-in%20folders&In-Reply-To=%3C7bd31e86-34bb-e884-3826-46fd80e94cad%40riseup.net%3E" TITLE="[Whonix-devel] stackable wrapper, .d configuration drop-in folders">adrelanos at riseup.net
+</A><BR>
+<I>Sun Aug 25 11:10:00 CEST 2019</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001419.html>[Whonix-devel] #31440 [Applications/Tor Browser]: consider using Hardened Malloc for better security in TBB
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001424.html>[Whonix-devel] stackable wrapper, .d configuration drop-in folders
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/date.html#1423">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/thread.html#1423">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/subject.html#1423">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/author.html#1423">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>I enjoyed reading:
+
+Linux distributions: Can we do without hooks and triggers?
+
+<A HREF="../../../../external.html?link=https://michael.stapelberg.ch/posts/2019-07-20-hooks-and-triggers/">https://michael.stapelberg.ch/posts/2019-07-20-hooks-and-triggers/</A>
+
+Also enjoyed watching:
+
+GPN19 - Linux package manager sind zu langsam!
+
+<A HREF="../../../../external.html?link=https://www.youtube.com/watch?v=TdfEF0zRIL4">https://www.youtube.com/watch?v=TdfEF0zRIL4</A>
+
+Some comments.
+
+I find drop-in .d folders are of supreme usefulness. However, there are
+a few non-perfections.
+
+All of these drop-in folders work a bit different.
+
+config drop-in folder example:
+
+/etc/grub.d/
+
+script drop-in folder example:
+
+/etc/default/grub.d/
+
+Process files ending with '~' (created by editor backup files?) or
+'dpkg-old'? I think should not.
+
+For the kernel, looks like there is maximum flexibility.
+
+/etc/kernel/header_postinst.d
+/etc/kernel/install.d
+/etc/kernel/postinst.d
+/etc/kernel/postrm.d
+/etc/kernel/preinst.d
+/etc/kernel/prerm.d
+
+For adduser, there is a nice feature request [1]:
+hooks: /etc/adduser/{pre,post}{user,group}{add,del}.d/
+
+But there doesn't seem to be a convention on how such drop-in folders
+should be constructed.
+
+One may have opinions on systemd but unrelated to that, I like how
+systemd supports drop-ins for virtually anything aiming at maximum
+flexibility.
+
+There also seems to be no convention where drop-in folders are located
+[/usr/lib|/lib] and /etc; or only in /etc.
+
+It's non-ideal that every application is reinventing config parsing,
+drop-ins, hooks, etc.
+
+I've wrote pre.bsh - a bash snippet which gets `source`ed by every
+Debian maintainer script I write. It simplifies and abstracts  debugging
+and customization. I wish similar functionality was already a default
+feature of dpkg.
+
+It would be good of wrappers were stackable. We called this stackable
+wrappers and starting explaining the issue as well as discussed
+potential solutions.
+
+<A HREF="../../../../external.html?link=https://github.com/Whonix/proposals/blob/master/634-stackable-wrappers.txt">https://github.com/Whonix/proposals/blob/master/634-stackable-wrappers.txt</A>
+
+My Background: I am a maintainer of Whonix, which is a derivative of Whonix.
+
+cc'd whonix-devel mailing list so all our readers can benefit from you
+reply.
+
+Kind regards,
+Patrick
+
+[1] <A HREF="../../../../external.html?link=https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=36019">https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=36019</A>
+[2]
+<A HREF="../../../../external.html?link=https://github.com/Whonix/helper-scripts/blob/master/usr/lib/helper-scripts/pre.bsh">https://github.com/Whonix/helper-scripts/blob/master/usr/lib/helper-scripts/pre.bsh</A>
+[3]
+## The idea of this bash fragment is:
+## Say nothing, if everything goes well, but dump everything on error.
+
+## It allows to easily look inside the xtrace of a (Debian maintainer)
+script,
+## when the DEBDEBUG environment variable is set to 1.
+
+## To use it in other scripts, use something like this:
+# if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
+#    source /usr/lib/helper-scripts/pre.bsh
+# fi
+
+## Error log:
+## - implement trap ERR if function errorhandlergeneral does not exist
+## - implements a simple error handler if non exists
+## - run silent by default
+## - write xtrace to temporary log
+## - show full xtrace on unexpected non-zero exit code
+## - show exit code on unexpected non-zero exit code
+## - run syntax check &quot;bash -n&quot; on this script
+## - run syntax check &quot;bash -n&quot; on the script that sourced this script
+
+## DEBDEBUG:
+##
+## enable xtrace (-x) for maintainer script when DEBDEBUG environment
+## variable is set to 1.
+## For example:
+##    sudo DEBDEBUG=1 dpkg -i /path/to/package.deb
+
+## SKIP_SCRIPTS
+##
+## The SKIP_SCRIPTS environment variable to skip scripts by name
+## For example:
+##    sudo DEBDEBUG=1 SKIP_SCRIPTS=&quot; security-misc.postinst &quot; dpkg -i
+/path/to/package.deb
+##
+## another example:
+##
+##    export DEBDEBUG=1
+##     export SKIP_SCRIPTS+=&quot; security-misc.postinst &quot;
+##     sudo -E dpkg -i /path/to/package.deb
+
+## Colorful output: provides color function
+
+## Shell options: enables errtrace
+
+## Configuration Folders
+##
+## For example if the name of the package is 'security-misc':
+## - /etc/security-misc_maint.d/*.conf
+## - /usr/local/etc/security-misc_maint.d/*.conf
+##
+## For example if the name of the script is 'panic-on-oops':
+## - /etc/panic-on-oops_pre.d/*.conf
+## - /usr/local/etc/panic-on-oops_pre.d/*.conf
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001419.html>[Whonix-devel] #31440 [Applications/Tor Browser]: consider using Hardened Malloc for better security in TBB
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001424.html>[Whonix-devel] stackable wrapper, .d configuration drop-in folders
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/date.html#1423">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/thread.html#1423">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/subject.html#1423">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/author.html#1423">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001423.html','y7aelHq7wr','9C_-kccRM04',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-August/001423.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-August/001423.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:01 GMT -->
+</HTML>

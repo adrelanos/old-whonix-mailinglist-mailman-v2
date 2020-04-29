@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-January/000874.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [Secure Desktops] Hi!
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5BSecure%20Desktops%5D%20Hi%21&In-Reply-To=%3C1c087631ceebf92ff69d06a8314f1b22%40openmailbox.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000878.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000876.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [Secure Desktops] Hi!</H1>
+<B>bancfc at openmailbox.org</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5BSecure%20Desktops%5D%20Hi%21&In-Reply-To=%3C1c087631ceebf92ff69d06a8314f1b22%40openmailbox.org%3E" TITLE="[Whonix-devel] [Secure Desktops] Hi!">bancfc at openmailbox.org
+</A><BR>
+<I>Mon Jan 30 22:22:56 CET 2017</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000878.html>[Whonix-devel] [Secure Desktops] Hi!
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000876.html>[Whonix-devel] Disabling KDE Connect Service
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/date.html#874">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/thread.html#874">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/subject.html#874">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/author.html#874">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On 2017-01-30 08:29, ng0 wrote:
+&gt;<i> In case you don't want this cross-posted, let me know. I just
+</i>&gt;<i> find if confusing to reply to one list and get replies on/to two
+</i>&gt;<i> different lists.
+</i>
+No its ok. I wanted to mirror it to our mailing list and forgot to add 
+this one.
+
+
+&gt;<i> 
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">bancfc at openmailbox.org</A> writes:
+</i>&gt;<i> 
+</i>&gt;&gt;<i> On 2017-01-29 03:03, ng0 wrote:
+</i>&gt;&gt;&gt;<i> Hi,
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> bancfc discovered my work and thought it would be a good idea if
+</i>&gt;&gt;&gt;<i> I sign up for this list, to share and minimize duplication of
+</i>&gt;&gt;&gt;<i> work.
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> Awesome stuff. More below. Thanks for posting.
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> I'm working on a live-system which initially, in its first
+</i>&gt;&gt;&gt;<i> version, will be used as a live-system for secushare[0] (which
+</i>&gt;&gt;&gt;<i> also implies GNUnet to some degree) with the system being a blend
+</i>&gt;&gt;&gt;<i> of GuixSD[1]. The choice was between Gentoo, NixOS and GuixSD
+</i>&gt;&gt;&gt;<i> (more about that in the potential, as of right now unwritten,
+</i>&gt;&gt;&gt;<i> explanation post about the system).
+</i>&gt;&gt;&gt;<i> There's no name so far for this version, but I have my ideas
+</i>&gt;&gt;&gt;<i> about later versions which will be based on the experience with
+</i>&gt;&gt;&gt;<i> this system.
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> There's no public documentation so far: the internal onion-only
+</i>&gt;&gt;&gt;<i> server I share the issue tracker with is currently being moved to
+</i>&gt;&gt;&gt;<i> a new server which will be exposed to both onion-space and some
+</i>&gt;&gt;&gt;<i> .org domain.
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> The very short TL;DR before I manage to write a text on this
+</i>&gt;&gt;&gt;<i> system is:
+</i>&gt;&gt;&gt;<i> Describing it as &quot;similar to TAILS&quot; is only to make a shortcut in
+</i>&gt;&gt;&gt;<i> explanations, for the first version will 'optionally' come with
+</i>&gt;&gt;&gt;<i> a secure_delete use similar to TAILS. For secushare this is too
+</i>&gt;&gt;&gt;<i> much over the top, but for me it's a nice test of
+</i>&gt;&gt;&gt;<i> reimplementation (GuixSD uses shepherd as its init system).
+</i>&gt;&gt;&gt;<i> The rest is nothing groundbreaking: time-service will be
+</i>&gt;&gt;&gt;<i> tlsdated, software will include some useful tools in addition to
+</i>&gt;&gt;&gt;<i> gnunet + secushare.
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> With the controversy surrounding the tlsdate author the package is
+</i>&gt;&gt;<i> unfortunately no longer maintained.
+</i>&gt;<i> 
+</i>&gt;<i> It has seen no updates in some time, but even before this someone
+</i>&gt;<i> else took over. So at some point torproject decide to drop
+</i>&gt;<i> development on it I assume.
+</i>&gt;<i> 
+</i>&gt;&gt;<i> Also because it relies on CA SSL
+</i>&gt;&gt;<i> certs we could never trust that it won't MITM'd by capable 
+</i>&gt;&gt;<i> adversaries.
+</i>&gt;<i> 
+</i>&gt;<i> Indeed, which is why I see tlsdated only as an intermediate solution.
+</i>&gt;<i> 
+</i>&gt;&gt;<i> We opted for writing our own time sync daemon &quot;sdwdate&quot; [1] instead.
+</i>&gt;&gt;<i> Some advantages is that all servers it connects to are Onion sites and
+</i>&gt;&gt;<i> are likely not hosted on cloud-sites like cloudflare - to decrease
+</i>&gt;&gt;<i> chance of collusion. Limiting leaks of system time to the network is
+</i>&gt;&gt;<i> also one area we really focused on because of deanonymiation and risk.
+</i>&gt;&gt;<i> [2]
+</i>&gt;<i> 
+</i>&gt;<i> I know of sdwdate, and while for myself it is an option, for the
+</i>&gt;<i> general pupose usage in all regions I aim for this particular
+</i>&gt;<i> version of the system, it is not. If the issue tracker were
+</i>&gt;<i> public already, I could point to the short discussion we had
+</i>&gt;<i> about this, the short summary is:
+</i>&gt;<i> the system should not use tor at all (or at least by
+</i>&gt;<i> default). There's more to be lost than to be gained for people
+</i>&gt;<i> who live in regions where the use of tor is too dangerous.
+</i>
+Makes sense. Though long term when it gains a userbase its better to 
+transition the time daemon to do its thing over an anonymous system 
+completely - ideally GNUnet.
+
+&gt;<i> 
+</i>&gt;<i> Now I said two systems. The system designed to work for
+</i>&gt;<i> secushare+gnunet (the one I talk about here) will have
+</i>&gt;<i> differences to others I'm working on. I see I should really put
+</i>&gt;<i> the issue tracker content and &quot;what's beyond the system&quot; into a
+</i>&gt;<i> text, including threat models etc.. though it would reproduce
+</i>&gt;<i> some of the public documentation on <A HREF="../../../../external.html?link=http://secushare.org/">http://secushare.org</A> to some
+</i>&gt;<i> degree.
+</i>
+Been following Secushare for some time. Sounds great and I look forward 
+to playing around with it.
+
+&gt;<i> 
+</i>&gt;<i> Writing a system-service for sdwdate is not disregarded on my
+</i>&gt;<i> side, in general I just ran into porting problems and put it
+</i>&gt;<i> aside for a while.
+</i>&gt;<i> 
+</i>&gt;&gt;<i> We plan to spin off the time synchronization daemon as its own project
+</i>&gt;&gt;<i> at some point as a secure replacement for NTP in general. With its
+</i>&gt;&gt;<i> current design it cannot scale to millions of systems because there
+</i>&gt;&gt;<i> simply is not that many trusted Onion servers to handle the
+</i>&gt;&gt;<i> load.
+</i>&gt;<i> 
+</i>&gt;<i> That's interesting news.
+</i>&gt;<i> 
+</i>&gt;&gt;<i> I am
+</i>&gt;&gt;<i> really interested to see the ways GNUnet can do away with trusting
+</i>&gt;&gt;<i> server endpoints and scaling the time protocol.
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> [1] <A HREF="../../../../external.html?link=https://github.com/Whonix/sdwdate">https://github.com/Whonix/sdwdate</A>
+</i>&gt;&gt;<i> [2] <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Time_Attacks">https://www.whonix.org/wiki/Time_Attacks</A>
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> The long-term goal I have and which I want to push for is to
+</i>&gt;&gt;&gt;<i> implement what has been discussed for much to long in the Guix
+</i>&gt;&gt;&gt;<i> project: binary software distribution via gnunet-fs. Previously
+</i>&gt;&gt;&gt;<i> development on this subject stalled[2] because of several,
+</i>&gt;&gt;&gt;<i> non-technical, issues. I have some additions of my own,
+</i>&gt;&gt;&gt;<i> non-technical ones, to the distribution via gnunet-fs solution.
+</i>&gt;&gt;&gt;<i> In the end, I'd like to replace the time-service through a gnunet
+</i>&gt;&gt;&gt;<i> based solution, updates via gnunet, and in general make &quot;legacy&quot;
+</i>&gt;&gt;&gt;<i> net use optional.
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> Nice! We'd love to have decentralized alternatives to our project 
+</i>&gt;&gt;<i> repos
+</i>&gt;&gt;<i> (and project news and notifications) that can't be censored.
+</i>&gt;<i> 
+</i>&gt;<i> Software repositories are another problem (I seem to recall
+</i>&gt;<i> discussing this idea at one meeting last year), but once you
+</i>&gt;<i> figure out the basic problem of how to do it, it shouldn't be
+</i>&gt;<i> that difficult to solve.
+</i>&gt;<i> It's definitely something we (secushare) would like to see too
+</i>&gt;<i> (while the other issue, news and notifications, is what the work
+</i>&gt;<i> on secushare implies).
+</i>&gt;<i> 
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> That's the system for secushare. I take it one step further
+</i>&gt;&gt;&gt;<i> afterwards and will try to craft different blends of this, some
+</i>&gt;&gt;&gt;<i> resulting from off-list conversations I had.
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> And because someone recently asked this: I hope to be done with
+</i>&gt;&gt;&gt;<i> the core system (which doesn't include the gnunet-fs and
+</i>&gt;&gt;&gt;<i> time-service changes) by the end of the year, even much more
+</i>&gt;&gt;&gt;<i> optimistic: before/around august.
+</i>&gt;&gt;&gt;<i> But you know how deadlines in packaging are. So to say, the core
+</i>&gt;&gt;&gt;<i> system is about ~80% done now, the 20% rest depends on:
+</i>&gt;&gt;&gt;<i> - minor gnunet testsuite debugging
+</i>&gt;&gt;&gt;<i> - secushare prototype work
+</i>&gt;&gt;&gt;<i> - getting around 100 rust packages to a functional state
+</i>&gt;&gt;&gt;<i> - writing and debugging a handfull of system-services
+</i>&gt;&gt;&gt;<i> - packaging more optional software
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> Architecture: I plan to target i686 and x86_64 first, and arm as
+</i>&gt;&gt;&gt;<i> soon as GuixSD has been ported for arm.
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> I hope this message wasn't too much text and no real content,
+</i>&gt;&gt;&gt;<i> it's easier to read issue trackers when they are public or to
+</i>&gt;&gt;&gt;<i> read focused texts which weren't written at around 01:46 UTC.
+</i>&gt;&gt;&gt;<i> 
+</i>&gt;&gt;&gt;<i> [0]: <A HREF="../../../../external.html?link=http://secushare.org/">http://secushare.org</A> | <A HREF="../../../../external.html?link=http://secushare.cheettyiapsyciew.onion/">http://secushare.cheettyiapsyciew.onion/</A>
+</i>&gt;&gt;&gt;<i> [1]: <A HREF="../../../../external.html?link=https://gnu.org/s/guix">https://gnu.org/s/guix</A>
+</i>&gt;&gt;&gt;<i> [2]: This is not entirely true, some parts were developed, while
+</i>&gt;&gt;&gt;<i>      others were just discussed with Google Summer of Code
+</i>&gt;&gt;&gt;<i>      students or doctoral students and when the GSoC ended they
+</i>&gt;&gt;&gt;<i>      simply no longer worked on it (or they had the exact right
+</i>&gt;&gt;&gt;<i>      ideas but execution happened only on some parts or they just
+</i>&gt;&gt;&gt;<i>      moved on (I don't want to speculate or judge about the
+</i>&gt;&gt;&gt;<i>      actions of people I do not know). It became
+</i>&gt;&gt;&gt;<i>      so not very obvious that work has happened before that I had
+</i>&gt;&gt;&gt;<i>      only discovered that some of the theoretical technical solutions
+</i>&gt;&gt;&gt;<i>      I came up with have been discussed prior to my first contact
+</i>&gt;&gt;&gt;<i>      with Guix when I started reading the mailing lists archives.
+</i>&gt;&gt;<i> 
+</i>
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000878.html>[Whonix-devel] [Secure Desktops] Hi!
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000876.html>[Whonix-devel] Disabling KDE Connect Service
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/date.html#874">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/thread.html#874">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/subject.html#874">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/author.html#874">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000874.html','y7aelHq7wr','0ZEa2naHXmU',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000874.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-January/000874.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:32 GMT -->
+</HTML>

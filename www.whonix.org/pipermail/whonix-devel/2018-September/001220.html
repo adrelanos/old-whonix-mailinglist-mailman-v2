@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001220.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [dm-crypt] Argon2id security margin estimate and LUKS2 usage
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bdm-crypt%5D%20Argon2id%20security%20margin%20estimate%20and%0A%20LUKS2%20usage&In-Reply-To=%3C4f419211-4cbe-5fbd-3194-b1a5635818a3%40gmail.com%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001219.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001221.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [dm-crypt] Argon2id security margin estimate and LUKS2 usage</H1>
+<B>Milan Broz</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bdm-crypt%5D%20Argon2id%20security%20margin%20estimate%20and%0A%20LUKS2%20usage&In-Reply-To=%3C4f419211-4cbe-5fbd-3194-b1a5635818a3%40gmail.com%3E" TITLE="[Whonix-devel] [dm-crypt] Argon2id security margin estimate and LUKS2 usage">gmazyland at gmail.com
+</A><BR>
+<I>Mon Sep 3 12:48:30 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001219.html>[Whonix-devel] [dm-crypt] Argon2id security margin estimate and LUKS2 usage
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001221.html>[Whonix-devel] Troubleshooting: Header Conversion to argon2id
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1220">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1220">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1220">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1220">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Hi,
+
+On 20/08/18 15:33, procmem wrote:
+&gt;<i> Hi Milan, Whonix (privacy distro) maintainer here. We are researching
+</i>&gt;<i> the best password advice to give to our users and while diceware is a
+</i>&gt;<i> great improvement over the status quo, the recommendation by
+</i>&gt;<i> cryptographers in light of quantum computing is to choose pass phrases
+</i>&gt;<i> with a length equivalent to 256 bits because Grovers will halve the bit
+</i>&gt;<i> length. This requires phrases to be 20 words long for 256 bits which is
+</i>&gt;<i> excessive IMO and the reason we are looking at key-stretching for
+</i>&gt;<i> shorter ones instead.
+</i>
+As Arno said, QC is really not an issue here.
+
+&gt;<i> * What is the time/sec margin added to a password with Argon2id's best
+</i>&gt;<i> parameters?
+</i>
+&quot;Best&quot; depends on the context and will change in time (there will be better
+optimized implementations, some new problems appear).
+
+The logic here is to provide as much protection to dictionary attacks
+as possible, but without completely hurting user experience.
+(If you are ok to wait 20minutes for unlocking - you can set it, but for
+most of users it means unusable system, etc)
+
+&gt;<i> * Have Argon's parameters been tweaked in the LUKS implementation, to
+</i>&gt;<i> account for the 2 public attacks? [0]
+</i>
+Partially yes:
+
+- we use Argon 1.3 version (as implemented by authors)
+
+- minimal iteration count (memory passes) is 4 (the first &quot;attack&quot;)
+
+- we cannot use minimal 10 (second &quot;attack&quot;), because on real systems
+it would be incredibly slow.
+You can use Argon2id though (combination of data dependent and independent
+processing). I prefer Argon2i for key derivation, but opinions differ here.
+
+- the reference values suggested in RFC draft are unusable in reality as well
+(it could change with optimized implementation though)
+
+(BTW RFC draft expired but Argon2 authors assured me that it is just because
+of other priorities - it should be updated soon, I hope.)
+
+&gt;<i> * Are more cryptanalytic attacks expected against it in the future or is
+</i>&gt;<i> it extremely unlikely for progress against to be made? (For example
+</i>&gt;<i> modern hashes like BLAKE2 or block ciphers like AES are pretty robust
+</i>&gt;<i> with no notable attacks for some time)
+</i>
+Always expect it to be broken in future and be prepared to reencrypt your data
+and increase/change algorithms in future :-)
+
+You can do both (offline) now with cryptsetup-reecrypt.
+
+&gt;<i> * Can you please give an example of cryptsetup re-encrypt command that
+</i>&gt;<i> upgrades an existing LUKS1 system to one that uses Argon with its max
+</i>&gt;<i> settings?
+</i>
+I will always avoid describing something as &quot;best&quot; or &quot;max&quot; - it depends.
+
+Cryptsetup set Argon2 internal limit to use maximal 1GB of memory and 4 threads,
+but it is just safety margin to be able move device among various systems.
+
+The time (iteration) count is limited only be 32bit integer, so if you wish,
+you can set it very high. (And attacker the will just focus on different attack vector
+like extracting key from active device or so :)
+
+Keyslot upgrade can be done with the new luksConvertKey command
+(you can do the same with cryptsetup-reecrypt if --keep-key option is used).
+
+So, for your use case:
+
+1) Backup your LUKS1 header (for recovery, if anything fails during conversion)
+
+  # cryptsetup luksHeaderBackup --header-backup-file &lt;backup_file&gt; &lt;device&gt;
+
+2) convert LUKS1 device to LUKS2, this will keep keyslot in current configuration,
+just it updates metadata format.
+
+  # cryptsetup convert --type luks2 &lt;device&gt;
+
+3a) upgrade keyslot(s) to LUKS2 default and benchmarked parameters
+    (it upgrades keyslot with provided password)
+
+  # cryptsetup luksConvertKey &lt;device&gt;
+
+OR
+
+3b) upgrade to explicitly defined parameters (benchmark is skipped so it allows you
+to setup very high iteration time or it allows to setup it for different system),
+like example here:
+
+  # cryptsetup luksConvertKey --key-slot 1 --pbkdf argon2id --pbkdf-force-iterations 50 --pbkdf-memory 1048576 --pbkdf-parallel 4 &lt;device&gt;
+
+NOTE: cryptsetup will always decrease parameters if they are not possible to use
+(more than half of physical memory or not enough cpu cores) or if the exceeds
+internal limit (see cryptsetup --help, for now max memory limit is the same as default)
+
+I think we need to change how is user informed here about parameter downgrade, it is only
+visible in --debug mode, fro example:
+  # Only 2 active CPUs detected, PBKDF threads decreased from 4 to 2.
+  # Not enough physical memory detected, PBKDF max memory decreased from 1048576kB to 249392kB.
+
+Milan
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001219.html>[Whonix-devel] [dm-crypt] Argon2id security margin estimate and LUKS2 usage
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001221.html>[Whonix-devel] Troubleshooting: Header Conversion to argon2id
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1220">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1220">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1220">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1220">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001220.html','y7aelHq7wr','KMKvPe3WiNw',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001220.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001220.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+</HTML>

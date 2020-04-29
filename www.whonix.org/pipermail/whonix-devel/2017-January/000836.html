@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-January/000836.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] RFC 6528 revision for better system privacy
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20RFC%206528%20revision%20for%20better%20system%20privacy&In-Reply-To=%3C8c2f90564cc788cfbb4bc38ce857c913%40openmailbox.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000842.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000837.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] RFC 6528 revision for better system privacy</H1>
+<B>bancfc at openmailbox.org</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20RFC%206528%20revision%20for%20better%20system%20privacy&In-Reply-To=%3C8c2f90564cc788cfbb4bc38ce857c913%40openmailbox.org%3E" TITLE="[Whonix-devel] RFC 6528 revision for better system privacy">bancfc at openmailbox.org
+</A><BR>
+<I>Fri Jan 13 18:41:16 CET 2017</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000842.html>[Whonix-devel] RFC 6528 revision for better system privacy
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000837.html>[Whonix-devel] RFC 6528 revision for better system privacy
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/date.html#836">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/thread.html#836">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/subject.html#836">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/author.html#836">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On 2017-01-13 04:21, Steven M. Bellovin wrote:
+&gt;<i> On 12 Jan 2017, at 20:49, <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">bancfc at openmailbox.org</A> wrote:
+</i>&gt;<i> 
+</i>&gt;&gt;<i> Hi Steven and Fernando,
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> I am a Whonix (anonymity OS) dev and would like to discuss the RFC 
+</i>&gt;&gt;<i> 6528 [0] you worked on. There has been privacy research in the area of 
+</i>&gt;&gt;<i> timer and clock leaks in network protocols that can aid adversaries in 
+</i>&gt;&gt;<i> deanonymizing Tor clients and hidden services. There is a practical 
+</i>&gt;&gt;<i> attack where an adversary can skew timer measurements by overloading 
+</i>&gt;&gt;<i> target machines and affect the oscillation of timer crystals in 
+</i>&gt;&gt;<i> predictable patterns that can be remotely measured in TCP sequence 
+</i>&gt;&gt;<i> numbers.[1]
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> Please consider revising the RFC to omit the requirement of xoring 
+</i>&gt;&gt;<i> timer output with TCP ISNs. Recently the Linux kernel gained the 
+</i>&gt;&gt;<i> SipHash PRF to generate better sequence numbers and deprecated MD5. 
+</i>&gt;&gt;<i> This further reduces the necessity of including timer input which has 
+</i>&gt;&gt;<i> become a side channel that aids traffic correlation and endangers 
+</i>&gt;&gt;<i> privacy focused use cases.
+</i>&gt;<i> 
+</i>
+Thanks for writing back.
+
+&gt;<i> I'm a bit confused -- there's no requirement in 6528 for XORing a
+</i>&gt;<i> timer.  That plus sign in the equation at the start of Section 3
+</i>&gt;<i> signifies addition (modulo 2^32, I should mention, since it's a 32-bit
+</i>&gt;<i> field), not exclusive-OR.  I'd have to think about it, but I'm not at
+</i>&gt;<i> all convinced that XOR would even work in that context.  The result of
+</i>&gt;<i> the actually specified operation is that the ISN of a given connection
+</i>&gt;<i> is uniformly randomly distributed in [0,2^32-1] and independent of the
+</i>&gt;<i> ISN of any other connection.
+</i>
+Dunno could be a Linux implementation thing that deviates from the RFC. 
+Could be an older behavior that was changed in newer versions of the 
+kernel (that paper is from 2005 after all). The attack is in paper 1. 
+I've linked to paper 2 which they referenced in passing as the way they 
+extract timer info.
+
+&gt;<i> 
+</i>&gt;<i> I'm still reading [2], but I don't see the relevance of the attack to
+</i>&gt;<i> Tor. Tor does not provide end-to-end TCP; rather, it provides
+</i>&gt;<i> end-to-end transport of the TCP payload, correct?  In that case, the
+</i>&gt;<i> sequence numbers of the sender are only visible as far as its Tor
+</i>&gt;<i> entrance node, but they're useless for an attack -- anyone who
+</i>&gt;<i> observes those sequence numbers already has the source IP address;
+</i>&gt;<i> there's no added value, unless the threat is some machine whose source
+</i>&gt;<i> IP address is changing rapidly.  But if that's your threat model, you
+</i>&gt;<i> can look at the TCP PAWS timer.  Beyond that, though [2] notes that
+</i>&gt;<i> subtracting two ISN will give you the timer difference, that's only
+</i>&gt;<i> true if you subtract two ISNs for the same connection -- and that's
+</i>&gt;<i> very hard in this context.  The source port will change constantly,
+</i>&gt;<i> with each new TCP open, and while you can manage the same connection
+</i>&gt;<i> when calling a server, with a Tor hidden service the server is
+</i>&gt;<i> actually a client at the TCP level, so it picks its own port numbers.
+</i>
+You are correct and this is brought up in the Tor devloper discussion: 
+<A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/16659">https://trac.torproject.org/projects/tor/ticket/16659</A> but I am also 
+including a passive global adversary in the threat model that also 
+collects connections' port numbers, IPs and monitors ISN changes caused 
+by collaborating active attackers connecting to a Hidden Service. Paper 
+1 doesn't mention this in their threat model buts its very valid today. 
+I also wonder if the underlying TCP layer 3 would leak this info 
+regardless of how well its mitigated at the Tor protocol in layer 7 and 
+so attacker caused CPU stress would become apparent in any non-Tor TCP 
+connections from the same machine - say clearnet browsing or apt 
+updates. (There is a lot of good discussion in that bug ticket I am 
+interested in your feedback on points brought up)
+
+One of the lead devs commented : &quot;adding the 64ns timer post-hash 
+probably *does* leak side channels about CPU activity, and that may 
+prove very dangerous for long-running cryptographic operations (along 
+the lines of the hot-or-not issue)&quot;
+
+Another concern was that the actual clock time can actually be 
+reconstructed because of tuple replays in one in every 256 connections 
+to a guard relay: 
+<A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/16659#comment:12">https://trac.torproject.org/projects/tor/ticket/16659#comment:12</A>
+
+&gt;<i> 
+</i>&gt;<i> I'm unfamiliar with what Linux has done to get away from RFC
+</i>&gt;<i> 1948/6528.  Simply replacing MD5 with SipHash does not do away with
+</i>&gt;<i> the need for the timer.  The whole purpose of the timer is to preserve
+</i>&gt;<i> TCP connection integrity semantics; omitting it changes those
+</i>&gt;<i> semantics.  Preserving them was the whole point of 1948, or I'd have
+</i>&gt;<i> suggesting simply using a good PRNG for ISNs in my 1989 paper.  Do you
+</i>&gt;<i> have a pointer to any documentation describing what's done?
+</i>
+Correct again. I confirmed that changing the hashing algo doesn't fix 
+anything:
+
+<A HREF="../../../../external.html?link=https://lists.torproject.org/pipermail/tor-dev/2017-January/011789.html">https://lists.torproject.org/pipermail/tor-dev/2017-January/011789.html</A>
+
+The SipHash patches accepted for 4.11:
+
+<A HREF="../../../../external.html?link=https://phoronix.com/scan.php?page=news_item&amp;px=SipHash-PRF-V3-For-Linux">https://phoronix.com/scan.php?page=news_item&amp;px=SipHash-PRF-V3-For-Linux</A>
+
+<A HREF="../../../../external.html?link=http://lkml.iu.edu/hypermail/linux/kernel/1701.1/00074.html">http://lkml.iu.edu/hypermail/linux/kernel/1701.1/00074.html</A>
+<A HREF="../../../../external.html?link=http://lkml.iu.edu/hypermail/linux/kernel/1701.1/00076.html">http://lkml.iu.edu/hypermail/linux/kernel/1701.1/00076.html</A>
+
+SipHash homepage:
+
+<A HREF="../../../../external.html?link=https://131002.net/siphash/">https://131002.net/siphash/</A>
+
+
+&gt;<i> 
+</i>&gt;<i> Anyway -- at the moment, I don't see an attack.  As best I can tell,
+</i>&gt;<i> [2] describes a way to leak data via the ISN without risk of detection
+</i>&gt;<i> (and I'm not even convinced that the threat of detection is real for a
+</i>&gt;<i> Tor hidden service, given the client port number issue).  That's not
+</i>&gt;<i> the same as being able to fingerprint a timer in a real Tor situation.
+</i>&gt;<i>  Even if it was, Tor does not relay TCP headers, so they're not
+</i>&gt;<i> visible past the first Tor hop.
+</i>&gt;<i> 
+</i>&gt;<i> Mind you, I'm not saying you're wrong.  I am saying that you haven't
+</i>&gt;<i> persuaded me that you're right or that your suggestion preserves TCP
+</i>&gt;<i> semantics for non-Tor situations.
+</i>&gt;<i> 
+</i>&gt;&gt;<i> [0] <A HREF="../../../../external.html?link=https://tools.ietf.org/html/rfc6528">https://tools.ietf.org/html/rfc6528</A>
+</i>&gt;&gt;<i> [1] <A HREF="../../../../external.html?link=http://sec.cs.ucl.ac.uk/users/smurdoch/papers/ccs06hotornot.pdf">http://sec.cs.ucl.ac.uk/users/smurdoch/papers/ccs06hotornot.pdf</A>
+</i>&gt;&gt;<i> [2] <A HREF="../../../../external.html?link=http://sec.cs.ucl.ac.uk/users/smurdoch/papers/ih05coverttcp.pdf">http://sec.cs.ucl.ac.uk/users/smurdoch/papers/ih05coverttcp.pdf</A>
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i> 
+</i>&gt;<i>         --Steve Bellovin, <A HREF="../../../../external.html?link=https://www.cs.columbia.edu/~smb">https://www.cs.columbia.edu/~smb</A>
+</i>
+Thanks again for your time Steve.
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000842.html>[Whonix-devel] RFC 6528 revision for better system privacy
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000837.html>[Whonix-devel] RFC 6528 revision for better system privacy
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/date.html#836">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/thread.html#836">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/subject.html#836">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/author.html#836">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000836.html','y7aelHq7wr','R0wjjGEAH10',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-January/000836.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-January/000836.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:32 GMT -->
+</HTML>

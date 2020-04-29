@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-February/000131.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian	stable!
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Testers%20wanted%21%20Whonix%207.7.6.4%20based%20on%20Debian%0A%09stable%21&In-Reply-To=%3CCAHkRx6Fej-bVyvuaxMM2xMeyUeQo6da7R-f%3DoJa7hjPQjtN6mQ%40mail.gmail.com%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000130.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000132.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian	stable!</H1>
+<B>M. Edward (Ed) Borasky</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Testers%20wanted%21%20Whonix%207.7.6.4%20based%20on%20Debian%0A%09stable%21&In-Reply-To=%3CCAHkRx6Fej-bVyvuaxMM2xMeyUeQo6da7R-f%3DoJa7hjPQjtN6mQ%40mail.gmail.com%3E" TITLE="[Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian	stable!">znmeb at znmeb.net
+</A><BR>
+<I>Mon Feb 3 00:26:56 CET 2014</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000130.html>[Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian	stable!
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000132.html>[Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian stable!
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/date.html#131">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/thread.html#131">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/subject.html#131">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/author.html#131">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>I'm looking at the KVM instructions now. I think there's one or two
+unnecessary steps. First of all, Virtual Machine Manager / qemu-kvm
+*can* work with VMDK files directly. And I don't think you don't need
+to convert VMDK -&gt; VDI -&gt; QCOW2. qemu-img will convert from VMDK to
+QCOW2 directly.
+
+I'm running Virtual Machine Manager 0.10.0-5.git1ffcc0cc.fc20 on
+Fedora 20 host. The GUI there supports snapshots; earlier ones may
+not. In any event, I'll take a shot at testing all of this later this
+week - Thursday, I'm guessing.
+
+On Sun, Feb 2, 2014 at 7:06 AM, Patrick Schleizer &lt;<A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">adrelanos at riseup.net</A>&gt; wrote:
+&gt;<i> -----BEGIN PGP SIGNED MESSAGE-----
+</i>&gt;<i> Hash: SHA512
+</i>&gt;<i>
+</i>&gt;<i> Download:
+</i>&gt;<i> #########
+</i>&gt;<i>
+</i>&gt;<i> VirtualBox:
+</i>&gt;<i> ===========
+</i>&gt;<i>
+</i>&gt;<i> Whonix-Gateway for VirtualBox:
+</i>&gt;<i> <A HREF="../../../../external.html?link=http://sourceforge.net/projects/whonixdevelopermetafiles/files/whonix-7.7.6.4/Whonix-Gateway-7.7.6.4.ova/download">http://sourceforge.net/projects/whonixdevelopermetafiles/files/whonix-7.7.6.4/Whonix-Gateway-7.7.6.4.ova/download</A>
+</i>&gt;<i>
+</i>&gt;<i> Whonix-Gateway for VirtualBox signature:
+</i>&gt;<i> <A HREF="../../../../external.html?link=http://sourceforge.net/projects/whonixdevelopermetafiles/files/whonix-7.7.6.4/Whonix-Gateway-7.7.6.4.ova.asc/download">http://sourceforge.net/projects/whonixdevelopermetafiles/files/whonix-7.7.6.4/Whonix-Gateway-7.7.6.4.ova.asc/download</A>
+</i>&gt;<i>
+</i>&gt;<i> Whonix-Workstation for VirtualBox:
+</i>&gt;<i> <A HREF="../../../../external.html?link=http://sourceforge.net/projects/whonixdevelopermetafiles/files/whonix-7.7.6.4/Whonix-Workstation-7.7.6.4.ova/download">http://sourceforge.net/projects/whonixdevelopermetafiles/files/whonix-7.7.6.4/Whonix-Workstation-7.7.6.4.ova/download</A>
+</i>&gt;<i>
+</i>&gt;<i> Whonix-Workstation signature:
+</i>&gt;<i> <A HREF="../../../../external.html?link=http://sourceforge.net/projects/whonixdevelopermetafiles/files/whonix-7.7.6.4/Whonix-Workstation-7.7.6.4.ova.asc/download">http://sourceforge.net/projects/whonixdevelopermetafiles/files/whonix-7.7.6.4/Whonix-Workstation-7.7.6.4.ova.asc/download</A>
+</i>&gt;<i>
+</i>&gt;<i> KVM / Qemu:
+</i>&gt;<i> ===========
+</i>&gt;<i>
+</i>&gt;<i> Entirely untested! This is only useful if you have a developers mindset!
+</i>&gt;<i>
+</i>&gt;<i> This is the first time .qcow2 images are available:
+</i>&gt;<i> <A HREF="../../../../external.html?link=http://sourceforge.net/projects/whonixdevelopermetafiles/files/whonix-7.7.6.4/">http://sourceforge.net/projects/whonixdevelopermetafiles/files/whonix-7.7.6.4/</A>
+</i>&gt;<i>
+</i>&gt;<i> We have unfinished(!) instructions for KVM:
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/KVM">https://www.whonix.org/wiki/KVM</A>
+</i>&gt;<i>
+</i>&gt;<i> There are still a few blockers before using Whonix with KVM can be
+</i>&gt;<i> considered sane:
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Dev/KVM">https://www.whonix.org/wiki/Dev/KVM</A>
+</i>&gt;<i>
+</i>&gt;<i> Please help out solving them. Whonix also needs a maintainer to
+</i>&gt;<i> support using Whonix with KVM.
+</i>&gt;<i>
+</i>&gt;<i> If you want to upgrade existing Whonix version:
+</i>&gt;<i> ###############################################
+</i>&gt;<i>
+</i>&gt;<i> Sorry, upgrading from existing Whonix version (0.5.6, 7, etc.) to
+</i>&gt;<i> 7.7.6.4 (and 8 when it's released) will not be possible.
+</i>&gt;<i>
+</i>&gt;<i> If you want to build images from source code:
+</i>&gt;<i> #############################################
+</i>&gt;<i>
+</i>&gt;<i> See <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Dev/BuildDocumentation_8">https://www.whonix.org/wiki/Dev/BuildDocumentation_8</A> and use git
+</i>&gt;<i> tag 7.7.6.4.
+</i>&gt;<i>
+</i>&gt;<i> Physical Isolation users:
+</i>&gt;<i> #########################
+</i>&gt;<i>
+</i>&gt;<i> Use Debian stable instead of testing, use git tag 7.7.6.4 and see
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Physical_Isolation.">https://www.whonix.org/wiki/Physical_Isolation.</A>
+</i>&gt;<i>
+</i>&gt;<i> Changelog between Whonix 7 and Whonix 7.7.6.4 (testers-only version):
+</i>&gt;<i> #####################################################################
+</i>&gt;<i>
+</i>&gt;<i> * Whonix is now based on Debian stable instead of Debian testing.
+</i>&gt;<i> * In new installations, automatic updates of Whonix's debian packages
+</i>&gt;<i> are disabled by default. During first start, users can decide if they
+</i>&gt;<i> want to enable Whonix's APT repository or want to leave it disabled.
+</i>&gt;<i> * Fixed Whonix's Tor Browser download and start script for TBB 3.5.
+</i>&gt;<i> * Fixed physical isolation build script.
+</i>&gt;<i> * Verifiable Builds. Whonix now has a feature which allows the community
+</i>&gt;<i> to check that Whonix .ova releases are verifiably created from project's
+</i>&gt;<i> own source code. Also made ade Whonix's APT repository verifiable (even
+</i>&gt;<i> deterministic!). Please see
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Verifiable_Builds">https://www.whonix.org/wiki/Verifiable_Builds</A> for details.
+</i>&gt;<i> * Made Whonix build script configurable (can now build terminal-only
+</i>&gt;<i> Whonix-Gateway's and/or Whonix-Workstations; 64 bit builds and more)
+</i>&gt;<i> * Improved Whonix News's security. All Whonix News Files are now inside
+</i>&gt;<i> one tarball, which is signed. This stops leaking how many users are
+</i>&gt;<i> using a particular version.
+</i>&gt;<i> * whonixcheck's Whonix News download now checks if Whonix News are still
+</i>&gt;<i> valid (currently up to 4 weeks) and therefore detects indefinite freeze
+</i>&gt;<i> and replay attacks.
+</i>&gt;<i> * whonix_repository tool now has a graphical user interface; added more
+</i>&gt;<i> command line switches.
+</i>&gt;<i> * Set default locale to en_US.UTF-8.
+</i>&gt;<i> * Simplified custom user installation of TorChat, thanks to dummytor.
+</i>&gt;<i> (Protecting from Tor over Tor.)
+</i>&gt;<i> * Removed apper and synaptic from default installation, because they are
+</i>&gt;<i> too confusing / have too many bugs, do not always work in all cases for
+</i>&gt;<i> all users, #104, can still be manually installed if wanted, see also
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Dev/Automatic_Updates">https://www.whonix.org/wiki/Dev/Automatic_Updates</A>
+</i>&gt;<i> * whonixcheck: more configuration options, any function can now be
+</i>&gt;<i> disabled, this is useful for users who wish to disable control port
+</i>&gt;<i> filter proxy, they can disable the check_tor_bootstrap function
+</i>&gt;<i> * whonixcheck: added protection against possibly malicious strings from
+</i>&gt;<i> check.torproject.org (in case of a bug, compromise of check.tpo server
+</i>&gt;<i> or CA compromise), IP strings are now max 50 characters long. User will
+</i>&gt;<i> be warned in case the limit is exceeded.
+</i>&gt;<i> * Whonix-Workstation: no longer installing Tor Browser by default, this
+</i>&gt;<i> simplified implementing verifiable builds (#113), installing iceweasel
+</i>&gt;<i> by default, which can be used to download Tor Browser, added local
+</i>&gt;<i> iceweasel browser homepage saying that iceweasel should not be used for
+</i>&gt;<i> anything other than downloading Tor Browser, unless one knows what one
+</i>&gt;<i> is doing.
+</i>&gt;<i> * Removed galternatives from whonix-workstation-default-applications
+</i>&gt;<i> because galternatives has been (temporarily) removed from Debian testing
+</i>&gt;<i> * Building Whonix from frozen repository, from snapshot.debian.org to
+</i>&gt;<i> make the build script more resistant from upstream changes and also to
+</i>&gt;<i> make Whonix verifiable.
+</i>&gt;<i> * The Whonix Team can now use separate keys for Whonix's APT Repository
+</i>&gt;<i> and Whonix News.
+</i>&gt;<i> * Added technical documentation about keys in Whonix
+</i>&gt;<i> whonix_shared/usr/share/whonix/keys/readme.
+</i>&gt;<i> * new man page: man/whonix_shared/sdwdate.8.ronn
+</i>&gt;<i> * Deactivated Maximizing Windows by dragging them to the top of the
+</i>&gt;<i> screen to prevent users from accidentally maximizing their browser
+</i>&gt;<i> window when they are using resolutions higher than 1024x768. See
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Higher_Screen_Resolution">https://www.whonix.org/wiki/Higher_Screen_Resolution</A> ;
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/110">https://github.com/Whonix/Whonix/issues/110</A> and
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/7255">https://trac.torproject.org/projects/tor/ticket/7255</A> for more
+</i>&gt;<i> information. #108
+</i>&gt;<i> * added udisks to whonix-shared-packages-recommended for mounting
+</i>&gt;<i> removable drives
+</i>&gt;<i> * KDE settings changes, set to oxygen as suggested by scarp in
+</i>&gt;<i> &quot;[Whonix-devel] Plastique kwin style &amp; Widget Style&quot;
+</i>&gt;<i> * whonixcheck: increased timeout for the tor bootstrap.py utility from 5
+</i>&gt;<i> to 10 seconds to make it compatible with slow systems as per bug report
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Special:AWCforum/st/id248/whonixcheck%3A_tor_bootstrap_statu....html">https://www.whonix.org/wiki/Special:AWCforum/st/id248/whonixcheck%3A_tor_bootstrap_statu....html</A>
+</i>&gt;<i> * whonixcheck: Whonix News File is now deterministic
+</i>&gt;<i> * whonixcheck: Whonix News added timeout for gpg and tar
+</i>&gt;<i> * added secure-delete, because it contains sfill, which can be used to
+</i>&gt;<i> zero out free space, which is required for disk shrinking
+</i>&gt;<i> * Deactivated running update-command-not-found during build, since not
+</i>&gt;<i> deterministic (verifiable). Manually running is of course still possible.
+</i>&gt;<i> * whonix_shared/etc/apt/sources.list.d/torproject.list: removed the &quot;deb
+</i>&gt;<i> <A HREF="../../../../external.html?link=http://deb.torproject.org/torproject.org">http://deb.torproject.org/torproject.org</A> tor-0.2.4.x-jessie main&quot;
+</i>&gt;<i> repository, since that repository has been removed by The Tor Project
+</i>&gt;<i> (Tor is now in their Debian testing repository, which is already added)
+</i>&gt;<i> * fixed a bug reported by scarp,
+</i>&gt;<i> whonix_shared/usr/share/whonix/postinst.d/70_disable_kdm_autostart: was
+</i>&gt;<i> not disabling other display managers other than kdm. Now using the more
+</i>&gt;<i> generic
+</i>&gt;<i> /usr/lib/whonix/display-manager-dpkg-post-invoke.
+</i>&gt;<i> * msgcollector: fix race condition not always closing progress bar when
+</i>&gt;<i> it reached 100%
+</i>&gt;<i> * Whonix-Gateway: Workaround for
+</i>&gt;<i> <A HREF="../../../../external.html?link=http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=732578">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=732578</A>
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Download#Connection_Issues_-">https://www.whonix.org/wiki/Download#Connection_Issues_-</A>
+</i>&gt;<i> _Tor_stops_working_after_an_Upgrade_and_needs_a_Workaround
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Special:AWCforum/st/id287/">https://www.whonix.org/wiki/Special:AWCforum/st/id287/</A>
+</i>&gt;<i> new_tor_and_debian_updates_today....html
+</i>&gt;<i> Set in /etc/default/tor:
+</i>&gt;<i> USE_AA_EXEC=&quot;no&quot;
+</i>&gt;<i> Can be commented out when that bug gets fixed.
+</i>&gt;<i> * optionally (opt-in) building qcow2 images, first rudimentary
+</i>&gt;<i> implementation, build target (VirtualBox or qcow2 or both) should
+</i>&gt;<i> probably be configurable in whonix_build script (#122)
+</i>&gt;<i> * Whonix News Blog Download / Whonix News: Whonix News Blogs (Whonix
+</i>&gt;<i> Feature Blog and Whonix Important Blog) are now deployed over the same
+</i>&gt;<i> mechanism as Whonix News.
+</i>&gt;<i> * Whonix-Workstation: better implementation of dummytor using
+</i>&gt;<i> config-package-dev (might break compatibility with Whonix 7)
+</i>&gt;<i> * removed adrelanos' old key; removed
+</i>&gt;<i> whonix_shared/usr/share/whonix/postinst.d/70_legacy (breaks
+</i>&gt;<i> compatiblity with Whonix 7)
+</i>&gt;<i> * Re-implemented uwt and dummytor using config-package-dev instead of
+</i>&gt;<i> custom dpkg-diversions. Breaks compatibly with Whonix 7.
+</i>&gt;<i> * Removed rawdog and pandoc since no longer required.
+</i>&gt;<i> * moved misc scripts (Scripts for managing Whonix's offical repository
+</i>&gt;<i> and Whonix News; debug scripts; developer documentation and deprecated
+</i>&gt;<i> code) to <A HREF="../../../../external.html?link=https://github.com/Whonix/whonix-developer-meta-files">https://github.com/Whonix/whonix-developer-meta-files</A>
+</i>&gt;<i> * Improved messages.
+</i>&gt;<i> * Lots of smaller fixes.
+</i>&gt;<i> * Code refactoring.
+</i>&gt;<i> * For more details, see the git log.
+</i>&gt;<i>
+</i>&gt;<i> -----BEGIN PGP SIGNATURE-----
+</i>&gt;<i>
+</i>&gt;<i> iQJ8BAEBCgBmBQJS7l7xXxSAAAAAAC4AKGlzc3Vlci1mcHJAbm90YXRpb25zLm9w
+</i>&gt;<i> ZW5wZ3AuZmlmdGhob3JzZW1hbi5uZXQ2RTk3OUIyOEE2RjM3QzQzQkUzMEFGQTFD
+</i>&gt;<i> QjhENTBCQjc3QkIzQzQ4AAoJEMuNULt3uzxINSMP/AiqxlsB4V1ndqxe2YnhTUg2
+</i>&gt;<i> PHL9xfCQ8sOnzb7DDYRFxfr2h3GlfwqmS2QfKW6Y3QEtGCu+bgZlsmtaESxWVX4H
+</i>&gt;<i> UBuIjG53sEJ1hptMq1OZvS4SyAbarFnU4jFqjxY9vPKBo3uOHlNjZPzrIkA8uZTc
+</i>&gt;<i> kaE5v173VQ+BJxoRxeZQ3F2ockIol33EYz0YorXqYTb1tG5gp6j0aMXVknz4VdTJ
+</i>&gt;<i> OXJWbw/YOok2OFD43hTwvbjDxHt5IUn3UVzKfWPM0XsuXRgoDMmCI6EFFtWs2rff
+</i>&gt;<i> 6HUfW2toZpv1j5d5Y5crFHWkTu21xChdf7NWQiaWZcM2hgDJYkY9Cy4GTyiTvTRZ
+</i>&gt;<i> /c5u4n1FkqwZencmR+4RgFLCBRwlJbmtbdkICgP9ly7VSf1jt5gY1ktkIHB+uG+0
+</i>&gt;<i> n9HEqrj/rfDxDiQLSp17ux77kIiU3kpIUHrJZdfciLL+5cMRbjfKX6V40SXqwgko
+</i>&gt;<i> eIDmDXnMoQPs7VI2aqvbTs7uL4NpVp3XOIluJmq6rj1EkY995+0l+YssiA3nKPid
+</i>&gt;<i> lkEBXi0jHa4dc1qaYIrhsD7hvmgspApUctvWv/qCrKzKKtd/b5nrJG+TjQ0rpXWB
+</i>&gt;<i> mF+qHIfMSoiww6kpcj0nLI71OuHyojVUqEGEbHudki94te0Ag6y4Fi4B4/1+r1wq
+</i>&gt;<i> h4NzFrhrPFo3IMIEEmYE
+</i>&gt;<i> =8gwj
+</i>&gt;<i> -----END PGP SIGNATURE-----
+</i>&gt;<i> _______________________________________________
+</i>&gt;<i> You are receiving this e-mail because you subscribed Whonix-devel mailing list. To unsubscribe visit <A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel</A> or mail &quot;unsubscribe&quot; to <A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">Whonix-devel-unsubscribe at whonix.org.</A>
+</i>&gt;<i>
+</i>&gt;<i> Sie erhalten diese E-Mail, weil Sie die Whonix-devel Mailingliste aboniert haben. Zum abbestellen besuchen Sie <A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel</A> oder mailen Sie &quot;unsubscribe&quot; an <A HREF="../../../../external.html?link=https://whonix.org/cgi-bin/mailman/listinfo/whonix-devel">Whonix-devel-unsubscribe at whonix.org.</A>
+</i>
+
+
+-- 
+Twitter: <A HREF="../../../../external.html?link=http://twitter.com/znmeb;">http://twitter.com/znmeb;</A> Computational Journalism on a Stick
+<A HREF="../../../../external.html?link=http://j.mp/CompJournoStickOverview">http://j.mp/CompJournoStickOverview</A>
+
+My poltergeist can beat up your zeitgeist.
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000130.html>[Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian	stable!
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000132.html>[Whonix-devel] Testers wanted! Whonix 7.7.6.4 based on Debian stable!
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/date.html#131">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/thread.html#131">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/subject.html#131">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/author.html#131">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-February/000131.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-February/000131.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:07 GMT -->
+</HTML>

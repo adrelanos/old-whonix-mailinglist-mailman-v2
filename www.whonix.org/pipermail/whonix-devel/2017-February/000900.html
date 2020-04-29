@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-February/000900.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [qubes-devel] Why gets unattended-upgrades installed after Debian jessie -&gt; Debian stretch upgrade?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Why%20gets%20unattended-upgrades%0A%20installed%20after%20Debian%20jessie%20-%3E%20Debian%20stretch%20upgrade%3F&In-Reply-To=%3Cdd42cf78-adef-11f3-9bf5-55632dce35bd%40openmailbox.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000899.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000901.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [qubes-devel] Why gets unattended-upgrades installed after Debian jessie -&gt; Debian stretch upgrade?</H1>
+<B>Chris Laprise</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Why%20gets%20unattended-upgrades%0A%20installed%20after%20Debian%20jessie%20-%3E%20Debian%20stretch%20upgrade%3F&In-Reply-To=%3Cdd42cf78-adef-11f3-9bf5-55632dce35bd%40openmailbox.org%3E" TITLE="[Whonix-devel] [qubes-devel] Why gets unattended-upgrades installed after Debian jessie -&gt; Debian stretch upgrade?">tasket at openmailbox.org
+</A><BR>
+<I>Wed Feb 8 00:21:30 CET 2017</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000899.html>[Whonix-devel] [qubes-devel] Why gets unattended-upgrades installed after Debian jessie -&gt; Debian stretch upgrade?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000901.html>[Whonix-devel] [qubes-devel] Why gets unattended-upgrades installed after Debian jessie -&gt; Debian stretch upgrade?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/date.html#900">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/thread.html#900">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/subject.html#900">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/author.html#900">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On 02/06/2017 09:25 PM, Unman wrote:
+&gt;<i> On Mon, Feb 06, 2017 at 01:19:00PM +0000, Patrick Schleizer wrote:
+</i>&gt;&gt;<i> The unattended-upgrades was not installed on my Debian jessie system.
+</i>&gt;&gt;<i> After upgrading to Debian stretch, the package unattended-upgrades got
+</i>&gt;&gt;<i> installed. 'reverse-depends unattended-upgrades' [1] did not make me any
+</i>&gt;&gt;<i> wiser. There must be a gap of my apt knowledge. Can anyone shed light on
+</i>&gt;&gt;<i> this please?
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> Best regards,
+</i>&gt;&gt;<i> Patrick
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> [1]
+</i>&gt;&gt;<i> Reverse-Recommends
+</i>&gt;&gt;<i> ==================
+</i>&gt;&gt;<i> * education-common
+</i>&gt;&gt;<i> * python3-software-properties
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> Reverse-Depends
+</i>&gt;&gt;<i> ===============
+</i>&gt;&gt;<i> * parl-desktop
+</i>&gt;&gt;<i> * plinth
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> Packages without architectures listed are reverse-dependencies in:
+</i>&gt;&gt;<i> amd64, arm64, armel, armhf, hurd-i386, i386, kfreebsd-amd64,
+</i>&gt;&gt;<i> kfreebsd-i386, mips, mips64el, mipsel, powerpc, ppc64el, s390x
+</i>&gt;&gt;<i>
+</i>&gt;<i> I remember a thread last year saying that unattended-upgrades should be
+</i>&gt;<i> installed by default, and enabled. I guess that is what you're seeing
+</i>&gt;<i> here Patrick.
+</i>&gt;<i> This was on debian-devel - I thought it related to d-i but it may be
+</i>&gt;<i> brought in as default package on dist-upgrade.
+</i>&gt;<i>
+</i>&gt;<i> have a look here:
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://lists.debian.org/debian-devel/2016/11/msg00262.html">https://lists.debian.org/debian-devel/2016/11/msg00262.html</A>
+</i>&gt;<i>
+</i>
+Unfortunately it clashes with template usage patterns... and probably 
+not great for template-based VMs either.
+
+Automatic updates would be better initiated from dom0, since the 
+templates don't run on a regular basis and there are VM maintenance 
+issues as well.
+
+Chris
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000899.html>[Whonix-devel] [qubes-devel] Why gets unattended-upgrades installed after Debian jessie -&gt; Debian stretch upgrade?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000901.html>[Whonix-devel] [qubes-devel] Why gets unattended-upgrades installed after Debian jessie -&gt; Debian stretch upgrade?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/date.html#900">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/thread.html#900">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/subject.html#900">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/author.html#900">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000900.html','y7aelHq7wr','6NTbtS5MW00',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-February/000900.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-February/000900.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:31 GMT -->
+</HTML>

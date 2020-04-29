@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-October/001264.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Bug#910249: Bumping up encryption to AES-256 by default
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Bug%23910249%3A%20Bumping%20up%20encryption%20to%20AES-256%20by%0A%20default&In-Reply-To=%3C104f1afd-ff96-a722-ab29-acda69524b11%40riseup.net%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001269.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001265.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Bug#910249: Bumping up encryption to AES-256 by default</H1>
+<B>procmem</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Bug%23910249%3A%20Bumping%20up%20encryption%20to%20AES-256%20by%0A%20default&In-Reply-To=%3C104f1afd-ff96-a722-ab29-acda69524b11%40riseup.net%3E" TITLE="[Whonix-devel] Bug#910249: Bumping up encryption to AES-256 by default">procmem at riseup.net
+</A><BR>
+<I>Thu Oct 4 02:43:48 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001269.html>[Whonix-devel] Bug#910249: Bumping up encryption to AES-256 by default
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001265.html>[Whonix-devel] [Oracle VM VirtualBox] #17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being installed
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/date.html#1264">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/thread.html#1264">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/subject.html#1264">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/author.html#1264">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>
+
+Jeremy Bicha:
+&gt;<i> On Wed, Oct 3, 2018 at 6:36 PM procmem &lt;<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">procmem at riseup.net</A>&gt; wrote:
+</i>&gt;&gt;<i> Package: gnome-disk-utility
+</i>&gt;&gt;<i> Version: all
+</i>&gt;&gt;<i> Severity: serious
+</i>&gt;&gt;<i>
+</i>&gt;&gt;<i> Hi. I noticed Gnome Disks uses AES-128 by default instead of AES-256
+</i>&gt;&gt;<i> like Debian does out of the box. Having 256 bit symmetric keys is good
+</i>&gt;&gt;<i> practice for long term security especially in a coming era of quantum
+</i>&gt;&gt;<i> computers. (Whether they materialize or not is deabatble but why not
+</i>&gt;&gt;<i> have a sufficient margin if it's easy enough?) It is also the
+</i>&gt;&gt;<i> recommended level by NIST.
+</i>&gt;<i> 
+</i>&gt;<i> Please report this issue to the GNOME Disks developers:
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://gitlab.gnome.org/GNOME/gnome-disk-utility/issues">https://gitlab.gnome.org/GNOME/gnome-disk-utility/issues</A>
+</i>&gt;<i> 
+</i>&gt;<i> From what I can tell, Disks uses udisks2 which uses libblockdev. The
+</i>&gt;<i> libblockdev default is 256 bits.
+</i>&gt;<i> 
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://github.com/storaged-project/libblockdev/blob/master/src/plugins/crypto.h#L39">https://github.com/storaged-project/libblockdev/blob/master/src/plugins/crypto.h#L39</A>
+</i>&gt;<i> 
+</i>&gt;<i> So I'm not sure if the libblockdev default should be changed or if
+</i>&gt;<i> that's something that GNOME Disks is supposed to handle itself.
+</i>&gt;<i> 
+</i>&gt;<i> Thanks,
+</i>&gt;<i> Jeremy Bicha
+</i>&gt;<i> 
+</i>
+Thanks for pointing me to the code and upstream bugtracker :) I've
+opened a ticket on GNOME here:
+
+<A HREF="../../../../external.html?link=https://gitlab.gnome.org/GNOME/gnome-disk-utility/issues/103">https://gitlab.gnome.org/GNOME/gnome-disk-utility/issues/103</A>
+
+Feel free to close the ticket here because it's not related to you guys.
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001269.html>[Whonix-devel] Bug#910249: Bumping up encryption to AES-256 by default
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001265.html>[Whonix-devel] [Oracle VM VirtualBox] #17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being installed
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/date.html#1264">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/thread.html#1264">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/subject.html#1264">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/author.html#1264">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-October/001264.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-October/001264.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:11 GMT -->
+</HTML>

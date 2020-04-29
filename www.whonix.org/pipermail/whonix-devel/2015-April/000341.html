@@ -1,0 +1,349 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-April/000341.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Testers Wanted! Whonix 10 ( 10.0.0.5.0 )
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Testers%20Wanted%21%20Whonix%2010%20%28%2010.0.0.5.0%20%29&In-Reply-To=%3Cdce582e46229ac3e07a1fd38b826ec61%40www.whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000345.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000342.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Testers Wanted! Whonix 10 ( 10.0.0.5.0 )</H1>
+<B>Whonix | Privacy and Anonymity OS</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Testers%20Wanted%21%20Whonix%2010%20%28%2010.0.0.5.0%20%29&In-Reply-To=%3Cdce582e46229ac3e07a1fd38b826ec61%40www.whonix.org%3E" TITLE="[Whonix-devel] Testers Wanted! Whonix 10 ( 10.0.0.5.0 )">newblogpost at whonix.org
+</A><BR>
+<I>Fri Apr 10 01:07:36 CEST 2015</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000345.html>[Whonix-devel] Whonix mirror system issues
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000342.html>[Whonix-devel] UN-RELEASED DRAFT Whonix 10 UN-RELEASED DRAFT
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/date.html#341">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/thread.html#341">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/subject.html#341">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/author.html#341">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>The version number for this testers-only release is 10.0.0.5.0, which will become Whonix 10 the moment it's blessed stable.
+
+Download link for Virtual Box images (.ova), experimental kvm /qemu / Qubes images and OpenPGP signatures (.asc):
+<A HREF="../../../../external.html?link=http://mirror.whonix.de/10.0.0.5.0/">http://mirror.whonix.de/10.0.0.5.0/</A>
+
+Upgrading Whonix 9 to Whonix 10:
+- from the testers repository
+
+If you want to build from source code, see:
+<A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Dev/Build_Documentation">https://www.whonix.org/wiki/Dev/Build_Documentation</A>
+
+Thanks to everyone who made this test release possible!
+
+KVM Release Notes:
+
+Existing users should update their xml files. See
+<A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,827.0.html">https://www.whonix.org/forum/index.php/topic,827.0.html</A>
+
+Changelog between Whonix 9 and Whonix 10.0.0.5.0:
+
+- build script: added retry feature to error handler; refactoring; output
+- build script: added --auto-retry (default: 1) and --wait-auto-retry (default: 5) to error handler
+- build script: implemented --dispatch-before-retry and --dispatch-after-retry
+- ram adjusted desktop starter (rads): compatibility with gdm3
+- build script:
+workaround for
+apt: Provide meaningful exit codes for gpg failures
+W: A error occurred during the signature verification.
+To catch situations such as:
+The repository is not updated and the previous index files will be used.
+GPG error: <A HREF="../../../../external.html?link=http://deb.torproject.org/">http://deb.torproject.org</A> stable Release: The following signatures were invalid: KEYEXPIRED 1409325681 KEYEXPIRED 1409325681 KEYEXPIRED 1409325681 KEYEXPIRED 1409325681
+That apt-repository would otherwise be silently ignored without error notification.
+- tb-default-browser: work on gnome compatibility
+- tb-updater: updated man page
+- whonixcheck: output
+- added <A HREF="../../../../external.html?link=https://github.com/Whonix/apparmor-profile-gwenview">https://github.com/Whonix/apparmor-profile-gwenview</A> to Whonix's APT repository - thanks to @troubadoour
+- package selection: install xserver-xorg-video-qxl by default (added xserver-xorg-video-qxl to anon-shared-desktop to aid kvm users getting higher desktop resolutions as per <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,493.15/topicseen.html">https://www.whonix.org/forum/index.php/topic,493.15/topicseen.html</A> (thanks to HulaHoop for suggesting this))
+- package selection: install kde-privacy by default (added kde-privacy to anon-shared-packages-recommended)
+- added new package kde-privacy that deactivates deletes klipper contents on exit - thanks to z for suggesting
+- package selection: added kde-common-resolution to anon-shared-desktop-kde
+- added new package kde-common-resolution: Sets resolution to 1366x768 in KVM and VirtualBox in KDE
+- build script: implemented --ignore-uncommitted
+- build-script: Use `git clean` rather than &quot;make deb-cleanup&quot; for better security. It is also faster.
+- build-script: No longer use `sort` in cleanup step for better security.
+- build-script: No longer automatically cleanup before package building.
+- build-script: moved whonix_build to help-steps/whonix_build_one
+- build-script: renamed whonix_build_all to whonix_build
+- build script: Now supports ./whonix_build --tor-gateway --tor-workstation -- --build --vbox --qcow2 etc.
+- build-script: implemented --all (which combines --tor-gateway --tor-workstation --tor-custom-workstation)
+- updated frozen sources
+- anon-meta-packages: Removed grub-pc from anon-shared-packages-dependencies. This is a weird dependency. The grub-pc should be already get installed in build-steps.d/1300_create-raw-image build step by grml-debootstrap (./grml_packages) which is fine for VM builds. For --install-to-root users it's unnecessary, since they already have a booting system. As per <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/342.">https://github.com/Whonix/Whonix/issues/342.</A>
+- added new package: usability-misc
+- package selection: added usability-misc to anon-shared-packages-recommended
+- poweroff-passwordless: only for user &quot;user&quot;, not for all users
+- bootclockrandomization: Set OLD_UNIXTIME variable right before calculation of NEW_UNIXTIME so calculation gets more accurate. Thanks to intrigeri for pointing that out! ( <A HREF="../../../../external.html?link=https://mailman.boum.org/pipermail/tails-dev/2014-September/006983.html">https://mailman.boum.org/pipermail/tails-dev/2014-September/006983.html</A> )
+- whonixcheck: Whonix News be 30 min lenient about signed before current time, implemented <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/275">https://github.com/Whonix/Whonix/issues/275</A>
+- anon-shared-helper-scripts: added /usr/lib/anon-shared-helper-scripts/tor_signal_newnym.py
+- apparmor-profile-(anondist|whonixcheck|sdwdate|timesync): Fixed Whonix-Gateway compatibility.
+- anon-gw-anonymizer-config, anon-shared-helper-scripts: Fixed execution of /etc/cron.weeky/tor as per <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,584.0.html,">https://www.whonix.org/forum/index.php/topic,584.0.html,</A> thanks to ir1s (<A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php?action=profile;u=335">https://www.whonix.org/forum/index.php?action=profile;u=335</A>) for the bug report!
+usability-misc: create once /home/user/Downloads, /home/user/Pictures
+- sdwdate: fix, set sdwdate pool built in defaults to same values as in default config file
+- sdwdate: updated time source pools
+- sdwdate: fix, be quiet when using --quiet
+- sdwdate: New option --echo-unixtime, echo remote unix time even when using --quiet.
+- sdwdate: do not do anything if script was sourced (useful for external unit tests)
+- sdwdate: create first success file /var/run/sdwdate/first_success
+- sdwdate: implemented --timewarp-on-restartup and SDW_MODE restartup
+- sdwdate: use sclockadj by default in restartup mode
+- sdwdate: init script delete first success file when using force-reload
+- sdwdate: init script new debugging option restartndclean
+- msgcollector: make sure /var/run/msgcollector is mounted in RAM by mounting it as 10 MB big tmpfs
+- msgcollector: use the much more efficient inotifywait rather than sleep/pulling
+- msgcollector: msgdispatcher: wait forever in start up phase on very slow systems
+- msgcollector: prevent duplicate instances; proper exit codes; clean up all daemons on shut down; refactoring
+- whonixcheck: improved output of Whonix News
+- timesync: don't show &quot;please do not use the internet until timesync succeeded&quot; on sdwdate restart (#264) <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/264">https://github.com/Whonix/Whonix/issues/264</A>
+- timesync: show success passive popup only in startup mode, not restartup mode
+anon-meta-packages: make anon-workstation-default-applications depend on &quot;pinentry-qt | pinentry-gtk | pinentry-curses | pinentry&quot; rather than hardcoded &quot;pinentry-qt&quot;
+- whonix-repository, whonixcheck: updated /usr/share/whonix/whonix-news-keys.d/patrick.asc (extended key until 2016, new key signature)
+- msgcollector: implemented --status --progressbarxrunning
+- apparmor-profile-whonixcheck: added /usr/share/torbrowser-launcher/torproject.pem r,
+- whonixcheck: man page
+- whonixcheck: added --no-del-tmp / DEL_TMP=&quot;true&quot; feature
+- sdwdate: support use of .onion domains (not use --tlsv1 --proto =https then) for curl time fetching method
+- sdwdate: updated man page
+- build script: better git tag names that reflect stable, testers-only, developers-only (implemented <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/276">https://github.com/Whonix/Whonix/issues/276</A>)
+- build script: implemented --clean --qcow2
+- sdwdate: correct exit codes for sclockadj, sigterm exit 143, sigint exit 130
+- anon-ws-disable-stacked-tor: Tor Browser 4.x compatibility fix
+- tb-starter: Tor Browser 4.x compatibility fix
+- whonixcheck: Improved whonixcheck warning when using multiple Whonix-Workstations on the same IP. Thanks to Jason Ayala for the suggestion (<A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/352#issuecomment-60007137">https://github.com/Whonix/Whonix/issues/352#issuecomment-60007137</A>).
+- whonixcheck: strip html from Whonix News
+- sdwdate: Replaced `sdwdate`'s use of GNU `date` for converting untrusted date from remote servers with a `python` script /usr/lib/sdwdate/date_to_unixtime that uses `dateutil.parser`. Thanks to troubadoour for the review of usr/lib/sdwdate/date_to_unixtime.
+timesync: when running timesync, always set clock using `date`, not `sclockadj`
+- makefile: new target &quot;make undist&quot;, which deletes the upstream tarball
+- makefile: $DISTDIR variable for make (un)dist, which defaults to &quot;..&quot; and can be used to create upstream tarballs in arbitrary locations
+- makefile: refactoring, all function names and global variables now start with &quot;make_&quot; to make the script `source`ing friendly
+- makefile: made `source`able
+- makefile: new target &quot;make debdist&quot; and &quot;make undebdist&quot;
+- build script: new whonix_build_config_dirs variable
+- whonix-repository: fix root_check
+- sdwdate: added libc6-dev as dependency to fix sclockadj error &quot;/usr/include/ruby-2.1.0/ruby/defines.h:26:19: fatal error: stdio.h: No such file or directory&quot; <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/360">https://github.com/Whonix/Whonix/issues/360</A>
+- whonix-(gw|ws)-kde-desktop-conf: removed kde's default network manager (NM) system tray icon, because it showed a misleading symbol (Whonix does not use NM. It uses ifupdown. NM is only installed by default to ease setting up VPNs.) Thanks to HulaHoop for the report. - <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,532.0.html">https://www.whonix.org/forum/index.php/topic,532.0.html</A>
+- build script: deprecated --no-validate-libvirt-xml
+- build script: implemented --conffile
+- build script: implemented --grmlbin
+- package selection: Removed apparmor-profiles from anon-shared-packages-recommended as suggested ( <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,97.msg5045.html#msg5045">https://www.whonix.org/forum/index.php/topic,97.msg5045.html#msg5045</A> ) by Whonix AppArmor Profile Maintainer troubadour because they generate a lot of noise while having no effect.
+- timesync: added hopefully Debian policy conform support for sending notifications by timesync when being run as sdwdate plugin to other user accounts than user &quot;user&quot;
+- uwt: Fixed apt-get stream isolation port, thanks to nrgaway for the report!
+- whonix-initializer: work on systemd support
+- build script: added dh-systemd to list of build dependencies
+- tb-updater: do not ask to start Tor Browser if tb-starter is not installed
+build script: workaround for &quot;bash: Shellshock fix breaks bash function exporting&quot; - <A HREF="../../../../external.html?link=https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=763164">https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=763164</A> - <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/367">https://github.com/Whonix/Whonix/issues/367</A>
+- build script: use specific codename (wheezy) rather than generic code name (stable) as per &quot;build script broken because of using grml-debootstrap with --release stable&quot; - <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/368">https://github.com/Whonix/Whonix/issues/368</A>
+- build script: updated frozen repository
+- sdwdate: output: Use own pid rather than /proc/sys/kernel/random/uuid as ID.
+- sdwdate: improved error handler
+- sdwdate: Fixed sclockadj home folder permission issue. When users had group writeable permission on their root home folder, sclockadj would break due to ruby-inline complaining. Thanks to Jason Ayala (@JasonJAyalaP) for help fixing this. Now using /var/cache/sdwdate by default as INLINE cache dir. - <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/365">https://github.com/Whonix/Whonix/issues/365</A>
+- sdwdate: stricter sudoers exceptions
+- sdwdate: sclockadj fix: Fail when run (as normal user) without rights to change clock. Check return codes of clock_gettime and clock_settime. <A HREF="../../../../external.html?link=https://github.com/Whonix/Whonix/issues/370">https://github.com/Whonix/Whonix/issues/370</A>
+- build script: new --apparmor has been added to build-steps.d/1200_create-debian-packages. It conveniently only builds all apparmor packages.
+- build script: run check-virtualbox-vm-exists and install VirtualBox build dependencies only when using --target virtualbox.
+- whonixcheck: Attempt to fix Windows hyperv VirtualBox detection bug: <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,732.0.html">https://www.whonix.org/forum/index.php/topic,732.0.html</A>
+- sdwdate: refactoring, moved commands outside of functions form usr/lib/sdwdate/modules.d/sdwdate to usr/bin/sdwdate so usr/lib/sdwdate/modules.d/sdwdate can be sourced (by unit test)
+- tb-updater: Create /home/user/tor-browser_$TB_LANG/Browser/Downloads folder for better AppArmor support as suggested by troubadour. - <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,97.msg5541.html#msg5541">https://www.whonix.org/forum/index.php/topic,97.msg5541.html#msg5541</A>
+- build script: new &quot;--target raw&quot; to build raw images
+- build script: help-steps/analyze_image: added support for --minimal; added --root as alternative to option name for --install-to-root
+- build script: help-steps/analyze_image: --root now supports /path/to/folder, i.e. --root /path/to/folder
+- build script: verifiable builds, build-steps.d/2800_create-report: can now analyze other (--target)s than virtualbox, i.e. also qcow2, raw and root.
+- build script: verifiable builds, build-steps.d/2800_create-report: can now analyze multiple (--target)s at once.
+- tb-starter, whonix-ws-start-menu-additions: fixed long icon bouncing bug when starting (kde launch feedback)
+- build script: work on creating debian packaging for creating debs that include vm images
+- build script: added packages python-guimessages and packages/whonix-setup-wizard
+- build script: added packages/grub-output-verbose and packages/grub-screen-resolution
+- build script: added python-all-dev and python-stdeb to build dependencies for building python setup.py packages
+- build script: New build parameter --tb none|closed|failed. When set to closed, try installing Tor Browser, failing closed. When set to open, fail open. When unset or set to none, don't attempt to install Tor Browser (default).
+- anon-meta-packages: added console-setup to anon-shared-packages-dependencies so users can use /etc/default/keyboard as alternative mechanism to change the keyboard layout
+- anon-meta-packages: added console-data to anon-shared-packages-dependencies to make sure all three packages console-setup, console-data and console-common are installed.
+- anon-meta-packages: added menu to anon-shared-packages-recommended because it contains su-to-root. ticket: <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T23">https://phabricator.whonix.org/T23</A>
+- generic makefile: do net set DEBMAIL to adrelanos personal e-mail address if not set
+- generic makefile: use only lintian when environment variable make_use_lintian is set to yes
+- generic makefile: only use gain_root_cmd when environment variable make_use_gain_root_command is set to true
+- generic makefile: unless environment variable make_debdist_tolower is set to false, use lower case for debian tarball
+- generic makefile: unless environment variable make_upstream_tarball_tolower is set to false, use lower case for upstream tarball
+- generic makefile: also delete deb_dist folder when running make deb-clean
+- package selection: Install VirtualBox Guest Additions by default when using --target virtualbox. ticket: <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T13">https://phabricator.whonix.org/T13</A> forum discussion: <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,758">https://www.whonix.org/forum/index.php/topic,758</A>
+- tb-starter: link open &quot;Firefox is already running, but is not responding.&quot; bug -&gt; always start Tor Browser with --allow-remote - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T29">https://phabricator.whonix.org/T29</A>
+- anon-shared-build-inst-tb: Added support for environment variable anon_shared_inst_tb. When set to open, fail open. When set to close, fail close. When unset or set to none, don't attempt to install Tor Browser.
+- whonixcheck: whonixcheckdaemon, added support for .d-style drop-in configuration filers in /etc/default/whonixcheckd.d/
+- whonixsetup: in x, prefer starting the graphical version whonix-setup-wizard, fall back to cli version whonixsetup when graphical version is not available
+- whonixsetup: removed start menu entry and startup script for cli version whonixsetup because x version whonix-setup-wizard will add its own
+- whonix-repository-wizard: added sudoers exception file etc/sudoers.d/whonix-setup-wizard for allowing to start whonix-setup-wizard as root without password for better usability when autostarting it
+- tb-updater: Deactivating Tor Browser?s Internal Updater at least as long it does not support verification. See also:
+- <A HREF="../../../../external.html?link=https://www.whonix.org/blog/tor-browser-updater-warning">https://www.whonix.org/blog/tor-browser-updater-warning</A>
+- <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,807">https://www.whonix.org/forum/index.php/topic,807</A>
+- tb-updater: make functions skipable through tb_skip_functions environment variable, so users could skip certain patches by using /etc/torbrowser.d configuration folder
+- tb-updater: added timeout to extract function
+- build script: got rid of grml_packages file in source root folder
+- libvirt (KVM, QEMU): removed hugepages default (thanks to HulaHoop for the commit)
+- libvirt (KVM, QEMU): disabled new timer hypervclock in libvirt since 1.2.2 (thanks to HulaHoop for the commit)
+- build script: let reprepro create local apt repositories also for other architectures to ease porting to other architectures
+- build script: moved libvirt folder to its own package <A HREF="../../../../external.html?link=https://github.com/Whonix/whonix-libvirt">https://github.com/Whonix/whonix-libvirt</A>
+- whonix-(gw|ws)-firewall: RELATED,ESTABLISHED -&gt; ESTABLISHED <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T28">https://phabricator.whonix.org/T28</A>
+- tb-updater: version parser, match for &quot;-alpha-&quot;, &quot;-beta-&quot;, &quot;-rc-&quot; rather than just &quot;alpha&quot;, &quot;beta&quot;, &quot;rc&quot;
+- tb-updater: added experimental --alpha, --beta and --rc switches
+- tb-updater: added new key tbb-team.asc as per <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/13407">https://trac.torproject.org/projects/tor/ticket/13407</A> which I verified to be signed by Georg Koppen
+- anon-meta-packages: removed spice-vdagent from anon-shared-packages-recommended, because it became a weak recommended dependency in build-steps.d/1700_install-packages
+- build-script: install spice-vdagent as weak recommended dependency
+- build-script: show VirtualBox First Run Wizard for Whonix-Custom-Workstation - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T47">https://phabricator.whonix.org/T47</A>
+- apparmor-profile-torbrowser: added exception for Whonix's local homepage
+- tb-starter: open /usr/share/homepage/whonix-welcome-page/whonix.html as default homepage if that file is existing
+- whonix-welcome-page: set, export environment variable TOR_DEFAULT_HOMEPAGE to set TorBrowser homepage to /usr/share/homepage/whonix-welcome-page/whonix.html <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/13835">https://trac.torproject.org/projects/tor/ticket/13835</A>
+- packaging: bumped compat from 8 to 9
+- sdwdate, tb-updater, anon-shared-helper-scripts: refactoring, use errtrace and therefore fewer trap ERR's required - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T48">https://phabricator.whonix.org/T48</A>
+- whonix-developer-meta-files: sign_images, use --verify-options show-notations
+- anon-ws-disable-stacked-tor: Added: export TOR_NO_DISPLAY_NETWORK_SETTINGS=1 Environment variable to disable the &quot;TorButton&quot; -&gt; &quot;Open Network Settings...&quot; menu item. It is not useful and confusing to have on a workstation, because Tor must be configured on the gateway, which is for security reasons forbidden from the gateway. <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/14100">https://trac.torproject.org/projects/tor/ticket/14100</A>
+- whonix-base-files: set: export TOR_HIDE_BROWSER_LOGO=1 Hide the Tor Browser Bundle (TBB) logo in tor-launcher. This is useful to avoid users confusing TBB and Whonix. Also useful when running tor-launcher in standalone mode, because then it's not TBB that is starting. Lastly also useful avoid ​trademark issues when redistributing original, unmodified TBB in (linux) distributions. <A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/14122">https://trac.torproject.org/projects/tor/ticket/14122</A> - <A HREF="../../../../external.html?link=https://www.torproject.org/docs/trademark-faq.html.en">https://www.torproject.org/docs/trademark-faq.html.en</A> - <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Dev/TPO_Trademark">https://www.whonix.org/wiki/Dev/TPO_Trademark</A>
+- whonixcheck: New config variable: whonixcheck_tor_bootstrap_wait_max - Default to 60. How long whonixcheck should wait at maximum until Tor bootstrap finished.
+- whonixcheck: warn if whonix-initializer failed
+- whonixcheck: ported to gpg-bash-lib
+- whonixcheck: set -o errtrace, set -e until trap ERR has been set up
+- whonix-initializer: add fail file in case first run initializer failed
+- whonix-initializer: changed status file dir from /root/.whonix/ to /var/lib/whonix-initializer/status-files/
+- gpg-bash-lib: new package - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T86">https://phabricator.whonix.org/T86</A> - <A HREF="../../../../external.html?link=https://github.com/Whonix/gpg-bash-lib">https://github.com/Whonix/gpg-bash-lib</A>
+- tb-updater: ported to gpg-bash-lib - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T88">https://phabricator.whonix.org/T88</A> - <A HREF="../../../../external.html?link=https://github.com/Whonix/gpg-bash-lib">https://github.com/Whonix/gpg-bash-lib</A>
+- tb-updater: Show when signature way made and ask for confirmation. Useful to detect downgrade or infinite freeze attack. - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T95">https://phabricator.whonix.org/T95</A>
+- tb-updater: Store and show last known signature creation date. - Useful to detect downgrade or infinite freeze attack. - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T96">https://phabricator.whonix.org/T96</A>
+- tb-updater: Authenticate file names. This is useful to detect a downgrade or indefinite freeze attack. To do this, the sha256sums.txt file needs to be verified using the sha256sums.txt.asc file. When that succeeded, the hash for the archive needs to be created and looked up within sha256sums.txt. - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T98">https://phabricator.whonix.org/T98</A>
+- open-link-confirmation: added graphical warning sign
+- updated frozen repository
+- anon-base-files: pre.bsh enable errtrace - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T101">https://phabricator.whonix.org/T101</A>
+- generic makefile: generic makefile: Check, that environment variable DEBEMAIL is not be empty when using &quot;make deb-chl-bumpup&quot;. Otherwise e-mail address in debian/changelog would default to <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">user at host.localdomain</A> and then lintian would complain and exit with failure code.
+- whonixcheck: increased whonixcheck_tor_bootstrap_wait_max from 60 to 90
+- build script: set -e before trap ERR gets enabled
+- tb-updater: progress bar for extraction process
+- anon-gw-anonymizer-config: reserved SocksPort 10.152.152.10:9152 for Tor Messenger - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T107">https://phabricator.whonix.org/T107</A>
+- anon-ws-disable-stacked-tor: Work on Tor Messenger Support: - Forward workstation 127.0.0.1 9152 to gateway 10.152.152.10 9152. (SocksPort) - Forward workstation 127.0.0.1 9153 to gateway 10.152.152.10 9052 where Control Port Filter Proxy. (ControlPort) - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T107">https://phabricator.whonix.org/T107</A>
+- whonix-ws-firewall: outgoing rule simplification - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T111">https://phabricator.whonix.org/T111</A>
+- Fixed Control Port Filter Proxy Connection by adding &quot;iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset&quot;. - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T112">https://phabricator.whonix.org/T112</A>
+- whonix-gw-firewall: support multiple external and internal interfaces - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T120">https://phabricator.whonix.org/T120</A>
+- whonix-gw-firewall: provide an option WORKSTATION_ALLOW_SOCKSIFIED to skip Tor SocksPort iptables rules - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T121">https://phabricator.whonix.org/T121</A>
+- build script: grml-debootstrap apt-get unsigned package install security bug workaround that is required for jessie and above - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T119">https://phabricator.whonix.org/T119</A>
+- whonixcheck: added qemu to list of supported virtualizers
+- tb-starter: new TB_CUSTOM_HOMEPAGE setting; not touching default link to open when running outside of Whonix
+- tb-starter: removed deprecated --recommend feature
+- whonix-repository: postinst script, only enable bash -x, if xtrace has been enabled
+- whonix-repository: postinst script, show output of whonix_repository tool for better transparency
+- makefile: more efficient make install (fixed a bug, run 'cp -R &quot;$d&quot; &quot;$DESTDIR&quot;' just one instead of for every file)
+- makefile: if make_use_gain_root_command is unset, &quot;./debian/gain-root-command&quot; is executable and faketime is installed, then automatically set make_use_gain_root_command=&quot;true&quot;
+- makefile: source ./make-helper-overrides.bsh if existing to allow overruling of functions
+- makefile: source all files in ./make-helper-overrides.d if that folder is existing and if the files in that folder are executable to allow overruling of functions
+- makefile: prepend package-version folder in upstream tarball
+- makefile: made hardcoded list of folders to install (&quot;bin boot dev etc home lib opt sbin srv sys usr var&quot;) overwriteable through variable make_folder_list_for_un_and_install
+- makefile: output
+- makefile: new hook make_hook_at_the_end_of_get_destdir
+- makefile: mkdir before cp when running make install (i.e. create eventually non-existing DESTDIR)
+- makefile: mkdir only when directory does not exist
+- makefile: bumped version number to 1.2
+- makefile: make uch creates upstream changelog in changelog.upstream rather than debian/changelog.upstream
+- makefile: new make deb-uachl-bumpup, Combination of make uch and make deb-chl-bumpup.
+- makefile: added --pedantic to default DEBUILD_LINTIAN_OPTS because we are going to fix the last remaining &quot;missing upstream changelog&quot; warning
+- makefile: autodetect if lintian is available, automatically using it unless make_use_debian is set to false, failing open if automatically running it
+- makefile: new, make lintian
+- tb-updater, open-link-confirmation: set default button to cancel
+- tb-updater: added progress bar for extraction
+- msgcollector: added /usr/lib/msgcollector/pv_wrapper
+- tb-updater: support running without having X running by reading answers from stdin
+- build script: refactoring, renamed variable whonix_build_script_whonix_package to whonix_build_script_skip_package_install
+- anon-shared-build-ban-nonfree: allow packages virtualbox-guest-utils and virtualbox-guest-x11 from contrib to be installed
+- tb-updater, whonixcheck, sdwdate: instead of --socks5-hostname, use more modern --proxy + user:<A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">password at ip</A>:port syntax for curl for better stream isolation - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T126">https://phabricator.whonix.org/T126</A>
+- tb-updater: distinct exit codes for each case of abort or failure
+- build script: improved error handler output with process and function trace result
+- build script: use non-interactive error handler, if stdin is not available
+- sdwdate: BREAKING CHANGE: Changed mode of operation. Now using Tor hidden services (.onion) as time source. No longer supporting SSL/TLS, but connections to .onion's are encrypted end-to-end with the advantage, that no malicious/broken SSL Certificate Authorities can interfere anymore. - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T131">https://phabricator.whonix.org/T131</A>
+- sdwdate: BRAKING CHANGE: deprecated --proxy, introduced --proxy-ip and --proxy-port
+- sdwdate: BREAKING CHANGE: changed pool link format
+- sdwdate: support comments for links in pools
+- sdwdate: increased interval to INTERVAL=&quot;180&quot; and MIN_INTERVAL=&quot;60&quot; - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T147">https://phabricator.whonix.org/T147</A>
+- sdwdate: ported to url to unixtime
+- sdwdate: refactored hook dispatching system for code reduction and to make it easier to add new hooks
+- anon-meta-packages: install control-port-filter-python <A HREF="../../../../external.html?link=https://github.com/Whonix/control-port-filter-python">https://github.com/Whonix/control-port-filter-python</A> replacement that has been written by @troubadoour <A HREF="../../../../external.html?link=https://github.com/troubadoour">https://github.com/troubadoour</A> rather than control-port-filter <A HREF="../../../../external.html?link=https://github.com/Whonix/control-port-filter">https://github.com/Whonix/control-port-filter</A> (bash)
+- anon-gw-anonymizer-config: recommend control-port-filter-python rather than control-port-filter
+- makefile generic: pass ${1+&quot;$@&quot;} to make_source_overrides_file and make_source_overrides_folder ${1+&quot;$@&quot;}
+- makefile generic: added generic _hook_pre and _hook_post mechanism. Before calling any function, function function-name_hook_pre would be called and function-name_hook_post afterwards.
+- makefile generic: for make deb-chl-bumpup, require DEBFULLNAME being set
+- makefile generic: make deb-cleanup, delete &quot;../${package}_&quot;*-*_*&quot;.deb&quot; rather than &quot;../${package}_&quot;*-*&quot;_all.deb&quot;
+- whonix-gw-firewall: provide hook after drop ipv4 invalid packages through variable GATEWAY_IPv4_DROP_INVALID_INCOMING_PACKAGES_POST_HOOK - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T176">https://phabricator.whonix.org/T176</A>
+- whonixcheck: Added usr/lib/apt-get-wrapper, a wrapper that exits 125, if output of apt-get update begins with &quot;W:&quot; or &quot;E:&quot;. Required to workaround several issues with apt-get exit codes. <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Dev/apt-get#Bugs&Acirc;&nbsp;">https://www.whonix.org/wiki/Dev/apt-get#Bugs </A> <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T169">https://phabricator.whonix.org/T169</A>
+- build-script: check for network failures during build to make sure (security) repository is really in use - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T169">https://phabricator.whonix.org/T169</A>
+- tb-updater: new multiple version choice graphical user interface - thanks to troubadour for creating it! - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T149">https://phabricator.whonix.org/T149</A>
+- tb-updater: suggest lowest advertised version number by default because then chances are good, it is a stable and no alpha version - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T130">https://phabricator.whonix.org/T130</A>
+- tb-updater: fix, install stable rather than alpha by default since TBB version format changed - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T130">https://phabricator.whonix.org/T130</A>
+- whonixcheck: security workaround for &quot;apt-get update&quot; zero exit code discrepancy for network, gpg failures - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T194">https://phabricator.whonix.org/T194</A>
+- whonixcheck: output all functions when running --function without argument
+- whonixsetup:
+-- added support for /var/cache/whonix-setup-wizard/status-files/whonixsetup.done
+-- added support for /var/cache/whonix-setup-wizard/status-files/whonixsetup.skip
+-- added support for /var/cache/whonix-setup-wizard/status-files/whonix_repository.done
+-- added support for /var/cache/whonix-setup-wizard/status-files/whonix_repository.skip
+-- added support for /var/cache/whonix-setup-wizard/status-files/disclaimer.done
+-- added support for /var/cache/whonix-setup-wizard/status-files/disclaimer.skip
+-- added support for legacy /var/lib/whonix/do_once/whonixsetup.done
+- anon-meta-packages: no longer install anon-gw-first-run-notice by default because it has been incorporated into whonix-setup-wizard - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T228">https://phabricator.whonix.org/T228</A>
+- build script: break when attempting to build from non-tagged git by default - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T231">https://phabricator.whonix.org/T231</A>
+- tb-updater: improved architecture detection. ARCH can now be set to i386, i686, amd64 or one could also directly set ARCH_DOWNLOAD to for example to linux32 or linux64.
+- whonix-repository: implemented --repository to fix &quot;whonix-setup-wizard repository - code names issue - stable vs wheezy&quot; - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T232">https://phabricator.whonix.org/T232</A>
+- added whonix-welcome-page to whonix-workstation-packages-recommended
+- build script: code simplification - use deb [trusted=yes] rather than local signing key for local apt repository during build - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T246">https://phabricator.whonix.org/T246</A>
+- build script: check if we are building from a tag or not and --allow-untagged true
+- build script: move backup raw image build steps out of main source code - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T249">https://phabricator.whonix.org/T249</A>
+- build script: build script should provide better optical separation of build steps - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T10">https://phabricator.whonix.org/T10</A>
+- build-script: build and install genmkfile - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T217">https://phabricator.whonix.org/T217</A>
+- refactoring: reduced code duplication generated by generic makefile (genmkfile) - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T217">https://phabricator.whonix.org/T217</A>
+- make tb-starter compatible with TBB 4.5a5 and above - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T253">https://phabricator.whonix.org/T253</A>
+- control-port-filter-python: added systemd service - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T106">https://phabricator.whonix.org/T106</A>
+- tb-updater: removed deactivation of TBB internal updater for TBB versions equal or higher than 4.5 because upstream fixed the security issue - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T105">https://phabricator.whonix.org/T105</A>
+- whonixcheck: implemented whonixcheck general Whonix News file - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T255">https://phabricator.whonix.org/T255</A>
+- whonixcheck: moved Whonix News files to mirror.whonix.de and use sourceforge as fallback - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T54">https://phabricator.whonix.org/T54</A>
+- whonix-repository: made baseuri configurable through WHONIX_APT_REPOSITORY_BASEURI environment and /etc/whonix.d configuration variable - <A HREF="../../../../external.html?link=https://phabricator.whonix.org/T54">https://phabricator.whonix.org/T54</A>
+- whonix-repository: moved Whonix APT Repository default baseuri from <A HREF="../../../../external.html?link=http://sourceforge.net/projects/whonixdevelopermetafiles/files/internal/">http://sourceforge.net/projects/whonixdevelopermetafiles/files/internal/</A> to <A HREF="../../../../external.html?link=http://mirror.whonix.de/whonixdevelopermetafiles/internal/">http://mirror.whonix.de/whonixdevelopermetafiles/internal/</A>
+whonix-repository: made baseuri (WHONIX_APT_REPOSITORY_BASEURI) configurable through --baseuri command line parameter
+- whonix-repository: add WHONIX_APT_REPOSITORY_BASEURI to auto generated configuration file
+
+This post has been automatically cross-posted by whonix.org/blog To see the original (including links), go to <A HREF="../../../../external.html?link=https://www.whonix.org/blog/testers-wanted-10-10-0-0-5-0">https://www.whonix.org/blog/testers-wanted-10-10-0-0-5-0</A>
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000345.html>[Whonix-devel] Whonix mirror system issues
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000342.html>[Whonix-devel] UN-RELEASED DRAFT Whonix 10 UN-RELEASED DRAFT
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/date.html#341">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/thread.html#341">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/subject.html#341">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/author.html#341">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000341.html','y7aelHq7wr','n0lIvYiODhE',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2015-April/000341.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2015-April/000341.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:53 GMT -->
+</HTML>

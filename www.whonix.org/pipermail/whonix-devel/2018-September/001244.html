@@ -1,0 +1,1394 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001244.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [Oracle VM VirtualBox] #17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being installed
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5BOracle%20VM%20VirtualBox%5D%20%2317987%3A%20VirtualBox%205.2.18%0A%20vulnerable%20to%20spectre/meltdown%20despite%20microcode%20being%20installed&In-Reply-To=%3C063.80e59d73c1f7023ebd265cf2fff4fb27%40virtualbox.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001241.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001261.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [Oracle VM VirtualBox] #17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being installed</H1>
+<B>Oracle VM VirtualBox</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5BOracle%20VM%20VirtualBox%5D%20%2317987%3A%20VirtualBox%205.2.18%0A%20vulnerable%20to%20spectre/meltdown%20despite%20microcode%20being%20installed&In-Reply-To=%3C063.80e59d73c1f7023ebd265cf2fff4fb27%40virtualbox.org%3E" TITLE="[Whonix-devel] [Oracle VM VirtualBox] #17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being installed">trac at virtualbox.org
+</A><BR>
+<I>Fri Sep 14 22:18:58 CEST 2018</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001241.html>[Whonix-devel] [Oracle VM VirtualBox] #17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being installed
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001261.html>[Whonix-devel] [Oracle VM VirtualBox] #17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being installed
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1244">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1244">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1244">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1244">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>#17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being
+installed
+-------------------------------+--------------------------------------------
+ Reporter:  adrelanos          |        Owner:          
+     Type:  defect             |       Status:  reopened
+ Priority:  major              |    Component:  other   
+  Version:  VirtualBox 5.2.18  |   Resolution:          
+ Keywords:                     |   Guest type:  Linux   
+Host type:  Linux              |  
+-------------------------------+--------------------------------------------
+
+Comment (by adrelanos):
+
+ Debian host.
+
+ {{{
+ <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">root at user</A>:/home/user# spectre-meltdown-checker --paranoid ; echo $?
+ Spectre and Meltdown mitigation detection tool v0.39
+
+ Checking for vulnerabilities on current system
+ Kernel is Linux 4.9.0-8-amd64 #1 SMP Debian 4.9.110-3+deb9u4 (2018-08-21)
+ x86_64
+ CPU is Intel(R) Core(TM) i5 CPU       M 580  @ 2.67GHz
+
+ Hardware check
+ * Hardware support (CPU microcode) for mitigation techniques
+   * Indirect Branch Restricted Speculation (IBRS)
+     * SPEC_CTRL MSR is available:  YES
+     * CPU indicates IBRS capability:  YES  (SPEC_CTRL feature bit)
+   * Indirect Branch Prediction Barrier (IBPB)
+     * PRED_CMD MSR is available:  YES
+     * CPU indicates IBPB capability:  YES  (SPEC_CTRL feature bit)
+   * Single Thread Indirect Branch Predictors (STIBP)
+     * SPEC_CTRL MSR is available:  YES
+     * CPU indicates STIBP capability:  YES  (Intel STIBP feature bit)
+   * Speculative Store Bypass Disable (SSBD)
+     * CPU indicates SSBD capability:  YES  (Intel SSBD)
+   * Enhanced IBRS (IBRS_ALL)
+     * CPU indicates ARCH_CAPABILITIES MSR availability:  NO
+     * ARCH_CAPABILITIES MSR advertises IBRS_ALL capability:  NO
+   * CPU explicitly indicates not being vulnerable to Meltdown (RDCL_NO):
+ NO
+   * CPU explicitly indicates not being vulnerable to Variant 4 (SSB_NO):
+ NO
+   * Hypervisor indicates host CPU might be vulnerable to RSB underflow
+ (RSBA):  NO
+   * CPU microcode is known to cause stability problems:  NO  (model 0x25
+ family 0x6 stepping 0x5 ucode 0x7 cpuid 0x20655)
+ * CPU vulnerability to the speculative execution attack variants
+   * Vulnerable to Variant 1:  YES
+   * Vulnerable to Variant 2:  YES
+   * Vulnerable to Variant 3:  YES
+   * Vulnerable to Variant 3a:  YES
+   * Vulnerable to Variant 4:  YES
+
+ CVE-2017-5753 [bounds check bypass] aka 'Spectre Variant 1'
+ * Mitigated according to the /sys interface:  YES  (Mitigation: __user
+ pointer sanitization)
+ * Kernel has array_index_mask_nospec:  YES  (1 occurrence(s) found of x86
+ 64 bits array_index_mask_nospec())
+ * Kernel has the Red Hat/Ubuntu patch:  NO
+ * Kernel has mask_nospec64 (arm64):  NO
+ &gt; STATUS:  NOT VULNERABLE  (Mitigation: __user pointer sanitization)
+
+ CVE-2017-5715 [branch target injection] aka 'Spectre Variant 2'
+ * Mitigated according to the /sys interface:  YES  (Mitigation: Full
+ generic retpoline, IBPB, IBRS_FW)
+ * Mitigation 1
+   * Kernel is compiled with IBRS support:  YES
+     * IBRS enabled and active:  YES  (for kernel and firmware code)
+   * Kernel is compiled with IBPB support:  YES
+     * IBPB enabled and active:  YES
+ * Mitigation 2
+   * Kernel has branch predictor hardening (arm):  NO
+   * Kernel compiled with retpoline option:  YES
+     * Kernel compiled with a retpoline-aware compiler:  YES  (kernel
+ reports full retpoline compilation)
+ &gt; STATUS:  NOT VULNERABLE  (Full retpoline + IBPB are mitigating the
+ vulnerability)
+
+ CVE-2017-5754 [rogue data cache load] aka 'Meltdown' aka 'Variant 3'
+ * Mitigated according to the /sys interface:  YES  (Mitigation: PTI)
+ * Kernel supports Page Table Isolation (PTI):  YES
+   * PTI enabled and active:  YES
+   * Reduced performance impact of PTI:  YES  (CPU supports PCID,
+ performance impact of PTI will be reduced)
+ * Running as a Xen PV DomU:  NO
+ &gt; STATUS:  NOT VULNERABLE  (Mitigation: PTI)
+
+ CVE-2018-3640 [rogue system register read] aka 'Variant 3a'
+ * CPU microcode mitigates the vulnerability:  YES
+ &gt; STATUS:  NOT VULNERABLE  (your CPU microcode mitigates the
+ vulnerability)
+
+ CVE-2018-3639 [speculative store bypass] aka 'Variant 4'
+ * Mitigated according to the /sys interface:  YES  (Mitigation:
+ Speculative Store Bypass disabled via prctl and seccomp)
+ * Kernel supports speculation store bypass:  YES  (found in
+ /proc/self/status)
+ &gt; STATUS:  NOT VULNERABLE  (Mitigation: Speculative Store Bypass disabled
+ via prctl and seccomp)
+
+ Need more detailed information about mitigation options? Use --explain
+ A false sense of security is worse than no security at all, see
+ --disclaimer
+ 0
+ <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">root at user</A>:/home/user#
+ }}}
+
+ Debian guest VM.
+
+ {{{
+ <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">user at debian</A>:~$ su
+ Password:
+ <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">root at debian</A>:/home/user# spectre-meltdown-checker --paranoid -v -v -v
+ Spectre and Meltdown mitigation detection tool v0.39
+
+ (debug) attempted to load module cpuid, insmod_cpuid=1
+ (debug) cpuid: leaf1 on cpu0, eax-ebx-ecx-edx:      132693       2048
+ 2151154185  126614527
+ (debug) cpuid: wanted register (1) has value 132693 aka 00020655
+ (debug) cpuid: shifted value by 0 is 132693 aka 20655
+ (debug) cpuid: after AND 0xFFFFFFFF, final value is 132693 aka 20655
+ Checking for vulnerabilities on current system
+ Kernel is Linux 4.9.0-8-amd64 #1 SMP Debian 4.9.110-3+deb9u4 (2018-08-21)
+ x86_64
+ CPU is Intel(R) Core(TM) i5 CPU       M 580  @ 2.67GHz
+ (debug) found opt_kernel=/boot/vmlinuz-4.9.0-8-amd64 in /proc/cmdline
+ (debug) opt_kernel is now /boot/vmlinuz-4.9.0-8-amd64
+ Will use kernel image /boot/vmlinuz-4.9.0-8-amd64
+ Will use kconfig /boot/config-4.9.0-8-amd64
+ Will use System.map file /proc/kallsyms
+ (debug) check_kernel: ret=0 size=4237088 sections=0 warnings=readelf:
+ Error: Not an ELF file - it has the wrong magic bytes at the start/
+ (debug) check_kernel: ... file is invalid
+ (debug) try_decompress: looking for gunzip magic in
+ /boot/vmlinuz-4.9.0-8-amd64
+ (debug) try_decompress: magic for gunzip found at offset 2668039:xy
+ (debug) try_decompress: decompression with gunzip failed (err=1)
+ (debug) try_decompress: looking for unxz magic in
+ /boot/vmlinuz-4.9.0-8-amd64
+ (debug) try_decompress: magic for unxz found at offset 18357:abcde
+ (debug) check_kernel: ret=0 size=20161824 sections=10 warnings=
+ (debug) check_kernel: ... file is valid
+ (debug) try_decompress: decompressed with unxz successfully!
+ Kernel image is Linux version 4.9.0-8-amd64 (debian-
+ <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">kernel at lists.debian.org</A>) (gcc version 6.3.0 20170516 (Debian
+ 6.3.0-18+deb9u1) ) #1 SMP Debian 4.9.110-3+deb9u4 (2018-08-21)
+
+ Hardware check
+ * Hardware support (CPU microcode) for mitigation techniques
+   * Indirect Branch Restricted Speculation (IBRS)
+     * SPEC_CTRL MSR is available: (debug) attempted to load module msr,
+ insmod_msr=1
+ (debug) read_msr: using perl
+ (debug) read_msr: MSR=0x48 value is                     0
+  YES
+     * CPU indicates IBRS capability: (debug) cpuid: leaf7 on cpu0, eax-
+ ebx-ecx-edx:           0          0          0  469762048
+ (debug) cpuid: wanted register (4) has value 469762048 aka 1c000000
+ (debug) cpuid: shifted value by 26 is 7 aka 7
+ (debug) cpuid: after AND 1, final value is 1 aka 1
+ (debug) cpuid: wanted 1 and got 1
+  YES  (SPEC_CTRL feature bit)
+   * Indirect Branch Prediction Barrier (IBPB)
+     * PRED_CMD MSR is available: (debug) write_msr: using perl
+ (debug) write_msr: for cpu 0 on msr 73, ret=0
+  YES
+     * CPU indicates IBPB capability:  YES  (SPEC_CTRL feature bit)
+   * Single Thread Indirect Branch Predictors (STIBP)
+     * SPEC_CTRL MSR is available:  YES
+     * CPU indicates STIBP capability: (debug) cpuid: leaf7 on cpu0, eax-
+ ebx-ecx-edx:           0          0          0  469762048
+ (debug) cpuid: wanted register (4) has value 469762048 aka 1c000000
+ (debug) cpuid: shifted value by 27 is 3 aka 3
+ (debug) cpuid: after AND 1, final value is 1 aka 1
+ (debug) cpuid: wanted 1 and got 1
+  YES  (Intel STIBP feature bit)
+   * Speculative Store Bypass Disable (SSBD)
+     * CPU indicates SSBD capability: (debug) cpuid: leaf7 on cpu0, eax-
+ ebx-ecx-edx:           0          0          0  469762048
+ (debug) cpuid: wanted register (4) has value 469762048 aka 1c000000
+ (debug) cpuid: shifted value by 31 is 0 aka 0
+ (debug) cpuid: after AND 1, final value is 0 aka 0
+ (debug) cpuid: wanted 1 and got 0
+  NO
+   * Enhanced IBRS (IBRS_ALL)
+     * CPU indicates ARCH_CAPABILITIES MSR availability: (debug) cpuid:
+ leaf7 on cpu0, eax-ebx-ecx-edx:           0          0          0
+ 469762048
+ (debug) cpuid: wanted register (4) has value 469762048 aka 1c000000
+ (debug) cpuid: shifted value by 29 is 0 aka 0
+ (debug) cpuid: after AND 1, final value is 0 aka 0
+ (debug) cpuid: wanted 1 and got 0
+  NO
+     * ARCH_CAPABILITIES MSR advertises IBRS_ALL capability:  NO
+   * CPU explicitly indicates not being vulnerable to Meltdown (RDCL_NO):
+ NO
+   * CPU explicitly indicates not being vulnerable to Variant 4 (SSB_NO):
+ NO
+   * Hypervisor indicates host CPU might be vulnerable to RSB underflow
+ (RSBA):  NO
+   * CPU microcode is known to cause stability problems: (debug)
+ is_ucode_blacklisted: no (37/5/0x616)
+  NO  (model 0x25 family 0x6 stepping 0x5 ucode 0x616 cpuid 0x20655)
+ * CPU vulnerability to the speculative execution attack variants
+   * Vulnerable to Variant 1: (debug) is_cpu_vulnerable: temp results are
+ &lt;&gt; &lt;&gt; &lt;&gt; &lt;&gt; &lt;&gt;
+ (debug) is_cpu_vulnerable: final results are &lt;0&gt; &lt;0&gt; &lt;0&gt; &lt;0&gt; &lt;0&gt;
+  YES
+   * Vulnerable to Variant 2:  YES
+   * Vulnerable to Variant 3:  YES
+   * Vulnerable to Variant 3a:  YES
+   * Vulnerable to Variant 4:  YES
+
+ CVE-2017-5753 [bounds check bypass] aka 'Spectre Variant 1'
+ * Mitigated according to the /sys interface:  YES  (Mitigation: __user
+ pointer sanitization)
+ (debug) sys_interface_check:
+ /sys/devices/system/cpu/vulnerabilities/spectre_v1=Mitigation: __user
+ pointer sanitization
+ * Kernel has array_index_mask_nospec:  YES  (1 occurrence(s) found of x86
+ 64 bits array_index_mask_nospec())
+ * Kernel has the Red Hat/Ubuntu patch:  NO
+ * Kernel has mask_nospec64 (arm64):  NO
+ * Checking count of LFENCE instructions following a jump in kernel...  NO
+ (only 3 jump-then-lfence instructions found, should be &gt;= 30 (heuristic))
+ &gt; STATUS:  NOT VULNERABLE  (Mitigation: __user pointer sanitization)
+
+ CVE-2017-5715 [branch target injection] aka 'Spectre Variant 2'
+ * Mitigated according to the /sys interface:  YES  (Mitigation: Full
+ generic retpoline, IBPB, IBRS_FW)
+ (debug) sys_interface_check:
+ /sys/devices/system/cpu/vulnerabilities/spectre_v2=Mitigation: Full
+ generic retpoline, IBPB, IBRS_FW
+ * Mitigation 1
+ (debug) ibrs: /sys/kernel/debug/ibrs_enabled file doesn't exist
+ (debug) ibrs: /sys/kernel/debug/x86/ibrs_enabled file doesn't exist
+ (debug) ibrs: /proc/sys/kernel/ibrs_enabled file doesn't exist
+ (debug) ibpb: found enabled in sysfs
+ (debug) ibrs: found IBRS_FW in sysfs
+ (debug) ibrs: found IBRS in sysfs
+   * Kernel is compiled with IBRS support:  YES  (found IBRS_FW in sysfs)
+     * IBRS enabled and active:  YES  (for kernel and firmware code)
+   * Kernel is compiled with IBPB support:  YES  (IBPB found enabled in
+ sysfs)
+     * IBPB enabled and active:  YES
+ * Mitigation 2
+   * Kernel has branch predictor hardening (arm):  NO
+   * Kernel compiled with retpoline option:  YES
+ (debug) retpoline: found CONFIG_RETPOLINE=y in /boot/config-4.9.0-8-amd64
+     * Kernel compiled with a retpoline-aware compiler:  YES  (kernel
+ reports full retpoline compilation)
+     * Local gcc is retpoline-aware:  YES
+   * Kernel supports RSB filling:  YES
+ &gt; STATUS:  NOT VULNERABLE  (Full retpoline + IBPB are mitigating the
+ vulnerability)
+
+ CVE-2017-5754 [rogue data cache load] aka 'Meltdown' aka 'Variant 3'
+ * Mitigated according to the /sys interface:  YES  (Mitigation: PTI)
+ (debug) sys_interface_check:
+ /sys/devices/system/cpu/vulnerabilities/meltdown=Mitigation: PTI
+ * Kernel supports Page Table Isolation (PTI): (debug) kpti_support: found
+ option 'CONFIG_PAGE_TABLE_ISOLATION=y' in /boot/config-4.9.0-8-amd64
+  YES  (found 'CONFIG_PAGE_TABLE_ISOLATION=y')
+   * PTI enabled and active: (debug) kpti_enabled: found 'kaiser' flag in
+ /proc/cpuinfo
+  YES
+   * Reduced performance impact of PTI: (debug) cpuid: leaf1 on cpu0, eax-
+ ebx-ecx-edx:      132693       2048 2151154185  126614527
+ (debug) cpuid: wanted register (3) has value 2151154185 aka 80380209
+ (debug) cpuid: shifted value by 17 is 16412 aka 401c
+ (debug) cpuid: after AND 1, final value is 0 aka 0
+ (debug) cpuid: wanted 1 and got 0
+ (debug) cpuid: leaf7 on cpu0, eax-ebx-ecx-edx:           0          0
+ 0  469762048
+ (debug) cpuid: wanted register (2) has value 0 aka 00000000
+ (debug) cpuid: shifted value by 10 is 0 aka 0
+ (debug) cpuid: after AND 1, final value is 0 aka 0
+ (debug) cpuid: wanted 1 and got 0
+  NO  (PCID/INVPCID not supported, performance impact of PTI will be
+ significant)
+ * Running as a Xen PV DomU:  NO
+ &gt; STATUS:  NOT VULNERABLE  (Mitigation: PTI)
+
+ CVE-2018-3640 [rogue system register read] aka 'Variant 3a'
+ * CPU microcode mitigates the vulnerability:  NO
+ &gt; STATUS:  VULNERABLE  (an up-to-date CPU microcode is needed to mitigate
+ this vulnerability)
+
+ CVE-2018-3639 [speculative store bypass] aka 'Variant 4'
+ * Mitigated according to the /sys interface:  NO  (Vulnerable)
+ (debug) sys_interface_check:
+ /sys/devices/system/cpu/vulnerabilities/spec_store_bypass=Vulnerable
+ * Kernel supports speculation store bypass: (debug) found
+ Speculation.Store.Bypass: in /proc/self/status
+  YES  (found in /proc/self/status)
+ &gt; STATUS:  VULNERABLE  (Your CPU doesn't support SSBD)
+
+ (debug) variables at end of script:
+ '|bp_harden=''|bp_harden_can_tell='1'|capabilities_ibrs_all='0'|capabilities_rdcl_no='0'|capabilities_rsba='0'|capabilities_ssb_no='0'|cpu_family='6'|cpu_friendly_name='Intel(R)
+ Core(TM) i5 CPU       M 580  @
+ 2.67GHz'|cpuid='132693'|cpuid_arch_capabilities='0'|cpuid_ibpb='SPEC_CTRL'|cpuid_ibrs='SPEC_CTRL'|cpuid_spec_ctrl='1'|cpu_mismatch='0'|cpu_model='37'|cpu_stepping='5'|cpu_ucode='0x616'|cpu_ucode_decimal='1558'|cpu_vendor='GenuineIntel'|cve='CVE-2018-3639'|dir='/proc/sys/kernel'|dmesg_grep='Kernel/User
+ page tables isolation: enabled|Kernel page table isolation
+ enabled|x86/pti: Unmapping kernel while in
+ userspace'|echo_cmd_type='printf'|echo_cmd='/usr/bin/printf'|global_critical='1'|global_unknown='0'|i='0'|ibpb_can_tell='0'|ibpb_enabled='1'|ibpb_supported='IBPB
+ found enabled in
+ sysfs'|ibrs_can_tell='1'|ibrs_enabled='3'|ibrs_fw_enabled='1'|ibrs_supported='found
+ IBRS_FW in
+ sysfs'|idx_max_cpu='0'|insmod_cpuid='1'|insmod_msr='1'|is_cpu_vulnerable_cached='1'|kernel_err=''|kernel_ssb='found
+ in /proc/self/status'|kernel='/tmp/kernel-28LvlW'|kerneltmp='/tmp/kernel-
+ 28LvlW'|kernel_version='Linux version 4.9.0-8-amd64 (debian-
+ <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">kernel at lists.debian.org</A>) (gcc version 6.3.0 20170516 (Debian
+ 6.3.0-18+deb9u1) ) #1 SMP Debian 4.9.110-3+deb9u4
+ (2018-08-21)'|kpti_can_tell='1'|kpti_enabled='1'|kpti_support='CONFIG_PAGE_TABLE_ISOLATION=y'|mode=''|model='45'|msg='Vulnerable'|n='1'|nb_lfence='3'|ncpus='1'|nrpe_vuln=''|opt=''|opt_allvariants='1'|opt_arch_prefix=''|opt_batch='0'|opt_batch_format='text'|opt_config='/boot/config-4.9.0-8-amd64'|opt_coreos='0'|opt_explain='0'|opt_hw_only='0'|opt_kernel='/boot/vmlinuz-4.9.0-8-amd64'|opt_live='1'|opt_live_explicit='0'|opt_map='/proc/kallsyms'|opt_no_color='0'|opt_no_hw='0'|opt_no_sysfs='0'|opt_paranoid='1'|opt_sysfs_only='0'|opt_variant1='0'|opt_variant2='0'|opt_variant3='0'|opt_variant3a='0'|opt_variant4='0'|opt_verbose='4'|os='Linux'|parse_cpu_details_done='1'|pos='18357'|procfs='/proc'|pvulnstatus_last_cve='CVE-2018-3639'|read_cpuid_value='0'|read_msr_value='
+ 0'|redhat_canonical_spectre='0'|ret='1'|retpoline='1'|retpoline_compiler='1'|retpoline_compiler_reason='kernel
+ reports full retpoline compilation'|rsb_filling='6Spectre V2 : Spectre v2
+ mitigation: Filling RSB on context
+ switch'|spec_ctrl_msr='1'|status='VULN'|stepping='7'|sys_interface_available='1'|tuple='45,0x07,0x712'|ucode='0x712'|ucode_decimal='1810'|ucode_found='model
+ 0x25 family 0x6 stepping 0x5 ucode 0x616 cpuid
+ 0x20655'|v1_mask_nospec='x86 64 bits
+ array_index_mask_nospec'|v='4'|val='0'|variant1='0'|variant2='0'|variant3='0'|variant3a='0'|variant4='0'|vulnstatus='VULN'|
+ Need more detailed information about mitigation options? Use --explain
+ A false sense of security is worse than no security at all, see
+ --disclaimer
+ <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">root at debian</A>:/home/user#
+ }}}
+
+ vbox log:
+
+ {{{
+ VirtualBox VM 5.2.18_Debian r123745 linux.amd64 (Aug 16 2018 09:19:02)
+ release log
+ 00:00:00.376824 Log opened 2018-09-14T19:03:13.275982000Z
+ 00:00:00.376825 Build Type: release
+ 00:00:00.376830 OS Product: Linux
+ 00:00:00.376831 OS Release: 4.9.0-8-amd64
+ 00:00:00.376832 OS Version: #1 SMP Debian 4.9.110-3+deb9u4 (2018-08-21)
+ 00:00:00.376865 DMI Product Name: 3680LL9
+ 00:00:00.376873 DMI Product Version: ThinkPad X201
+ 00:00:00.376929 Host RAM: 3754MB (3.6GB) total, 3424MB (3.3GB) available
+ 00:00:00.376934 Executable: /usr/lib/virtualbox/VirtualBox
+ 00:00:00.376935 Process ID: 6701
+ 00:00:00.376935 Package type: LINUX_64BITS_GENERIC (OSE)
+ 00:00:00.435574 Installed Extension Packs:
+ 00:00:00.435601   VNC (Version: 5.2.18 r123745; VRDE Module: VBoxVNC)
+ 00:00:00.436970 Console: Machine state changed to 'Starting'
+ 00:00:00.437374 Qt version: 5.7.1
+ 00:00:00.437384 X11 Window Manager code: 0
+ 00:00:00.446611 GUI: UIMediumEnumerator: Medium-enumeration finished!
+ 00:00:00.448948 SUP: Loaded VMMR0.r0 (/usr/lib/virtualbox/VMMR0.r0) at
+ 0xXXXXXXXXXXXXXXXX - ModuleInit at XXXXXXXXXXXXXXXX and ModuleTerm at
+ XXXXXXXXXXXXXXXX
+ 00:00:00.448987 SUP: VMMR0EntryEx located at XXXXXXXXXXXXXXXX and
+ VMMR0EntryFast at XXXXXXXXXXXXXXXX
+ 00:00:00.456270 Guest OS type: 'Debian_64'
+ 00:00:00.460930 fHMForced=true - 64-bit guest
+ 00:00:00.473412 X Server details: vendor: The X.Org Foundation, release:
+ 11902000, protocol version: 11.0, display string: :0.0
+ 00:00:00.473437 Using XKB for keycode to scan code conversion
+ 00:00:00.474517 GUI:
+ UIDesktopWidgetWatchdog::sltHandleHostScreenAvailableGeometryCalculated:
+ Screen 0 work area is actually resized to: 0x0 x 1280x762
+ 00:00:00.482648 File system of '/home/user/VirtualBox VMs/Debian-
+ Tester/Snapshots' (snapshots) is unknown
+ 00:00:00.482676 File system of '/home/user/VirtualBox VMs/Debian-Tester
+ /Debian-Tester.vdi' is ext4
+ 00:00:00.506355 Shared clipboard service loaded
+ 00:00:00.506382 Shared clipboard mode: Off
+ 00:00:00.508003 Drag and drop service loaded
+ 00:00:00.508020 Drag and drop mode: Off
+ 00:00:00.522240 Guest Control service loaded
+ 00:00:00.524624 ************************* CFGM dump
+ *************************
+ 00:00:00.524643 [/] (level 0)
+ 00:00:00.524665   CSAMEnabled       &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524672   CpuExecutionCap   &lt;integer&gt; = 0x0000000000000064 (100)
+ 00:00:00.524673   EnablePAE         &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524674   HMEnabled         &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524675   MemBalloonSize    &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524676   Name              &lt;string&gt;  = &quot;Debian-Tester&quot; (cb=14)
+ 00:00:00.524677   NumCPUs           &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524679   PATMEnabled       &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524680   PageFusionAllowed &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524681   RamHoleSize       &lt;integer&gt; = 0x0000000020000000 (536
+ 870 912, 512 MB)
+ 00:00:00.524682   RamSize           &lt;integer&gt; = 0x00000000ac100000 (2 886
+ 729 728, 2 753 MB, 2.6 GB)
+ 00:00:00.524685   RawR0Enabled      &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524686   RawR3Enabled      &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524687   TimerMillies      &lt;integer&gt; = 0x000000000000000a (10)
+ 00:00:00.524688   UUID              &lt;bytes&gt;   = &quot;05 bb 9c f8 b3 2f 40 4a
+ ba 1d 4f 99 d1 56 2c 79&quot; (cb=16)
+ 00:00:00.524692
+ 00:00:00.524696 [/CPUM/] (level 1)
+ 00:00:00.524698   GuestCpuName       &lt;string&gt;  = &quot;host&quot; (cb=5)
+ 00:00:00.524699   PortableCpuIdLevel &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524700   SpecCtrl           &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524701
+ 00:00:00.524705 [/DBGC/] (level 1)
+ 00:00:00.524706   GlobalInitScript &lt;string&gt;  =
+ &quot;/home/user/.config/VirtualBox/dbgc-init&quot; (cb=40)
+ 00:00:00.524707   HistoryFile      &lt;string&gt;  =
+ &quot;/home/user/.config/VirtualBox/dbgc-history&quot; (cb=43)
+ 00:00:00.524708   LocalInitScript  &lt;string&gt;  = &quot;/home/user/VirtualBox VMs
+ /Debian-Tester/dbgc-init&quot; (cb=50)
+ 00:00:00.524709
+ 00:00:00.524710 [/DBGF/] (level 1)
+ 00:00:00.524711   Path &lt;string&gt;  = &quot;/home/user/VirtualBox VMs/Debian-
+ Tester/debug/;/home/user/VirtualBox VMs/Debian-Tester/;/home/user/&quot;
+ (cb=100)
+ 00:00:00.524711
+ 00:00:00.524712 [/Devices/] (level 1)
+ 00:00:00.524713
+ 00:00:00.524713 [/Devices/8237A/] (level 2)
+ 00:00:00.524715
+ 00:00:00.524715 [/Devices/8237A/0/] (level 3)
+ 00:00:00.524716   Trusted &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524718
+ 00:00:00.524718 [/Devices/GIMDev/] (level 2)
+ 00:00:00.524719
+ 00:00:00.524720 [/Devices/GIMDev/0/] (level 3)
+ 00:00:00.524721   Trusted &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524722
+ 00:00:00.524722 [/Devices/VMMDev/] (level 2)
+ 00:00:00.524724
+ 00:00:00.524724 [/Devices/VMMDev/0/] (level 3)
+ 00:00:00.524726   PCIBusNo      &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524727   PCIDeviceNo   &lt;integer&gt; = 0x0000000000000004 (4)
+ 00:00:00.524728   PCIFunctionNo &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524729   Trusted       &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524730
+ 00:00:00.524730 [/Devices/VMMDev/0/Config/] (level 4)
+ 00:00:00.524732   GuestCoreDumpDir &lt;string&gt;  = &quot;/home/user/VirtualBox VMs
+ /Debian-Tester/Snapshots&quot; (cb=50)
+ 00:00:00.524733
+ 00:00:00.524733 [/Devices/VMMDev/0/LUN#0/] (level 4)
+ 00:00:00.524735   Driver &lt;string&gt;  = &quot;HGCM&quot; (cb=5)
+ 00:00:00.524736
+ 00:00:00.524736 [/Devices/VMMDev/0/LUN#0/Config/] (level 5)
+ 00:00:00.524738   Object &lt;integer&gt; = 0x00007f6464000910 (140 069 151 181
+ 072)
+ 00:00:00.524739
+ 00:00:00.524740 [/Devices/VMMDev/0/LUN#999/] (level 4)
+ 00:00:00.524741   Driver &lt;string&gt;  = &quot;MainStatus&quot; (cb=11)
+ 00:00:00.524742
+ 00:00:00.524743 [/Devices/VMMDev/0/LUN#999/Config/] (level 5)
+ 00:00:00.524744   First   &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524745   Last    &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524746   papLeds &lt;integer&gt; = 0x00007f6488001968 (140 069 755 165
+ 032)
+ 00:00:00.524748
+ 00:00:00.524748 [/Devices/acpi/] (level 2)
+ 00:00:00.524750
+ 00:00:00.524750 [/Devices/acpi/0/] (level 3)
+ 00:00:00.524752   PCIBusNo      &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524753   PCIDeviceNo   &lt;integer&gt; = 0x0000000000000007 (7)
+ 00:00:00.524754   PCIFunctionNo &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524754   Trusted       &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524755
+ 00:00:00.524756 [/Devices/acpi/0/Config/] (level 4)
+ 00:00:00.524758   CpuHotPlug          &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524759   FdcEnabled          &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524760   HostBusPciAddress   &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524761   HpetEnabled         &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524762   IOAPIC              &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524763   IocPciAddress       &lt;integer&gt; = 0x0000000000010000 (65
+ 536)
+ 00:00:00.524764   NumCPUs             &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524765   Parallel0IoPortBase &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524766   Parallel0Irq        &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524767   Parallel1IoPortBase &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524768   Parallel1Irq        &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524769   Serial0IoPortBase   &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524769   Serial0Irq          &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524770   Serial1IoPortBase   &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524771   Serial1Irq          &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524772   ShowCpu             &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524773   ShowRtc             &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524774   SmcEnabled          &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524775
+ 00:00:00.524776 [/Devices/acpi/0/LUN#0/] (level 4)
+ 00:00:00.524777   Driver &lt;string&gt;  = &quot;ACPIHost&quot; (cb=9)
+ 00:00:00.524778
+ 00:00:00.524778 [/Devices/acpi/0/LUN#0/Config/] (level 5)
+ 00:00:00.524780
+ 00:00:00.524780 [/Devices/ahci/] (level 2)
+ 00:00:00.524781
+ 00:00:00.524782 [/Devices/ahci/0/] (level 3)
+ 00:00:00.524783   PCIBusNo      &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524784   PCIDeviceNo   &lt;integer&gt; = 0x000000000000000d (13)
+ 00:00:00.524786   PCIFunctionNo &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524786   Trusted       &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524787
+ 00:00:00.524788 [/Devices/ahci/0/Config/] (level 4)
+ 00:00:00.524789   Bootable  &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524790   PortCount &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524791
+ 00:00:00.524791 [/Devices/ahci/0/Config/Port0/] (level 5)
+ 00:00:00.524793   Hotpluggable &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524794
+ 00:00:00.524794 [/Devices/ahci/0/LUN#0/] (level 4)
+ 00:00:00.524796   Driver &lt;string&gt;  = &quot;VD&quot; (cb=3)
+ 00:00:00.524797
+ 00:00:00.524797 [/Devices/ahci/0/LUN#0/Config/] (level 5)
+ 00:00:00.524799   BlockCache &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524800   Format     &lt;string&gt;  = &quot;VDI&quot; (cb=4)
+ 00:00:00.524801   Mountable  &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524802   Path       &lt;string&gt;  = &quot;/home/user/VirtualBox VMs
+ /Debian-Tester/Debian-Tester.vdi&quot; (cb=58)
+ 00:00:00.524803   Type       &lt;string&gt;  = &quot;HardDisk&quot; (cb=9)
+ 00:00:00.524804   UseNewIo   &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524805
+ 00:00:00.524805 [/Devices/ahci/0/LUN#999/] (level 4)
+ 00:00:00.524807   Driver &lt;string&gt;  = &quot;MainStatus&quot; (cb=11)
+ 00:00:00.524808
+ 00:00:00.524808 [/Devices/ahci/0/LUN#999/Config/] (level 5)
+ 00:00:00.524810   DeviceInstance        &lt;string&gt;  = &quot;ahci/0&quot; (cb=7)
+ 00:00:00.524811   First                 &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524812   Last                  &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524813   pConsole              &lt;integer&gt; = 0x00007f6488001180
+ (140 069 755 163 008)
+ 00:00:00.524815   papLeds               &lt;integer&gt; = 0x00007f6488001568
+ (140 069 755 164 008)
+ 00:00:00.524817   pmapMediumAttachments &lt;integer&gt; = 0x00007f6488001988
+ (140 069 755 165 064)
+ 00:00:00.524818
+ 00:00:00.524819 [/Devices/apic/] (level 2)
+ 00:00:00.524820
+ 00:00:00.524821 [/Devices/apic/0/] (level 3)
+ 00:00:00.524822   Trusted &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524823
+ 00:00:00.524823 [/Devices/apic/0/Config/] (level 4)
+ 00:00:00.524825   IOAPIC  &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524826   Mode    &lt;integer&gt; = 0x0000000000000003 (3)
+ 00:00:00.524827   NumCPUs &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524828
+ 00:00:00.524828 [/Devices/e1000/] (level 2)
+ 00:00:00.524829
+ 00:00:00.524830 [/Devices/e1000/0/] (level 3)
+ 00:00:00.524831   PCIBusNo      &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524832   PCIDeviceNo   &lt;integer&gt; = 0x0000000000000003 (3)
+ 00:00:00.524833   PCIFunctionNo &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524834   Trusted       &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524835
+ 00:00:00.524835 [/Devices/e1000/0/Config/] (level 4)
+ 00:00:00.524837   AdapterType    &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524838   CableConnected &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524838   LineSpeed      &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524839   MAC            &lt;bytes&gt;   = &quot;08 00 27 c4 70 22&quot; (cb=6)
+ 00:00:00.524841
+ 00:00:00.524842 [/Devices/e1000/0/LUN#0/] (level 4)
+ 00:00:00.524843   Driver &lt;string&gt;  = &quot;NAT&quot; (cb=4)
+ 00:00:00.524844
+ 00:00:00.524845 [/Devices/e1000/0/LUN#0/Config/] (level 5)
+ 00:00:00.524847   AliasMode       &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524848   BootFile        &lt;string&gt;  = &quot;Debian-Tester.pxe&quot; (cb=18)
+ 00:00:00.524849   DNSProxy        &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524850   Network         &lt;string&gt;  = &quot;10.0.2.0/24&quot; (cb=12)
+ 00:00:00.524851   PassDomain      &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524852   TFTPPrefix      &lt;string&gt;  =
+ &quot;/home/user/.config/VirtualBox/TFTP&quot; (cb=35)
+ 00:00:00.524853   UseHostResolver &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524854
+ 00:00:00.524854 [/Devices/e1000/0/LUN#999/] (level 4)
+ 00:00:00.524856   Driver &lt;string&gt;  = &quot;MainStatus&quot; (cb=11)
+ 00:00:00.524856
+ 00:00:00.524857 [/Devices/e1000/0/LUN#999/Config/] (level 5)
+ 00:00:00.524858   First   &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524859   Last    &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524860   papLeds &lt;integer&gt; = 0x00007f6488001848 (140 069 755 164
+ 744)
+ 00:00:00.524862
+ 00:00:00.524862 [/Devices/i8254/] (level 2)
+ 00:00:00.524864
+ 00:00:00.524864 [/Devices/i8254/0/] (level 3)
+ 00:00:00.524865
+ 00:00:00.524866 [/Devices/i8254/0/Config/] (level 4)
+ 00:00:00.524867
+ 00:00:00.524868 [/Devices/i8259/] (level 2)
+ 00:00:00.524869
+ 00:00:00.524869 [/Devices/i8259/0/] (level 3)
+ 00:00:00.524870   Trusted &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524871
+ 00:00:00.524872 [/Devices/i8259/0/Config/] (level 4)
+ 00:00:00.524873
+ 00:00:00.524873 [/Devices/ichac97/] (level 2)
+ 00:00:00.524875
+ 00:00:00.524875 [/Devices/ichac97/0/] (level 3)
+ 00:00:00.524877   PCIBusNo      &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524878   PCIDeviceNo   &lt;integer&gt; = 0x0000000000000005 (5)
+ 00:00:00.524879   PCIFunctionNo &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524880   Trusted       &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524881
+ 00:00:00.524881 [/Devices/ichac97/0/AudioConfig/] (level 4)
+ 00:00:00.524882
+ 00:00:00.524883 [/Devices/ichac97/0/Config/] (level 4)
+ 00:00:00.524884   Codec &lt;string&gt;  = &quot;AD1980&quot; (cb=7)
+ 00:00:00.524885
+ 00:00:00.524886 [/Devices/ichac97/0/LUN#0/] (level 4)
+ 00:00:00.524887   Driver &lt;string&gt;  = &quot;AUDIO&quot; (cb=6)
+ 00:00:00.524888
+ 00:00:00.524888 [/Devices/ichac97/0/LUN#0/AttachedDriver/] (level 5)
+ 00:00:00.524890   Driver &lt;string&gt;  = &quot;PulseAudio&quot; (cb=11)
+ 00:00:00.524891
+ 00:00:00.524891 [/Devices/ichac97/0/LUN#0/AttachedDriver/Config/] (level
+ 6)
+ 00:00:00.524893   StreamName &lt;string&gt;  = &quot;Debian-Tester&quot; (cb=14)
+ 00:00:00.524894
+ 00:00:00.524894 [/Devices/ichac97/0/LUN#0/Config/] (level 5)
+ 00:00:00.524896   DebugEnabled  &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524897   DebugPathOut  &lt;string&gt;  = &quot;&quot; (cb=1)
+ 00:00:00.524898   DriverName    &lt;string&gt;  = &quot;PulseAudio&quot; (cb=11)
+ 00:00:00.524898   InputEnabled  &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524899   OutputEnabled &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524900
+ 00:00:00.524900 [/Devices/ichac97/0/LUN#1/] (level 4)
+ 00:00:00.524902   Driver &lt;string&gt;  = &quot;AUDIO&quot; (cb=6)
+ 00:00:00.524903
+ 00:00:00.524903 [/Devices/ichac97/0/LUN#1/AttachedDriver/] (level 5)
+ 00:00:00.524905   Driver &lt;string&gt;  = &quot;AudioVRDE&quot; (cb=10)
+ 00:00:00.524906
+ 00:00:00.524906 [/Devices/ichac97/0/LUN#1/AttachedDriver/Config/] (level
+ 6)
+ 00:00:00.524908   Object           &lt;integer&gt; = 0x00007f6488005fd0 (140 069
+ 755 183 056)
+ 00:00:00.524909   ObjectVRDPServer &lt;integer&gt; = 0x00007f64880060b0 (140 069
+ 755 183 280)
+ 00:00:00.524911   StreamName       &lt;string&gt;  = &quot;Debian-Tester&quot; (cb=14)
+ 00:00:00.524912
+ 00:00:00.524912 [/Devices/ichac97/0/LUN#1/Config/] (level 5)
+ 00:00:00.524914   DebugEnabled  &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524915   DebugPathOut  &lt;string&gt;  = &quot;&quot; (cb=1)
+ 00:00:00.524916   DriverName    &lt;string&gt;  = &quot;AudioVRDE&quot; (cb=10)
+ 00:00:00.524917   InputEnabled  &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524917   OutputEnabled &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524918
+ 00:00:00.524919 [/Devices/ioapic/] (level 2)
+ 00:00:00.524920
+ 00:00:00.524920 [/Devices/ioapic/0/] (level 3)
+ 00:00:00.524922   Trusted &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524923
+ 00:00:00.524923 [/Devices/ioapic/0/Config/] (level 4)
+ 00:00:00.524925   NumCPUs &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524926
+ 00:00:00.524926 [/Devices/mc146818/] (level 2)
+ 00:00:00.524927
+ 00:00:00.524928 [/Devices/mc146818/0/] (level 3)
+ 00:00:00.524929
+ 00:00:00.524930 [/Devices/mc146818/0/Config/] (level 4)
+ 00:00:00.524931   UseUTC &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524932
+ 00:00:00.524932 [/Devices/parallel/] (level 2)
+ 00:00:00.524934
+ 00:00:00.524934 [/Devices/pcarch/] (level 2)
+ 00:00:00.524935
+ 00:00:00.524936 [/Devices/pcarch/0/] (level 3)
+ 00:00:00.524937   Trusted &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524938
+ 00:00:00.524938 [/Devices/pcarch/0/Config/] (level 4)
+ 00:00:00.524939
+ 00:00:00.524940 [/Devices/pcbios/] (level 2)
+ 00:00:00.524941
+ 00:00:00.524942 [/Devices/pcbios/0/] (level 3)
+ 00:00:00.524943   Trusted &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524944
+ 00:00:00.524945 [/Devices/pcbios/0/Config/] (level 4)
+ 00:00:00.524947   APIC               &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524948   BootDevice0        &lt;string&gt;  = &quot;FLOPPY&quot; (cb=7)
+ 00:00:00.524949   BootDevice1        &lt;string&gt;  = &quot;DVD&quot; (cb=4)
+ 00:00:00.524950   BootDevice2        &lt;string&gt;  = &quot;IDE&quot; (cb=4)
+ 00:00:00.524951   BootDevice3        &lt;string&gt;  = &quot;NONE&quot; (cb=5)
+ 00:00:00.524952   FloppyDevice       &lt;string&gt;  = &quot;i82078&quot; (cb=7)
+ 00:00:00.524952   HardDiskDevice     &lt;string&gt;  = &quot;piix3ide&quot; (cb=9)
+ 00:00:00.524953   IOAPIC             &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524954   McfgBase           &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524955   McfgLength         &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524956   NumCPUs            &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524957   PXEDebug           &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524958   SataHardDiskDevice &lt;string&gt;  = &quot;ahci&quot; (cb=5)
+ 00:00:00.524959   SataLUN1           &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524960   UUID               &lt;bytes&gt;   = &quot;05 bb 9c f8 b3 2f 40 4a
+ ba 1d 4f 99 d1 56 2c 79&quot; (cb=16)
+ 00:00:00.524963
+ 00:00:00.524964 [/Devices/pcbios/0/Config/NetBoot/] (level 5)
+ 00:00:00.524965
+ 00:00:00.524966 [/Devices/pcbios/0/Config/NetBoot/0/] (level 6)
+ 00:00:00.524968   NIC           &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524969   PCIBusNo      &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524969   PCIDeviceNo   &lt;integer&gt; = 0x0000000000000003 (3)
+ 00:00:00.524970   PCIFunctionNo &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.524971
+ 00:00:00.524972 [/Devices/pci/] (level 2)
+ 00:00:00.524973
+ 00:00:00.524974 [/Devices/pci/0/] (level 3)
+ 00:00:00.524975   Trusted &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524976
+ 00:00:00.524976 [/Devices/pci/0/Config/] (level 4)
+ 00:00:00.524978   IOAPIC &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524978
+ 00:00:00.524979 [/Devices/pcibridge/] (level 2)
+ 00:00:00.524980
+ 00:00:00.524981 [/Devices/pckbd/] (level 2)
+ 00:00:00.524982
+ 00:00:00.524982 [/Devices/pckbd/0/] (level 3)
+ 00:00:00.524983   Trusted &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.524984
+ 00:00:00.524985 [/Devices/pckbd/0/Config/] (level 4)
+ 00:00:00.524986
+ 00:00:00.524987 [/Devices/pckbd/0/LUN#0/] (level 4)
+ 00:00:00.524988   Driver &lt;string&gt;  = &quot;KeyboardQueue&quot; (cb=14)
+ 00:00:00.524989
+ 00:00:00.524989 [/Devices/pckbd/0/LUN#0/AttachedDriver/] (level 5)
+ 00:00:00.524991   Driver &lt;string&gt;  = &quot;MainKeyboard&quot; (cb=13)
+ 00:00:00.524992
+ 00:00:00.524992 [/Devices/pckbd/0/LUN#0/AttachedDriver/Config/] (level 6)
+ 00:00:00.524994   Object &lt;integer&gt; = 0x00007f648800dbd0 (140 069 755 214
+ 800)
+ 00:00:00.524995
+ 00:00:00.524996 [/Devices/pckbd/0/LUN#0/Config/] (level 5)
+ 00:00:00.524997   QueueSize &lt;integer&gt; = 0x0000000000000040 (64)
+ 00:00:00.524998
+ 00:00:00.524999 [/Devices/pckbd/0/LUN#1/] (level 4)
+ 00:00:00.525000   Driver &lt;string&gt;  = &quot;MouseQueue&quot; (cb=11)
+ 00:00:00.525001
+ 00:00:00.525001 [/Devices/pckbd/0/LUN#1/AttachedDriver/] (level 5)
+ 00:00:00.525003   Driver &lt;string&gt;  = &quot;MainMouse&quot; (cb=10)
+ 00:00:00.525004
+ 00:00:00.525004 [/Devices/pckbd/0/LUN#1/AttachedDriver/Config/] (level 6)
+ 00:00:00.525006   Object &lt;integer&gt; = 0x00007f648800e3d0 (140 069 755 216
+ 848)
+ 00:00:00.525007
+ 00:00:00.525008 [/Devices/pckbd/0/LUN#1/Config/] (level 5)
+ 00:00:00.525010   QueueSize &lt;integer&gt; = 0x0000000000000080 (128)
+ 00:00:00.525011
+ 00:00:00.525011 [/Devices/pcnet/] (level 2)
+ 00:00:00.525012
+ 00:00:00.525013 [/Devices/piix3ide/] (level 2)
+ 00:00:00.525014
+ 00:00:00.525014 [/Devices/piix3ide/0/] (level 3)
+ 00:00:00.525016   PCIBusNo      &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525017   PCIDeviceNo   &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525018   PCIFunctionNo &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525019   Trusted       &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525020
+ 00:00:00.525020 [/Devices/piix3ide/0/Config/] (level 4)
+ 00:00:00.525021   Type &lt;string&gt;  = &quot;PIIX4&quot; (cb=6)
+ 00:00:00.525022
+ 00:00:00.525023 [/Devices/piix3ide/0/LUN#2/] (level 4)
+ 00:00:00.525024   Driver &lt;string&gt;  = &quot;VD&quot; (cb=3)
+ 00:00:00.525025
+ 00:00:00.525026 [/Devices/piix3ide/0/LUN#2/Config/] (level 5)
+ 00:00:00.525027   EmptyDrive &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525028   Mountable  &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525029   Type       &lt;string&gt;  = &quot;DVD&quot; (cb=4)
+ 00:00:00.525030
+ 00:00:00.525030 [/Devices/piix3ide/0/LUN#999/] (level 4)
+ 00:00:00.525032   Driver &lt;string&gt;  = &quot;MainStatus&quot; (cb=11)
+ 00:00:00.525032
+ 00:00:00.525033 [/Devices/piix3ide/0/LUN#999/Config/] (level 5)
+ 00:00:00.525035   DeviceInstance        &lt;string&gt;  = &quot;piix3ide/0&quot; (cb=11)
+ 00:00:00.525036   First                 &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525037   Last                  &lt;integer&gt; = 0x0000000000000003 (3)
+ 00:00:00.525038   pConsole              &lt;integer&gt; = 0x00007f6488001180
+ (140 069 755 163 008)
+ 00:00:00.525040   papLeds               &lt;integer&gt; = 0x00007f6488001548
+ (140 069 755 163 976)
+ 00:00:00.525042   pmapMediumAttachments &lt;integer&gt; = 0x00007f6488001988
+ (140 069 755 165 064)
+ 00:00:00.525043
+ 00:00:00.525044 [/Devices/serial/] (level 2)
+ 00:00:00.525045
+ 00:00:00.525045 [/Devices/usb-ohci/] (level 2)
+ 00:00:00.525046
+ 00:00:00.525047 [/Devices/usb-ohci/0/] (level 3)
+ 00:00:00.525048   PCIBusNo      &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525049   PCIDeviceNo   &lt;integer&gt; = 0x0000000000000006 (6)
+ 00:00:00.525050   PCIFunctionNo &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525051   Trusted       &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525052
+ 00:00:00.525052 [/Devices/usb-ohci/0/Config/] (level 4)
+ 00:00:00.525054
+ 00:00:00.525054 [/Devices/usb-ohci/0/LUN#0/] (level 4)
+ 00:00:00.525056   Driver &lt;string&gt;  = &quot;VUSBRootHub&quot; (cb=12)
+ 00:00:00.525057
+ 00:00:00.525057 [/Devices/usb-ohci/0/LUN#0/Config/] (level 5)
+ 00:00:00.525059
+ 00:00:00.525059 [/Devices/usb-ohci/0/LUN#999/] (level 4)
+ 00:00:00.525060   Driver &lt;string&gt;  = &quot;MainStatus&quot; (cb=11)
+ 00:00:00.525061
+ 00:00:00.525062 [/Devices/usb-ohci/0/LUN#999/Config/] (level 5)
+ 00:00:00.525063   First   &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525064   Last    &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525065   papLeds &lt;integer&gt; = 0x00007f6488001970 (140 069 755 165
+ 040)
+ 00:00:00.525067
+ 00:00:00.525067 [/Devices/vga/] (level 2)
+ 00:00:00.525068
+ 00:00:00.525069 [/Devices/vga/0/] (level 3)
+ 00:00:00.525070   PCIBusNo      &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525071   PCIDeviceNo   &lt;integer&gt; = 0x0000000000000002 (2)
+ 00:00:00.525072   PCIFunctionNo &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525073   Trusted       &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525074
+ 00:00:00.525074 [/Devices/vga/0/Config/] (level 4)
+ 00:00:00.525076   CustomVideoModes &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525077   FadeIn           &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525078   FadeOut          &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525079   HeightReduction  &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525080   LogoFile         &lt;string&gt;  = &quot;&quot; (cb=1)
+ 00:00:00.525081   LogoTime         &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525082   MonitorCount     &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525083   ShowBootMenu     &lt;integer&gt; = 0x0000000000000002 (2)
+ 00:00:00.525083   VRamSize         &lt;integer&gt; = 0x0000000001000000 (16 777
+ 216, 16 MB)
+ 00:00:00.525085
+ 00:00:00.525086 [/Devices/vga/0/LUN#0/] (level 4)
+ 00:00:00.525087   Driver &lt;string&gt;  = &quot;MainDisplay&quot; (cb=12)
+ 00:00:00.525088
+ 00:00:00.525088 [/Devices/vga/0/LUN#0/Config/] (level 5)
+ 00:00:00.525090   Object &lt;integer&gt; = 0x00007f6488002340 (140 069 755 167
+ 552)
+ 00:00:00.525092
+ 00:00:00.525092 [/Devices/vga/0/LUN#999/] (level 4)
+ 00:00:00.525093   Driver &lt;string&gt;  = &quot;MainStatus&quot; (cb=11)
+ 00:00:00.525094
+ 00:00:00.525095 [/Devices/vga/0/LUN#999/Config/] (level 5)
+ 00:00:00.525096   First   &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525097   Last    &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525098   papLeds &lt;integer&gt; = 0x00007f6488001980 (140 069 755 165
+ 056)
+ 00:00:00.525100
+ 00:00:00.525100 [/Devices/virtio-net/] (level 2)
+ 00:00:00.525101
+ 00:00:00.525102 [/EM/] (level 1)
+ 00:00:00.525103   TripleFaultReset &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525105
+ 00:00:00.525105 [/GIM/] (level 1)
+ 00:00:00.525106   Provider &lt;string&gt;  = &quot;KVM&quot; (cb=4)
+ 00:00:00.525107
+ 00:00:00.525107 [/HM/] (level 1)
+ 00:00:00.525109   64bitEnabled       &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525110   EnableLargePages   &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525111   EnableNestedPaging &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525112   EnableUX           &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525113   EnableVPID         &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525113   Exclusive          &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525114   HMForced           &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525115   IBPBOnVMEntry      &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525116   IBPBOnVMExit       &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525117   L1DFlushOnSched    &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525118   L1DFlushOnVMEntry  &lt;integer&gt; = 0x0000000000000001 (1)
+ 00:00:00.525119   SpecCtrlByHost     &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525120
+ 00:00:00.525120 [/MM/] (level 1)
+ 00:00:00.525121   CanUseLargerHeap &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525122
+ 00:00:00.525122 [/PDM/] (level 1)
+ 00:00:00.525123
+ 00:00:00.525124 [/PDM/AsyncCompletion/] (level 2)
+ 00:00:00.525125
+ 00:00:00.525125 [/PDM/AsyncCompletion/File/] (level 3)
+ 00:00:00.525127
+ 00:00:00.525127 [/PDM/AsyncCompletion/File/BwGroups/] (level 4)
+ 00:00:00.525129
+ 00:00:00.525129 [/PDM/BlkCache/] (level 2)
+ 00:00:00.525130   CacheSize &lt;integer&gt; = 0x0000000000500000 (5 242 880, 5
+ MB)
+ 00:00:00.525132
+ 00:00:00.525132 [/PDM/Devices/] (level 2)
+ 00:00:00.525133
+ 00:00:00.525134 [/PDM/Drivers/] (level 2)
+ 00:00:00.525135
+ 00:00:00.525135 [/PDM/Drivers/VBoxC/] (level 3)
+ 00:00:00.525137   Path &lt;string&gt;  = &quot;/usr/lib/virtualbox/components/VBoxC&quot;
+ (cb=37)
+ 00:00:00.525138
+ 00:00:00.525138 [/PDM/NetworkShaper/] (level 2)
+ 00:00:00.525139
+ 00:00:00.525140 [/PDM/NetworkShaper/BwGroups/] (level 3)
+ 00:00:00.525141
+ 00:00:00.525142 [/TM/] (level 1)
+ 00:00:00.525142   UTCOffset &lt;integer&gt; = 0x0000000000000000 (0)
+ 00:00:00.525143
+ 00:00:00.525144 [/USB/] (level 1)
+ 00:00:00.525145
+ 00:00:00.525145 [/USB/HidMouse/] (level 2)
+ 00:00:00.525146
+ 00:00:00.525147 [/USB/HidMouse/0/] (level 3)
+ 00:00:00.525148
+ 00:00:00.525148 [/USB/HidMouse/0/Config/] (level 4)
+ 00:00:00.525150   Mode &lt;string&gt;  = &quot;absolute&quot; (cb=9)
+ 00:00:00.525150
+ 00:00:00.525151 [/USB/HidMouse/0/LUN#0/] (level 4)
+ 00:00:00.525152   Driver &lt;string&gt;  = &quot;MouseQueue&quot; (cb=11)
+ 00:00:00.525153
+ 00:00:00.525154 [/USB/HidMouse/0/LUN#0/AttachedDriver/] (level 5)
+ 00:00:00.525155   Driver &lt;string&gt;  = &quot;MainMouse&quot; (cb=10)
+ 00:00:00.525156
+ 00:00:00.525156 [/USB/HidMouse/0/LUN#0/AttachedDriver/Config/] (level 6)
+ 00:00:00.525158   Object &lt;integer&gt; = 0x00007f648800e3d0 (140 069 755 216
+ 848)
+ 00:00:00.525160
+ 00:00:00.525160 [/USB/HidMouse/0/LUN#0/Config/] (level 5)
+ 00:00:00.525162   QueueSize &lt;integer&gt; = 0x0000000000000080 (128)
+ 00:00:00.525163
+ 00:00:00.525163 [/USB/USBProxy/] (level 2)
+ 00:00:00.525164
+ 00:00:00.525165 [/USB/USBProxy/GlobalConfig/] (level 3)
+ 00:00:00.525166
+ 00:00:00.525167 ********************* End of CFGM dump
+ **********************
+ 00:00:00.525186 VM: fHMEnabled=true  (configured) fRecompileUser=false
+ fRecompileSupervisor=false
+ 00:00:00.525189 VM: fRawRing1Enabled=false CSAM=true  PATM=true
+ 00:00:00.525379 HM: HMR3Init: VT-x w/ nested paging and unrestricted guest
+ execution hw support
+ 00:00:00.525441 MM: cbHyperHeap=0x100000 (1048576)
+ 00:00:00.526018 CPUM: fXStateHostMask=0x0; initial: 0x0; host XCR0=0x0
+ 00:00:00.526838 CPUM: Matched host CPU INTEL 0x6/0x25/0x5
+ Intel_Core7_Westmere with CPU DB entry 'Intel Core i7-3960X' (INTEL
+ 0x6/0x2d/0x6 Intel_Core7_SandyBridge)
+ 00:00:00.526968 CPUM: MXCSR_MASK=0xffff (host: 0xffff)
+ 00:00:00.526978 CPUM: Disabled PCID without FSGSBASE to workaround buggy
+ guests
+ 00:00:00.526988 CPUM: Microcode revision 0x00000007
+ 00:00:00.526998 CPUM: MSR/CPUID reconciliation insert: 0x0000010b
+ IA32_FLUSH_CMD
+ 00:00:00.527049 CPUM: SetGuestCpuIdFeature: Enabled Speculation Control.
+ 00:00:00.527547 PGM: HCPhysInterPD=00000000952ec000
+ HCPhysInterPaePDPT=00000000952e9000 HCPhysInterPaePML4=00000000952e7000
+ 00:00:00.527561 PGM: apInterPTs={00000000952eb000,00000000952ea000}
+ apInterPaePTs={0000000114099000,0000000119ca2000}
+ apInterPaePDs={0000000119ca3000,000000012ada6000,000000012ada7000,000000011daca000}
+ pInterPaePDPT64=00000000952e8000
+ 00:00:00.527568 PGM: Host paging mode: AMD64+NX
+ 00:00:00.527591 PGM: PGMPool: cMaxPages=1424 (u64MaxPages=1411)
+ 00:00:00.527596 PGM: pgmR3PoolInit: cMaxPages=0x590 cMaxUsers=0xb20
+ cMaxPhysExts=0xb20 fCacheEnable=true
+ 00:00:00.558881 TM: GIP - u32Mode=3 (Invariant) u32UpdateHz=83
+ u32UpdateIntervalNS=12000000 enmUseTscDelta=2 (Pratically Zero)
+ fGetGipCpu=0xb cCpus=2
+ 00:00:00.558937 TM: GIP - u64CpuHz=2 659 997 869 (0x9e8c58ad)
+ SUPGetCpuHzFromGip =&gt; 2 659 997 869
+ 00:00:00.558945 TM: GIP - CPU: iCpuSet=0x0 idCpu=0x0 idApic=0x0
+ iGipCpu=0x1 i64TSCDelta=0 enmState=3 u64CpuHz=2659993725(*) cErrors=0
+ 00:00:00.558951 TM: GIP - CPU: iCpuSet=0x1 idCpu=0x1 idApic=0x4
+ iGipCpu=0x0 i64TSCDelta=0 enmState=3 u64CpuHz=2659997869(*) cErrors=0
+ 00:00:00.559036 TM: cTSCTicksPerSecond=2 659 997 869 (0x9e8c58ad)
+ enmTSCMode=3 (Dynamic)
+ 00:00:00.559038 TM: TSCTiedToExecution=false TSCNotTiedToHalt=false
+ 00:00:00.559413 VMM: CoreCode: R3=00007f64b0000000 R0=XXXXXXXXXXXXXXXX
+ RC=a0c3c000 Phys=000000008b42c000 cb=0x1000
+ 00:00:00.559579 IEM: TargetCpu=CURRENT, Microarch=Intel_Core7_Westmere
+ 00:00:00.559659 GIM: Using provider 'KVM' (Implementation version: 0)
+ 00:00:00.559669 CPUM: SetGuestCpuIdFeature: Enabled Hypervisor Present bit
+ 00:00:00.595013 AIOMgr: Default manager type is 'Async'
+ 00:00:00.595176 AIOMgr: Default file backend is 'NonBuffered'
+ 00:00:00.595466 BlkCache: Cache successfully initialized. Cache size is
+ 5242880 bytes
+ 00:00:00.595488 BlkCache: Cache commit interval is 10000 ms
+ 00:00:00.595499 BlkCache: Cache commit threshold is 2621440 bytes
+ 00:00:00.597369 PcBios: [SMP] BIOS with 1 CPUs
+ 00:00:00.597395 PcBios: Using the 386+ BIOS image.
+ 00:00:00.597544 PcBios: MPS table at 000e1300
+ 00:00:00.597985 PcBios: fCheckShutdownStatusForSoftReset=true
+ fClearShutdownStatusOnHardReset=true
+ 00:00:00.603717 SUP: Loaded VBoxDDR0.r0 (/usr/lib/virtualbox/VBoxDDR0.r0)
+ at 0xXXXXXXXXXXXXXXXX - ModuleInit at XXXXXXXXXXXXXXXX and ModuleTerm at
+ XXXXXXXXXXXXXXXX
+ 00:00:00.603982 CPUM: SetGuestCpuIdFeature: Enabled xAPIC
+ 00:00:00.603990 CPUM: SetGuestCpuIdFeature: Enabled x2APIC
+ 00:00:00.604352 IOAPIC: Using implementation 2.0!
+ 00:00:00.604407 PIT: mode=3 count=0x10000 (65536) - 18.20 Hz (ch=0)
+ 00:00:00.607941 Shared Folders service loaded
+ 00:00:00.614073 VGA: Using the 386+ BIOS image.
+ 00:00:00.614510 DrvVD: Flushes will be ignored
+ 00:00:00.614519 DrvVD: Async flushes will be passed to the disk
+ 00:00:00.617162 VD: VDInit finished with VINF_SUCCESS
+ 00:00:00.617476 AIOMgr: Endpoint for file '/home/user/VirtualBox VMs
+ /Debian-Tester/Debian-Tester.vdi' (flags 000c0723) created successfully
+ 00:00:00.654352 VD: Opening the disk took 37380446 ns
+ 00:00:00.654465 AHCI: LUN#0: disk, PCHS=16383/16/63, total number of
+ sectors 25242768
+ 00:00:00.654693 AHCI#0: Reset the HBA
+ 00:00:00.654714 VD#0: Cancelling all active requests
+ 00:00:00.654988 PIIX3 ATA: LUN#0: no unit
+ 00:00:00.654997 PIIX3 ATA: LUN#1: no unit
+ 00:00:00.655048 DrvVD: Flushes will be ignored
+ 00:00:00.655055 DrvVD: Async flushes will be passed to the disk
+ 00:00:00.655142 PIIX3 ATA: LUN#2: CD/DVD, total number of sectors 0,
+ passthrough disabled
+ 00:00:00.655153 PIIX3 ATA: LUN#3: no unit
+ 00:00:00.655201 PIIX3 ATA: Ctl#0: finished processing RESET
+ 00:00:00.655241 PIIX3 ATA: Ctl#1: finished processing RESET
+ 00:00:00.655346 E1000#0 Chip=82540EM LinkUpDelay=3000ms EthernetCRC=on
+ GSO=enabled Itr=disabled ItrRx=enabled TID=disabled R0=enabled GC=enabled
+ 00:00:00.663726 NAT: Guest address guess set to 10.0.2.15 by
+ initialization
+ 00:00:00.663873 NAT: resolv.conf: nameserver 152.200.55.90
+ 00:00:00.663892 NAT: DNS#0: 152.200.55.90
+ 00:00:00.665120 Audio: Initializing PulseAudio driver
+ 00:00:00.670955 Audio: Initializing VRDE driver
+ 00:00:00.670955 AC97: Reset
+ 00:00:00.670955 VUSB: Attached 'HidMouse' to port 1 on RootHub#0
+ (FullSpeed)
+ 00:00:00.670955 PGM: The CPU physical address width is 36 bits
+ 00:00:00.670955 PGM: PGMR3InitFinalize: 4 MB PSE mask 0000000fffffffff
+ 00:00:00.670955 TM: TMR3InitFinalize: fTSCModeSwitchAllowed=true
+ 00:00:00.677648 VMM: Enabled thread-context hooks
+ 00:00:00.677701 HM: fWorldSwitcher=0x7 (fIbpbOnVmExit=1 fIbpbOnVmEntry=1
+ fL1dFlushOnVmEntry=1); fL1dFlushOnSched=0
+ 00:00:00.677721 HM: Using VT-x implementation 2.0
+ 00:00:00.677722 HM: Host CR4                        = 0x20670
+ 00:00:00.677723 HM: Host EFER                       = 0xd01
+ 00:00:00.677724 HM: MSR_IA32_SMM_MONITOR_CTL        = 0x0
+ 00:00:00.677725 HM: MSR_IA32_FEATURE_CONTROL        = 0x5
+ 00:00:00.677726 HM: MSR_IA32_VMX_BASIC_INFO         = 0xda04000000000f
+ 00:00:00.677727 HM:   VMCS id                         = 0xf
+ 00:00:00.677727 HM:   VMCS size                       = 1024 bytes
+ 00:00:00.677728 HM:   VMCS physical address limit     = None
+ 00:00:00.677729 HM:   VMCS memory type                = 0x6
+ 00:00:00.677730 HM:   Dual-monitor treatment support  = true
+ 00:00:00.677731 HM:   OUTS &amp; INS instruction-info     = true
+ 00:00:00.677731 HM:   Supports true capability MSRs   = true
+ 00:00:00.677732 HM: Max resume loops                = 8192
+ 00:00:00.677732 HM: MSR_IA32_VMX_PINBASED_CTLS      = 0x7f00000016
+ 00:00:00.677734 HM:   EXT_INT_EXIT
+ 00:00:00.677734 HM:   NMI_EXIT
+ 00:00:00.677735 HM:   VIRTUAL_NMI
+ 00:00:00.677735 HM:   PREEMPT_TIMER
+ 00:00:00.677736 HM:   POSTED_INTR (must be cleared)
+ 00:00:00.677737 HM: MSR_IA32_VMX_PROCBASED_CTLS     = 0xfff9fffe0401e172
+ 00:00:00.677738 HM:   INT_WINDOW_EXIT
+ 00:00:00.677739 HM:   USE_TSC_OFFSETTING
+ 00:00:00.677739 HM:   HLT_EXIT
+ 00:00:00.677740 HM:   INVLPG_EXIT
+ 00:00:00.677740 HM:   MWAIT_EXIT
+ 00:00:00.677741 HM:   RDPMC_EXIT
+ 00:00:00.677741 HM:   RDTSC_EXIT
+ 00:00:00.677742 HM:   CR3_LOAD_EXIT (must be set)
+ 00:00:00.677742 HM:   CR3_STORE_EXIT (must be set)
+ 00:00:00.677743 HM:   CR8_LOAD_EXIT
+ 00:00:00.677743 HM:   CR8_STORE_EXIT
+ 00:00:00.677744 HM:   USE_TPR_SHADOW
+ 00:00:00.677744 HM:   NMI_WINDOW_EXIT
+ 00:00:00.677744 HM:   MOV_DR_EXIT
+ 00:00:00.677745 HM:   UNCOND_IO_EXIT
+ 00:00:00.677745 HM:   USE_IO_BITMAPS
+ 00:00:00.677746 HM:   MONITOR_TRAP_FLAG
+ 00:00:00.677746 HM:   USE_MSR_BITMAPS
+ 00:00:00.677747 HM:   MONITOR_EXIT
+ 00:00:00.677747 HM:   PAUSE_EXIT
+ 00:00:00.677748 HM:   USE_SECONDARY_EXEC_CTRL
+ 00:00:00.677749 HM: MSR_IA32_VMX_PROCBASED_CTLS2    = 0xff00000000
+ 00:00:00.677750 HM:   VIRT_APIC
+ 00:00:00.677750 HM:   EPT
+ 00:00:00.677751 HM:   DESCRIPTOR_TABLE_EXIT
+ 00:00:00.677752 HM:   RDTSCP
+ 00:00:00.677752 HM:   VIRT_X2APIC
+ 00:00:00.677753 HM:   VPID
+ 00:00:00.677753 HM:   WBINVD_EXIT
+ 00:00:00.677754 HM:   UNRESTRICTED_GUEST
+ 00:00:00.677754 HM:   APIC_REG_VIRT (must be cleared)
+ 00:00:00.677755 HM:   VIRT_INTR_DELIVERY (must be cleared)
+ 00:00:00.677755 HM:   PAUSE_LOOP_EXIT (must be cleared)
+ 00:00:00.677756 HM:   RDRAND_EXIT (must be cleared)
+ 00:00:00.677756 HM:   INVPCID (must be cleared)
+ 00:00:00.677757 HM:   VMFUNC (must be cleared)
+ 00:00:00.677757 HM:   VMCS_SHADOWING (must be cleared)
+ 00:00:00.677758 HM:   ENCLS_EXIT (must be cleared)
+ 00:00:00.677758 HM:   RDSEED_EXIT (must be cleared)
+ 00:00:00.677759 HM:   PML (must be cleared)
+ 00:00:00.677759 HM:   EPT_VE (must be cleared)
+ 00:00:00.677760 HM:   CONCEAL_FROM_PT (must be cleared)
+ 00:00:00.677760 HM:   XSAVES_XRSTORS (must be cleared)
+ 00:00:00.677761 HM:   TSC_SCALING (must be cleared)
+ 00:00:00.677761 HM: MSR_IA32_VMX_ENTRY_CTLS         = 0xffff000011ff
+ 00:00:00.677762 HM:   LOAD_DEBUG (must be set)
+ 00:00:00.677763 HM:   IA32E_MODE_GUEST
+ 00:00:00.677763 HM:   ENTRY_SMM
+ 00:00:00.677764 HM:   DEACTIVATE_DUALMON
+ 00:00:00.677764 HM:   LOAD_GUEST_PERF_MSR
+ 00:00:00.677765 HM:   LOAD_GUEST_PAT_MSR
+ 00:00:00.677765 HM:   LOAD_GUEST_EFER_MSR
+ 00:00:00.677766 HM: MSR_IA32_VMX_EXIT_CTLS          = 0x7fffff00036dff
+ 00:00:00.677767 HM:   SAVE_DEBUG (must be set)
+ 00:00:00.677767 HM:   HOST_ADDR_SPACE_SIZE
+ 00:00:00.677768 HM:   LOAD_PERF_MSR
+ 00:00:00.677768 HM:   ACK_EXT_INT
+ 00:00:00.677769 HM:   SAVE_GUEST_PAT_MSR
+ 00:00:00.677769 HM:   LOAD_HOST_PAT_MSR
+ 00:00:00.677770 HM:   SAVE_GUEST_EFER_MSR
+ 00:00:00.677770 HM:   LOAD_HOST_EFER_MSR
+ 00:00:00.677771 HM:   SAVE_VMX_PREEMPT_TIMER
+ 00:00:00.677771 HM: MSR_IA32_VMX_EPT_VPID_CAP       = 0xf0106114141
+ 00:00:00.677772 HM:   RWX_X_ONLY
+ 00:00:00.677773 HM:   PAGE_WALK_LENGTH_4
+ 00:00:00.677773 HM:   EMT_UC
+ 00:00:00.677774 HM:   EMT_WB
+ 00:00:00.677774 HM:   PDE_2M
+ 00:00:00.677775 HM:   INVEPT
+ 00:00:00.677775 HM:   INVEPT_SINGLE_CONTEXT
+ 00:00:00.677776 HM:   INVEPT_ALL_CONTEXTS
+ 00:00:00.677776 HM:   INVVPID
+ 00:00:00.677777 HM:   INVVPID_INDIV_ADDR
+ 00:00:00.677777 HM:   INVVPID_SINGLE_CONTEXT
+ 00:00:00.677778 HM:   INVVPID_ALL_CONTEXTS
+ 00:00:00.677778 HM:   INVVPID_SINGLE_CONTEXT_RETAIN_GLOBALS
+ 00:00:00.677779 HM: MSR_IA32_VMX_MISC               = 0x401e7
+ 00:00:00.677779 HM:   PREEMPT_TSC_BIT                 = 0x7 - erratum
+ detected, using 0x0 instead
+ 00:00:00.677780 HM:   STORE_EFERLMA_VMEXIT            = true
+ 00:00:00.677781 HM:   ACTIVITY_STATES                 = 0x7
+ 00:00:00.677781 HM:   CR3_TARGET                      = 0x4
+ 00:00:00.677782 HM:   MAX_MSR                         = 512
+ 00:00:00.677783 HM:   RDMSR_SMBASE_MSR_SMM            = false
+ 00:00:00.677783 HM:   SMM_MONITOR_CTL_B2              = false
+ 00:00:00.677784 HM:   VMWRITE_VMEXIT_INFO             = false
+ 00:00:00.677785 HM:   MSEG_ID                         = 0x0
+ 00:00:00.677785 HM: MSR_IA32_VMX_CR0_FIXED0         = 0x80000021
+ 00:00:00.677786 HM: MSR_IA32_VMX_CR0_FIXED1         = 0xffffffff
+ 00:00:00.677787 HM: MSR_IA32_VMX_CR4_FIXED0         = 0x2000
+ 00:00:00.677788 HM: MSR_IA32_VMX_CR4_FIXED1         = 0x267ff
+ 00:00:00.677788 HM: MSR_IA32_VMX_VMCS_ENUM          = 0x2a
+ 00:00:00.677789 HM:   HIGHEST_INDEX                   = 0x15
+ 00:00:00.677790 HM: APIC-access page physaddr       = 0x000000008b45d000
+ 00:00:00.677791 HM: VCPU  0: MSR bitmap physaddr    = 0x0000000013cf5000
+ 00:00:00.677792 HM: VCPU  0: VMCS physaddr          = 0x000000008b5d9000
+ 00:00:00.677797 HM: Guest support: 32-bit and 64-bit
+ 00:00:00.677802 HM: Supports VMCS EFER fields       = true
+ 00:00:00.677803 HM: Enabled VMX
+ 00:00:00.677810 CPUM: SetGuestCpuIdFeature: Enabled SYSENTER/EXIT
+ 00:00:00.677811 CPUM: SetGuestCpuIdFeature: Enabled PAE
+ 00:00:00.677812 CPUM: SetGuestCpuIdFeature: Enabled LONG MODE
+ 00:00:00.677813 CPUM: SetGuestCpuIdFeature: Enabled SYSCALL/RET
+ 00:00:00.677813 CPUM: SetGuestCpuIdFeature: Enabled LAHF/SAHF
+ 00:00:00.677814 CPUM: SetGuestCpuIdFeature: Enabled NX
+ 00:00:00.677815 HM: Enabled VPID
+ 00:00:00.677815 HM:   VPID flush type               =
+ VMXFLUSHVPID_SINGLE_CONTEXT
+ 00:00:00.677816 HM: Enabled VMX-preemption timer (cPreemptTimerShift=0)
+ 00:00:00.677817 HM: VT-x/AMD-V init method: GLOBAL
+ 00:00:00.677818 VMM: fUsePeriodicPreemptionTimers=false
+ 00:00:00.678528 CPUM: Logical host processors: 2 present, 2 max, 2 online,
+ online mask: 0000000000000003
+ 00:00:00.678565 CPUM: Physical host cores: 2
+ 00:00:00.678566 ************************* CPUID dump
+ ************************
+ 00:00:00.678583          Raw Standard CPUID Leaves
+ 00:00:00.678583      Leaf/sub-leaf  eax      ebx      ecx      edx
+ 00:00:00.678584 Gst: 00000000/0000  0000000b 756e6547 6c65746e 49656e69
+ 00:00:00.678586 Hst:                0000000b 756e6547 6c65746e 49656e69
+ 00:00:00.678588 Gst: 00000001/0000  00020655 00000800 80380209 078bfbff
+ 00:00:00.678589 Hst:                00020655 04100800 029ae3ff bfebfbff
+ 00:00:00.678591 Gst: 00000002/0000  55035a01 00f0b0dd 00000000 09ca212c
+ 00:00:00.678592 Hst:                55035a01 00f0b0dd 00000000 09ca212c
+ 00:00:00.678594 Gst: 00000003/0000  00000000 00000000 00000000 00000000
+ 00:00:00.678595 Hst:                00000000 00000000 00000000 00000000
+ 00:00:00.678596 Gst: 00000004/0000  00000121 01c0003f 0000003f 00000000
+ 00:00:00.678597 Hst:                1c004121 01c0003f 0000003f 00000000
+ 00:00:00.678599 Gst: 00000004/0001  00000122 00c0003f 0000007f 00000000
+ 00:00:00.678600 Hst:                1c004122 00c0003f 0000007f 00000000
+ 00:00:00.678601 Gst: 00000004/0002  00000143 01c0003f 000001ff 00000000
+ 00:00:00.678602 Hst:                1c004143 01c0003f 000001ff 00000000
+ 00:00:00.678604 Gst: 00000004/0003  00000163 02c0003f 00000fff 00000002
+ 00:00:00.678605 Hst:                1c03c163 02c0003f 00000fff 00000002
+ 00:00:00.678606 Gst: 00000004/0004  00000000 00000000 00000000 00000000
+ 00:00:00.678607 Hst:                00000000 00000000 00000000 00000000
+ 00:00:00.678609 Gst: 00000005/0000  00000040 00000040 00000000 00000000
+ 00:00:00.678610 Hst:                00000040 00000040 00000003 00001120
+ 00:00:00.678611 Gst: 00000006/0000  00000000 00000000 00000000 00000000
+ 00:00:00.678612 Hst:                00000007 00000002 00000001 00000000
+ 00:00:00.678613 Gst: 00000007/0000  00000000 00000000 00000000 1c000000
+ 00:00:00.678614 Hst:                00000000 00000000 00000000 9c000000
+ 00:00:00.678615 Gst: 00000007/0001  00000000 00000000 00000000 00000000
+ 00:00:00.678616 Hst:                00000000 00000000 00000000 00000000
+ 00:00:00.678617 Gst: 00000008/0000  00000000 00000000 00000000 00000000
+ 00:00:00.678618 Hst:                00000000 00000000 00000000 00000000
+ 00:00:00.678619 Gst: 00000009/0000  00000000 00000000 00000000 00000000
+ 00:00:00.678620 Hst:                00000000 00000000 00000000 00000000
+ 00:00:00.678621 Gst: 0000000a/0000  00000000 00000000 00000000 00000000
+ 00:00:00.678621 Hst:                07300403 00000004 00000000 00000603
+ 00:00:00.678623 Gst: 0000000b/0000  00000000 00000001 00000100 00000000
+ 00:00:00.678624 Hst:                00000001 00000002 00000100 00000004
+ 00:00:00.678625 Gst: 0000000b/0001  00000001 00000001 00000201 00000000
+ 00:00:00.678626 Hst:                00000004 00000004 00000201 00000004
+ 00:00:00.678627 Gst: 0000000b/0002  00000000 00000000 00000002 00000000
+ 00:00:00.678628 Hst:                00000000 00000000 00000002 00000004
+ 00:00:00.678629                                Name: GenuineIntel
+ 00:00:00.678631                            Supports: 0x00000000-0x0000000b
+ 00:00:00.678633                              Family:  6         Extended:
+ 0     Effective: 6
+ 00:00:00.678634                               Model:  5         Extended:
+ 2     Effective: 37
+ 00:00:00.678635                            Stepping: 5
+ 00:00:00.678636                                Type: 0 (primary)
+ 00:00:00.678638                             APIC ID: 0x00
+ 00:00:00.678639                        Logical CPUs: 0
+ 00:00:00.678640                        CLFLUSH Size: 8
+ 00:00:00.678641                            Brand ID: 0x00
+ 00:00:00.678642 Features
+ 00:00:00.678643   Mnemonic - Description
+ = guest (host)
+ 00:00:00.678644   FPU - x87 FPU on Chip
+ = 1 (1)
+ 00:00:00.678645   VME - Virtual 8086 Mode Enhancements
+ = 1 (1)
+ 00:00:00.678647   DE - Debugging extensions
+ = 1 (1)
+ 00:00:00.678648   PSE - Page Size Extension
+ = 1 (1)
+ 00:00:00.678649   TSC - Time Stamp Counter
+ = 1 (1)
+ 00:00:00.678651   MSR - Model Specific Registers
+ = 1 (1)
+ 00:00:00.678652   PAE - Physical Address Extension
+ = 1 (1)
+ 00:00:00.678653   MCE - Machine Check Exception
+ = 1 (1)
+ 00:00:00.678655   CX8 - CMPXCHG8B instruction
+ = 1 (1)
+ 00:00:00.678656   APIC - APIC On-Chip
+ = 1 (1)
+ 00:00:00.678657   SEP - SYSENTER and SYSEXIT Present
+ = 1 (1)
+ 00:00:00.678658   MTRR - Memory Type Range Registers
+ = 1 (1)
+ 00:00:00.678660   PGE - PTE Global Bit
+ = 1 (1)
+ 00:00:00.678661   MCA - Machine Check Architecture
+ = 1 (1)
+ 00:00:00.678662   CMOV - Conditional Move instructions
+ = 1 (1)
+ 00:00:00.678663   PAT - Page Attribute Table
+ = 1 (1)
+ 00:00:00.678665   PSE-36 - 36-bit Page Size Extension
+ = 1 (1)
+ 00:00:00.678666   PSN - Processor Serial Number
+ = 0 (0)
+ 00:00:00.678667   CLFSH - CLFLUSH instruction
+ = 1 (1)
+ 00:00:00.678668   DS - Debug Store
+ = 0 (1)
+ 00:00:00.678670   ACPI - Thermal Mon. &amp; Soft. Clock Ctrl.
+ = 0 (1)
+ 00:00:00.678671   MMX - Intel MMX Technology
+ = 1 (1)
+ 00:00:00.678672   FXSR - FXSAVE and FXRSTOR instructions
+ = 1 (1)
+ 00:00:00.678673   SSE - SSE support
+ = 1 (1)
+ 00:00:00.678675   SSE2 - SSE2 support
+ = 1 (1)
+ 00:00:00.678676   SS - Self Snoop
+ = 0 (1)
+ 00:00:00.678677   HTT - Hyper-Threading Technology
+ = 0 (1)
+ 00:00:00.678679   TM - Therm. Monitor
+ = 0 (1)
+ 00:00:00.678680   PBE - Pending Break Enabled
+ = 0 (1)
+ 00:00:00.678682   SSE3 - SSE3 support
+ = 1 (1)
+ 00:00:00.678683   PCLMUL - PCLMULQDQ support (for AES-GCM)
+ = 0 (1)
+ 00:00:00.678684   DTES64 - DS Area 64-bit Layout
+ = 0 (1)
+ 00:00:00.678685   MONITOR - MONITOR/MWAIT instructions
+ = 1 (1)
+ 00:00:00.678687   CPL-DS - CPL Qualified Debug Store
+ = 0 (1)
+ 00:00:00.678688   VMX - Virtual Machine Extensions
+ = 0 (1)
+ 00:00:00.678689   SMX - Safer Mode Extensions
+ = 0 (1)
+ 00:00:00.678690   EST - Enhanced SpeedStep Technology
+ = 0 (1)
+ 00:00:00.678691   TM2 - Terminal Monitor 2
+ = 0 (1)
+ 00:00:00.678693   SSSE3 - Supplemental Streaming SIMD Extensions 3
+ = 1 (1)
+ 00:00:00.678694   CNTX-ID - L1 Context ID
+ = 0 (0)
+ 00:00:00.678695   SDBG - Silicon Debug interface
+ = 0 (0)
+ 00:00:00.678696   FMA - Fused Multiply Add extensions
+ = 0 (0)
+ 00:00:00.678698   CX16 - CMPXCHG16B instruction
+ = 0 (1)
+ 00:00:00.678699   TPRUPDATE - xTPR Update Control
+ = 0 (1)
+ 00:00:00.678700   PDCM - Perf/Debug Capability MSR
+ = 0 (1)
+ 00:00:00.678701   PCID - Process Context Identifiers
+ = 0 (1)
+ 00:00:00.678702   DCA - Direct Cache Access
+ = 0 (0)
+ 00:00:00.678704   SSE4_1 - SSE4_1 support
+ = 1 (1)
+ 00:00:00.678705   SSE4_2 - SSE4_2 support
+ = 1 (1)
+ 00:00:00.678706   X2APIC - x2APIC support
+ = 1 (0)
+ 00:00:00.678708   MOVBE - MOVBE instruction
+ = 0 (0)
+ 00:00:00.678709   POPCNT - POPCNT instruction
+ = 0 (1)
+ 00:00:00.678710   TSCDEADL - Time Stamp Counter Deadline
+ = 0 (0)
+ 00:00:00.678711   AES - AES instructions
+ = 0 (1)
+ 00:00:00.678713   XSAVE - XSAVE instruction
+ = 0 (0)
+ 00:00:00.678714   OSXSAVE - OSXSAVE instruction
+ = 0 (0)
+ 00:00:00.678715   AVX - AVX support
+ = 0 (0)
+ 00:00:00.678717   F16C - 16-bit floating point conversion instructions
+ = 0 (0)
+ 00:00:00.678718   RDRAND - RDRAND instruction
+ = 0 (0)
+ 00:00:00.678719   HVP - Hypervisor Present (we're a guest)
+ = 1 (0)
+ 00:00:00.678720 Structured Extended Feature Flags Enumeration (leaf 7):
+ 00:00:00.678721   Mnemonic - Descriptio
+
+-- 
+Ticket URL: &lt;<A HREF="../../../../external.html?link=https://www.virtualbox.org/ticket/17987#comment:6">https://www.virtualbox.org/ticket/17987#comment:6</A>&gt;
+Oracle VM VirtualBox &lt;<A HREF="../../../../external.html?link=https://www.virtualbox.org/">https://www.virtualbox.org/</A>&gt;
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001241.html>[Whonix-devel] [Oracle VM VirtualBox] #17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being installed
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001261.html>[Whonix-devel] [Oracle VM VirtualBox] #17987: VirtualBox 5.2.18 vulnerable to spectre/meltdown despite microcode being installed
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/date.html#1244">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/thread.html#1244">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/subject.html#1244">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/author.html#1244">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001244.html','y7aelHq7wr','IG8Rbdp4sYg',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-September/001244.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-September/001244.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:12 GMT -->
+</HTML>

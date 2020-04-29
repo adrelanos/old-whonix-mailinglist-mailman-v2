@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-November/000237.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] How safe are signed git tags? Only as safe as SHA-1	or somehow safer?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20How%20safe%20are%20signed%20git%20tags%3F%20Only%20as%20safe%20as%20SHA-1%0A%09or%20somehow%20safer%3F&In-Reply-To=%3C5468C33E.2080108%40whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000240.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000245.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1	or somehow safer?</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20How%20safe%20are%20signed%20git%20tags%3F%20Only%20as%20safe%20as%20SHA-1%0A%09or%20somehow%20safer%3F&In-Reply-To=%3C5468C33E.2080108%40whonix.org%3E" TITLE="[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1	or somehow safer?">patrick-mailinglists at whonix.org
+</A><BR>
+<I>Sun Nov 16 16:31:10 CET 2014</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000240.html>[Whonix-devel] [qubes-devel] How safe are signed git tags? Only	as safe as SHA-1 or somehow safer?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000245.html>[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/date.html#237">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/thread.html#237">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/subject.html#237">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/author.html#237">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Hi!
+
+How safe are signed git tags? Especially because git uses SHA-1. There
+is contradictory information around.
+
+So if one verifies a git tag (`git tag -v tagname`), then `checksout`s
+the tag, and checks that `git status` reports no untracked/modified
+files, without further manually auditing the code, how secure is this
+actually? Is it only as safe as SHA-1?
+
+Let's assume an adversary, that is capable of producing SHA-1 collisions.
+
+Linus Torvalds said: [1]
+
+&gt;<i> Git uses SHA-1 not for security
+</i>
+And goes on.
+
+&gt;<i> The security parts are elsewhere
+</i>
+Could you please elaborate on this? Where are the security parts? Can
+you please briefly explain how these work? Where can I read more about this?
+
+Wikipedia says. [2]
+
+&gt;<i> Nonetheless, without second preimage resistance [3] of SHA-1 signed
+</i>commits and tags would no longer secure the state of the repository as
+they only sign the root of a Merkle tree [4].
+
+Which contradicts what Linus Torvalds said. What does that mean for
+security? Which statement is true?
+
+&gt;<i> &quot;The source control management system Git uses SHA-1 not for security
+</i>but for ensuring that the data has not changed due to accidental
+corruption. Linus Torvalds has said, &quot;If you have disk corruption, if
+you have DRAM corruption, if you have any kind of problems at all, Git
+will notice them. It's not a question of if, it's a guarantee. You can
+have people who try to be malicious. They won't succeed. [...] Nobody
+has been able to break SHA-1, but the point is the SHA-1, as far as Git
+is concerned, isn't even a security feature. It's purely a consistency
+check. The security parts are elsewhere, so a lot of people assume that
+since Git uses SHA-1 and SHA-1 is used for cryptographically secure
+stuff, they think that, OK, it's a huge security feature. It has nothing
+at all to do with security, it's just the best hash you can get. [...] I
+guarantee you, if you put your data in Git, you can trust the fact that
+five years later, after it was converted from your hard disk to DVD to
+whatever new technology and you copied it along, five years later you
+can verify that the data you get back out is the exact same data you put
+in. [...] One of the reasons I care is for the kernel, we had a break in
+on one of the BitKeeper sites where people tried to corrupt the kernel
+source code repositories.&quot; [6]
+
+If (!) I understand Mike Gerwitz ([...] GNU [...]) 's opinion, his
+opinion is, that for best security each and every commit should be
+signed for best possible git verification security.
+
+See also:
+
+- Mike Gerwitz's &quot;A Git Horror Story: Repository Integrity With Signed
+Commits&quot; [7]
+
+- Verbose reply by Mike Gerwitz to my question. [8]
+
+- Similar question on security stackexchange. [9] Quote: &quot;Nevertheless,
+If somebody managed to find a way how to find SHA1 collisions easily,
+then git would have much bigger problem.&quot;
+
+Cheers,
+Patrick
+
+[1] <A HREF="../../../../external.html?link=https://www.youtube.com/watch?v=4XpnKHJAok8&amp;t=56m20s">https://www.youtube.com/watch?v=4XpnKHJAok8&amp;t=56m20s</A>
+[2] <A HREF="../../../../external.html?link=https://en.wikipedia.org/wiki/SHA-1#Data_integrity">https://en.wikipedia.org/wiki/SHA-1#Data_integrity</A>
+[3] <A HREF="../../../../external.html?link=https://en.wikipedia.org/wiki/Second_preimage_resistance">https://en.wikipedia.org/wiki/Second_preimage_resistance</A>
+[4] <A HREF="../../../../external.html?link=https://en.wikipedia.org/wiki/Merkle_tree">https://en.wikipedia.org/wiki/Merkle_tree</A>
+[5] <A HREF="../../../../external.html?link=https://www.youtube.com/watch?v=4XpnKHJAok8&amp;t=56m20s">https://www.youtube.com/watch?v=4XpnKHJAok8&amp;t=56m20s</A>
+[6] <A HREF="../../../../external.html?link=https://en.wikipedia.org/wiki/SHA-1#Data_integrity">https://en.wikipedia.org/wiki/SHA-1#Data_integrity</A>
+[7] <A HREF="../../../../external.html?link=http://mikegerwitz.com/papers/git-horror-story">http://mikegerwitz.com/papers/git-horror-story</A>
+[8] <A HREF="../../../../external.html?link=https://www.whonix.org/forum/index.php/topic,538.msg4278.html#msg4278">https://www.whonix.org/forum/index.php/topic,538.msg4278.html#msg4278</A>
+[9]
+<A HREF="../../../../external.html?link=https://security.stackexchange.com/questions/67920/how-safe-are-signed-git-tags-only-as-safe-as-sha-1-or-somehow-safer">https://security.stackexchange.com/questions/67920/how-safe-are-signed-git-tags-only-as-safe-as-sha-1-or-somehow-safer</A>
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000240.html>[Whonix-devel] [qubes-devel] How safe are signed git tags? Only	as safe as SHA-1 or somehow safer?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000245.html>[Whonix-devel] How safe are signed git tags? Only as safe as SHA-1 or somehow safer?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/date.html#237">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/thread.html#237">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/subject.html#237">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/author.html#237">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2014-November/000237.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2014-November/000237.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:58 GMT -->
+</HTML>

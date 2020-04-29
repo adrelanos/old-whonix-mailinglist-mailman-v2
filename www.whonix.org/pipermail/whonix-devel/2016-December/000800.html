@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-December/000800.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [qubes-devel] Re: not getting compromised while applying apt-get upgrade for CVE-2016-1252
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Re%3A%20not%20getting%20compromised%20while%0A%20applying%20apt-get%20upgrade%20for%20CVE-2016-1252&In-Reply-To=%3C20161217034228.GM1239%40mail-itl%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000799.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000802.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [qubes-devel] Re: not getting compromised while applying apt-get upgrade for CVE-2016-1252</H1>
+<B>Marek Marczykowski-Górecki</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Re%3A%20not%20getting%20compromised%20while%0A%20applying%20apt-get%20upgrade%20for%20CVE-2016-1252&In-Reply-To=%3C20161217034228.GM1239%40mail-itl%3E" TITLE="[Whonix-devel] [qubes-devel] Re: not getting compromised while applying apt-get upgrade for CVE-2016-1252">marmarek at invisiblethingslab.com
+</A><BR>
+<I>Sat Dec 17 04:42:28 CET 2016</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000799.html>[Whonix-devel] [qubes-devel] Re: not getting compromised while applying apt-get upgrade for CVE-2016-1252
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000802.html>[Whonix-devel] not getting compromised while applying apt-get upgrade for CVE-2016-1252
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/date.html#800">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/thread.html#800">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/subject.html#800">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/author.html#800">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+On Sat, Dec 17, 2016 at 02:47:28AM +0100, David Kalnischkies wrote:
+&gt;<i> The provided exploit used a 1.3 GB big InRelease file for that, which
+</i>&gt;<i> works with some confidence on a sufficiently memory-starved i386 system
+</i>&gt;<i> if you can live with the fact that this works only 1/4 of the time as
+</i>&gt;<i> the rest of the time it will fail (or not) at the wrong moment resulting
+</i>&gt;<i> in errors from apt. More recent (&gt;= 1.1) apt versions bail if
+</i>&gt;<i> a (In)Release file is larger than 10 MB which is further complicating
+</i>&gt;<i> things. A good attacker therefore likely needs a way to put the machine
+</i>&gt;<i> in a memory-starved state on demand – like DoS the webserver running on
+</i>&gt;<i> the same box at the right moment. Timing and luck is really important.
+</i>
+So, with apt &gt;= 1.1 it is very unlikely (at least) to affect client,
+64-bit system, right?
+In practice even older apt (stable) on 64-bit is hard to exploit, but
+not unthinkable (will probably require larger file and careful
+targeting for particular memory size; and a lot of luck), right?
+
+(...)
+
+&gt;<i> In terms of stable (which seems to be what you are asking about) there
+</i>&gt;<i> is a trivial 99,9% shortcut: stable has no InRelease file for technical
+</i>&gt;<i> reasons ATM, so something is fishy if you get one (aka apt should
+</i>&gt;<i> display Ign lines).²
+</i>
+Not fully true:
+<A HREF="../../../../external.html?link=http://security.debian.org/dists/jessie/updates/InRelease">http://security.debian.org/dists/jessie/updates/InRelease</A>
+
+Anyway `wc -L` pointed earlier should do the trick.
+
+&gt;<i> ¹ Its complicated as many different code parts are interacting here, so
+</i>&gt;<i> simply storing the split-result wasn't as easy as it sounds. The acquire
+</i>&gt;<i> system rewrite we performed the last few years should make that possible
+</i>&gt;<i> now. I wanted to look into that anyhow, just have to find the time as it
+</i>&gt;<i> is still not as easy as it sounds. Just likely &quot;possible&quot;.
+</i>
+Good to know.
+
+Thanks for detailed answer.
+
+- -- 
+Best Regards,
+Marek Marczykowski-Górecki
+Invisible Things Lab
+A: Because it messes up the order in which people normally read text.
+Q: Why is top-posting such a bad thing?
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQEcBAEBCAAGBQJYVLQmAAoJENuP0xzK19csEWYH+QGQ/ckrtFBYqnEg0yH3JRxI
+v5gFkiIEYKGVN94k+dRY+PRIJe+8AmD8p9AGyWGcA7+0lt8vR0l8djfGIkBTsZCa
+udcrVWRmlPf1jI0JypH+xm+1dUNOucy/E7+gcqkXy/AiBqfRcaR9vsRGvYgOfd+a
+i42CqHcQ3+QhGRO8mNEaIBXJr4leADZ5lRoddsFD/D4GQ5tR/xPnrVsZZhMbbPRW
+aUYaYZW2dqabNq1i5UJVWHXYNE/IcgMolvzC9mFSxGDDt7wALBhe8eqbADQdmTr2
+9OaD8ptREZPB/ufg8jp1PN7qzw+lNUnL+3E1ZwzqwKfm4hCbfWZ+QEN6Sa4oWOI=
+=xVA9
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000799.html>[Whonix-devel] [qubes-devel] Re: not getting compromised while applying apt-get upgrade for CVE-2016-1252
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000802.html>[Whonix-devel] not getting compromised while applying apt-get upgrade for CVE-2016-1252
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/date.html#800">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/thread.html#800">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/subject.html#800">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/author.html#800">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000800.html','y7aelHq7wr','CiMw6GPONd8',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-December/000800.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-December/000800.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:33 GMT -->
+</HTML>

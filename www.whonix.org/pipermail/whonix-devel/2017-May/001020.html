@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-May/001020.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [qubes-devel] How secure is Qubes dom0 backup	tool encryption?
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20How%20secure%20is%20Qubes%20dom0%20backup%0A%09tool%20encryption%3F&In-Reply-To=%3C187283ab-c357-1801-38f2-3c58400ccf8f%40qubes-os.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/001019.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/001021.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [qubes-devel] How secure is Qubes dom0 backup	tool encryption?</H1>
+<B>Andrew David Wong</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20How%20secure%20is%20Qubes%20dom0%20backup%0A%09tool%20encryption%3F&In-Reply-To=%3C187283ab-c357-1801-38f2-3c58400ccf8f%40qubes-os.org%3E" TITLE="[Whonix-devel] [qubes-devel] How secure is Qubes dom0 backup	tool encryption?">adw at qubes-os.org
+</A><BR>
+<I>Sun May 7 19:49:06 CEST 2017</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/001019.html>[Whonix-devel] How secure is Qubes dom0 backup tool encryption?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/001021.html>[Whonix-devel] [qubes-devel] How secure is Qubes dom0 backup	tool encryption?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/date.html#1020">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/thread.html#1020">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/subject.html#1020">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/author.html#1020">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+On 2017-05-07 12:37, Patrick Schleizer wrote:
+&gt;<i> How are chances that the encryption could be broken? How likely
+</i>&gt;<i> are there issues with the implementation?
+</i>&gt;<i> 
+</i>
+I'm not aware of any reasonable methodology for providing answers in
+the form of probabilities, so instead I'll provide a more subjective
+answer: very low.
+
+&gt;<i> Should Qubes dom0 backup tool encryption be relied upon or would it
+</i>&gt;<i> be more advisable to put backups on luks / dm-crypt encrypted
+</i>&gt;<i> disks?
+</i>&gt;<i> 
+</i>
+They're not mutually exclusive. You can do both.
+
+I'm the one who reported the key derivation issue [1], but even I
+think qvm-backup is plenty safe as long as you use a high-entropy
+passphrase. (This will no longer be an issue when we switch to scrypt
+in 4.0. [1]) I personally rely on it for my most confidential data,
+and I'm confident that it's not the weakest link in my setup.
+
+[1] <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/971">https://github.com/QubesOS/qubes-issues/issues/971</A>
+
+- -- 
+Andrew David Wong (Axon)
+Community Manager, Qubes OS
+<A HREF="../../../../external.html?link=https://www.qubes-os.org/">https://www.qubes-os.org</A>
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCgAGBQJZD14PAAoJENtN07w5UDAw53YP/jPuxBHObBT0d3Qk5KL8n9eY
+4FM3dnF8HUi0PL4akN8HKb+QnAXq1HtPqLOzz0rJVjF0BbZDE6Dfcvvkmp6rr5zd
+NbFgLRfPdPTQ7jrPnkilb90SqTeoJhihtKsroK0JM4ETicy55yyLITNYZU0nNViR
+FlN3odTNesjWA3HT8Ig9HR7RfIupB6+VhC4MOarQHe2hoyaMUxwgNH0UBnCm6tAK
+mSTbqGyBk0Pla45AC0246veoNlReUGDB56JOaHAisvJGShhlqzb0CC+57UEvPBwh
+4eVkzcbZTQGe7txyfkYGiZ/DnJ/s6QOGeahclqnnSRgUKn6ZuuvmFSdthKbFCWpe
+kboqWoatKjJXr2byUigaHaFEqQylHdX3eOokLL9VrCJRNqZtxoUYxNSyDJL/3fp3
+8zuB6uKRxSEb29qJZRuBoMTzdH88XotdG3rxUvBWpkiGw92G2y7WFjH2HPfexfKi
+0dTJ9sof/9V5Kyg1N2N2/B0p8Cd5lEuEay2UcbKL7RVeMAGzB2U7R/p9kUUcv5Cw
+OY0rS/bSP9n3USPXZWvASkPM263Ue8RmUdyCdk35XAtlEURUCrfGMTZ0HkfKDoUH
+W5h6XLG8tM8bIAkt1X8hbtom5G5w+hEFpmsobgYcpdBPIgqqui6F3iVmFoAblaTw
+7/YB8/FSOQOd95lVIiEY
+=OXtE
+-----END PGP SIGNATURE-----
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/001019.html>[Whonix-devel] How secure is Qubes dom0 backup tool encryption?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/001021.html>[Whonix-devel] [qubes-devel] How secure is Qubes dom0 backup	tool encryption?
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/date.html#1020">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/thread.html#1020">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/subject.html#1020">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/author.html#1020">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/001020.html','y7aelHq7wr','ffCOm6uT8_s',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-May/001020.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-May/001020.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:28 GMT -->
+</HTML>

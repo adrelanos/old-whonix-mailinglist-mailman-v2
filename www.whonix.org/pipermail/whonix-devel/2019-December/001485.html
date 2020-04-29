@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-December/001485.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:54:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Qubes-Whonix Security Disadvantages - Help Wanted!
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Qubes-Whonix%20Security%20Disadvantages%20-%20Help%20Wanted%21&In-Reply-To=%3C9ee5e375-d33b-3c52-6aa3-f9a303e7f30f%40whonix.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-December/001486.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Qubes-Whonix Security Disadvantages - Help Wanted!</H1>
+<B>Patrick Schleizer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Qubes-Whonix%20Security%20Disadvantages%20-%20Help%20Wanted%21&In-Reply-To=%3C9ee5e375-d33b-3c52-6aa3-f9a303e7f30f%40whonix.org%3E" TITLE="[Whonix-devel] Qubes-Whonix Security Disadvantages - Help Wanted!">patrick-mailinglists at whonix.org
+</A><BR>
+<I>Wed Dec 4 07:54:11 CET 2019</I>
+<P><UL>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-December/001486.html>[Whonix-devel] #17400 [Applications/Tor Browser]: Decide how to use the multi-lingual Tor Browser in the alpha/release series
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-December/date.html#1485">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-December/thread.html#1485">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-December/subject.html#1485">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-December/author.html#1485">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>kloak - Anti Keystroke Deanonymization
+
+- <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Keystroke_Deanonymization#Kloak">https://www.whonix.org/wiki/Keystroke_Deanonymization#Kloak</A>
+- <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Keystroke_Deanonymization">https://www.whonix.org/wiki/Keystroke_Deanonymization</A>
+
+* Already installed by default in Non-Qubes-Whonix for a long time.
+* Not on the horizon for Qubes-Whonix. Qubes VM kernel non-default issue.
+* Qubes issue: <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/2558">https://github.com/QubesOS/qubes-issues/issues/2558</A>
+
+----
+
+Linux Kernel Runtime Guard (LKRG)
+
+- <A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Linux_Kernel_Runtime_Guard_LKRG">https://www.whonix.org/wiki/Linux_Kernel_Runtime_Guard_LKRG</A>
+
+* Soon to be installed by default in Non-Qubes-Whonix.
+* Not soon to be installed in Qubes-Whonix by default because Qubes is
+not using Qubes VM kernel by default yet.
+* Qubes issues:
+  * <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/5461">https://github.com/QubesOS/qubes-issues/issues/5461</A>
+  * <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/1850">https://github.com/QubesOS/qubes-issues/issues/1850</A>
+  * <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/5212">https://github.com/QubesOS/qubes-issues/issues/5212</A>
+
+----
+
+tirdad - TCP ISN CPU Information Leak Protection
+
+- <A HREF="../../../../external.html?link=https://github.com/Whonix/tirdad">https://github.com/Whonix/tirdad</A>
+
+* Soon to be installed by default in Non-Qubes-Whonix.
+* Not soon to be installed in Qubes-Whonix by default because Qubes is
+not using Qubes VM kernel by default yet.
+* Qubes issue: <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/5212">https://github.com/QubesOS/qubes-issues/issues/5212</A>
+
+----
+
+Kernel Hardening through Kernel Boot Parameters
+
+-
+<A HREF="../../../../external.html?link=https://github.com/Whonix/security-misc/blob/master/etc/default/grub.d/40_kernel_hardening.cfg">https://github.com/Whonix/security-misc/blob/master/etc/default/grub.d/40_kernel_hardening.cfg</A>
+
+* Already installed by default in Non-Qubes-Whonix for a long time.
+* Not on the horizon for Qubes-Whonix. Qubes VM kernel non-default issue.
+* Qubes issue: <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/5212">https://github.com/QubesOS/qubes-issues/issues/5212</A>
+
+----
+
+Strong Linux User Account Separation / Protection against Bruteforcing
+Linux User Account Passwords
+
+- <A HREF="../../../../external.html?link=https://github.com/Whonix/security-misc">https://github.com/Whonix/security-misc</A>
+-
+<A HREF="../../../../external.html?link=https://www.whonix.org/wiki/Dev/Permissions#Bruteforcing_Linux_User_Account_Passwords">https://www.whonix.org/wiki/Dev/Permissions#Bruteforcing_Linux_User_Account_Passwords</A>
+
+* Already default in Non-Qubes-Whonix.
+* Might be fixeable in Qubes-Whonix
+  *
+<A HREF="../../../../external.html?link=https://forums.whonix.org/t/qubes-sudo-su-root-hardening-development-discussion/8561">https://forums.whonix.org/t/qubes-sudo-su-root-hardening-development-discussion/8561</A>
+* Qubes issues:
+  * <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-core-agent-linux/pull/171">https://github.com/QubesOS/qubes-core-agent-linux/pull/171</A>
+  * <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/2695">https://github.com/QubesOS/qubes-issues/issues/2695</A>
+  * <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/1885">https://github.com/QubesOS/qubes-issues/issues/1885</A>
+
+----
+
+Please help fixing these issues!
+
+-----
+
+This was originally posted here:
+
+<A HREF="../../../../external.html?link=https://forums.whonix.org/t/qubes-whonix-security-disadvantages-help-wanted/8581">https://forums.whonix.org/t/qubes-whonix-security-disadvantages-help-wanted/8581</A>
+
+<A HREF="../../../../external.html?link=https://twitter.com/Whonix/status/1201050814900588544">https://twitter.com/Whonix/status/1201050814900588544</A>
+</PRE>
+<HR>
+<P><UL>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-December/001486.html>[Whonix-devel] #17400 [Applications/Tor Browser]: Decide how to use the multi-lingual Tor Browser in the alpha/release series
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-December/date.html#1485">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-December/thread.html#1485">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-December/subject.html#1485">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-December/author.html#1485">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-December/001485.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-December/001485.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:54:57 GMT -->
+</HTML>

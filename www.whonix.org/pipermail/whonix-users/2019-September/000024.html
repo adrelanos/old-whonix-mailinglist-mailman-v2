@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-users/2019-September/000024.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-users] using two whonix-gw instances
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-users%40whonix.org?Subject=Re%3A%20%5BWhonix-users%5D%20using%20two%20whonix-gw%20instances&In-Reply-To=%3C8fe2f8b9-fcf7-e3ce-c508-e1e84665309a%40svensemmler.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/000025.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-users] using two whonix-gw instances</H1>
+<B>Sven Semmler</B>
+<A HREF="mailto:whonix-users%40whonix.org?Subject=Re%3A%20%5BWhonix-users%5D%20using%20two%20whonix-gw%20instances&In-Reply-To=%3C8fe2f8b9-fcf7-e3ce-c508-e1e84665309a%40svensemmler.org%3E" TITLE="[Whonix-users] using two whonix-gw instances">sven at svensemmler.org
+</A><BR>
+<I>Thu Sep 26 01:09:05 CEST 2019</I>
+<P><UL>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/000025.html>[Whonix-users] using two whonix-gw instances
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/date.html#24">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/thread.html#24">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/subject.html#24">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/author.html#24">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+I am using Qubes and posted the following to qubes-users, but maybe this is the more appropriate mailing list. Please advise:
+
+In addition to my fairly standard dvm based on whonix-ws connected to sys-whonix based on whonix-ws I have now done the following:
+
+1) cloned sys-whonix to sys-whonix-id
+2) created app-signal based on whonix-ws
+3) installed signal in whonix-ws
+4) connected both app-email-private and app-signal to sys-whonix-id
+
+The idea being:
+
+1) sys-whonix and the instances of whonix-ws connected to it are for truly anonymous browsing. I have never nor will I ever type in anything even remotely identifying into those qubes.
+
+2) sys-whonix-id is used more like a VPN in that the endpoint of the connection (my email provider or my phone in case of signal) knows very well who I am ... not anonymous at all. However no one in between my PC and those end points should be able to tell.
+
+Here is my assumption I would like to check against the members of this group: while both instances (since cloned) will use the same entry guards, the resulting TOR circuits will be different and there is no way the traffic on the one connection can be correlated to the other - right?
+
+/Sven
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEE18ry22WNibwI1qeq2m4We49UH7YFAl2L86EACgkQ2m4We49U
+H7a5iw/+Ln2MVgqlPTUyVc90y7n2+OvAvZElSmbGXoS7inxVlAe1yZr6x3jI6OZC
+RGdYT3OxHoI9O7iWyNSzIc7RwJAYgdWVyuR3CrIGQtD7ADfBZLjGSb9Um2lhDbXp
+XXP95ENDV3OtDm2EwT1Q34QcDQCz3D6fM3Pk6SWZDTplv0RYADacI3AsHPnuFYJt
+fG1HPWT7cUU56dx6hli2mx11LlHY97dpltTuri7zz8xIiXqW+UPK5RAba1fXhBhf
+p6mMZ2Ihh5kPCZRO/kYmUETdi1vEzbt1mUzu6isqA/Qmvb8AAiMJzApkHI6JK/+t
+eeGP9BUyN336FPFDn6+EtoNuLnQQKh79untzJZYH9pFVx76EeXHwRoHbRoyOedak
+dwz2ZplPwhwEPFzgiZ/xnNZT7i31oHULINwjGAgyfvUfVn9QU91GAvcQuf6iAweV
+YTUoE/Fzw6KwBLoKHKQh73X6gCvaM9N4jI9YRb+SJkOsrNSPwnnGL/jLFGoKYSye
+PGZ5t7vEQ0K3TV2RhDM9lzPrKQjPAkVOn0g21WSig3alRy8uZKQKfeXo9qOL9Vcc
+IIRJEyZ7ZzhIz/T6rGqZenVqE0dVnP1oucklzvUKPF+MzzxKMTHMDPilkpSLcdlz
+W4SHD7o1Rq5KajSK/ri2OCVBj4F8o2eXv61v5YdKVOc3k471RPw=
+=1gr+
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/000025.html>[Whonix-users] using two whonix-gw instances
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/date.html#24">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/thread.html#24">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/subject.html#24">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/author.html#24">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-users">More information about the Whonix-users
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/000024.html','y7aelHq7wr','kp1sSuqW9aw',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-users/2019-September/000024.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-users/2019-September/000024.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:56:16 GMT -->
+</HTML>

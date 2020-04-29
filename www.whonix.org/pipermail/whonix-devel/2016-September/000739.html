@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-September/000739.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] #14271 [Applications/Tor Browser]: Make Torbutton work with Unix Domain Socket option
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%2314271%20%5BApplications/Tor%20Browser%5D%3A%20Make%0A%20Torbutton%20work%20with%20Unix%20Domain%20Socket%20option&In-Reply-To=%3C057.b786659c0e3198ffb1b31264d42fc2ee%40torproject.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/000737.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/000742.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] #14271 [Applications/Tor Browser]: Make Torbutton work with Unix Domain Socket option</H1>
+<B>Tor Bug Tracker &amp; Wiki</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%2314271%20%5BApplications/Tor%20Browser%5D%3A%20Make%0A%20Torbutton%20work%20with%20Unix%20Domain%20Socket%20option&In-Reply-To=%3C057.b786659c0e3198ffb1b31264d42fc2ee%40torproject.org%3E" TITLE="[Whonix-devel] #14271 [Applications/Tor Browser]: Make Torbutton work with Unix Domain Socket option">blackhole at torproject.org
+</A><BR>
+<I>Fri Sep 2 10:30:01 CEST 2016</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/000737.html>[Whonix-devel] #14271 [Applications/Tor Browser]: Make Torbutton work with Unix Domain Socket option
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/000742.html>[Whonix-devel] #14271 [Applications/Tor Browser]: Make Torbutton work with Unix Domain Socket option
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/date.html#739">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/thread.html#739">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/subject.html#739">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/author.html#739">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>#14271: Make Torbutton work with Unix Domain Socket option
+-------------------------------------------------+-------------------------
+ Reporter:  gk                                   |          Owner:  brade
+     Type:  enhancement                          |         Status:
+                                                 |  assigned
+ Priority:  High                                 |      Milestone:
+Component:  Applications/Tor Browser             |        Version:
+ Severity:  Normal                               |     Resolution:
+ Keywords:  tbb-torbutton, tbb-security,         |  Actual Points:
+  TorBrowserTeam201609                           |
+Parent ID:  #14270                               |         Points:
+ Reviewer:                                       |        Sponsor:
+                                                 |  SponsorU
+-------------------------------------------------+-------------------------
+Changes (by gk):
+
+ * status:  needs_information =&gt; assigned
+
+
+Comment:
+
+ Replying to [comment:13 mcs]:
+ &gt; Replying to [comment:12 gk]:
+ &gt; &gt; 3) Checking whether we should call `torbutton_local_tor_check()`
+ should check for
+ &gt; &gt; `m_tb_control_socket_file` as well (not only for `m_tb_control_port`)
+ I guess?
+ &gt;
+ &gt; We did add that check, although if you look at the patch with git's
+ default of three lines of context it is not so obvious.
+
+ Hm. No, it is even obvious then. Must have been a different kind of code-
+ blindness, my bad.
+
+ &gt;
+ &gt; &gt; 4) I am not so sure about
+ &gt; &gt; {{{
+ &gt; &gt; +            } catch(e) {
+ &gt; &gt; +              m_tb_control_port = 9151;
+ &gt; &gt; +            }
+ &gt; &gt; }}}
+ &gt; &gt; What was your rationale for adding that now (given you omitted it
+ earlier)? For one, the logs might be misleading showing a probably wrong
+ port (I mean the setup is seriously troubling if we need to assign `9151`
+ in the catch clause at all) in an error with respect to the control
+ connection. On the other hand, we might want to show that something is
+ wrong with the help of `torbutton_do_tor_check()` which would update the
+ toolbar button in this case (if we get that far at all with a broken setup
+ like the one in question).
+ &gt;
+ &gt; Kathy and I added the 9151 default to be consistent with how
+ m_tb_control_host is handled (it was already defaulting to 127.0.0.1).
+ Thinking about this some more and looking at the existing Torbutton code,
+ it seems like there is some effort to disable features (e.g., New
+ Identity, the local Tor check) when the port is missing. So maybe we
+ should put things back how there were and make sure we consistently check
+ for port, password, etc. before trying to do things in Torbutton that
+ require authenticated control port access?
+ &gt;
+ &gt; The circuit display code also includes code that defaults the port to
+ 9151, so if we decide to continue with the concept that a lack of port can
+ be used to disable code, we should remove the `|| 9151` from this line in
+ tor-circuit-display.js:
+ &gt; `myController = controller(socketFile, host, port || 9151, password,`
+ &gt; We can also add a check to skip the call to createTorCircuitDisplay() if
+ port, password, etc. are missing (the existing code will log an error if
+ initialization fails).
+ &gt;
+ &gt; What do you think?
+
+ I think we should not set `m_tb_control_port` to `9151` now in the catch
+ clause and open a new ticket for implementing a saner solution across all
+ Torbutton code. We can discuss there what we want that solution to be.
+
+--
+Ticket URL: &lt;<A HREF="../../../../external.html?link=https://trac.torproject.org/projects/tor/ticket/14271#comment:14">https://trac.torproject.org/projects/tor/ticket/14271#comment:14</A>&gt;
+Tor Bug Tracker &amp; Wiki &lt;<A HREF="../../../../external.html?link=https://trac.torproject.org/">https://trac.torproject.org/</A>&gt;
+The Tor Project: anonymity online
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/000737.html>[Whonix-devel] #14271 [Applications/Tor Browser]: Make Torbutton work with Unix Domain Socket option
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/000742.html>[Whonix-devel] #14271 [Applications/Tor Browser]: Make Torbutton work with Unix Domain Socket option
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/date.html#739">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/thread.html#739">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/subject.html#739">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/author.html#739">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/000739.html','y7aelHq7wr','WDiimvButJA',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-September/000739.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-September/000739.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:36 GMT -->
+</HTML>

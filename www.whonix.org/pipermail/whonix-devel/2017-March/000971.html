@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-March/000971.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] GNU Guix Questions
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20GNU%20Guix%20Questions&In-Reply-To=%3Ccdf373171d72109cf5eaf54d88795ba9%40openmailbox.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/000970.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/000973.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] GNU Guix Questions</H1>
+<B>bancfc at openmailbox.org</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20GNU%20Guix%20Questions&In-Reply-To=%3Ccdf373171d72109cf5eaf54d88795ba9%40openmailbox.org%3E" TITLE="[Whonix-devel] GNU Guix Questions">bancfc at openmailbox.org
+</A><BR>
+<I>Tue Mar 7 20:31:45 CET 2017</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/000970.html>[Whonix-devel] GNU Guix Questions
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/000973.html>[Whonix-devel] GNU Guix Questions
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/date.html#971">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/thread.html#971">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/subject.html#971">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/author.html#971">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>On 2017-03-07 12:05, ng0 wrote:
+&gt;<i> On 17-03-07 00:59:08, <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">bancfc at openmailbox.org</A> wrote:
+</i>&gt;&gt;<i> On 2017-03-06 17:15, ng0 wrote:
+</i>&gt;&gt;<i> &gt; Hi bancfc,
+</i>&gt;&gt;<i> &gt;
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> Hi ng0, great to see you here :)
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> &gt; On 17-03-06 16:14:08, <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">bancfc at openmailbox.org</A> wrote:
+</i>&gt;&gt;<i> &gt; &gt; Hi Guix devs, I am a privacy distro dev and we are looking at using
+</i>&gt;&gt;<i> &gt; &gt; Guix in
+</i>&gt;&gt;<i> &gt; &gt; our OS. I have a few questions:
+</i>&gt;&gt;<i> &gt; &gt;
+</i>&gt;&gt;<i> &gt; &gt; * Is the Guix package archive available from a Tor hidden service?
+</i>&gt;&gt;<i> &gt; &gt; There are
+</i>&gt;&gt;<i> &gt; &gt; many advantages of updating a system over Tor such as preventing a
+</i>&gt;&gt;<i> &gt; &gt; target
+</i>&gt;&gt;<i> &gt; &gt; adversary from fingerprinting and targeting hosts that run vulnerable
+</i>&gt;&gt;<i> &gt; &gt; packages and protecting systems in case the package manager has a
+</i>&gt;&gt;<i> &gt; &gt; security
+</i>&gt;&gt;<i> &gt; &gt; bug. Debian and Tor now provide onion mirrors for their packages.
+</i>&gt;&gt;<i> &gt; &gt; Can you
+</i>&gt;&gt;<i> &gt; &gt; please consider doing the same?
+</i>&gt;&gt;<i> &gt;
+</i>&gt;&gt;<i> &gt; As far as I know this might be discussed currently at GNU
+</i>&gt;&gt;<i> &gt; sysadministration level,
+</i>&gt;&gt;<i> &gt; at least that's the last info I got when I suggested this last week to
+</i>&gt;&gt;<i> &gt; RMS.
+</i>&gt;&gt;<i> &gt; There is an onion mirror which is run by another community. It doesn't
+</i>&gt;&gt;<i> &gt; mirror alpha.gnu.org yet (where guix binaries are located), but it plans
+</i>&gt;&gt;<i> &gt; to do so. I need to get in touch with the community to ask wether they
+</i>&gt;&gt;<i> &gt; would be okay with more bandwidth.
+</i>&gt;&gt;<i> &gt; Do you have an estimation on how high your usage would be for the guix
+</i>&gt;&gt;<i> &gt; download from the onion mirror?
+</i>&gt;&gt;<i> &gt;
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> The amount for bandwidth is approximately the size of GNUnet x 15K 
+</i>&gt;&gt;<i> users.
+</i>&gt;<i> 
+</i>&gt;<i> I think we have a misunderstanding here. Do you mean access to the
+</i>&gt;<i> releases of Guix as in what's on
+</i>&gt;<i> <A HREF="../../../../external.html?link=https://alpha.gnu.org/whatever/the/path/to/guix/was,">https://alpha.gnu.org/whatever/the/path/to/guix/was,</A> where the software
+</i>&gt;<i> itself is released, or did you mean what we call 'binary substitutes' 
+</i>&gt;<i> in
+</i>&gt;<i> Guix, the packages which are build from the guix.git master which
+</i>&gt;<i> feature the software (here software as in tor, perl, epiphany, gnupg,
+</i>&gt;<i> etc)?
+</i>&gt;<i> Now that I'm reading your initial email again it reads as if could be
+</i>&gt;<i> either or both. It would be good if you try to clarify this.
+</i>&gt;<i> 
+</i>
+Yes I meant binary substitutes not Guix itself.
+
+&gt;<i> 
+</i>&gt;&gt;<i> Later on we will expand the selection to include Tor Browser once you
+</i>&gt;&gt;<i> package it - if that pans out that would be a massive achievement. The
+</i>&gt;<i> 
+</i>&gt;<i> FYI:
+</i>&gt;<i> The torbrowser I am packaging initially is a 1:1 copy of what 
+</i>&gt;<i> torbrowser
+</i>&gt;<i> team is keeping in the git repository. Nix for example decided to
+</i>&gt;<i> just patchelf the binary releases of torbrowser (the tar files found on
+</i>&gt;<i> dist.torproject.org), this is not acceptable for the work for Guix.
+</i>&gt;<i> So I'm trying my way with building from git tags. If there are other
+</i>&gt;<i> people interested and willing to help (once I have something to debug),
+</i>&gt;<i> I will share recipes / git repositories to work on it.
+</i>
+I think this work is so important that it deserves bringing it to the 
+notice of the Tor devs on their mailing list. They will probably help 
+out because it is something they have been wanting to do and are 
+interested in:
+
+<A HREF="../../../../external.html?link=https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-dev/">https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-dev/</A>
+
+&gt;<i> Furthermore the final package version for Guix will include fixes which
+</i>&gt;<i> might be needed, similar to what icecat does to firefox esr, to include
+</i>&gt;<i> it in Guix. This is of course no 1:1 torbrowser then anymore and must
+</i>&gt;<i> not be described as such. It'll be interesting to see if at all it
+</i>&gt;<i> differs in fingerprinting from torbrowser.
+</i>
+To check the fingerprint of your versions you can use this site: 
+<A HREF="../../../../external.html?link=https://fpcentral.irisa.fr/">https://fpcentral.irisa.fr/</A>
+
+It was a product of a GSoC project to exclusively measure Tor Borwser 
+fingerprints between versions to help TBB devs and users make sure they 
+are safe.
+
+&gt;<i> If for any reason you need the full 1:1 copy we can talk about this 
+</i>&gt;<i> once I/we
+</i>&gt;<i> are getting there, offlist or at least not on <A HREF="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/whonix-devel">guix-devel at gnu.org.</A>
+</i>&gt;<i> 
+</i>
+No particular reason for 1:1 as long as the Guix package is fully 
+reproducible and closely tracks upstream security updates its ok with 
+us.
+
+&gt;&gt;<i> Torproject have discussed packaging it for years but they couldn't 
+</i>&gt;&gt;<i> work it
+</i>&gt;&gt;<i> out because of the breakneck speed of development and the cumbersome 
+</i>&gt;&gt;<i> process
+</i>&gt;&gt;<i> of creating Debian packages. Meanwhile anonymity distros were forced 
+</i>&gt;&gt;<i> to come
+</i>&gt;&gt;<i> up with a workaround safe downloader mechanism in absence of a package
+</i>&gt;&gt;<i> fecthable from a package manager. Its been a high maintenance effort 
+</i>&gt;&gt;<i> over
+</i>&gt;&gt;<i> the years and a Guix package would finally solve this.
+</i>&gt;&gt;<i> 
+</i>&gt;&gt;<i> Another &quot;wishlist&quot; package would be GNU-libre kernel that includes the
+</i>&gt;&gt;<i> Grsecurity patchset so we can include that out of the box instead of
+</i>&gt;&gt;<i> requiring users to manually patch and tweak settings with every 
+</i>&gt;&gt;<i> (weekly) new
+</i>&gt;&gt;<i> upstream release.
+</i>&gt;<i> 
+</i>&gt;<i> I think HEADS (the linux-libre grsec devuan based blend) did this, or 
+</i>&gt;<i> they
+</i>&gt;<i> are working on it. I know for Guix, someone is working on SELinux. I
+</i>&gt;<i> think if you are looking into getting a GRSec enabled kernel with
+</i>&gt;<i> according policies, this must be answered by someone who knows more
+</i>&gt;<i> about the core of Guix.
+</i>&gt;<i> It might also be the case that I don't fully understand your plan. What
+</i>&gt;<i> I read sounds like you are either mixing up Guix and GuixSD or as if
+</i>&gt;<i> the differences between both need to be explained. It would be easier 
+</i>&gt;<i> to
+</i>&gt;<i> know the current state of the system, and where you want to go with 
+</i>&gt;<i> this.
+</i>&gt;<i> 
+</i>
+I understand the difference between Guix and GuixSD - the latter is a 
+full distribution based around the former. Since we are Debian based I 
+was looking into cherry-picking packages from Guix binary repos because 
+the way it works is ideal instead of the bureaucracy of Debian packaging 
+policies which makes packaging impossible in some cases.
+
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/000970.html>[Whonix-devel] GNU Guix Questions
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/000973.html>[Whonix-devel] GNU Guix Questions
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/date.html#971">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/thread.html#971">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/subject.html#971">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/author.html#971">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/000971.html','y7aelHq7wr','9_jSbh7VgR0',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2017-March/000971.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2017-March/000971.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:30 GMT -->
+</HTML>

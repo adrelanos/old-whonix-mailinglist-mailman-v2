@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-April/001376.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=us-ascii" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Test results of Jitter RNG
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Test%20results%20of%20Jitter%20RNG&In-Reply-To=%3C5264686.FA8Se3Cpvk%40tauon.chronox.de%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001380.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001367.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Test results of Jitter RNG</H1>
+<B>Stephan Mueller</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Test%20results%20of%20Jitter%20RNG&In-Reply-To=%3C5264686.FA8Se3Cpvk%40tauon.chronox.de%3E" TITLE="[Whonix-devel] Test results of Jitter RNG">smueller at chronox.de
+</A><BR>
+<I>Fri Apr 26 23:14:28 CEST 2019</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001380.html>[Whonix-devel] How to confirm jitter .ko was loaded
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001367.html>[Whonix-devel] How to confirm jitter .ko was loaded
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/date.html#1376">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/thread.html#1376">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/subject.html#1376">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/author.html#1376">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Am Freitag, 26. April 2019, 15:59:39 CEST schrieb Stephan Mueller:
+
+Hi,
+
+A system called TNT BOM BOM sent me several test results. I am not sure who to 
+reply to the analysis. Therefore, I will reply to this thread.
+
+The first test &quot;Test-Results&quot; show that the heuristic validating whether the 
+underlying platform is sufficient for the Jitter RNG has detected no 
+insufficiency during 10000 test runs. Check.
+
+The file foldtime.O0 contains test results for the non-optimized binary code 
+that is the basis for the Jitter RNG. To understand what it shows, we have to 
+understand what the Jitter RNG really does: it simply measures the execution 
+time of a fixed code fragment. The test does the same, i.e. it measures what 
+the Jitter RNG would measure. Each time delta is simply recorded.
+
+Each time delta is expected to contribute entropy to the entropy pool. But how 
+much? We can use the SP800-90B tool set provided by NIST at [1]. This tool, 
+however, can only process input data with a window size of a few bits at most. 
+Thus, we take the 4 LSB of each time delta, hoping that they contain already 
+sufficient entropy. 
+
+Using the tool [1], we get the following output:
+
+Symbol alphabet consists of 16 unique symbols
+
+Running non-IID tests...
+
+Running Most Common Value Estimate...
+        Most Common Value Estimate (bit string) = 0.985991 / 1 bit(s)
+
+Running Entropic Statistic Estimates (bit strings only)...
+        Collision Test Estimate (bit string) = 0.904492 / 1 bit(s)
+        Markov Test Estimate (bit string) = 0.993746 / 1 bit(s)
+        Compression Test Estimate (bit string) = 0.718504 / 1 bit(s)
+
+Running Tuple Estimates...
+        T-Tuple Test Estimate (bit string) = 0.924750 / 1 bit(s)
+        LRS Test Estimate (bit string) = 0.897582 / 1 bit(s)
+
+Running Predictor Estimates...
+        Multi Most Common in Window (MultiMCW) Prediction Test Estimate (bit 
+string) = 0.997074 / 1 bit(s)
+        Lag Prediction Test Estimate (bit string) = 0.995814 / 1 bit(s)
+        Multi Markov Model with Counting (MultiMMC) Prediction Test Estimate 
+(bit string) = 0.988593 / 1 bit(s)
+        LZ78Y Prediction Test Estimate (bit string) = 0.987123 / 1 bit(s)
+
+h': 0.718504
+
+The last line is the key: it contains the minimum entropy in one bit of the 4 
+bit snapshot
+
+- we have 0.7185 bits of entropy per data bit
+
+- as we analyzed 4 bits of each time delta, we get 4 * 0.7185 = 2.874 bits of 
+entropy per four bit time delta
+
+- assuming the worst case that all other bits in the time delta have no 
+entropy, we have 2.874 bits of entropy per time delta
+
+- the Jitter RNG gathers 64 time deltas for returning 64 bits of random data 
+and it uses an LFSR with a primitive and irreducible polynomial which is 
+entropy preserving. Thus, the Jitter RNG collected 64 * 2.874 = 183.936 bits 
+of entropy for its 64 bit output.
+
+- as the Jitter RNG maintains a 64 bit entropy pool, its entropy content 
+cannot be larger than the pool itself. Thus, the entropy content in the pool 
+after collecting 64 time deltas is max(64 bits, 183.936 bits) = 64 bits
+
+This implies that the Jitter RNG data has (close to) 64 bits of entropy per 
+data bit.
+
+Bottom line: When the Jitter RNG injects 64 bits of data into the Linux /dev/
+random via the IOCTL, it is appropriate that the entropy estimator increases 
+by 64 bits.
+
+Bottom line: From my perspective, I see no issue in using the Jitter RNG as a 
+noise source in your environments.
+
+
+Note, applying the Shannon-Entropy formula to the data, we will get much 
+higher entropy values.
+
+Note II: This assessment complies with the entropy assessments to be done for 
+a NIST FIP 140-2 validation compliant to FIPS 140-2 IG 7.15 
+
+[1] <A HREF="../../../../external.html?link=https://github.com/usnistgov/SP800-90B_EntropyAssessment">https://github.com/usnistgov/SP800-90B_EntropyAssessment</A>
+
+Ciao
+Stephan
+
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001380.html>[Whonix-devel] How to confirm jitter .ko was loaded
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001367.html>[Whonix-devel] How to confirm jitter .ko was loaded
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/date.html#1376">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/thread.html#1376">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/subject.html#1376">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/author.html#1376">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-April/001376.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-April/001376.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:05 GMT -->
+</HTML>

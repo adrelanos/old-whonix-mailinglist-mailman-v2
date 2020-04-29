@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-February/001303.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Bug#921163: coreutils such as /bin/mkdir are duplicated in /usr/bin/mkdir
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Bug%23921163%3A%20coreutils%20such%20as%20/bin/mkdir%20are%0A%20duplicated%20in%20/usr/bin/mkdir&In-Reply-To=%3C154913114005.9520.16894011301073483860%40hoothoot%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001302.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001304.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Bug#921163: coreutils such as /bin/mkdir are duplicated in /usr/bin/mkdir</H1>
+<B>Johannes Schauer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Bug%23921163%3A%20coreutils%20such%20as%20/bin/mkdir%20are%0A%20duplicated%20in%20/usr/bin/mkdir&In-Reply-To=%3C154913114005.9520.16894011301073483860%40hoothoot%3E" TITLE="[Whonix-devel] Bug#921163: coreutils such as /bin/mkdir are duplicated in /usr/bin/mkdir">josch at debian.org
+</A><BR>
+<I>Sat Feb 2 19:12:20 CET 2019</I>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001302.html>[Whonix-devel] Bug#921163: coreutils such as /bin/mkdir are duplicated in /usr/bin/mkdir
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001304.html>[Whonix-devel] v3 Onion Services that host Mixmaster SMTP Nodes
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/date.html#1303">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/thread.html#1303">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/subject.html#1303">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/author.html#1303">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Control: forcemerge 914915 -1
+
+Hi Patrick,
+
+Quoting Patrick Schleizer (2019-02-02 15:05:00)
+&gt;<i> # How to reproduce:
+</i>&gt;<i> 
+</i>&gt;<i> sudo mmdebstrap --mode=root
+</i>&gt;<i> --aptopt=/home/user/whonix_binary/aptgetopt.conf stretch
+</i>&gt;<i> /var/cache/pbuilder/base.cow
+</i>&gt;<i> /home/user/whonix_dot/Whonix/build_sources/debian_stable_current_clearnet.list
+</i>&gt;<i> 
+</i>&gt;<i> (Could probably simplified but I hope you can reproduce this easily /
+</i>&gt;<i> hope you also have usr/bin/mkdir.)
+</i>&gt;<i> 
+</i>&gt;<i> # Expected result:
+</i>&gt;<i> 
+</i>&gt;<i> base.cow/bin/mkdir exists.
+</i>&gt;<i> 
+</i>&gt;<i> base.cow/usr/bin/mkdir does not exist
+</i>&gt;<i> 
+</i>&gt;<i> # Actual result:
+</i>&gt;<i> 
+</i>&gt;<i> base.cow/bin/mkdir exists.
+</i>&gt;<i> 
+</i>&gt;<i> base.cow/usr/bin/mkdir exists.
+</i>&gt;<i> 
+</i>&gt;<i> base.cow/usr/bin/mkdir matches base.cow/bin/mkdir.
+</i>&gt;<i> 
+</i>&gt;<i> diff base.cow/usr/bin/mkdir base.cow/bin/mkdir ; echo $?
+</i>&gt;<i> 0
+</i>&gt;<i> 
+</i>&gt;<i> Also many (if not all) other coreutils that should only reside in /bin
+</i>&gt;<i> such as /bin/rm are duplicated in /usr/bin such as /usr/bin/rm.
+</i>&gt;<i> 
+</i>&gt;<i> # Why this is a problem:
+</i>&gt;<i> 
+</i>&gt;<i> /usr/bin is preferred over /bin with default $PATH setting.
+</i>&gt;<i> 
+</i>&gt;<i> - When coreutils is later updated, it will only update /bin/mkdir and so
+</i>&gt;<i> forth but not /usr/bin/mkdir. This is because /bin/mkdir is owned by
+</i>&gt;<i> coreutils (dpkg -S /bin/mkdir) but /usr/bin/mkdir is owned by no package
+</i>&gt;<i> (dpkg -S /usr/bin/mkdir).
+</i>&gt;<i> 
+</i>&gt;<i> - This leads to apparmor issues. In apparmor profiles one has to
+</i>&gt;<i> hardcode for example /bin/mkdir but since /usr/bin/mkdir exists, this
+</i>&gt;<i> call will be denied.
+</i>&gt;<i> 
+</i>&gt;<i> # Misc:
+</i>&gt;<i> 
+</i>&gt;<i> I couldn't figure out from the source code why this is happening.
+</i>&gt;<i> Intended or unintended behavior? If intended, can this be turned off?
+</i>&gt;<i> Are also other files in unusual places?
+</i>
+the observations you describe are due to the following symlinks (using your
+paths as examples):
+
+base.cow/bin -&gt; usr/bin
+base.cow/sbin -&gt; usr/sbin
+base.cow/lib -&gt; usr/lib
+
+And depending on your architecture there are even a few more of those. So you
+will see that the files base.cow/bin/mkdir and base.cow/usr/bin/mkdir are
+actually the same files. You can use $(stat -c '%i') to compare the inode
+numbers.
+
+The idea behind creating these symlinks from foo to usr/foo is called &quot;merged
+/usr&quot;, &quot;usr merge&quot; or &quot;usr move&quot; and is a concept that has been introduced in
+other distributions like Fedora:
+
+<A HREF="../../../../external.html?link=https://fedoraproject.org/wiki/Features/UsrMove">https://fedoraproject.org/wiki/Features/UsrMove</A>
+
+And also Debian is doing experiments with it:
+
+<A HREF="../../../../external.html?link=https://wiki.debian.org/UsrMerge">https://wiki.debian.org/UsrMerge</A>
+
+For a while, the tool debootstrap which is doing something very similar to
+mmdebstrap was creating &quot;merged /usr&quot; systems that include these symlinks by
+default. It then turned out that it was a bad idea to have this default before
+other problems aren't solved yet and thus the default was changed back to the
+old behaviour. Unfortunately, I wrote mmdebstrap in the timeframe when
+debootstrap still defaulted to the &quot;merged /usr&quot; behaviour and since I just
+wanted to provide the same feature as debootstrap, this became the default of
+mmdebstrap as well.
+
+Due to the discovered problems, &quot;merged /usr&quot; should *not* be the default for
+mmdebstrap for now and that's why this bug was reported already:
+
+<A HREF="../../../../external.html?link=https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=914915">https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=914915</A>
+
+As a result, &quot;merged /usr&quot; has been disabled in mmdebstrap since this commit:
+
+<A HREF="../../../../external.html?link=https://gitlab.mister-muffin.de/josch/mmdebstrap/commit/97d273aaf6ada19f4966666ba75d907ee64b0a75">https://gitlab.mister-muffin.de/josch/mmdebstrap/commit/97d273aaf6ada19f4966666ba75d907ee64b0a75</A>
+
+So the only thing that is needed, is for a new mmdebstrap release and then this
+bug will be fixed. :)
+
+Thanks!
+
+cheers, josch
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 833 bytes
+Desc: signature
+URL: &lt;<A HREF="../../../../external.html?link=http://www.whonix.org/pipermail/whonix-devel/attachments/20190202/49825cb6/attachment.sig">http://www.whonix.org/pipermail/whonix-devel/attachments/20190202/49825cb6/attachment.sig</A>&gt;
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001302.html>[Whonix-devel] Bug#921163: coreutils such as /bin/mkdir are duplicated in /usr/bin/mkdir
+</A></LI>
+<LI>Next message (by thread): <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001304.html>[Whonix-devel] v3 Onion Services that host Mixmaster SMTP Nodes
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/date.html#1303">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/thread.html#1303">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/subject.html#1303">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/author.html#1303">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2019-February/001303.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2019-February/001303.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:07 GMT -->
+</HTML>

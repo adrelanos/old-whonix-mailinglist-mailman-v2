@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-February/000558.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [Tails-dev] Persistent Tor start in Tails vs	location aware Tor entry guards (LATEG)
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5BTails-dev%5D%20Persistent%20Tor%20start%20in%20Tails%20vs%0A%09location%20aware%20Tor%20entry%20guards%20%28LATEG%29&In-Reply-To=%3C858u2xsa81.fsf%40boum.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000557.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000559.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [Tails-dev] Persistent Tor start in Tails vs	location aware Tor entry guards (LATEG)</H1>
+<B>intrigeri</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5BTails-dev%5D%20Persistent%20Tor%20start%20in%20Tails%20vs%0A%09location%20aware%20Tor%20entry%20guards%20%28LATEG%29&In-Reply-To=%3C858u2xsa81.fsf%40boum.org%3E" TITLE="[Whonix-devel] [Tails-dev] Persistent Tor start in Tails vs	location aware Tor entry guards (LATEG)">intrigeri at boum.org
+</A><BR>
+<I>Sun Feb 7 00:14:06 CET 2016</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000557.html>[Whonix-devel] Tails Installation Assistant - What do you think	about it?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000559.html>[Whonix-devel] [Tails-dev] Persistent Tor start in Tails vs location aware Tor entry guards (LATEG)
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/date.html#558">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/thread.html#558">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/subject.html#558">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/author.html#558">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Hi,
+
+[can you please decide what mailing-list this discussion should happen
+on, and then we can stop cross-posting over 4 mailing-list?]
+
+Patrick Schleizer wrote (02 Jan 2016 22:36:13 GMT) :
+&gt;<i> But I think location aware Tor entry guards (LATEG) are wrong headed.
+</i>&gt;<i> The topic of LATEG is so difficult to explain to the user, that as you
+</i>&gt;<i> plan, you cannot add it the the UI. Perhaps buried under an advanced
+</i>&gt;<i> setting, but that's not worth so much. So it cannot be manual by
+</i>&gt;<i> default. Only automatic.
+</i>
+I agree.
+
+&gt;<i> Which brings me to the issue.
+</i>
+&gt;<i> There is a reason, why Tor picks a Tor entry guard and sticks to it. By
+</i>&gt;<i> changing it more often than Tor would do, you are subverting the reason
+</i>&gt;<i> for using Tor entry guards in the first place. In a sense, you are to a
+</i>&gt;<i> small degree thereby becoming a Tor developer, and modifying Tor's relay
+</i>&gt;<i> choosing algorithm.
+</i>
+I think I see what you mean, and indeed it's the kind of things about
+which my self-confidence is pretty low, and I'd personally rather
+avoid fiddling with things I don't understand.
+
+But the thing is: by using random guards every time Tails starts, we
+are _already_ making the very same kind of decisions. Only, we are
+making it very badly, and this has been going on for too many years
+already.
+
+Let's face it: as distro integrators, in the current state of things,
+we have to make a decision to compensate for the fact that Tor's guard
+selection wasn't designed with our threat model in mind.
+Keeping things as-is would be a decision. Using fully persistent entry
+guards (not location aware), like Tor Browser users get currently,
+would be another decision. We cannot escape it, so we're trying to
+make this decision in a way that's much better for the vast majority
+of Tails users.
+
+&gt;<i> I wonder, if the whole LATEG thing would not be much better implemented
+</i>&gt;<i> in Tor itself. If so, then any (further) research of the entry guard
+</i>&gt;<i> topic would still apply to Tails, and not to Tor only.
+</i>
+With my (lazy by design) distro integrator's hat, I can only agree:
+the more work is done by little-t-tor, the less I have to deal with
+myself, and the more is shared cross-distro. Yay.
+
+However, taking a step back, I'm not sure it makes a whole lot of
+sense: to be location-aware, tor would have to gain knowledge about
+new concepts, and interface with OS services, that it can currently
+happily ignore so far; add to this that tor is multi-platform;
+I expect it's not an easy problem to deal with at this specific place,
+but again: if someone solves it, I certainly won't complain :)
+
+&gt;<i> The documentation advice for advanced users caring about AdvGoalTracking
+</i>&gt;<i> could be to use obfuscated [private] bridges and to alternate
+</i>&gt;<i> them per travel location.
+</i>
+Right, I think it's important that people who what more control can
+get it this way, and IIRC our current best proposal does not prevent
+anyone from doing this.
+
+&gt;<i> Or perhaps you might be able to explain in tor-launcher /
+</i>&gt;<i> anon-connection-wizard [1] [2] [3] the LATEG / AdvGoalTracking issue.
+</i>
+If the configuration GUI has good facilities to document a broad and
+complex problem, yay, bringing the doc closer to the software is
+probably a winning strategy.
+
+&gt;&gt;<i> [...] By adding the SSID, we prevent attackers from being able to
+</i>&gt;&gt;<i> spoof only the MAC address of the router to reuse a given Tor state;
+</i>&gt;&gt;<i> they also have to spoof the SSID which is visible to the user and might
+</i>&gt;&gt;<i> be detected as malicious. [...]
+</i>
+&gt;<i> I find it unlikely, that users might judge an often changing SSID
+</i>&gt;<i> malicious. FreeWifi832458252823523 vs FreeWifi358235892435. How many
+</i>&gt;<i> users are going to remember that? I would guess, they would just click
+</i>&gt;<i> through whatever hoops required to make the WiFi connect again.
+</i>
+I have no time/energy to think seriouly about it now, and I've been
+postponing my reply for a month due to this, so I'll try to be
+pragmatic: I'm adding this as a FIXME on our blueprint, and will come
+back to it later.
+
+I'm not sure I understand the problem you mean to raise, though.
+Can you please elaborate what problem you see if users do exactly this
+(&quot;click through whatever hoops required to make the WiFi connect
+again&quot;, which I agree is very likely)?
+
+Thanks!
+
+Cheers,
+-- 
+intrigeri
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000557.html>[Whonix-devel] Tails Installation Assistant - What do you think	about it?
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000559.html>[Whonix-devel] [Tails-dev] Persistent Tor start in Tails vs location aware Tor entry guards (LATEG)
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/date.html#558">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/thread.html#558">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/subject.html#558">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/author.html#558">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000558.html','y7aelHq7wr','PLO8ZLyK1JA',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-February/000558.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-February/000558.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:43 GMT -->
+</HTML>

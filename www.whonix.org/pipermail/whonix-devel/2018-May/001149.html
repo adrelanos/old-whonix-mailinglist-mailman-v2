@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-May/001149.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] [qubes-devel] Offering salt help
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Offering%20salt%20help&In-Reply-To=%3C20180503133431.GP1124%40mail-itl%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/001148.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/001150.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] [qubes-devel] Offering salt help</H1>
+<B>Marek Marczykowski-Górecki</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20%5Bqubes-devel%5D%20Offering%20salt%20help&In-Reply-To=%3C20180503133431.GP1124%40mail-itl%3E" TITLE="[Whonix-devel] [qubes-devel] Offering salt help">marmarek at invisiblethingslab.com
+</A><BR>
+<I>Thu May 3 15:34:31 CEST 2018</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/001148.html>[Whonix-devel] [Tor Bug Tracker &amp; Wiki] Batch modify: #24309, #25894, #18022, #21704, ...
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/001150.html>[Whonix-devel] [qubes-devel] Offering salt help
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/date.html#1149">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/thread.html#1149">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/subject.html#1149">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/author.html#1149">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+On Thu, May 03, 2018 at 03:22:53PM +0200, viq wrote:
+&gt;<i> On 18-04-26 08:01:00, Patrick Schleizer wrote:
+</i>&gt;<i> &gt; viq:
+</i>&gt;<i> &gt; &gt; I'm somewhat experienced with salt, are there any areas where additional
+</i>&gt;<i> &gt; &gt; set of eyes/hands would be useful?
+</i>&gt;<i> &gt; &gt; 
+</i>&gt;<i> &gt; &gt; Sorry, my python skills are slowly approaching what could be called
+</i>&gt;<i> &gt; &gt; &quot;basic&quot;, so don't count on much from that side.
+</i>&gt;<i> &gt; &gt; 
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; The release of Whonix 14 is currently blocked due to missing salt files.
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; Qubes-Whonix 14 SaltStack state files required
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-issues/issues/3765">https://github.com/QubesOS/qubes-issues/issues/3765</A>
+</i>&gt;<i> &gt; 
+</i>&gt;<i> &gt; If you could help out with that one, that would be amazing!
+</i>&gt;<i> 
+</i>&gt;<i> I started looking at it, which led me to anon-whonix state [0] and
+</i>&gt;<i> related, and unless I'm missing something the first, simplest, naive
+</i>&gt;<i> approach would be to append &quot;-14&quot; to all references of templates,
+</i>&gt;<i> something like this commit [1]. Which seems way too simple, so please
+</i>&gt;<i> tell me what am I missing besides the &quot;we want to control it via a
+</i>&gt;<i> variable&quot; :)
+</i>
+I think it's that simple. But as you've said, better add pillar for
+that, so one could easily switch later to 15 or so.
+
+Thanks for looking into it!
+
+&gt;<i> As a side note, while it may be late for that, I think I'd prefer to have
+</i>&gt;<i> DVM name be closer to AppVM names than template names. When we'd have eg
+</i>&gt;<i> whonix-ws-14 and based on in anon-whonix, DVM for me should be named
+</i>&gt;<i> anon-whonix-dvm, and not whonix-ws-dvm. Or should it be
+</i>&gt;<i> whonix-ws-14-dvm, and anon-whonix preference for DVM adjusted when we
+</i>&gt;<i> get whonix 15?
+</i>&gt;<i> 
+</i>&gt;<i> [0] <A HREF="../../../../external.html?link=https://github.com/QubesOS/qubes-mgmt-salt-dom0-virtual-machines/blob/master/qvm/anon-whonix.sls">https://github.com/QubesOS/qubes-mgmt-salt-dom0-virtual-machines/blob/master/qvm/anon-whonix.sls</A>
+</i>&gt;<i> [1] <A HREF="../../../../external.html?link=https://github.com/viq/qubes-mgmt-salt-dom0-virtual-machines/commit/857ee77adef6ce970b5d2948804ff04928164525">https://github.com/viq/qubes-mgmt-salt-dom0-virtual-machines/commit/857ee77adef6ce970b5d2948804ff04928164525</A>
+</i>&gt;<i> 
+</i>
+- -- 
+Best Regards,
+Marek Marczykowski-Górecki
+Invisible Things Lab
+A: Because it messes up the order in which people normally read text.
+Q: Why is top-posting such a bad thing?
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAlrrD+YACgkQ24/THMrX
+1yw8uQf5Aac/od0nVbzgA2a9dAg+G/ugEDbTZJlRj6xpOuOdqTSE8Cpv7KbfgIgc
+2T0dYwpbSpIjgiAV8ajWvOC8Fp2eNiroEcrS27eDEiFMSO+M1gp5RVgg7QSMUif1
+C2m3V/boh/Jfu1wvRryfIyhMk9bOE5GeP9vHPg41Bdzzc7sEAOfSH5KBa3WBSG1w
+OG13oJE5yISrzCd5BuRi0K1PI1LqRcJkt1rHdH+W+rgY0L+IOd4l6ttsigFMXzGZ
+jof0lpPPiZjKb4Sh3clXrY1tNTg8q/b1Bt5Lq4B4GKy1SUziNtbUtZlkTrJEnTL3
+X46JOMuYVYaCLhyvG7LtjCT6qbh9eg==
+=Jeso
+-----END PGP SIGNATURE-----
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/001148.html>[Whonix-devel] [Tor Bug Tracker &amp; Wiki] Batch modify: #24309, #25894, #18022, #21704, ...
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/001150.html>[Whonix-devel] [qubes-devel] Offering salt help
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/date.html#1149">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/thread.html#1149">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/subject.html#1149">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/author.html#1149">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/001149.html','y7aelHq7wr','4kEvQ311Iow',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2018-May/001149.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2018-May/001149.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:16 GMT -->
+</HTML>

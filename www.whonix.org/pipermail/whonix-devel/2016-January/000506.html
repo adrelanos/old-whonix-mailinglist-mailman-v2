@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-January/000506.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<HEAD>
+<TITLE> [Whonix-devel] Overstanding LATEG
+</TITLE>
+<script>window.mod_pagespeed_start = Number(new Date());</script><LINK REL=Index HREF=index.html>
+<LINK REL=made HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Overstanding%20LATEG&In-Reply-To=%3C4d66fe69e3ddf081384ab99dee582767%40openmailbox.org%3E">
+<META NAME=robots CONTENT="index,nofollow">
+<style type="text/css">pre{white-space:pre-wrap}</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK REL=Previous HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/000502.html>
+<LINK REL=Next HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/000507.html>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>[Whonix-devel] Overstanding LATEG</H1>
+<B>Spencer</B>
+<A HREF="mailto:whonix-devel%40whonix.org?Subject=Re%3A%20%5BWhonix-devel%5D%20Overstanding%20LATEG&In-Reply-To=%3C4d66fe69e3ddf081384ab99dee582767%40openmailbox.org%3E" TITLE="[Whonix-devel] Overstanding LATEG">spencerone at openmailbox.org
+</A><BR>
+<I>Tue Jan 5 19:37:24 CET 2016</I>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/000502.html>[Whonix-devel] Overstanding LATEG [was: Persistent Tor start in Tails vs location aware Tor entry guards (LATEG)]
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/000507.html>[Whonix-devel] Overstanding LATEG
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/date.html#506">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/thread.html#506">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/subject.html#506">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/author.html#506">[ author ]</a>
+</LI>
+</UL>
+<HR>
+<PRE>Hi,
+
+&gt;<i> 
+</i>&gt;<i> Patrick Schleizer:
+</i>&gt;<i> Just to make sure we talk about the same thing.
+</i>&gt;<i> 1) documentation for advanced users in the wiki
+</i>&gt;<i> 2) asking questions in some form of greeter program
+</i>&gt;<i> 
+</i>
+Yep :)
+
+&gt;<i> 
+</i>&gt;<i> Was the explanation not good or did your browser not get the right
+</i>&gt;<i> anchor?
+</i>&gt;<i> 
+</i>
+I was linked to the Tor Project FAQ section that talks about Entry 
+Guards.
+
+The explanation is not too clear, as it provides only the context in 
+which Entry Guards exist in and not explicitly what an Entry Guard is.  
+What an Entry Guard is can, however, be deduced from the text but only 
+with a little bit of abductive reasoning :)
+
+&gt;<i> 
+</i>&gt;<i> However, it's too much information for any Tails
+</i>&gt;<i> Greeter or Whonix Setup Wizard / Anon Connection Wizard or every boot
+</i>&gt;<i> question.
+</i>&gt;<i> 
+</i>
+That depends on the entirety of the experience.  I encourage you to 
+think of the interface as a platform for people to teach themselves.  In 
+this case, it isn't only &quot;teach themselves&quot; how to use the interface but 
+also how the Tor Network works.
+
+In this context, the information can become redundant for every boot, so 
+much thought is needed to avoid simply sweeping difficulties under the 
+'Advanced' rug.
+
+&gt;<i> 
+</i>&gt;<i> I not following.
+</i>&gt;<i> 
+</i>
+My bad :)
+
+I mean to say that the Tor Project (now) uses a single Entry Guard where 
+Whonix provides an option to do the opposite: use many (or at least use 
+one other than the Entry Guard the Tor Project has reduced the 
+experience to).
+
+&gt;<i> 
+</i>&gt;<i> 1) We might do better documenting this for advanced users.
+</i>&gt;<i> 
+</i>
+My experience has been that &quot;Advanced&quot; users often build for the network 
+and &quot;regular folk&quot; simply use the network; both parties have varying 
+levels of knowledge.
+
+Having to communicate to this spectrum requires the same level of 
+clarity.
+
+&gt;<i> 
+</i>&gt;<i> 2) I don't think this can be explained in the some sort of greeter
+</i>&gt;<i> program. It's just too much information. And threat model specific.
+</i>&gt;<i> 
+</i>
+Yes, but this isn't a threat model that can be proven, for or against, 
+so all people will benefit from knowing how things work.
+
+&gt;<i> 
+</i>&gt;<i> &quot;If you fear more, that your adversary hosts evil Tor entry guards and
+</i>&gt;<i> you want to stick to your existing ones, choose this.&quot;
+</i>&gt;<i> 
+</i>&gt;<i> &quot;Otherwise, if you traveled since your last usage, and fear more, that
+</i>&gt;<i> your adversary tracks you by Tor entry guards, choose this.&quot;
+</i>&gt;<i> 
+</i>&gt;<i> Not great. And hard to compress further.
+</i>&gt;<i> 
+</i>
+Yes, but it isn't clear to me that the two are opposites, given the 
+premise that elicits the limitation to a single guard.
+
+I think that if what Entry Guards are is established prior to making a 
+decision, even if in the preceding text, the options could read:
+
+&quot;Enter the network using a single preselected Guard.&quot;
+
+                         [or]
+
+&quot;Enter the network using a randomly selected Guard.&quot;
+
+&gt;<i> 
+</i>&gt;<i> How sajolida comes into this?
+</i>&gt;<i> 
+</i>
+I mentioned sajolida :)  The hyperlink jungle that is Tails 
+documentation is arguably the clearest documentation I have ever 
+experienced; I believe sajolida is responsible for much of this.
+
+&gt;<i> 
+</i>&gt;<i> Please contribute.
+</i>&gt;<i> 
+</i>
+Will do!
+
+Wordlife,
+Spencer
+
+
+
+</PRE>
+<HR>
+<P><UL>
+<LI>Previous message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/000502.html>[Whonix-devel] Overstanding LATEG [was: Persistent Tor start in Tails vs location aware Tor entry guards (LATEG)]
+</A></LI>
+<LI>Next message: <A HREF=../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/000507.html>[Whonix-devel] Overstanding LATEG
+</A></LI>
+<LI> <B>Messages sorted by:</B>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/date.html#506">[ date ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/thread.html#506">[ thread ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/subject.html#506">[ subject ]</a>
+<a href="../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/author.html#506">[ author ]</a>
+</LI>
+</UL>
+<hr>
+<a href="../../../../external.html?link=https://www.whonix.org/cgi-bin/mailman/listinfo/Whonix-devel">More information about the Whonix-devel
+mailing list</a><br>
+<script data-pagespeed-no-defer type="text/javascript">(function(){function f(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var k=window.pagespeed;function l(b,a,c,g,h){this.h=b;this.i=a;this.l=c;this.j=g;this.b=h;this.c=[];this.a=0}l.prototype.f=function(b){for(var a=0;250>a&&this.a<this.b.length;++a,++this.a)try{document.querySelector(this.b[this.a])&&this.c.push(this.b[this.a])}catch(c){}this.a<this.b.length?window.setTimeout(this.f.bind(this),0,b):b()};
+k.g=function(b,a,c,g,h){if(document.querySelector&&Function.prototype.bind){var d=new l(b,a,c,g,h);f(function(){window.setTimeout(function(){d.f(function(){for(var a="oh="+d.l+"&n="+d.j,a=a+"&cs=",b=0;b<d.c.length;++b){var c=0<b?",":"",c=c+encodeURIComponent(d.c[b]);if(131072<a.length+c.length)break;a+=c}k.criticalCssBeaconData=a;var b=d.h,c=d.i,e;if(window.XMLHttpRequest)e=new XMLHttpRequest;else if(window.ActiveXObject)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(m){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(n){}}e&&
+(e.open("../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/POST",b+(-1==b.indexOf("?")?"?":"&")+"url="+encodeURIComponent(c)),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.send(a))})},0)})}};k.criticalCssBeaconInit=k.g;})();
+pagespeed.selectors=["pre"];pagespeed.criticalCssBeaconInit('/ngx_pagespeed_beacon','../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/000506.html','y7aelHq7wr','ut-7DspocSg',pagespeed.selectors);</script><script data-pagespeed-no-defer type="text/javascript">(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(c,a,e,b){this.f=c;this.a=a;this.b=e;this.g=b}f.beaconUrl="";
+function k(c){var a=c.f,e=window.mod_pagespeed_start,b=Number(new Date)-e,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==c.a?"load:":"unload:");if("beforeunload"!=c.a||!window.mod_pagespeed_loaded){a=a+b+("&r"+c.a+"=");if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[c.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-d))+
+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d-=g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";"load"==
+c.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(e-b)));f.criticalCss&&(e=f.criticalCss,a+="&ccis="+e.total_critical_inlined_size+"&cces="+e.total_original_external_size+"&ccos="+e.total_overhead_size+"&ccrl="+e.num_replaced_links+"&ccul="+e.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=c.b&&(a+=c.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+=
+"&url="+encodeURIComponent(c.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(c,a,e,b){var d=new h(c,a,e,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/ngx_pagespeed_beacon', 'load', '', '../../../../external.html?link=https://www.whonix.org/pipermail/whonix-devel/2016-January/000506.html');</script></BODY>
+<!-- Mirrored from www.whonix.org/pipermail/whonix-devel/2016-January/000506.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Wed, 29 Apr 2020 08:55:44 GMT -->
+</HTML>
